@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import { addUser } from "../firebase/cloudFirestore/addUser";
@@ -22,7 +23,7 @@ export default function Home() {
       <main className={styles.main}>
         {/* <button onClick={(e) => addUser()}>agregar comnpa</button> */}
 
-       
+        <Link href={"/gym"}>Gym</Link>
       </main>
     </>
   );

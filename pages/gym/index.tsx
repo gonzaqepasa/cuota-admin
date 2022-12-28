@@ -32,7 +32,7 @@ export default function Gym(props: any) {
           setModalAdd={setModalAdd}
         />
       )}
-      <RenderList userData={props.data} />
+      {props.data && <RenderList userData={props.data} />}
     </div>
   );
 }

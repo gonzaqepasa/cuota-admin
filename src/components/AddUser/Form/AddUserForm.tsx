@@ -6,6 +6,7 @@ import { typesActivityGym } from "../../../../pages/gym";
 import { handleSelect } from "../logic/handle-functions";
 import { createCalendar2023 } from "../logic/createCalendar";
 import { addUser } from "../../../../firebase/cloudFirestore/addUser";
+import { validateFormInputs } from "../logic/validateAddInputs";
 
 type typesPropsForm = {
   activity: typesActivityGym;
@@ -20,13 +21,21 @@ export default function AddUserForm({
   setActivity,
   setModalAdd,
 }: typesPropsForm) {
-  // Estados de los inputs
+  //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
   const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [dni, setDni] = useState(0);
   const [description, setDescription] = useState("");
+  ///////////////////////////////////////////////////////
 
+  //////////////// Estados para validar inputs ////////////////
+  const [nameVal, setNameVal] = useState({
+    val: false,
+    msg: "",
+  });
+
+  ////////////////////////////////////////////////////////////
   const toSendObj: typesUser = {
     name,
     phone,
@@ -42,7 +51,7 @@ export default function AddUserForm({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    addUser(toSendObj);
+    validateFormInputs(name, setNameVal); //&& addUser(toSendObj);
   }
 
   return (
@@ -66,15 +75,26 @@ export default function AddUserForm({
           </select>
         </div>
 
-        <div className={`${styles.inputLabelBox}`}>
+        <div className={`${styles.inputLabelBox}`} id="name">
           <label>
             Nombre <i style={{ color: "red" }}>*</i>
           </label>
-          <input onChange={(e) => setName(e.target.value)} name="name" />
+          <input
+            autoComplete="none"
+            placeholder="Ingrese nombre..."
+            className={`${nameVal.val && styles.nameValInput}`}
+            onChange={(e) => setName(e.target.value)}
+            name="name"
+          />
+          <i className={`${nameVal.val && styles.nameValItalic}`}>
+            {nameVal.msg}
+          </i>
         </div>
         <div className={`${styles.inputLabelBox}`}>
           <label>Celular</label>
           <input
+            placeholder="Ingrese celular..."
+            autoComplete={"none"}
             onChange={(e) => setPhone(Number(e.target.value))}
             name="phone"
             type={"number"}
@@ -82,11 +102,18 @@ export default function AddUserForm({
         </div>
         <div className={`${styles.inputLabelBox}`}>
           <label>E-mail</label>
-          <input onChange={(e) => setEmail(e.target.value)} name="name" />
+          <input
+            placeholder="Ingrese correo..."
+            autoComplete="none"
+            onChange={(e) => setEmail(e.target.value)}
+            name="name"
+          />
         </div>
         <div className={`${styles.inputLabelBox}`}>
           <label>D.N.I</label>
           <input
+            placeholder="Ingrese documento..."
+            autoComplete="none"
             onChange={(e) => setDni(Number(e.target.value))}
             maxLength={8}
             minLength={7}
@@ -96,13 +123,15 @@ export default function AddUserForm({
         <div className={`${styles.inputLabelBox}`}>
           <label>Descripcion</label>
           <textarea
+            placeholder="Ingrese alguna descripción..."
+            autoComplete="none"
             onChange={(e) => setDescription(e.target.value)}
             name="number"
           />
         </div>
-        <div>
-          <button type="submit">Agregar</button>
-          <button onClick={() => setModalAdd(false)}>Cancelar</button>
+        <div className={`${styles.btnContainer}`}>
+          <button className={`${styles.btnAccept}`} type="submit">Agregar</button>
+          <button className={`${styles.btnCancel}`} onClick={() => setModalAdd(false)}>Cancelar</button>
         </div>
       </form>
     </div>
