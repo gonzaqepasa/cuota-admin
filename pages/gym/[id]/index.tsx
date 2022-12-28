@@ -1,12 +1,18 @@
 import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
 import axios from "axios";
+import User from "../../../src/components/UserComponent/User";
+import { userAgent } from "next/server";
 
 export default function UserData(props: any) {
   const route = useRouter();
   console.log(route.query.id);
-  console.log(props.data);
-  return <div></div>;
+  // console.log(props.data);
+  return (
+    <div>
+      <User userData={props.data} id={String(route.query.id)} />
+    </div>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

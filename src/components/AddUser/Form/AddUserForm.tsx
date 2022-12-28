@@ -51,7 +51,7 @@ export default function AddUserForm({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    validateFormInputs(name, setNameVal); //&& addUser(toSendObj);
+    validateFormInputs(name, setNameVal) && addUser(toSendObj);
   }
 
   return (
@@ -130,8 +130,15 @@ export default function AddUserForm({
           />
         </div>
         <div className={`${styles.btnContainer}`}>
-          <button className={`${styles.btnAccept}`} type="submit">Agregar</button>
-          <button className={`${styles.btnCancel}`} onClick={() => setModalAdd(false)}>Cancelar</button>
+          <button className={`${styles.btnAccept}`} type="submit">
+            Agregar
+          </button>
+          <button
+            className={`${styles.btnCancel}`}
+            onClick={() => setModalAdd(false)}
+          >
+            Cancelar
+          </button>
         </div>
       </form>
     </div>

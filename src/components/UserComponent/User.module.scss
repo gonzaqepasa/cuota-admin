@@ -1,0 +1,24 @@
+.allUserComponent {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .monthsContainer {
+      background-color: black;
+    //   display: grid;
+    //   grid-template-columns: repeat(3, auto);
+    //   grid-template-rows: repeat(4, auto);
+    //   grid-gap: 1rem;
+
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+justify-content: center;
+    .monthBox {
+      background-color: blue;
+      min-height: 8rem;
+      width: 8rem;
+      margin: 1rem;
+    }
+  }
+}
