@@ -2,6 +2,7 @@ import { MouseEvent, useState } from "react";
 import { editTurno } from "../../../firebase/cloudFirestore/editTurno";
 import { typesUser } from "../../types/types-user";
 import styles from "./User.module.scss";
+import Swal from "sweetalert2";
 
 interface typesProps {
   userData: typesUser;
@@ -14,8 +15,31 @@ export default function User({ userData, id }: typesProps) {
     e: MouseEvent<HTMLButtonElement>,
     monthName: string
   ) {
+    Swal.fire({
+      reverseButtons: true,
+      background: "#090202",
+      color: "white",
+      title: "Estas seguro?",
+      text: `${userData.name} pago el mes de ${monthName}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si pago",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        editTurno(id, monthName, monthData, setMonthData);
+        Swal.fire({
+          background: "black",
+          color: "white",
+          title: "Pago Agregado!",
+          text: `${userData.name} pago el mes de ${monthName}`,
+          icon: "success",
+        });
+      }
+    });
     e.preventDefault();
-    editTurno(id, monthName, monthData, setMonthData);
   }
 
   console.log("esto es userdata", userData);
@@ -28,7 +52,7 @@ export default function User({ userData, id }: typesProps) {
         </div>
         <div className={`${styles.monthsContainer}`}>
           {monthData.map((el: any) => (
-            <div className={`${styles.monthBox}`}>
+            <div key={el.monthName} className={`${styles.monthBox}`}>
               <div></div>
               <div>
                 <h4>{el.monthName}</h4>
