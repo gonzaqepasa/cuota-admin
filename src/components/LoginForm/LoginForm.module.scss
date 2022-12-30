@@ -1,0 +1,19 @@
+.allLoginForm {
+  background-color: red;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    background-color: blue;
+    padding: 2rem;
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+    }
+  }
+}

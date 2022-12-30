@@ -31,7 +31,7 @@ export default function User({ userData, id }: typesProps) {
       if (result.isConfirmed) {
         editTurno(id, monthName, monthData, setMonthData);
         Swal.fire({
-          background: "black",
+          background: "#090202",
           color: "white",
           title: "Pago Agregado!",
           text: `${userData.name} pago el mes de ${monthName}`,
