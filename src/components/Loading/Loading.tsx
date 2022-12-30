@@ -3,8 +3,8 @@ import barsSvg from "./bars.svg";
 export default function Loading() {
   return (
     <>
-      <div className="bars-container">
-        <Image height={50} width={50} src={barsSvg} alt="" priority />
+      <div  className="bars-container">
+        <Image  height={50} width={50} src={barsSvg} alt="" priority={false} />
       </div>
 
       <style jsx>{`

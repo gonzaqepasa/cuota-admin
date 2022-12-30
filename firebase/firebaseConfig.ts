@@ -9,13 +9,13 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD-4_XvjqWSoWAfe2U-DqAG597LP8PfJ3g",
-  authDomain: "cuota-admin.firebaseapp.com",
-  projectId: "cuota-admin",
-  storageBucket: "cuota-admin.appspot.com",
-  messagingSenderId: "817497584188",
-  appId: "1:817497584188:web:70112d8e70f9a6b71ac939",
-  measurementId: "G-YD8583TYV6",
+  apiKey: "AIzaSyAcM6pAek7NQB3ZqIUzVsTOTL5FnXfDeVc",
+  authDomain: "cuota-admin-2e674.firebaseapp.com",
+  projectId: "cuota-admin-2e674",
+  storageBucket: "cuota-admin-2e674.appspot.com",
+  messagingSenderId: "426391867478",
+  appId: "1:426391867478:web:57f45f27aa86bf9c77abf7",
+  measurementId: "G-7201CLL1Z3"
 };
 
 // Initialize Firebase

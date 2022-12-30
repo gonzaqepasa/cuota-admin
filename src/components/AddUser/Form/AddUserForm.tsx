@@ -90,7 +90,7 @@ export default function AddUserForm({
             {nameVal.msg}
           </i>
         </div>
-        <div className={`${styles.inputLabelBox}`}>
+        {/* <div className={`${styles.inputLabelBox}`}>
           <label>Celular</label>
           <input
             placeholder="Ingrese celular..."
@@ -99,8 +99,8 @@ export default function AddUserForm({
             name="phone"
             type={"number"}
           />
-        </div>
-        <div className={`${styles.inputLabelBox}`}>
+        </div> */}
+      {/*   <div className={`${styles.inputLabelBox}`}>
           <label>E-mail</label>
           <input
             placeholder="Ingrese correo..."
@@ -108,8 +108,8 @@ export default function AddUserForm({
             onChange={(e) => setEmail(e.target.value)}
             name="name"
           />
-        </div>
-        <div className={`${styles.inputLabelBox}`}>
+        </div> */}
+       {/*  <div className={`${styles.inputLabelBox}`}>
           <label>D.N.I</label>
           <input
             placeholder="Ingrese documento..."
@@ -119,7 +119,7 @@ export default function AddUserForm({
             minLength={7}
             name="number"
           />
-        </div>
+        </div> */}
         <div className={`${styles.inputLabelBox}`}>
           <label>Descripcion</label>
           <textarea
