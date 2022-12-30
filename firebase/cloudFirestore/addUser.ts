@@ -6,7 +6,8 @@ import { db } from "../firebaseConfig";
 
 export async function addUser(
   userData: typesUser,
-  setModalAdd: Dispatch<SetStateAction<boolean>>
+  setModalAdd: Dispatch<SetStateAction<boolean>>,
+  getDataAgain: Function
 ) {
   console.log(userData);
   try {
@@ -19,7 +20,7 @@ export async function addUser(
       color: "white",
     });
     setModalAdd(false);
-    
+    getDataAgain();
   } catch (e) {
     console.error("Error adding document: ", e);
     Swal.fire({

@@ -20,19 +20,34 @@ export default function Gym(props: any) {
   });
   ////////////////////////////////////////////
   const [modalAdd, setModalAdd] = useState(false);
-  //   console.log("esto es propr", props?.data);
+  const [dataUser, setDataUser] = useState(props.data);
+  //////// Funcion volver a llamadar data ////////
+  async function getDataAgain() {
+    try {
+      const { data }: any = await axios.get(
+        "http://localhost:3000/api/gym/get-users"
+      );
+      setDataUser(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  ////////////////////////////////////////////
+
   return (
     <div className={`main`}>
       <ButtonAdd setModalAdd={setModalAdd} />
       {modalAdd && (
         <AddUserForm
-          modalityOptions={modalityOptions}
-          activity={activityMain}
-          setActivity={setactivityMain}
-          setModalAdd={setModalAdd}
+          modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
+          activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
+          setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
+          setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
+          getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd 
         />
       )}
-      {props.data && <RenderList userData={props.data} />}
+      {dataUser && <RenderList userData={dataUser} />}
     </div>
   );
 }

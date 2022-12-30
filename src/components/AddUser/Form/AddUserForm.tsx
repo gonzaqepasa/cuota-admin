@@ -13,6 +13,7 @@ type typesPropsForm = {
   setActivity: Dispatch<SetStateAction<typesActivityGym>>;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   modalityOptions: string[];
+  getDataAgain:Function
 };
 
 export default function AddUserForm({
@@ -20,6 +21,7 @@ export default function AddUserForm({
   activity,
   setActivity,
   setModalAdd,
+  getDataAgain
 }: typesPropsForm) {
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
@@ -51,7 +53,7 @@ export default function AddUserForm({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    validateFormInputs(name, setNameVal) && addUser(toSendObj,setModalAdd);
+    validateFormInputs(name, setNameVal) && addUser(toSendObj,setModalAdd,getDataAgain);
   }
 
   return (
