@@ -7,6 +7,7 @@ import { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import LoginForm from "../src/components/LoginForm/LoginForm";
 import Loading from "../src/components/Loading/Loading";
+import Navbar from "../src/components/Navbar/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   ///////////  Logica de auth  ///////////
@@ -32,7 +33,14 @@ export default function App({ Component, pageProps }: AppProps) {
   ////////////////////////////////////////
   //////////////// Render ////////////////////////
   function render() {
-    return authUser ? <Component {...pageProps} /> : <LoginForm />;
+    return authUser ? (
+      <>
+        <Navbar />
+        <Component {...pageProps} />
+      </>
+    ) : (
+      <LoginForm />
+    );
   }
   ////////////////////////////////////////////////
   return (
@@ -44,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Create Next App</title>
       </Head>
 
-      {load ? <Loading  />  : render()}
+      {load ? <Loading /> : render()}
     </>
   );
 }

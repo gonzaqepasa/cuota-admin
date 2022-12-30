@@ -51,7 +51,7 @@ export default function AddUserForm({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    validateFormInputs(name, setNameVal) && addUser(toSendObj);
+    validateFormInputs(name, setNameVal) && addUser(toSendObj,setModalAdd);
   }
 
   return (

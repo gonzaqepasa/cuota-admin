@@ -1,0 +1,40 @@
+@import '../../../styles/variables';
+
+.allNavbar {
+  background-color: rgba(255, 1, 1, 0.8);
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  .navBox {
+    background-color: black;
+    margin-top: 70px;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    width: 100vw;
+    z-index: 40;
+    transform: translateX(100vw);
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a {
+      margin: 1.5rem 0;
+      font-family: $main-text;
+      font-weight: 600;
+    }
+  }
+  .isOpen {
+    transform: translateX(0);
+  }
+
+  .btnBox {
+    position: absolute;
+    z-index: 60;
+    right: 0;
+    // background-color: green;
+  }
+}

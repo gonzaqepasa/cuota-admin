@@ -22,7 +22,7 @@ export default function Gym(props: any) {
   const [modalAdd, setModalAdd] = useState(false);
   //   console.log("esto es propr", props?.data);
   return (
-    <div>
+    <div className={`main`}>
       <ButtonAdd setModalAdd={setModalAdd} />
       {modalAdd && (
         <AddUserForm

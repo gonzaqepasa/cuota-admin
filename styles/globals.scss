@@ -48,12 +48,12 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
 
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    --primary-glow: radial-gradient(rgba(255, 1, 1, 0.3), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
       to bottom right,
       rgba(1, 65, 255, 0),
       rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
+      rgba(255, 1, 1, 0.3)
     );
 
     --tile-start-rgb: 2, 13, 46;
@@ -80,7 +80,9 @@
   padding: 0;
   margin: 0;
 }
-
+.main{
+  padding-top: 70px;
+}
 html,
 body {
   max-width: 100vw;
@@ -89,12 +91,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--secondary-glow)
 }
 
 a {
