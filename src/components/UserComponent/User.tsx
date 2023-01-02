@@ -3,6 +3,7 @@ import { editTurno } from "../../../firebase/cloudFirestore/editTurno";
 import { typesUser } from "../../types/types-user";
 import styles from "./User.module.scss";
 import Swal from "sweetalert2";
+import { auth } from "../../../firebase/firebaseConfig";
 
 interface typesProps {
   userData: typesUser;
@@ -29,7 +30,7 @@ export default function User({ userData, id }: typesProps) {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        editTurno(id, monthName, monthData, setMonthData);
+        editTurno(id, monthName, monthData, setMonthData,auth.currentUser?.email);
         Swal.fire({
           background: "#090202",
           color: "white",
