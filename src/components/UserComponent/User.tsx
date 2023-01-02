@@ -4,6 +4,8 @@ import { typesUser } from "../../types/types-user";
 import styles from "./User.module.scss";
 import Swal from "sweetalert2";
 import { auth } from "../../../firebase/firebaseConfig";
+import { FcCheckmark } from "react-icons/fc";
+import { FaMoneyBillWave } from "react-icons/fa";
 
 interface typesProps {
   userData: typesUser;
@@ -30,14 +32,13 @@ export default function User({ userData, id }: typesProps) {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        editTurno(id, monthName, monthData, setMonthData,auth.currentUser?.email);
-        Swal.fire({
-          background: "#090202",
-          color: "white",
-          title: "Pago Agregado!",
-          text: `${userData.name} pago el mes de ${monthName}`,
-          icon: "success",
-        });
+        editTurno(
+          id,
+          monthName,
+          monthData,
+          setMonthData,
+          auth.currentUser?.email
+        );
       }
     });
     e.preventDefault();
@@ -48,25 +49,42 @@ export default function User({ userData, id }: typesProps) {
     return (
       <div className={`${styles.allUserComponent}`}>
         {/* <p>2023</p> */}
-        <div>
-          <h1>{userData.name}</h1>
+        <div className={styles.nameUserBox}>
+          <h2>{userData.name}</h2>
+          <h3>{userData.activity.name}</h3>
         </div>
+
+        {userData.description && (
+          <div className={styles.detailContainer}>
+            <p>{userData.description}</p>
+          </div>
+        )}
+        {/*  <--- Contenedor de Card */}
         <div className={`${styles.monthsContainer}`}>
           {monthData.map((el: any) => (
+            ///////////////// Componente CardMonth /////////////////
             <div key={el.monthName} className={`${styles.monthBox}`}>
-              <div></div>
-              <div>
-                <h4>{el.monthName}</h4>
+              <div className={styles.monthNameBox}>
+                <h4> {el.monthName}</h4>
+              </div>
+              <div className={`${styles.conditionIsPayContainer}`}>
                 {el.isPay ? (
-                  <div>
-                    <h3>Icono</h3>
+                  <span>
+                    <div className={styles.checkImgContainer}>
+                      <span>
+                        <FcCheckmark />
+                      </span>
+                    </div>
                     <h3>{el.addAdmin}</h3>
                     <p>{el.addData}</p>
-                  </div>
+                  </span>
                 ) : (
-                  <button onClick={(e) => handleEditTurno(e, el.monthName)}>
-                    Agregar pago
-                  </button>
+                  <div className={styles.allBtnContainer}>
+                    <button onClick={(e) => handleEditTurno(e, el.monthName)}>
+                      <FaMoneyBillWave /> <p>Agregar pago</p>
+                    </button>
+                  </div>
+                  ///////////////////////////////////////////////////
                 )}
               </div>
             </div>

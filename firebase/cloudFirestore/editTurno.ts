@@ -1,5 +1,6 @@
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import Swal from "sweetalert2";
 
 type typeMont = {
   addAdmin?: string;
@@ -18,7 +19,9 @@ export async function editTurno(
 ) {
   try {
     const fecha = new Date();
-    const fechaToSend = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} - ${fecha.getHours()}:${fecha.getMinutes()} Hs`;
+    const fechaToSend = `${fecha.getDate()}/${
+      fecha.getMonth() + 1
+    }/${fecha.getFullYear()} - ${fecha.getHours()}:${fecha.getMinutes()} Hs`;
     const userRef = doc(db, "User", id);
     const dataToSend = installments.map((el) => {
       if (el.monthName === mes) {
@@ -41,8 +44,22 @@ export async function editTurno(
         2023: dataToSend,
       },
     });
+    await Swal.fire({
+      background: "#090202",
+      color: "white",
+      title: "Pago Agregado!",
+      text: `pago el mes de ${mes}`,
+      icon: "success",
+    });
     await setData(dataToSend);
   } catch (err) {
     console.log(err);
+    await Swal.fire({
+      background: "#090202",
+      color: "white",
+      title: "Hubo un problema",
+      text: 'Leer la consola',
+      icon: "success",
+    });
   }
 }

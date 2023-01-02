@@ -1,28 +1,155 @@
-@import '../../../styles/variables';
-
-
+@import "../../../styles/variables";
 
 .allUserComponent {
-  background-color: red;
+  // background-color: red;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .nameUserBox {
+    margin: 2rem 0;
+    h2 {
+      font-size: 2rem;
+      font-family: $main-text;
+      border-bottom: solid grey 2px;
+    }
+    h3{
+      color: darkgray;
+    }
+  }
+
+  .detailContainer {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: gray;
+    border-radius: 10px;
+
+    min-height: 5rem;
+    width: 80%;
+    font-family: $main-text;
+    padding: 5px;
+    margin: 1rem 0;
+  }
+
+  /////////////////////// MESES ///////////////////////////
   .monthsContainer {
-      background-color: black;
+    // background-color: black;
     //   display: grid;
     //   grid-template-columns: repeat(3, auto);
     //   grid-template-rows: repeat(4, auto);
     //   grid-gap: 1rem;
 
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     flex-wrap: wrap;
-justify-content: center;
+    justify-content: center;
     .monthBox {
-      background-color: blue;
-      min-height: 8rem;
-      width: 8rem;
-      margin: 1rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      // backdrop-filter: blur(100rem);
+      border-radius: 5px;
+      min-height: 9rem;
+      width: 16rem;
+      max-width: 95vw;
+      margin: 1.2rem;
+
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      //////////////////// Primera caja
+      .monthNameBox {
+        width: 60%;
+        border-radius: 0 0 50px 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(128, 128, 128, 0.1);
+        // color: black;
+        height: 1.5rem;
+        position: absolute;
+        z-index: 500;
+        transition: 0.4s;
+        // color: rgba(255, 255, 255, 0.7);
+
+        h4 {
+          font-weight: 600;
+          color: white;
+        }
+      }
+
+      //////////////////// Segunda caja
+      .conditionIsPayContainer {
+        height: inherit;
+        height: 100%;
+        width: 100%;
+        // background-color: red;
+        transition: 0.1s;
+        filter: opacity(0.7);
+
+        span {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          height: 100%;
+          font-family: $main-text;
+          padding: 6px;
+
+          .checkImgContainer {
+            display: flex;
+            span {
+              background-color: rgba(255, 255, 255, 0.2);
+              width: initial;
+              border-radius: 50%;
+              font-size: 1.5rem;
+            }
+          }
+          h3 {
+            font-size: 0.8rem;
+            color: grey;
+          }
+          p {
+            font-size: 1rem;
+          }
+        }
+
+        .allBtnContainer {
+          background-color: rgba(122, 122, 122, 0.9);
+          border-radius: 5px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          button {
+            height: 90%;
+            width: 90%;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: rgb(0, 225, 255);
+            cursor: pointer;
+            p {
+              font-family: $main-text;
+              font-weight: 600;
+              color: rgb(255, 255, 255);
+              text-shadow: 1px 1px 2px black;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+    .monthBox:hover {
+      .monthNameBox {
+        width: 102%;
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(71, 48, 48, 0.6);
+        h4 {
+          text-shadow: 0px 0px 2px rgb(170, 170, 170);
+          color: white;
+        }
+      }
+      .conditionIsPayContainer {
+        filter: opacity(1);
+      }
     }
   }
 }
