@@ -13,31 +13,36 @@ export async function editTurno(
   id: string,
   mes: string,
   installments: typeMont[],
-  setData: any
+  setData: any,
+  addAdmin: string | undefined | null
 ) {
-  const fecha = new Date();
-  const fechaToSend = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} - ${fecha.getHours()}:${fecha.getMinutes()} Hs`
-  const userRef = doc(db, "User", id);
-  const dataToSend = installments.map((el) => {
-    if (el.monthName === mes) {
-      return {
-        addAdmin: "aca va el admin",
-        isPay: true,
-        addData: fechaToSend,
-        monthName: mes,
-        comment: "",
-      };
-    } else {
-      return el;
-    }
-  });
+  try {
+    const fecha = new Date();
+    const fechaToSend = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()} - ${fecha.getHours()}:${fecha.getMinutes()} Hs`;
+    const userRef = doc(db, "User", id);
+    const dataToSend = installments.map((el) => {
+      if (el.monthName === mes) {
+        return {
+          addAdmin,
+          isPay: true,
+          addData: fechaToSend,
+          monthName: mes,
+          comment: "",
+        };
+      } else {
+        return el;
+      }
+    });
 
-  console.log("esto es installments", installments);
-  console.log("esto es aux", dataToSend);
-  await updateDoc(userRef, {
-    installments: {
-      2023: dataToSend,
-    },
-  });
-  await setData(dataToSend);
+    console.log("esto es installments", installments);
+    console.log("esto es aux", dataToSend);
+    await updateDoc(userRef, {
+      installments: {
+        2023: dataToSend,
+      },
+    });
+    await setData(dataToSend);
+  } catch (err) {
+    console.log(err);
+  }
 }
