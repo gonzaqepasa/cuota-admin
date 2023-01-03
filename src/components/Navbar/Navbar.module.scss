@@ -1,7 +1,7 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
 .allNavbar {
-  background-color: rgba(255, 1, 1, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   height: 70px;
   width: 100%;
   position: fixed;
@@ -25,6 +25,16 @@
       margin: 1.5rem 0;
       font-family: $main-text;
       font-weight: 600;
+      width: 90%;
+      text-align: center;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    a:hover {
+      background-color: white;
+      color: black;
     }
   }
   .isOpen {
@@ -34,7 +44,31 @@
   .btnBox {
     position: absolute;
     z-index: 60;
-    right: 0;
+    right: 10px;
     // background-color: green;
+  }
+}
+
+@media (min-width: 550px) {
+  .allNavbar {
+    .navBox {
+      position: relative;
+      height: 100%;
+      width: initial;
+      flex-direction: row;
+      margin: 0 0.5rem;
+      transform: translateX(0);
+      a {
+        // background-color: green;
+        height: 100%;
+        width: 6rem;
+        margin: 0 0.2rem;
+        transition: 0.1s;
+      }
+    }
+
+    .btnBox {
+      display: none;
+    }
   }
 }
