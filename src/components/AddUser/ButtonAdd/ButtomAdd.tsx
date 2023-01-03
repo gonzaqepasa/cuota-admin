@@ -1,5 +1,6 @@
 import styles from "./ButtonAdd.module.scss";
 import { Dispatch, SetStateAction } from "react";
+import { MdPersonAdd } from "react-icons/md";
 export default function ButtonAdd({
   setModalAdd,
 }: {
@@ -7,9 +8,11 @@ export default function ButtonAdd({
 }) {
   return (
     <div className={`${styles.allButtonAdd}`}>
-      <button onClick={(e) => setModalAdd((state: boolean) => !state)}>
-        Agregar
-      </button>
+      {
+        <button onClick={(e) => setModalAdd((state: boolean) => !state)}>
+          <MdPersonAdd />
+        </button>
+      }
     </div>
   );
 }
