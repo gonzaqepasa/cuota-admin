@@ -3,8 +3,16 @@ import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import Layout from "../../src/components/LayoutApp/LayoutApp";
 import RenderList from "../../src/components/RenderList/RenderList";
 import { typesUser } from "../../src/types/types-user";
-// import axios from "axios";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
+import {
+  collection,
+  doc,
+  query,
+  setDoc,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
 
 export interface typesActivityGym {
   name: "Funcional";
@@ -62,13 +70,33 @@ export default function Gym(props: any) {
 
 export async function getStaticProps() {
   try {
-    const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
+    // const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
     // const { data }: any = await axios.get(`http://${url}/api/gym/get-users`);
-    const res = await fetch(`http://${url}/api/gym/get-users`);
-    const data = await res.json();
+    // const res = await fetch(`http://${url}/api/gym/get-users`);
+    // const data = await res.json();
+
+    const querySnapshot = await getDocs(collection(db, "User"));
+    const toSend: object[] = [];
+    querySnapshot.forEach((doc) => {
+      if (doc.data().activity.name === "Funcional") {
+        const { name, phone, age, email, dni, installments, active, activity } =
+          doc.data();
+
+        toSend.push({
+          name,
+          phone,
+          email,
+          dni,
+          installments,
+          active,
+          activity,
+          id: doc.id,
+        });
+      }
+    });
     return {
       props: {
-        data,
+        data: toSend,
       },
     };
   } catch (err) {
