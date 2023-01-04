@@ -3,7 +3,7 @@ import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import Layout from "../../src/components/LayoutApp/LayoutApp";
 import RenderList from "../../src/components/RenderList/RenderList";
 import { typesUser } from "../../src/types/types-user";
-import axios from "axios";
+// import axios from "axios";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 
 export interface typesActivityGym {
@@ -14,8 +14,7 @@ export interface typesActivityGym {
 export default function Gym(props: any) {
   /////////////// BORRAR ///////////////
   // console.log('Desde EL back : ', props)
-  console.log("FIREBASE ->>>", process.env.NEXT_PUBLIC_DOMAIN);
-  // console.log('Desde EL back : ', process.env.NEXT_LOCAL_DOMAINN)
+  // console.log('Desde EL back : ', process.env.FIREBASE_DOMAIN_UNO)
 
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
@@ -28,11 +27,14 @@ export default function Gym(props: any) {
   const [modalAdd, setModalAdd] = useState(false);
   const [dataUser, setDataUser] = useState(props.data);
   //////// Funcion volver a llamadar data ////////
-
   async function getDataAgain() {
     try {
+      // const { data }: any = await axios.get(
+      //   "http://localhost:3000/api/gym/get-users"
+      // );
       const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
-      const { data }: any = await axios.get("http://" + url + "/gym/get-users");
+      const res = await fetch(`http://${url}/api/gym/get-users`);
+      const data = await res.json();
       setDataUser(data);
     } catch (err) {
       console.log(err);
@@ -61,10 +63,9 @@ export default function Gym(props: any) {
 export async function getStaticProps() {
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
-
-    const { data }: any = await axios.get(
-      "https://" + url + "/api/gym/get-users"
-    );
+    // const { data }: any = await axios.get(`http://${url}/api/gym/get-users`);
+    const res = await fetch(`http://${url}/api/gym/get-users`);
+    const data = await res.json();
     return {
       props: {
         data,
