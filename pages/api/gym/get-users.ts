@@ -39,9 +39,8 @@ export default async function handler(
           id: doc.id,
         });
       }
-
-      res.status(200).json(toSend);
     });
+    res.status(200).json(toSend);
   } catch (err) {
     res.status(404).send(err);
   }
