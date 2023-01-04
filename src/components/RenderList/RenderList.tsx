@@ -38,7 +38,7 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
 
       <div className={styles.linksContainer}>
         {dataToRender.map((el) => (
-          <div className={styles.linkBox}>
+          <div key={el.id} className={styles.linkBox}>
           <FaUserCheck/>
           <Link href={`/gym/${el.id}`}>{el.name}</Link>
           </div>
