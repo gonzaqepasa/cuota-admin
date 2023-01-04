@@ -13,7 +13,10 @@ export interface typesActivityGym {
 
 export default function Gym(props: any) {
   /////////////// BORRAR ///////////////
-  console.log('Desde EL back : ', props)
+  // console.log('Desde EL back : ', props)
+  console.log("FIREBASE ->>>", process.env.NEXT_PUBLIC_DOMAIN);
+  // console.log('Desde EL back : ', process.env.NEXT_LOCAL_DOMAINN)
+
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
   const modalityOptions = ["3 Días", "2 Días", "Libre"];
@@ -25,11 +28,11 @@ export default function Gym(props: any) {
   const [modalAdd, setModalAdd] = useState(false);
   const [dataUser, setDataUser] = useState(props.data);
   //////// Funcion volver a llamadar data ////////
+
   async function getDataAgain() {
     try {
-      const { data }: any = await axios.get(
-        "http://localhost:3000/api/gym/get-users"
-      );
+      const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
+      const { data }: any = await axios.get("http://" + url + "/gym/get-users");
       setDataUser(data);
     } catch (err) {
       console.log(err);
@@ -57,8 +60,10 @@ export default function Gym(props: any) {
 
 export async function getStaticProps() {
   try {
+    const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
+
     const { data }: any = await axios.get(
-      "http://localhost:3000/api/gym/get-users"
+      "https://" + url + "/api/gym/get-users"
     );
     return {
       props: {
