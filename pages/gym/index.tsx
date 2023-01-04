@@ -94,12 +94,11 @@ export async function getStaticProps() {
         });
       }
     });
-};
     return {
       props: {
         data: toSend,
       },
-    
+    };
   } catch (err) {
     return {
       props: {
