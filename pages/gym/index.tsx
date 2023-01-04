@@ -44,7 +44,7 @@ export default function Gym(props: any) {
           activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
           setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
           setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
-          getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd 
+          getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
       {dataUser && <RenderList userData={dataUser} />}
@@ -66,6 +66,7 @@ export async function getStaticProps() {
     return {
       props: {
         data: false,
+        error: err,
       },
     };
   }

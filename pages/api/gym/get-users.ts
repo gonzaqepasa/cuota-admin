@@ -19,26 +19,30 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const querySnapshot = await getDocs(collection(db, "User"));
-  const toSend: object[] = [];
-  querySnapshot.forEach((doc) => {
-    if (doc.data().activity.name === "Funcional") {
-      const { name, phone, age, email, dni, installments, active, activity } =
-        doc.data();
+  try {
+    const querySnapshot = await getDocs(collection(db, "User"));
+    const toSend: object[] = [];
+    querySnapshot.forEach((doc) => {
+      if (doc.data().activity.name === "Funcional") {
+        const { name, phone, age, email, dni, installments, active, activity } =
+          doc.data();
 
-      toSend.push({
-        name,
-        phone,
-        age,
-        email,
-        dni,
-        installments,
-        active,
-        activity,
-        id: doc.id,
-      });
-    }
-  });
+        toSend.push({
+          name,
+          phone,
+          age,
+          email,
+          dni,
+          installments,
+          active,
+          activity,
+          id: doc.id,
+        });
+      }
 
-  res.status(200).json(toSend);
+      res.status(200).json(toSend);
+    });
+  } catch (err) {
+    res.status(404).send(err);
+  }
 }
