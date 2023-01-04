@@ -1,6 +1,6 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
-import { Provider } from "react-redux";
+
 import Head from "next/head";
 import { auth } from "../firebase/firebaseConfig";
 import { useState } from "react";
