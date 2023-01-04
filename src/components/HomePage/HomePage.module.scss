@@ -1,0 +1,68 @@
+@import "../../../styles/variables";
+
+.allHomePage {
+  // background-color: $backg-black2;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: $main-text;
+
+  .text1Box {
+    h2 {
+      text-align: center;
+      width: 60vw;
+      color: $main-color;
+      // border-bottom: 2px $main-color solid;
+      // background-color: red;
+      // border-bottom: grey 2px solid;
+    }
+  }
+
+  .linkContainer {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    max-width: 18rem;
+    flex-direction: column;
+    a {
+      border-radius: 5px;
+      transition: 0.2s;
+
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      svg {
+        color: grey;
+        margin: 0 1rem ;
+        font-size: 2rem;
+      }
+    }
+  }
+  .linkContainer:hover {
+    a {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  .signOutBtnContainer {
+    button {
+      color: red;
+      border: none;
+      background: none;
+      opacity: 0.8;
+      transition: 0.1s;
+    }
+    button:hover {
+      opacity: 1;
+    }
+  }
+}

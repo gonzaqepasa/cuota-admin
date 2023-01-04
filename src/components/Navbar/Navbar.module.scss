@@ -9,28 +9,33 @@
   display: flex;
   align-items: center;
   .navBox {
-    background-color: black;
+    background-color: $backg-black1;
     margin-top: 70px;
     position: fixed;
     height: 100vh;
     top: 0;
     width: 100vw;
-    z-index: 40;
+    z-index: 10160;
     transform: translateX(100vw);
     transition: 0.2s;
     display: flex;
     flex-direction: column;
     align-items: center;
     a {
-      margin: 1.5rem 0;
+      margin: 0.5rem 0;
       font-family: $main-text;
       font-weight: 600;
       width: 90%;
       text-align: center;
-      height: 2rem;
+      height: 4rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      svg{
+        font-size: 1.4rem;
+        color: $main-color; 
+        margin-right: 0.5rem;
+      }
     }
     a:hover {
       background-color: white;
@@ -45,6 +50,7 @@
     position: absolute;
     z-index: 60;
     right: 10px;
+    color: $main-color;
     // background-color: green;
   }
 }
@@ -53,6 +59,7 @@
   .allNavbar {
     .navBox {
       position: relative;
+      background: none;
       height: 100%;
       width: initial;
       flex-direction: row;
@@ -61,7 +68,7 @@
       a {
         // background-color: green;
         height: 100%;
-        width: 6rem;
+        width: 7rem;
         margin: 0 0.2rem;
         transition: 0.1s;
       }

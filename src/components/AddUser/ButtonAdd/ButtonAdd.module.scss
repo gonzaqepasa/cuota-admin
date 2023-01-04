@@ -1,5 +1,7 @@
+@import "../../../../styles/variables";
+
 .allButtonAdd {
-  // background-color: green;
+  background-color: $backg-black1;
   // position: absolute;
   width: 100%;
   padding: 0.6rem;
@@ -11,22 +13,28 @@
     cursor: pointer;
     border: none;
     background: none;
-    color: grey;
+    color: $main-color;
     padding: 0.3rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
     transition: 0.1s;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.8;
+    filter: drop-shadow($main-textShadow);
   }
   button:hover {
-    color: white;
-   
+    opacity: 1;
   }
   button:hover::before {
     content: "Agregar nuevo usuario";
     font-size: 0.9rem;
-    color: grey;
-    margin: 0 0.5rem;
+    color: white;
+    font-family: $main-text;
+    box-shadow: 1px 1px 1px grey;
+    margin-right:  0.5rem;
+    background: black;
+    padding: 2px 0.8rem;
+    border-radius: 15px;
   }
 }

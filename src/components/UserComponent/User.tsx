@@ -51,7 +51,7 @@ export default function User({ userData, id }: typesProps) {
         {/* <p>2023</p> */}
         <div className={styles.nameUserBox}>
           <h2>{userData.name}</h2>
-          <h3>{userData.activity.name}</h3>
+          <h3>{userData.activity.name.toUpperCase()}</h3>
         </div>
 
         {userData.description && (

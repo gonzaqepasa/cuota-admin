@@ -48,7 +48,7 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
 
-    --primary-glow: radial-gradient(rgba(255, 1, 1, 0.3), rgba(1, 65, 255, 0));
+    --primary-glow: radial-gradient(rgba(255, 1, 1, 0.1), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
       to bottom right,
       rgba(1, 65, 255, 0),
@@ -92,7 +92,12 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--secondary-glow);
+  background: var(--primary-glow);
+  background: rgb(51, 51, 51);
+  background-image: url('https://wallpapercave.com/wp/wp10529932.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   
 

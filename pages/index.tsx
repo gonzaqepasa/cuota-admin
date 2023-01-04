@@ -7,6 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { signOutUser } from "../firebase/auth/signOut";
 import Loading from "../src/components/Loading/Loading";
+import HomePage from "../src/components/HomePage/HomePage";
 
 export default function Home() {
  
@@ -14,8 +15,7 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <Link href={"/gym"}>Gym</Link>
-        <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
+      <HomePage/>
       </main>
     
     </>

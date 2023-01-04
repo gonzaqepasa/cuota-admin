@@ -4,6 +4,7 @@ import { useState, ChangeEvent } from "react";
 import { typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
 import { ImSearch } from "react-icons/im";
+import {FaUserCheck} from 'react-icons/fa'
 
 export default function RenderList({ userData }: { userData: typesUser[] }) {
   const [search, setSearch] = useState("");
@@ -37,7 +38,10 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
 
       <div className={styles.linksContainer}>
         {dataToRender.map((el) => (
+          <div className={styles.linkBox}>
+          <FaUserCheck/>
           <Link href={`/gym/${el.id}`}>{el.name}</Link>
+          </div>
         ))}
       </div>
     </div>
