@@ -4,7 +4,7 @@ import { useState, ChangeEvent } from "react";
 import { typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
 import { ImSearch } from "react-icons/im";
-import {FaUserCheck} from 'react-icons/fa'
+import { FaUserCheck } from "react-icons/fa";
 
 export default function RenderList({ userData }: { userData: typesUser[] }) {
   const [search, setSearch] = useState("");
@@ -13,20 +13,14 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
   console.log("esto es dataToRender", dataToRender);
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
-    console.log(e);
-    const aux = userData.filter((el) =>
+    const filterUsers = userData.filter((el) =>
       String(el.name)
         .toLowerCase()
         .includes(String(e.target.value).toLowerCase())
     );
-    setDataToRender(aux);
-    // console.log("aux aca ->", aux);
+    setDataToRender(filterUsers);
   }
-  // if (search.length === 0) {
-  //   return setDataToRender(userData);
-  // } else {
-  //   return setDataToRender(userData.filter((el) => el.name === search));
-  // }
+
   return (
     <div className={`${styles.allRenderList}`}>
       <div className={styles.inputSearchContainer}>
@@ -39,8 +33,8 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
       <div className={styles.linksContainer}>
         {dataToRender.map((el) => (
           <div key={el.id} className={styles.linkBox}>
-          <FaUserCheck/>
-          <Link href={`/gym/${el.id}`}>{el.name}</Link>
+            <FaUserCheck />
+            <Link href={`/gym/${el.id}`}>{el.name}</Link>
           </div>
         ))}
       </div>

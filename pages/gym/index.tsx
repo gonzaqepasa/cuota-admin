@@ -1,18 +1,8 @@
 import { useState } from "react";
 import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
-import Layout from "../../src/components/LayoutApp/LayoutApp";
 import RenderList from "../../src/components/RenderList/RenderList";
-import { typesUser } from "../../src/types/types-user";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
-import {
-  collection,
-  doc,
-  query,
-  setDoc,
-  where,
-  getDocs,
-} from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
+
 
 export interface typesActivityGym {
   name: "Funcional";
@@ -21,9 +11,7 @@ export interface typesActivityGym {
 
 export default function Gym(props: any) {
   /////////////// BORRAR ///////////////
-  // console.log('Desde EL back : ', props)
-  // console.log('Desde EL back : ', process.env.FIREBASE_DOMAIN_UNO)
-
+  console.log('Desde EL back : ', props)
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
   const modalityOptions = ["3 Días", "2 Días", "Libre"];
@@ -37,13 +25,9 @@ export default function Gym(props: any) {
   //////// Funcion volver a llamadar data ////////
   async function getDataAgain() {
     try {
-      // const { data }: any = await axios.get(
-      //   "http://localhost:3000/api/gym/get-users"
-      // );
-      // const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
-      // const res = await fetch(`http://${url}/api/gym/get-users`);
-      // const data = await res.json();
-      const data = await getAux();
+      const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
+      const res = await fetch(`http://${url}/user/get-funcional`);
+      const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
     } catch (err) {
@@ -73,10 +57,8 @@ export default function Gym(props: any) {
 export async function getStaticProps() {
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    // const { data }: any = await axios.get(`http://${url}/api/gym/get-users`);
     const res = await fetch(`http://${url}/user/get-funcional`);
     const data = await res.json();
-    // const toSend = await getAux();
     return {
       props: {
         data,
@@ -89,31 +71,5 @@ export async function getStaticProps() {
         error: err,
       },
     };
-  }
-}
-
-async function getAux() {
-  try {
-    const querySnapshot = await getDocs(collection(db, "User"));
-    const toSend: object[] = [];
-    querySnapshot.forEach((doc) => {
-      const { name, phone, age, email, dni, installments, active, activity } =
-        doc.data();
-      if (doc.data().activity.name === "Funcional") {
-        toSend.push({
-          name,
-          phone,
-          email,
-          dni,
-          installments,
-          active,
-          activity,
-          id: doc.id,
-        });
-      }
-    });
-    return toSend;
-  } catch (err) {
-    console.log(err);
   }
 }
