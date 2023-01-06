@@ -1,11 +1,9 @@
 import styles from "./AddUserForm.module.scss";
-
 import { typesUser } from "../../../types/types-user";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { typesActivityGym } from "../../../../pages/gym";
 import { handleSelect } from "../logic/handle-functions";
 import { createCalendar2023 } from "../logic/createCalendar";
-import { addUser } from "../../../../firebase/cloudFirestore/addUser";
 import { validateFormInputs } from "../logic/validateAddInputs";
 
 type typesPropsForm = {
@@ -53,7 +51,7 @@ export default function AddUserForm({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    validateFormInputs(name, setNameVal) && addUser(toSendObj,setModalAdd,getDataAgain);
+    // validateFormInputs(name, setNameVal) && addUser(toSendObj,setModalAdd,getDataAgain);
   }
 
   return (

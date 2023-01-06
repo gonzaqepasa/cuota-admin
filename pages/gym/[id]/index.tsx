@@ -1,18 +1,8 @@
 import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
-import {
-  collection,
-  doc,
-  query,
-  setDoc,
-  getDoc,
-  where,
-  getDocs,
-} from "firebase/firestore";
-import { db } from "../../../firebase/firebaseConfig";
 
 import User from "../../../src/components/UserComponent/User";
-import { userAgent } from "next/server";
+
 
 export default function UserData(props: any) {
   const route = useRouter();

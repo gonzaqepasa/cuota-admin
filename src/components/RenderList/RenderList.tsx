@@ -1,4 +1,3 @@
-import { AppProps } from "next/app";
 import Link from "next/link";
 import { useState, ChangeEvent } from "react";
 import { typesUser } from "../../types/types-user";
