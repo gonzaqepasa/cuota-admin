@@ -1,5 +1,4 @@
 import { MouseEvent, useState } from "react";
-import { editTurno } from "../../../firebase/cloudFirestore/editTurno";
 import { typesUser } from "../../types/types-user";
 import styles from "./User.module.scss";
 import Swal from "sweetalert2";
@@ -32,13 +31,13 @@ export default function User({ userData, id }: typesProps) {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        editTurno(
-          id,
-          monthName,
-          monthData,
-          setMonthData,
-          auth.currentUser?.email
-        );
+        // editTurno(
+        //   id,
+        //   monthName,
+        //   monthData,
+        //   setMonthData,
+        //   auth.currentUser?.email
+        // );
       }
     });
     e.preventDefault();
