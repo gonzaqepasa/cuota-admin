@@ -20,7 +20,7 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
         .includes(String(e.target.value).toLowerCase())
     );
     setDataToRender(aux);
-    console.log("aux aca ->", aux);
+    // console.log("aux aca ->", aux);
   }
   // if (search.length === 0) {
   //   return setDataToRender(userData);

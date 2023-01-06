@@ -40,9 +40,11 @@ export default function Gym(props: any) {
       // const { data }: any = await axios.get(
       //   "http://localhost:3000/api/gym/get-users"
       // );
-      const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
-      const res = await fetch(`http://${url}/api/gym/get-users`);
-      const data = await res.json();
+      // const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
+      // const res = await fetch(`http://${url}/api/gym/get-users`);
+      // const data = await res.json();
+      const data = await getAux();
+      console.log("DATAAARTA ->>", data);
       setDataUser(data);
     } catch (err) {
       console.log(err);
@@ -70,18 +72,34 @@ export default function Gym(props: any) {
 
 export async function getStaticProps() {
   try {
-    // const url = process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000";
+    const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
     // const { data }: any = await axios.get(`http://${url}/api/gym/get-users`);
-    // const res = await fetch(`http://${url}/api/gym/get-users`);
-    // const data = await res.json();
+    const res = await fetch(`http://${url}/user/get-funcional`);
+    const data = await res.json();
+    // const toSend = await getAux();
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        data: false,
+        error: err,
+      },
+    };
+  }
+}
 
+async function getAux() {
+  try {
     const querySnapshot = await getDocs(collection(db, "User"));
     const toSend: object[] = [];
     querySnapshot.forEach((doc) => {
+      const { name, phone, age, email, dni, installments, active, activity } =
+        doc.data();
       if (doc.data().activity.name === "Funcional") {
-        const { name, phone, age, email, dni, installments, active, activity } =
-          doc.data();
-
         toSend.push({
           name,
           phone,
@@ -94,17 +112,8 @@ export async function getStaticProps() {
         });
       }
     });
-    return {
-      props: {
-        data: toSend,
-      },
-    };
+    return toSend;
   } catch (err) {
-    return {
-      props: {
-        data: false,
-        error: err,
-      },
-    };
+    console.log(err);
   }
 }
