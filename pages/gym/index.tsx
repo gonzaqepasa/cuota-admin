@@ -58,7 +58,7 @@ export default function Gym(props: any) {
 export async function getStaticProps() {
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const res = await fetch(`https://fi-back-production.up.railway.app/user/get-funcional`);
+    const res = await fetch(`http://${url}/user/get-funcional`);
     const data = await res.json();
     return {
       props: {
