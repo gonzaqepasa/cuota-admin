@@ -36,7 +36,7 @@ export default function AddUserForm({
   });
 
   ////////////////////////////////////////////////////////////
-  const toSendObj: typesUser = {
+ /*  const toSendObj: typesUser = {
     name,
     phone,
     email,
@@ -47,7 +47,7 @@ export default function AddUserForm({
     installments: {
       2023: createCalendar2023(),
     },
-  };
+  }; */
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
