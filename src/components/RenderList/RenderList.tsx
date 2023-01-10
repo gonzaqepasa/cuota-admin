@@ -9,7 +9,7 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
   const [search, setSearch] = useState("");
   const [dataToRender, setDataToRender] = useState(userData);
 
-  console.log("esto es dataToRender", dataToRender);
+  // console.log("esto es dataToRender", dataToRender);
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
     const filterUsers = userData.filter((el) =>

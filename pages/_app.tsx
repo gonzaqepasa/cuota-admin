@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       setLoad(false);
     }
   });
-  console.log(auth);
+  // console.log(auth);
   ////////////////////////////////////////
   //////////////// Render ////////////////////////
   function render() {
