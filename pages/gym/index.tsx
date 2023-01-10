@@ -5,7 +5,7 @@ import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 
 
 export interface typesActivityGym {
-  name: "Funcional";
+  nameActivity: "Funcional";
   modality: "2 Días" | "3 Días" | "Libre";
 }
 
@@ -17,7 +17,7 @@ export default function Gym(props: any) {
   //////// Informacion de sección Gym ////////
   const modalityOptions = ["3 Días", "2 Días", "Libre"];
   const [activityMain, setactivityMain] = useState<typesActivityGym>({
-    name: "Funcional",
+    nameActivity: "Funcional",
     modality: "3 Días",
   });
   ////////////////////////////////////////////
