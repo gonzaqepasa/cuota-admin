@@ -12,7 +12,7 @@ interface typesProps {
 }
 
 export default function User({ userData, id }: typesProps) {
-  const [monthData, setMonthData] = useState<any>(userData.installments[2023]);
+  const [monthData, setMonthData] = useState<any>(userData.calendar.months);
   function handleEditTurno(
     e: MouseEvent<HTMLButtonElement>,
     monthName: string
@@ -50,7 +50,7 @@ export default function User({ userData, id }: typesProps) {
         {/* <p>2023</p> */}
         <div className={styles.nameUserBox}>
           <h2>{userData.name}</h2>
-          <h3>{userData.activity.name.toUpperCase()}</h3>
+          <h3>{userData.activity.nameActivity.toUpperCase()}</h3>
         </div>
 
         {userData.description && (

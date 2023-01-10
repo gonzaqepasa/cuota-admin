@@ -11,14 +11,14 @@ export interface typesUser {
   // Se genera con el select agarrando información de los estados
   active: boolean;
   activity: {
-    name: string;
+    nameActivity: string;
     modality: string;
   };
 
   // Información de pago
   // Se genera de forma automatica
-  installments: {
-    2023: {
+  calendar: {
+    months: {
       monthName: string;
       comment?: string;
       addData?: string;

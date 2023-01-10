@@ -10,7 +10,7 @@ export default function UserData(props: any) {
   console.log(props.data);
   return (
     <div className={`main`}>
-      {/* <User userData={props.data} id={String(route.query.id)} /> */}
+      <User userData={props.data} id={String(route.query.id)} />
     </div>
   );
 }
