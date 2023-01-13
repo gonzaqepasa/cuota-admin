@@ -7,22 +7,25 @@ import { FaUserCheck } from "react-icons/fa";
 
 export default function RenderList({ userData }: { userData: typesUser[] }) {
   const [search, setSearch] = useState("");
-  const [dataToRender, setDataToRender] = useState(userData);
+  // const [dataToRender, setDataToRender] = useState(userData);
 
-  // console.log("esto es dataToRender", dataToRender);
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
-    const filterUsers = userData.filter((el) =>
-      String(el.name)
-        .toLowerCase()
-        .includes(String(e.target.value).toLowerCase())
-    );
-    setDataToRender(filterUsers);
+    // setDataToRender(filterUsers);
   }
+  let result = [];
+  if (!search) {
+    result = userData;
+  } else {
+    result = userData.filter((el) =>
+      String(el.name).toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
 
   return (
     <div className={`${styles.allRenderList}`}>
-      <div className={styles.inputSearchContainer}>
+       <div className={styles.inputSearchContainer}>
         <div className={styles.spanSearch}>
           <input value={search} onChange={(e) => handleChange(e)} />
           <ImSearch />
@@ -30,7 +33,7 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
       </div>
 
       <div className={styles.linksContainer}>
-        {dataToRender.map((el) => (
+        {result.map((el) => (
           <div key={el.id} className={styles.linkBox}>
             <FaUserCheck />
             <Link href={`/gym/${el.id}`}>{el.name}</Link>

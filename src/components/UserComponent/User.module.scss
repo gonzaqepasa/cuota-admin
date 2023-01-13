@@ -5,7 +5,6 @@
   flex-direction: column;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
- 
 
   .nameUserBox {
     margin: 2rem 0;
@@ -16,7 +15,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0rem 2rem ;
+    padding: 0rem 2rem;
     font-family: $main-text;
     h2 {
       font-size: 2rem;
@@ -37,13 +36,28 @@
     background-color: $backg-white2;
     color: black;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px black;
+    // box-shadow: 1px 1px 5px black;
     min-height: 3rem;
     width: 80%;
-    font-family: $main-text;
-    font-weight: 400;
     padding: 5px;
     margin: 1rem 0;
+    display: flex;
+    position: relative;
+    p {
+      // background-color: red;
+      max-width: 90%;
+      font-family: $main-text;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    button {
+      position: absolute;
+      right: 0.5rem;
+      color: grey;
+      border: none;
+      background: none;
+      font-size: 1.5rem;
+    }
   }
 
   /////////////////////// MESES ///////////////////////////
@@ -53,20 +67,21 @@
     //   grid-template-columns: repeat(3, auto);
     //   grid-template-rows: repeat(4, auto);
     //   grid-gap: 1rem;
-    padding: 4rem 0;
+    padding: 2rem 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     .monthBox {
+      background-color: $backg-black1;
       background-color: $green-succes;
       // backdrop-filter: blur(100rem);
-      border-radius: 5px;
+      border-radius: 1px;
       min-height: 9rem;
       width: 16rem;
       max-width: 95vw;
       margin: 1.2rem;
-      box-shadow: 0px 0px 1px black,1px 1px 10px black;
+      box-shadow: 1px 1px 10px black;
 
       position: relative;
       display: flex;
@@ -117,15 +132,15 @@
               background-color: rgba(0, 0, 0, 0.8);
               width: initial;
               border-radius: 50%;
-              font-size: 1.5rem;
+              font-size: 1rem;
             }
           }
           h3 {
-            font-size: 0.9rem;
-            color: rgb(0, 0, 0);
+            font-size: 0.8rem;
+            color: black;
           }
           p {
-            font-size: 1rem;
+            font-size: 0.9rem;
           }
         }
 
@@ -134,8 +149,14 @@
           border-radius: 5px;
           height: 100%;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
+          font-family: $main-text;
+          h4 {
+            color: $main-color;
+            margin-top: 8px ;
+          }
           button {
             height: 90%;
             width: 90%;
@@ -145,7 +166,6 @@
             color: rgb(0, 225, 255);
             cursor: pointer;
             p {
-              font-family: $main-text;
               font-weight: 600;
               color: rgb(255, 255, 255);
               text-shadow: 1px 1px 2px black;

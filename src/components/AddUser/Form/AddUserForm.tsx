@@ -1,31 +1,32 @@
 import styles from "./AddUserForm.module.scss";
-import { typesUser } from "../../../types/types-user";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { typesActivityGym } from "../../../../pages/gym";
 import { handleSelect } from "../logic/handle-functions";
-import { createCalendar2023 } from "../logic/createCalendar";
 import { validateFormInputs } from "../logic/validateAddInputs";
+import { createUser } from "../../../logic/createUser";
 
 type typesPropsForm = {
-  activity: typesActivityGym;
-  setActivity: Dispatch<SetStateAction<typesActivityGym>>;
+  // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
-  modalityOptions: string[];
-  getDataAgain:Function
+  // modalityOptions: string[];
+  getDataAgain: Function;
+  dataActivity: typesActivityGym[];
 };
 
 export default function AddUserForm({
-  modalityOptions,
-  activity,
-  setActivity,
+  // modalityOptions,
+  // activity,
+  // setActivity,
   setModalAdd,
-  getDataAgain
+  getDataAgain,
+  dataActivity,
 }: typesPropsForm) {
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
   const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [dni, setDni] = useState(0);
+  const [activity, setActivity] = useState(dataActivity[0].id);
   const [description, setDescription] = useState("");
   ///////////////////////////////////////////////////////
 
@@ -36,22 +37,16 @@ export default function AddUserForm({
   });
 
   ////////////////////////////////////////////////////////////
- /*  const toSendObj: typesUser = {
+  const toSendObj: { name: string; description: string; activityId: number } = {
     name,
-    phone,
-    email,
-    dni,
     description,
-    activity,
-    active: true,
-    installments: {
-      2023: createCalendar2023(),
-    },
-  }; */
+    activityId: activity,
+  };
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    // validateFormInputs(name, setNameVal) && addUser(toSendObj,setModalAdd,getDataAgain);
+    validateFormInputs(name, setNameVal) &&
+      createUser(toSendObj, name, setModalAdd, getDataAgain);
   }
 
   return (
@@ -67,9 +62,9 @@ export default function AddUserForm({
             name="activity"
             id=""
           >
-            {modalityOptions.map((el: string) => (
-              <option key={el} value={el}>
-                {el}
+            {dataActivity.map((el: typesActivityGym) => (
+              <option key={el.id} value={el.id}>
+                {el.modality}
               </option>
             ))}
           </select>
@@ -100,7 +95,7 @@ export default function AddUserForm({
             type={"number"}
           />
         </div> */}
-      {/*   <div className={`${styles.inputLabelBox}`}>
+        {/*   <div className={`${styles.inputLabelBox}`}>
           <label>E-mail</label>
           <input
             placeholder="Ingrese correo..."
@@ -109,7 +104,7 @@ export default function AddUserForm({
             name="name"
           />
         </div> */}
-       {/*  <div className={`${styles.inputLabelBox}`}>
+        {/*  <div className={`${styles.inputLabelBox}`}>
           <label>D.N.I</label>
           <input
             placeholder="Ingrese documento..."

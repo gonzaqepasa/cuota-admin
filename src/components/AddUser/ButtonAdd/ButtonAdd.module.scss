@@ -21,19 +21,19 @@
     align-items: center;
     justify-content: center;
     opacity: 0.8;
-    filter: drop-shadow($main-textShadow);
+    // filter: drop-shadow($main-textShadow);
   }
   button:hover {
     opacity: 1;
   }
   button:hover::before {
     content: "Agregar nuevo usuario";
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     color: white;
     font-family: $main-text;
-    box-shadow: 1px 1px 1px grey;
+    // box-shadow: 1px 1px 1px grey;
     margin-right:  0.5rem;
-    background: black;
+    // background: black;
     padding: 2px 0.8rem;
     border-radius: 15px;
   }

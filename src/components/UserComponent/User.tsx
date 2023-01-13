@@ -4,7 +4,9 @@ import styles from "./User.module.scss";
 import Swal from "sweetalert2";
 import { auth } from "../../../firebase/firebaseConfig";
 import { FcCheckmark } from "react-icons/fc";
-import { FaMoneyBillWave } from "react-icons/fa";
+import { FaMoneyBillWave,FaEdit } from "react-icons/fa";
+import { handleEditTurno } from "../../logic/editTurno";
+import { orderByMonth } from "../../logic/orderByMonthName";
 
 interface typesProps {
   userData: typesUser;
@@ -12,35 +14,19 @@ interface typesProps {
 }
 
 export default function User({ userData, id }: typesProps) {
-  const [monthData, setMonthData] = useState<any>(userData.calendar.months);
-  function handleEditTurno(
-    e: MouseEvent<HTMLButtonElement>,
-    monthName: string
-  ) {
-    Swal.fire({
-      reverseButtons: true,
-      background: "#090202",
-      color: "white",
-      title: "Estas seguro?",
-      text: `${userData.name} pago el mes de ${monthName}`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si pago",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // editTurno(
-        //   id,
-        //   monthName,
-        //   monthData,
-        //   setMonthData,
-        //   auth.currentUser?.email
-        // );
-      }
-    });
-    e.preventDefault();
+  const [monthData, setMonthData] = useState<any>(
+    orderByMonth(userData.calendar.months)
+  );
+
+  async function getUserAgain() {
+    try {
+      const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
+      const res = await fetch(`http://${url}/user/get-user?USER=${id}`);
+      const data = await res.json();
+      setMonthData(orderByMonth(data.calendar.months));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   console.log("esto es userdata", userData);
@@ -53,13 +39,13 @@ export default function User({ userData, id }: typesProps) {
           <h3>{userData.activity.nameActivity.toUpperCase()}</h3>
         </div>
 
-        {userData.description && (
-          <div className={styles.detailContainer}>
-            <p>{userData.description}</p>
-          </div>
-        )}
+
         {/*  <--- Contenedor de Card */}
         <div className={`${styles.monthsContainer}`}>
+        <div className={styles.detailContainer}>
+          <p>{userData.description}</p>
+          <button><FaEdit/></button>
+        </div>
           {monthData.map((el: any) => (
             ///////////////// Componente CardMonth /////////////////
             <div key={el.monthName} className={`${styles.monthBox}`}>
@@ -79,7 +65,20 @@ export default function User({ userData, id }: typesProps) {
                   </span>
                 ) : (
                   <div className={styles.allBtnContainer}>
-                    <button onClick={(e) => handleEditTurno(e, el.monthName)}>
+                    <h4>{el.monthName}</h4>
+                    <button
+                      onClick={(e) =>
+                        handleEditTurno(
+                          e,
+                          el.id,
+                          userData.name,
+                          el.monthName,
+                          auth.currentUser?.email,
+                          "MP",
+                          getUserAgain
+                        )
+                      }
+                    >
                       <FaMoneyBillWave /> <p>Agregar pago</p>
                     </button>
                   </div>
