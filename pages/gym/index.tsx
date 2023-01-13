@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
@@ -23,26 +23,24 @@ export default function Gym(props: any) {
   const [dataActivity, setDataActivity] = useState(props.dataAct);
   //////// Funcion volver a llamadar data ////////
 
-
-    async function getDataAgain() {
-      try {
-        const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-        const res = await fetch(`http://${url}/user/get-funcional`);
-        const data = await res.json();
-        console.log("DATAAARTA ->>", data);
-        setDataUser(data);
-      } catch (err) {
-        console.log(err);
-      }
+  async function getDataAgain() {
+    try {
+      const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
+      const res = await fetch(`http://${url}/user/get-funcional`);
+      const data = await res.json();
+      console.log("DATAAARTA ->>", data);
+      setDataUser(data);
+    } catch (err) {
+      console.log(err);
     }
- 
+  }
 
   ////////////////////////////////////////////
 
   return (
     <div className={`main`}>
       <ButtonAdd setModalAdd={setModalAdd} />
-      {modalAdd && (
+      {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
           // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
@@ -52,7 +50,7 @@ export default function Gym(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      <RenderList userData={dataUser} />
+      {dataUser && <RenderList userData={dataUser} />}
     </div>
   );
 }
@@ -73,8 +71,9 @@ export async function getStaticProps() {
   } catch (err) {
     return {
       props: {
-        data: false,
-        error: err,
+        dataUser: false,
+        dataAct: false,
+        // error: err,
       },
     };
   }
