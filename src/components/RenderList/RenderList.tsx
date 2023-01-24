@@ -22,12 +22,16 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
     );
   }
 
-
+  console.log("aca result", result);
   return (
     <div className={`${styles.allRenderList}`}>
-       <div className={styles.inputSearchContainer}>
+      <div className={styles.inputSearchContainer}>
         <div className={styles.spanSearch}>
-          <input placeholder="Buscar..." value={search} onChange={(e) => handleChange(e)} />
+          <input
+            placeholder="Buscar..."
+            value={search}
+            onChange={(e) => handleChange(e)}
+          />
           <ImSearch />
         </div>
       </div>
@@ -36,10 +40,20 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
         {result.map((el) => (
           <div key={el.id} className={styles.linkBox}>
             <FaUserCheck />
-            <Link href={`/gym/${el.id}`}>{el.name}</Link>
+            <Link href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}>
+              {el.name}
+            </Link>
           </div>
         ))}
       </div>
     </div>
   );
+}
+
+function fromNameToUrl(name: string): String {
+  if (name.length > 1) {
+    const arr = name.split(" ");
+    return `${arr[0]}-${arr[1]}`.toLowerCase();
+  }
+  return name.toLowerCase();
 }
