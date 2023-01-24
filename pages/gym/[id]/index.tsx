@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // ...
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const res = await fetch(`http://${url}/user/get-funcional`);
+    const res = await fetch(`http://${url}/user?activity=Funcional`);
     const data = await res.json();
     const paths = data.map((user: any) => ({
       params: { id: String(user.id) },

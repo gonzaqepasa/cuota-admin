@@ -3,19 +3,19 @@ import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 
-export interface typesActivityGym {
+export interface typesActivityTaekwondo {
   id: number;
   nameActivity: "Funcional";
   modality: "2 Días" | "3 Días" | "Libre";
 }
 
-export default function Gym(props: any) {
+export default function Taekwondo(props: any) {
   /////////////// BORRAR ///////////////
-  console.log("Desde EL back : ", props);
+  console.log("Desde el back : ", props);
   // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
-  const modalityOptions = ["3 Días", "2 Días", "Libre"];
+  //   const modalityOptions = ["3 Días", "2 Días", "Libre"];
 
   ////////////////////////////////////////////
   const [modalAdd, setModalAdd] = useState(false);
@@ -26,7 +26,7 @@ export default function Gym(props: any) {
   async function getDataAgain() {
     try {
       const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-      const res = await fetch(`http://${url}/user?activity=Funcional`);
+      const res = await fetch(`http://${url}/user?activity=Taekwondo`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -38,7 +38,7 @@ export default function Gym(props: any) {
   ////////////////////////////////////////////
 
   return (
-    <div className={`main`}>
+    <div className={`main background-taekwondo`}>
       <ButtonAdd setModalAdd={setModalAdd} />
       {dataActivity && modalAdd && (
         <AddUserForm
@@ -58,8 +58,8 @@ export default function Gym(props: any) {
 export async function getStaticProps() {
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const resUser = await fetch(`http://${url}/user?activity=Funcional`);
-    const resAct = await fetch(`http://${url}/activity?activity=Funcional`);
+    const resUser = await fetch(`http://${url}/user?activity=Taekwondo`);
+    const resAct = await fetch(`http://${url}/activity?activity=Taekwondo`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {
