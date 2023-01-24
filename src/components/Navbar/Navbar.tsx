@@ -18,7 +18,7 @@ export default function Navbar() {
           {" "}
           <CgHome />
         </Link>
-        <Link onClick={() => setOpen(false)} href={"/gym"}>
+        <Link onClick={() => setOpen(false)} href={"/funcional"}>
           <CgGym />
           Funcional
         </Link>

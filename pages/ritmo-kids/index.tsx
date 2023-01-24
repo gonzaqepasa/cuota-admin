@@ -50,7 +50,7 @@ export default function RitmoKids(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && <RenderList userData={dataUser} />}
+      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain} />}
     </div>
   );
 }
