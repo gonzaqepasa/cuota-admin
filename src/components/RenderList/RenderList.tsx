@@ -27,7 +27,7 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
     <div className={`${styles.allRenderList}`}>
        <div className={styles.inputSearchContainer}>
         <div className={styles.spanSearch}>
-          <input value={search} onChange={(e) => handleChange(e)} />
+          <input placeholder="Buscar..." value={search} onChange={(e) => handleChange(e)} />
           <ImSearch />
         </div>
       </div>
