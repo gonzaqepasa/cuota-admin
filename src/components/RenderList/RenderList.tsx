@@ -51,8 +51,8 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
 }
 
 function fromNameToUrl(name: string): String {
-  if (name.length > 1) {
-    const arr = name.split(" ");
+  const arr = name.split(" ");
+  if (arr.length > 1) {
     return `${arr[0]}-${arr[1]}`.toLowerCase();
   }
   return name.toLowerCase();

@@ -3,7 +3,7 @@ import styles from "./Navbar.module.scss";
 import { Spin as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { CgGym, CgHome } from "react-icons/cg";
-import { GiHighPunch,GiMusicalNotes } from "react-icons/gi";
+import { GiHighPunch, GiMusicalNotes } from "react-icons/gi";
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
@@ -29,6 +29,10 @@ export default function Navbar() {
         <Link onClick={() => setOpen(false)} href={"/ritmo-kids"}>
           <GiMusicalNotes />
           Ritmo Kids
+        </Link>
+        <Link onClick={() => setOpen(false)} href={"/zumba"}>
+          <GiMusicalNotes />
+          Zumba
         </Link>
       </nav>
       <div className={styles.btnBox}>
