@@ -10,7 +10,7 @@ export default function UserData(props: any) {
 
 
   return (
-    <div className={`main`}>
+    <div className={`main background-funcional`}>
       <User userData={props.data} id={String(route.query.id)} />
     </div>
   );

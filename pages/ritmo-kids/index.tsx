@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
+import Title from "../../src/components/AddUser/Title/Title";
 
 export interface typesActivityRitmoKids {
   id: number;
@@ -39,7 +40,9 @@ export default function RitmoKids(props: any) {
 
   return (
     <div className={`main background-ritmo-kids`}>
-      <ButtonAdd setModalAdd={setModalAdd} />
+      <Title activityName={"Ritmo Kids"} />
+      
+      <ButtonAdd setModalAdd={setModalAdd}  color={dataUser[0].activity.nameActivity}/>
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}

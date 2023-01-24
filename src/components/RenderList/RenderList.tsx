@@ -8,6 +8,7 @@ import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import { visibilityUser } from "../../logic/visibilityUser";
 import { orderByActive } from "../../logic/orderByMonthName";
+import { selectColor } from "../../logic/selectColor";
 
 export default function RenderList({
   userData,
@@ -30,7 +31,6 @@ export default function RenderList({
     result = userData.filter((el) =>
       String(el.name).toLowerCase().includes(search.toLowerCase())
     );
-   
   }
 
   // console.log("aca result", result);
@@ -49,9 +49,19 @@ export default function RenderList({
 
       <div className={styles.linksContainer}>
         {orderByActive(result).map((el) => (
-          <div key={el.id} className={styles.linkBox}>
+          <div
+            key={el.id}
+            className={styles.linkBox}
+            style={{
+              borderBottom: `2px solid ${selectColor(
+                userData[0].activity.nameActivity
+              )}`,
+            }}
+          >
             <div className={`${styles.linkNameUser}`}>
-              <FaUserCheck />
+              <FaUserCheck
+                color={selectColor(userData[0].activity.nameActivity)}
+              />
               <Link
                 href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}
               >

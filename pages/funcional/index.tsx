@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
+import { selectColor } from "../../src/logic/selectColor";
+import Title from "../../src/components/AddUser/Title/Title";
 
 export interface typesActivityGym {
   id: number;
@@ -38,8 +40,12 @@ export default function Gym(props: any) {
   ////////////////////////////////////////////
 
   return (
-    <div className={`main`}>
-      <ButtonAdd setModalAdd={setModalAdd} />
+    <div className={`main background-funcional`}>
+      <Title activityName={"Funcional"} />
+      <ButtonAdd
+        setModalAdd={setModalAdd}
+        color={dataUser[0].activity.nameActivity}
+      />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -50,7 +56,9 @@ export default function Gym(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain}  />}
+      {dataUser && (
+        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+      )}
     </div>
   );
 }
