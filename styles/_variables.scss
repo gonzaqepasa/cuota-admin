@@ -1,12 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
 
 // Backgrounds
 $backg-black1: black;
 $backg-black2: rgba(0, 0, 0, 0.9);
 $backg-white1: rgb(216, 216, 216);
 $backg-white2: rgba(255, 255, 255, 0.9);
+
+// Color Text
+$text1: black;
+$text2: rgb(44, 44, 44);
+$text3: rgb(148, 20, 20);
 
 // MAIN
 $main-color: rgb(0, 217, 255);
