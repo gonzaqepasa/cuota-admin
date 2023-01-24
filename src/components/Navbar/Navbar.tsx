@@ -34,6 +34,14 @@ export default function Navbar() {
           <GiMusicalNotes />
           Zumba
         </Link>
+        <Link onClick={() => setOpen(false)} href={"/power-box"}>
+          <GiMusicalNotes />
+          Power Box
+        </Link>
+        <Link onClick={() => setOpen(false)} href={"/kick-boxing"}>
+          <GiMusicalNotes />
+          Kick Boxing
+        </Link>
       </nav>
       <div className={styles.btnBox}>
         <Hamburger toggled={isOpen} toggle={setOpen} />
