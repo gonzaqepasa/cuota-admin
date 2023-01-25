@@ -3,19 +3,36 @@ import styles from "./Navbar.module.scss";
 import { Spin as Hamburger } from "hamburger-react";
 import { useState } from "react";
 import { CgGym, CgHome } from "react-icons/cg";
-import { GiHighPunch, GiMusicalNotes } from "react-icons/gi";
+import {
+  GiHighPunch,
+  GiMusicalNotes,
+  GiBoxingGlove,
+  GiWinterGloves,
+} from "react-icons/gi";
+import { HiMusicNote } from "react-icons/hi";
 // Imports Bootstrap
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { selectColor } from "../../logic/selectColor";
+import Image from "next/image";
+import AdminSvg from "../../../styles/Admin.svg";
+import { useRouter } from "next/router";
+import { fromUrlToName } from "../../logic/fromNameToUrl";
 
 export default function NavbarMain() {
+  const route = useRouter()
+ 
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Link style={{ paddingRight: '1rem',filter: `drop-shadow(0px 0px 2px ${selectColor(fromUrlToName(route.route.slice(1)))})` }} href={"/"}>
+          <Image height={40} src={AdminSvg} alt="No se encontro imagen" />
+        </Link>
+
+        {/* </div> */}
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -23,8 +40,8 @@ export default function NavbarMain() {
             {/* <Nav.Link href="#link">Actividades</Nav.Link> */}
             <NavDropdown title="Actividades" id="basic-nav-dropdown">
               <NavDropdown.Item>
-                <Link  href={"/funcional"}>
-                  <CgGym color={selectColor("Funcional")}/>
+                <Link href={"/funcional"}>
+                  <CgGym color={selectColor("Funcional")} />
                   Funcional
                 </Link>
               </NavDropdown.Item>
@@ -42,26 +59,24 @@ export default function NavbarMain() {
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <Link href={"/zumba"}>
-                  <GiMusicalNotes color={selectColor("Zumba")} />
+                  <HiMusicNote color={selectColor("Zumba")} />
                   Zumba
                 </Link>
               </NavDropdown.Item>{" "}
               <NavDropdown.Item>
                 <Link href={"/power-box"}>
-                  <GiMusicalNotes color={selectColor("Power Box")} />
+                  <GiWinterGloves color={selectColor("Power Box")} />
                   Power Box
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <Link href={"/kick-boxing"}>
-                  <GiMusicalNotes color={selectColor("Kick Boxing")} />
+                  <GiBoxingGlove color={selectColor("Kick Boxing")} />
                   Kick Boxing
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+             
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

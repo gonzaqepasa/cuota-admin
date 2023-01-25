@@ -4,10 +4,12 @@
   //   background-color: $backg-white2;
   min-width: 60vw;
   font-family: $main-text;
-  margin-top: 1rem;
+  margin: 1rem 0;
   h5 {
-    color: $text3;
+    // color: $text3;
     margin: 2px 5px;
+    font-size: 0.9rem;
+    text-shadow: 0px 0px 1px grey;
   }
 
   .detailContainer {
@@ -27,8 +29,8 @@
       right: 0;
       border: none;
       background: none;
-      font-size: 1.5rem;
-      color: $text3;
+      font-size: 1.3rem;
+      // color: $text3;
     }
 
     // Input con logica de cambio
@@ -38,9 +40,10 @@ align-items: center;
       button {
         font-family: $main-text;
         font-weight: 700;
+        font-size: 0.7rem;
         border: none;
         border-radius: 5px;
-        padding: 0.5rem 0.5rem;
+        padding: 0.4rem 0.6rem;
         margin-right:0.2rem ;
         box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.2) inset;
       }

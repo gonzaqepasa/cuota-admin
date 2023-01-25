@@ -7,18 +7,20 @@ import { editDescription } from "../../../logic/editDescription";
 export default function Description({
   id,
   description,
+  color,
   getDataAgain,
 }: {
   id: Number;
   description: string | undefined;
+  color: string;
   getDataAgain: Function;
 }) {
   // Component...
   const [editOn, setEditOn] = useState(false);
   const [descript, setDescript] = useState(description);
   return (
-    <div className={`${styles.allDescription}`}>
-      <h5>Descripción:</h5>
+    <div className={`${styles.allDescription} `}>
+      <h5 style={{ color }}>Descripción:</h5>
       <div className={styles.detailContainer}>
         {editOn ? (
           <>
@@ -31,7 +33,15 @@ export default function Description({
             />
             <div className={`${styles.btnAcpCanBox}`}>
               <button
-                onClick={(e) => editDescription(e,{id:Number(id),description:descript},getDataAgain,setEditOn)}
+              
+                onClick={(e) =>
+                  editDescription(
+                    e,
+                    { id: Number(id), description: descript },
+                    getDataAgain,
+                    setEditOn
+                  )
+                }
                 className={`${styles.btnAcp}`}
               >
                 Cambiar
@@ -56,7 +66,7 @@ export default function Description({
               }}
               className={`${styles.btnChangeDescription}`}
             >
-              <FaEdit />
+              <FaEdit color={color} />
             </button>
           </>
         )}

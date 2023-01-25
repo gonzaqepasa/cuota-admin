@@ -8,6 +8,9 @@ import { FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import { handleEditTurno } from "../../logic/editTurno";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import Description from "./Description/Description";
+import { selectColor } from "../../logic/selectColor";
+import { fromNameToUrl } from "../../logic/fromNameToUrl";
+import { Carousel } from "react-bootstrap";
 
 interface typesProps {
   userData: typesUser;
@@ -26,20 +29,34 @@ export default function User({ userData, id }: typesProps) {
       const res = await fetch(`http://${url}/user/get-user?USER=${id}`);
       const data = await res.json();
       setMonthData(orderByMonth(data.calendar.months));
-      setUser(data)
+      setUser(data);
     } catch (error) {
       console.log(error);
     }
   }
-
+//  console.log( Math.floor(Math.random()*10000))
   console.log("esto es userdata", userData);
   if (user)
     return (
-      <div className={`${styles.allUserComponent}`}>
+      <div
+        className={`${styles.allUserComponent} background-${fromNameToUrl(
+          userData.activity.nameActivity.toLowerCase()
+        )}`}
+      >
         {/* <p>2023</p> */}
         <div className={styles.nameUserBox}>
-          <h2>{user.name}</h2>
-          <h3>{user.activity.nameActivity.toUpperCase()}</h3>
+          <h2
+            style={{
+              borderBottom: `solid 2px ${selectColor(
+                user.activity.nameActivity
+              )}`,
+            }}
+          >
+            {user.name}
+          </h2>
+          <h3 style={{ color: selectColor(user.activity.nameActivity) }}>
+            {user.activity.nameActivity.toUpperCase()}
+          </h3>
         </div>
 
         {/*  <--- Contenedor de Card */}
@@ -47,6 +64,7 @@ export default function User({ userData, id }: typesProps) {
         <div className={styles.descriptionContainer}>
           <Description
             id={Number(id)}
+            color={selectColor(user.activity.nameActivity)}
             description={user.description}
             getDataAgain={getUserAgain}
           />
@@ -54,7 +72,12 @@ export default function User({ userData, id }: typesProps) {
         <div className={`${styles.monthsContainer}`}>
           {monthData.map((el: any) => (
             ///////////////// Componente CardMonth /////////////////
-            <div key={el.monthName} className={`${styles.monthBox}`}>
+            <div
+              key={el.monthName}
+              className={`${styles.monthBox} ${
+                !userData.active && styles.isInactive
+              }`}
+            >
               <div className={styles.monthNameBox}>
                 <h4> {el.monthName}</h4>
               </div>
@@ -66,13 +89,25 @@ export default function User({ userData, id }: typesProps) {
                         <FcCheckmark />
                       </span>
                     </div>
-                    <h3>{el.addAdmin}</h3>
-                    <p>{el.addData}</p>
+
+                    <Carousel controls={false} interval={3000} indicators={false}>
+                      <Carousel.Item>
+                        <h3>{el.addAdmin}</h3>
+                      </Carousel.Item>
+                      <Carousel.Item>
+                        <p>{el.addData}</p>
+                      </Carousel.Item>
+                    </Carousel>
                   </span>
                 ) : (
                   <div className={styles.allBtnContainer}>
-                    <h4>{el.monthName}</h4>
+                    <h4
+                      style={{ color: selectColor(user.activity.nameActivity) }}
+                    >
+                      {el.monthName}
+                    </h4>
                     <button
+                      disabled={!userData.active}
                       onClick={(e) =>
                         handleEditTurno(
                           e,
@@ -85,7 +120,10 @@ export default function User({ userData, id }: typesProps) {
                         )
                       }
                     >
-                      <FaMoneyBillWave /> <p>Agregar pago</p>
+                      <FaMoneyBillWave
+                        color={selectColor(user.activity.nameActivity)}
+                      />{" "}
+                      <p>Agregar pago</p>
                     </button>
                   </div>
                   ///////////////////////////////////////////////////

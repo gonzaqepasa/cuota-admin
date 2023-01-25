@@ -51,7 +51,7 @@ export default function RenderList({
         {orderByActive(result).map((el) => (
           <div
             key={el.id}
-            className={styles.linkBox}
+            className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}
             style={{
               borderBottom: `2px solid ${selectColor(
                 userData[0].activity.nameActivity
@@ -79,9 +79,9 @@ export default function RenderList({
                 }}
               >
                 {el.active ? (
-                  <MdOutlineVisibility />
+                  <MdOutlineVisibility color="white" />
                 ) : (
-                  <MdOutlineVisibilityOff />
+                  <MdOutlineVisibilityOff color="grey" />
                 )}
               </button>
             </div>

@@ -4,31 +4,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  // background-color: rgba(0, 0, 0, 0.8);
 
   .nameUserBox {
-    margin: 2rem 0;
-    // width: 50%;
-    border-radius: 20px;
+    // margin: 2rem 0;
+    padding: 1rem 0rem;
+    width: 100%;
+
     // box-shadow: 1px 1px 10px black;
-    // background-color: $backg-black2;
+    background-color: $backg-white1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0rem 2rem;
     font-family: $main-text;
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       // color: black;
-      border-bottom: solid grey 2px;
+      // border-bottom: solid grey 2px;
+      text-shadow: 0px 0px 2px grey;
       margin: 0.5rem 0;
     }
     h3 {
       // font-variant: small-caps;
-      font-weight: 400;
+      font-weight: 800;
       font-size: 1.2rem;
-      margin: 0.8rem 0;
-      color: $main-color;
+      margin: 0.2rem 0;
+      // color: $main-color;
+      text-shadow: 0px 0px 6px grey;
     }
   }
 
@@ -43,7 +45,8 @@
 
   /////////////////////// MESES ///////////////////////////
   .monthsContainer {
-    background-color: $backg-white1;
+    background-color: $backg-black3;
+    backdrop-filter: blur(4px);
     //   display: grid;
     //   grid-template-columns: repeat(3, auto);
     //   grid-template-rows: repeat(4, auto);
@@ -56,13 +59,13 @@
     .monthBox {
       background-color: $backg-black1;
       background-color: $green-succes;
-      // backdrop-filter: blur(100rem);
-      border-radius: 1px;
-      min-height: 9rem;
+
+      border-radius: 10px;
+      height: 7rem;
       width: 16rem;
       max-width: 95vw;
       margin: 1.2rem;
-      box-shadow: 1px 1px 10px black;
+      box-shadow: 0px 0px 60px black inset;
 
       position: relative;
       display: flex;
@@ -77,13 +80,14 @@
         align-items: center;
         background-color: rgba(255, 255, 255, 0);
         // color: black;
-        height: 1.5rem;
+        height: 2rem;
         position: absolute;
         // z-index: 500;
         transition: 0.4s;
         // color: rgba(255, 255, 255, 0.7);
 
         h4 {
+          font-size: 1rem;
           font-weight: 600;
           color: white;
         }
@@ -104,29 +108,44 @@
           justify-content: flex-end;
           height: 100%;
           font-family: $main-text;
-          padding: 8px;
+          // padding: 8px;
 
           // background-color: rgba(0, 0, 0, 0.2);
           .checkImgContainer {
             display: flex;
+            margin: 0.6rem;
             span {
-              background-color: rgba(0, 0, 0, 0.8);
+              background-color: rgba(0, 0, 0, 1);
+              box-shadow: 1px 1px 5px black;
               width: initial;
               border-radius: 50%;
-              font-size: 1rem;
+              font-size: 1.5rem;
             }
           }
+
+          h3,
+          p {
+            height: 1.8rem;
+            background-color: $backg-black1;
+            padding: 0 0.5rem;
+            display: flex;
+            align-items: center;
+          }
+
           h3 {
             font-size: 0.8rem;
-            color: black;
+            color: white;
+            margin: 0 0;
           }
           p {
             font-size: 0.9rem;
+            margin: 0 0;
+            color: rgb(170, 170, 170);
           }
         }
 
         .allBtnContainer {
-          background-color: rgb(20, 20, 20);
+          background-color: rgb(12, 12, 12);
           border-radius: 5px;
           height: 100%;
           display: flex;
@@ -137,6 +156,7 @@
           h4 {
             color: $main-color;
             margin-top: 8px;
+            font-size: 1rem;
           }
           button {
             height: 90%;
@@ -169,6 +189,11 @@
       .conditionIsPayContainer {
         filter: opacity(1);
       }
+    }
+
+    .isInactive {
+      filter: grayscale(0.8);
+      opacity: 0.8;
     }
   }
 }

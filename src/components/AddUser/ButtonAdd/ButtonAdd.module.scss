@@ -29,7 +29,7 @@
   button:hover::before {
     content: "Agregar nuevo usuario";
     font-size: 0.7rem;
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: $main-text;
     // box-shadow: 1px 1px 1px grey;
     margin-right:  0.5rem;
