@@ -65,7 +65,7 @@
       width: 16rem;
       max-width: 95vw;
       margin: 1.2rem;
-      box-shadow: 0px 0px 60px black inset;
+      box-shadow: 0px 0px 50px black inset, 0px 0px 70px black inset;
 
       position: relative;
       display: flex;
@@ -113,13 +113,17 @@
           // background-color: rgba(0, 0, 0, 0.2);
           .checkImgContainer {
             display: flex;
-            margin: 0.6rem;
-            span {
-              background-color: rgba(0, 0, 0, 1);
-              box-shadow: 1px 1px 5px black;
+            margin: 0.3rem;
+            align-items: center;
+            .check {
+              // background-color: rgba(0, 0, 0, 1);
+              // box-shadow: 1px 1px 5px black;
+              filter: drop-shadow(1px 1px 3px black);
               width: initial;
               border-radius: 50%;
-              font-size: 1.5rem;
+              font-size: 1.8rem;
+              display: flex;
+              justify-content: center;
             }
           }
 

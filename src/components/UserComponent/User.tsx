@@ -11,6 +11,8 @@ import Description from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { Carousel } from "react-bootstrap";
+import Image from "next/image";
+import mp from "../../../styles/mp.png";
 
 interface typesProps {
   userData: typesUser;
@@ -34,7 +36,7 @@ export default function User({ userData, id }: typesProps) {
       console.log(error);
     }
   }
-//  console.log( Math.floor(Math.random()*10000))
+  //  console.log( Math.floor(Math.random()*10000))
   console.log("esto es userdata", userData);
   if (user)
     return (
@@ -85,12 +87,23 @@ export default function User({ userData, id }: typesProps) {
                 {el.isPay ? (
                   <span>
                     <div className={styles.checkImgContainer}>
-                      <span>
+                      <span className={styles.check}>
                         <FcCheckmark />
+                      </span>
+                      <span>
+                        {el.mothodPay === "MP" ? (
+                          <Image src={mp}  height={35} alt='no se encontr imagen'/>
+                        ) : (
+                          <FaMoneyBillWave />
+                        )}
                       </span>
                     </div>
 
-                    <Carousel controls={false} interval={3000} indicators={false}>
+                    <Carousel
+                      controls={false}
+                      interval={3000}
+                      indicators={false}
+                    >
                       <Carousel.Item>
                         <h3>{el.addAdmin}</h3>
                       </Carousel.Item>
