@@ -22,12 +22,20 @@ import { useRouter } from "next/router";
 import { fromUrlToName } from "../../logic/fromNameToUrl";
 
 export default function NavbarMain() {
-  const route = useRouter()
- 
+  const route = useRouter();
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Link style={{ paddingRight: '1rem',filter: `drop-shadow(0px 0px 2px ${selectColor(fromUrlToName(route.route.slice(1)))})` }} href={"/"}>
+        <Link
+          style={{
+            paddingRight: "1rem",
+            filter: `drop-shadow(0px 0px 2px ${selectColor(
+              fromUrlToName(route.route.slice(1))
+            )})`,
+          }}
+          href={"/"}
+        >
           <Image height={40} src={AdminSvg} alt="No se encontro imagen" />
         </Link>
 
@@ -36,47 +44,46 @@ export default function NavbarMain() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Precios</Nav.Link>
+            <Link className={styles.enlaces} href="/prices">Precios</Link>
             {/* <Nav.Link href="#link">Actividades</Nav.Link> */}
             <NavDropdown title="Actividades" id="basic-nav-dropdown">
-              <NavDropdown.Item>
+              <div className={styles.NavDropdownItem}>
                 <Link href={"/funcional"}>
                   <CgGym color={selectColor("Funcional")} />
                   Funcional
                 </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </div>
+              <div className={styles.NavDropdownItem}>
                 <Link href={"/taekwondo"}>
                   <GiHighPunch color={selectColor("Taekwondo")} />
                   Taekwondo
                 </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </div>
+              <div className={styles.NavDropdownItem}>
                 <Link href={"/ritmo-kids"}>
                   <GiMusicalNotes color={selectColor("Ritmo Kids")} />
                   Ritmo Kids
                 </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </div>
+              <div className={styles.NavDropdownItem}>
                 <Link href={"/zumba"}>
                   <HiMusicNote color={selectColor("Zumba")} />
                   Zumba
                 </Link>
-              </NavDropdown.Item>{" "}
-              <NavDropdown.Item>
+              </div>{" "}
+              <div className={styles.NavDropdownItem}>
                 <Link href={"/power-box"}>
                   <GiWinterGloves color={selectColor("Power Box")} />
                   Power Box
                 </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </div>
+              <div className={styles.NavDropdownItem}>
                 <Link href={"/kick-boxing"}>
                   <GiBoxingGlove color={selectColor("Kick Boxing")} />
                   Kick Boxing
                 </Link>
-              </NavDropdown.Item>
+              </div>
               <NavDropdown.Divider />
-             
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

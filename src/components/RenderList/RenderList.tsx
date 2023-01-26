@@ -65,7 +65,16 @@ export default function RenderList({
               <Link
                 href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}
               >
-                {el.name}
+                {el.name} -{" "}
+                <i
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "0.9rem",
+                    color: selectColor(el.activity.nameActivity),
+                  }}
+                >
+                  {el.activity.modality}
+                </i>
               </Link>
             </div>
             <div className={`${styles.iconBox}`}>
