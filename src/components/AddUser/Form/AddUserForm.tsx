@@ -1,16 +1,17 @@
 import styles from "./AddUserForm.module.scss";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
-import { typesActivityGym } from "../../../../pages/gym";
 import { handleSelect } from "../logic/handle-functions";
 import { validateFormInputs } from "../logic/validateAddInputs";
 import { createUser } from "../../../logic/createUser";
+import { typesActivity } from "../../../types/types-user";
+import { selectColor } from "../../../logic/selectColor";
 
 type typesPropsForm = {
   // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   // modalityOptions: string[];
   getDataAgain: Function;
-  dataActivity: typesActivityGym[];
+  dataActivity: typesActivity[];
 };
 
 export default function AddUserForm({
@@ -56,13 +57,13 @@ export default function AddUserForm({
     >
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={`${styles.inputLabelBox}`}>
-          <label htmlFor="">Modalidad</label>
+          <label style={{color:selectColor(dataActivity[0].nameActivity)}} htmlFor="">Modalidad</label>
           <select
             onChange={(e) => handleSelect(e.target.value, setActivity)}
             name="activity"
             id=""
           >
-            {dataActivity.map((el: typesActivityGym) => (
+            {dataActivity.map((el: typesActivity) => (
               <option key={el.id} value={el.id}>
                 {el.modality}
               </option>
@@ -71,8 +72,8 @@ export default function AddUserForm({
         </div>
 
         <div className={`${styles.inputLabelBox}`} id="name">
-          <label>
-            Nombre <i style={{ color: "red" }}>*</i>
+          <label style={{color:selectColor(dataActivity[0].nameActivity)}}>
+            Nombre y apellido <i style={{ color: "red" }}>*</i>
           </label>
           <input
             autoComplete="none"
@@ -85,38 +86,9 @@ export default function AddUserForm({
             {nameVal.msg}
           </i>
         </div>
-        {/* <div className={`${styles.inputLabelBox}`}>
-          <label>Celular</label>
-          <input
-            placeholder="Ingrese celular..."
-            autoComplete={"none"}
-            onChange={(e) => setPhone(Number(e.target.value))}
-            name="phone"
-            type={"number"}
-          />
-        </div> */}
-        {/*   <div className={`${styles.inputLabelBox}`}>
-          <label>E-mail</label>
-          <input
-            placeholder="Ingrese correo..."
-            autoComplete="none"
-            onChange={(e) => setEmail(e.target.value)}
-            name="name"
-          />
-        </div> */}
-        {/*  <div className={`${styles.inputLabelBox}`}>
-          <label>D.N.I</label>
-          <input
-            placeholder="Ingrese documento..."
-            autoComplete="none"
-            onChange={(e) => setDni(Number(e.target.value))}
-            maxLength={8}
-            minLength={7}
-            name="number"
-          />
-        </div> */}
+
         <div className={`${styles.inputLabelBox}`}>
-          <label>Descripcion</label>
+          <label style={{color:selectColor(dataActivity[0].nameActivity)}}>Descripcion</label>
           <textarea
             placeholder="Ingrese alguna descripción..."
             autoComplete="none"
