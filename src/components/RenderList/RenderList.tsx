@@ -14,7 +14,7 @@ export default function RenderList({
   userData,
   getDataAgain,
 }: {
-  userData: typesUser[];
+  userData: typesUser[] | false;
   getDataAgain: Function;
 }) {
   const [search, setSearch] = useState("");
@@ -24,16 +24,24 @@ export default function RenderList({
     setSearch(e.target.value);
     // setDataToRender(filterUsers);
   }
-  let result = [];
-  if (!search) {
-    result = userData;
-  } else {
-    result = userData.filter((el) =>
-      String(el.name).toLowerCase().includes(search.toLowerCase())
-    );
+  let result: [] | typesUser[] = [];
+  if (userData) {
+    if (!search) {
+      result = userData;
+    } else {
+      result = userData.filter((el) =>
+        String(el.name).toLowerCase().includes(search.toLowerCase())
+      );
+    }
   }
 
   // console.log("aca result", result);
+  if (userData == false)
+    return (
+      <>
+        <h1>Problemas con el servidor</h1>
+      </>
+    );
   return (
     <div className={`${styles.allRenderList}`}>
       <div className={styles.inputSearchContainer}>

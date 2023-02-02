@@ -4,6 +4,7 @@ import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import { selectColor } from "../../src/logic/selectColor";
 import Title from "../../src/components/AddUser/Title/Title";
+import { typesActivity, typesUser } from "../../src/types/types-user";
 
 export interface typesActivityGym {
   id: number;
@@ -11,7 +12,10 @@ export interface typesActivityGym {
   modality: "2 Días" | "3 Días" | "Libre";
 }
 
-export default function Gym(props: any) {
+export default function Gym(props: {
+  dataUser: typesUser[] | false;
+  dataAct: typesActivity[] | false;
+}) {
   /////////////// BORRAR ///////////////
   console.log("Desde EL back : ", props);
   // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
@@ -44,7 +48,7 @@ export default function Gym(props: any) {
       <Title activityName={"Funcional"} />
       <ButtonAdd
         setModalAdd={setModalAdd}
-        color={dataUser[0].activity.nameActivity}
+        color={dataUser?dataUser[0].activity.nameActivity:''}
       />
       {dataActivity && modalAdd && (
         <AddUserForm
@@ -56,7 +60,7 @@ export default function Gym(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && (
+      {props.dataUser && (
         <RenderList userData={dataUser} getDataAgain={getDataAgain} />
       )}
     </div>
