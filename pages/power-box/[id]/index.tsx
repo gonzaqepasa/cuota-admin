@@ -2,13 +2,20 @@ import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
 
 import User from "../../../src/components/UserComponent/User";
+import { typesUser } from "../../../src/types/types-user";
 
-export default function UserData(props: any) {
+export default function UserData(props: { data: typesUser | false }) {
   // console.log(route.query.id);
   // console.log(props.data);
   const route = useRouter();
 
-
+  if (props.data == false) {
+    return (
+      <div className={`main backg backg-funcional`}>
+        Problemas con el servidor
+      </div>
+    );
+  }
   return (
     <div className={`main`}>
       <User userData={props.data} id={String(route.query.id)} />
