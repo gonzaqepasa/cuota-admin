@@ -42,7 +42,7 @@ export default function Gym(props: {
   }
 
   ////////////////////////////////////////////
-  if (!props.dataUser || !props.dataAct) {
+  if (props.dataUser == false || props.dataAct == false) {
     return (
       <div className={`main backg backg-funcional`}>
         Problemas en la base de datos{" "}
@@ -52,14 +52,7 @@ export default function Gym(props: {
   return (
     <div className={`main backg backg-funcional`}>
       <Title activityName={"Funcional"} />
-      <ButtonAdd
-        setModalAdd={setModalAdd}
-        color={
-          props?.dataUser?.length > 0
-            ? props.dataUser[0].activity.nameActivity
-            : ""
-        }
-      />
+      <ButtonAdd setModalAdd={setModalAdd} color={"Funcional"} />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}

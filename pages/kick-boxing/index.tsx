@@ -28,20 +28,18 @@ export default function KickBoxing(props: any) {
   }
 
   ////////////////////////////////////////////
-  if (!props.dataUser || !props.dataAct) {
-    return <div className={`main backg backg-kick-boxing`}>Problemas en la base de datos </div>;
+  if (props.dataUser == false || props.dataAct == false) {
+    return (
+      <div className={`main backg backg-kick-boxing`}>
+        Problemas en la base de datos{" "}
+      </div>
+    );
   }
   return (
     <div className={`main backg backg-kick-boxing`}>
       <Title activityName={"Kick Boxing"} />
 
-      <ButtonAdd
-        setModalAdd={setModalAdd}
-        color={
-          props?.dataUser?.length > 0
-            ? props.dataUser[0].activity.nameActivity
-            : ""}
-      />
+      <ButtonAdd setModalAdd={setModalAdd} color={"Kick Boxing"} />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -52,9 +50,8 @@ export default function KickBoxing(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
-      )}
+
+      <RenderList userData={dataUser} getDataAgain={getDataAgain} />
     </div>
   );
 }

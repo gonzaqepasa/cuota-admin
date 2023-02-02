@@ -38,20 +38,18 @@ export default function Taekwondo(props: any) {
 
   ////////////////////////////////////////////
 
-  if (!props.dataUser || !props.dataAct) {
-    return <div className={`main backg backg-taekwondo`}>Problemas en la base de datos </div>;
+  if (props.dataUser == false || props.dataAct == false) {
+    return (
+      <div className={`main backg backg-taekwondo`}>
+        Problemas en la base de datos{" "}
+      </div>
+    );
   }
   return (
     <div className={`main backg backg-taekwondo`}>
       <Title activityName={"Taekwondo"} />
 
-      <ButtonAdd
-        setModalAdd={setModalAdd}
-        color={
-          props?.dataUser?.length > 0
-            ? props.dataUser[0].activity.nameActivity
-            : ""}
-      />
+      <ButtonAdd setModalAdd={setModalAdd} color={"Taekwondo"} />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -62,9 +60,8 @@ export default function Taekwondo(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
-      )}
+
+      <RenderList userData={dataUser} getDataAgain={getDataAgain} />
     </div>
   );
 }

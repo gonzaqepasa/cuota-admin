@@ -41,7 +41,7 @@ export default function User({ userData, id }: typesProps) {
   if (user)
     return (
       <div
-        className={`${styles.allUserComponent} background-${fromNameToUrl(
+        className={`${styles.allUserComponent} backg backg-${fromNameToUrl(
           userData.activity.nameActivity.toLowerCase()
         )}`}
       >
