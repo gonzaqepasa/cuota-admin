@@ -54,7 +54,11 @@ export default function Gym(props: {
       <Title activityName={"Funcional"} />
       <ButtonAdd
         setModalAdd={setModalAdd}
-        color={props ? props.dataUser[0].activity.nameActivity : ""}
+        color={
+          props?.dataUser?.length > 0
+            ? props.dataUser[0].activity.nameActivity
+            : ""
+        }
       />
       {dataActivity && modalAdd && (
         <AddUserForm
