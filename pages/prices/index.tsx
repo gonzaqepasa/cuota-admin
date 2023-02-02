@@ -7,10 +7,14 @@ export default function Prices({
   dataAct: typesActivity[] | false;
 }) {
   // Component...
-  console.log(dataAct)
-  return <div className={`main `}>
-    <PricesRender data={dataAct}/>
-  </div>;
+  console.log(dataAct);
+  if (dataAct == false)
+    return <div className={`main`}>Problemas en el servidor</div>;
+  return (
+    <div className={`main `}>
+      <PricesRender data={dataAct} />
+    </div>
+  );
 }
 
 export async function getStaticProps() {
