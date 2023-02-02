@@ -37,12 +37,16 @@ export default function RitmoKids(props: any) {
   }
 
   ////////////////////////////////////////////
-
+  if (!props.dataUser || !props.dataAct)
+    return <>Problemas en la base de datos </>;
   return (
     <div className={`main background-ritmo-kids`}>
       <Title activityName={"Ritmo Kids"} />
-      
-      <ButtonAdd setModalAdd={setModalAdd}  color={dataUser[0].activity.nameActivity}/>
+
+      <ButtonAdd
+        setModalAdd={setModalAdd}
+        color={dataUser[0].activity.nameActivity}
+      />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -53,7 +57,9 @@ export default function RitmoKids(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain} />}
+      {dataUser && (
+        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+      )}
     </div>
   );
 }
