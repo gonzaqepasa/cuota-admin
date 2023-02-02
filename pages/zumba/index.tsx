@@ -37,7 +37,10 @@ export default function Zumba(props: any) {
 
       <ButtonAdd
         setModalAdd={setModalAdd}
-        color={dataUser[0].activity.nameActivity}
+        color={
+          props?.dataUser?.length > 0
+            ? props.dataUser[0].activity.nameActivity
+            : ""}
       />
       {dataActivity && modalAdd && (
         <AddUserForm
