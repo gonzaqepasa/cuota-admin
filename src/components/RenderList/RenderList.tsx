@@ -4,8 +4,19 @@ import { typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
 import { ImSearch } from "react-icons/im";
 import { FaUserCheck } from "react-icons/fa";
+import { fromNameToUrl } from "../../logic/fromNameToUrl";
+import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
+import { visibilityUser } from "../../logic/visibilityUser";
+import { orderByActive } from "../../logic/orderByMonthName";
+import { selectColor } from "../../logic/selectColor";
 
-export default function RenderList({ userData }: { userData: typesUser[] }) {
+export default function RenderList({
+  userData,
+  getDataAgain,
+}: {
+  userData: typesUser[];
+  getDataAgain: Function;
+}) {
   const [search, setSearch] = useState("");
   // const [dataToRender, setDataToRender] = useState(userData);
 
@@ -22,7 +33,7 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
     );
   }
 
-  console.log("aca result", result);
+  // console.log("aca result", result);
   return (
     <div className={`${styles.allRenderList}`}>
       <div className={styles.inputSearchContainer}>
@@ -37,23 +48,55 @@ export default function RenderList({ userData }: { userData: typesUser[] }) {
       </div>
 
       <div className={styles.linksContainer}>
-        {result.map((el) => (
-          <div key={el.id} className={styles.linkBox}>
-            <FaUserCheck />
-            <Link href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}>
-              {el.name}
-            </Link>
+        {orderByActive(result).map((el) => (
+          <div
+            key={el.id}
+            className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}
+            style={{
+              borderBottom: `2px solid ${selectColor(
+                userData[0].activity.nameActivity
+              )}`,
+            }}
+          >
+            <div className={`${styles.linkNameUser}`}>
+              <FaUserCheck
+                color={selectColor(userData[0].activity.nameActivity)}
+              />
+              <Link
+                href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}
+              >
+                {el.name} -{" "}
+                <i
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "0.9rem",
+                    color: selectColor(el.activity.nameActivity),
+                  }}
+                >
+                  {el.activity.modality}
+                </i>
+              </Link>
+            </div>
+            <div className={`${styles.iconBox}`}>
+              <button
+                onClick={(e) => {
+                  visibilityUser(
+                    e,
+                    { id: Number(el.id), active: el.active },
+                    getDataAgain
+                  );
+                }}
+              >
+                {el.active ? (
+                  <MdOutlineVisibility color="white" />
+                ) : (
+                  <MdOutlineVisibilityOff color="grey" />
+                )}
+              </button>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
-}
-
-function fromNameToUrl(name: string): String {
-  const arr = name.split(" ");
-  if (arr.length > 1) {
-    return `${arr[0]}-${arr[1]}`.toLowerCase();
-  }
-  return name.toLowerCase();
 }

@@ -10,21 +10,29 @@ export interface typesUser {
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   active: boolean;
-  activity: {
-    nameActivity: string;
-    modality: string;
-  };
+  activity: typesActivity;
 
   // Información de pago
   // Se genera de forma automatica
-  calendar: {
-    months: {
-      monthName: string;
-      comment?: string;
-      addData?: string;
-      addAdmin?: string;
-      isPay: boolean;
-    }[];
-  };
+  calendar: typesCalendar;
+
   id?: string;
+}
+export interface typesActivity {
+  nameActivity: string;
+  modality: string;
+  price: number;
+  id: number;
+}
+
+export interface typesCalendar {
+  months: typesMonth[];
+}
+
+export interface typesMonth {
+  monthName: string;
+  comment?: string;
+  addData?: string;
+  addAdmin?: string;
+  isPay: boolean;
 }

@@ -4,9 +4,15 @@ import styles from "./User.module.scss";
 import Swal from "sweetalert2";
 import { auth } from "../../../firebase/firebaseConfig";
 import { FcCheckmark } from "react-icons/fc";
-import { FaMoneyBillWave,FaEdit } from "react-icons/fa";
+import { FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import { handleEditTurno } from "../../logic/editTurno";
 import { orderByMonth } from "../../logic/orderByMonthName";
+import Description from "./Description/Description";
+import { selectColor } from "../../logic/selectColor";
+import { fromNameToUrl } from "../../logic/fromNameToUrl";
+import { Carousel } from "react-bootstrap";
+import Image from "next/image";
+import mp from "../../../styles/mp.png";
 
 interface typesProps {
   userData: typesUser;
@@ -17,6 +23,7 @@ export default function User({ userData, id }: typesProps) {
   const [monthData, setMonthData] = useState<any>(
     orderByMonth(userData.calendar.months)
   );
+  const [user, setUser] = useState(userData);
 
   async function getUserAgain() {
     try {
@@ -24,31 +31,55 @@ export default function User({ userData, id }: typesProps) {
       const res = await fetch(`http://${url}/user/get-user?USER=${id}`);
       const data = await res.json();
       setMonthData(orderByMonth(data.calendar.months));
+      setUser(data);
     } catch (error) {
       console.log(error);
     }
   }
-
+  //  console.log( Math.floor(Math.random()*10000))
   console.log("esto es userdata", userData);
-  if (userData)
+  if (user)
     return (
-      <div className={`${styles.allUserComponent}`}>
+      <div
+        className={`${styles.allUserComponent} background-${fromNameToUrl(
+          userData.activity.nameActivity.toLowerCase()
+        )}`}
+      >
         {/* <p>2023</p> */}
         <div className={styles.nameUserBox}>
-          <h2>{userData.name}</h2>
-          <h3>{userData.activity.nameActivity.toUpperCase()}</h3>
+          <h2
+            style={{
+              borderBottom: `solid 2px ${selectColor(
+                user.activity.nameActivity
+              )}`,
+            }}
+          >
+            {user.name}
+          </h2>
+          <h3 style={{ color: selectColor(user.activity.nameActivity) }}>
+            {user.activity.nameActivity.toUpperCase()}
+          </h3>
         </div>
-
 
         {/*  <--- Contenedor de Card */}
-        <div className={`${styles.monthsContainer}`}>
-        <div className={styles.detailContainer}>
-          <p>{userData.description}</p>
-          <button><FaEdit/></button>
+
+        <div className={styles.descriptionContainer}>
+          <Description
+            id={Number(id)}
+            color={selectColor(user.activity.nameActivity)}
+            description={user.description}
+            getDataAgain={getUserAgain}
+          />
         </div>
+        <div className={`${styles.monthsContainer}`}>
           {monthData.map((el: any) => (
             ///////////////// Componente CardMonth /////////////////
-            <div key={el.monthName} className={`${styles.monthBox}`}>
+            <div
+              key={el.monthName}
+              className={`${styles.monthBox} ${
+                !userData.active && styles.isInactive
+              }`}
+            >
               <div className={styles.monthNameBox}>
                 <h4> {el.monthName}</h4>
               </div>
@@ -56,17 +87,40 @@ export default function User({ userData, id }: typesProps) {
                 {el.isPay ? (
                   <span>
                     <div className={styles.checkImgContainer}>
-                      <span>
+                      <span className={styles.check}>
                         <FcCheckmark />
                       </span>
+                      <span>
+                        {el.mothodPay === "MP" ? (
+                          <Image src={mp}  height={35} alt='no se encontr imagen'/>
+                        ) : (
+                          <FaMoneyBillWave />
+                        )}
+                      </span>
                     </div>
-                    <h3>{el.addAdmin}</h3>
-                    <p>{el.addData}</p>
+
+                    <Carousel
+                      controls={false}
+                      interval={3000}
+                      indicators={false}
+                    >
+                      <Carousel.Item>
+                        <h3>{el.addAdmin}</h3>
+                      </Carousel.Item>
+                      <Carousel.Item>
+                        <p>{el.addData}</p>
+                      </Carousel.Item>
+                    </Carousel>
                   </span>
                 ) : (
                   <div className={styles.allBtnContainer}>
-                    <h4>{el.monthName}</h4>
+                    <h4
+                      style={{ color: selectColor(user.activity.nameActivity) }}
+                    >
+                      {el.monthName}
+                    </h4>
                     <button
+                      disabled={!userData.active}
                       onClick={(e) =>
                         handleEditTurno(
                           e,
@@ -79,7 +133,10 @@ export default function User({ userData, id }: typesProps) {
                         )
                       }
                     >
-                      <FaMoneyBillWave /> <p>Agregar pago</p>
+                      <FaMoneyBillWave
+                        color={selectColor(user.activity.nameActivity)}
+                      />{" "}
+                      <p>Agregar pago</p>
                     </button>
                   </div>
                   ///////////////////////////////////////////////////

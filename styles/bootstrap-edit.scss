@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/bootstrap";
+@import './variables';
+.navbar {
+  box-shadow: 0px 0px 1px black;
+  font-family: $main-text;
+  .container {
+    .navbar-collapse {
+      .dropdown {
+        .dropdown-item {
+          display: flex;
+
+          a {
+            // background-color: red;
+            color: initial;
+            width: 100%;
+            height: 100%;
+            svg {
+              margin: 0px 5px;
+            }
+          }
+        }
+      }
+    }
+    .navbar-toggler {
+      // background-color: red;
+      border: none;
+    }
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+  }
+}

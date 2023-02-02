@@ -1,94 +1,39 @@
 @import "../../../styles/variables";
 
-.allNavbar {
-  background-color: rgba(0, 0, 0, 0.9);
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  .navBox {
-    background-color: $backg-black1;
-    margin-top: 70px;
-    position: fixed;
-    height: 100vh;
-    top: 0;
-    width: 100vw;
-    z-index: 10160;
-    transform: translateX(100vw);
-    transition: 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    a {
-      margin: 0.5rem 0;
-      font-family: $main-text;
-      font-weight: 600;
-      width: 90%;
-      text-align: center;
-      height: 4rem;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      svg {
-        font-size: 1.4rem;
-        color: $main-color;
-        margin-right: 0.5rem;
-      }
-    }
-
-    a:hover {
-      background-color: white;
-      color: black;
-    }
-  }
-  .isOpen {
-    transform: translateX(0);
-  }
-
-  .btnBox {
-    position: absolute;
-    z-index: 60;
-    right: 10px;
-    color: $main-color;
-    // background-color: green;
-  }
+.enlaces {
+  // background-color: red;
+  text-decoration: none;
+  color: #0000008c;
+  // margin-top: 1rem;
+  padding-right: var(--bs-navbar-nav-link-padding-x);
+  padding-left: var(--bs-navbar-nav-link-padding-x);
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
 }
+.enlaces:hover {
+  color: var(--bs-navbar-active-color);
+}
+.NavDropdownItem {
+  width: 100%;
+  padding: 2px 8px;
+  display: flex;
+  a {
+    // background-color: red;
+    font-family: $main-text;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    opacity: 0.9;
+    transition: 0.1s;
+  }
 
-@media (min-width: 550px) {
-  .allNavbar {
-    .navBox {
-      position: relative;
-      background: none;
-      height: 100%;
-      width: initial;
-      flex-direction: row;
-      margin: 0 0.5rem;
-      transform: translateX(0);
-      a {
-        // background-color: green;
-        height: 100%;
-        width: 7rem;
-        margin: 0 0.2rem;
-        transition: 0.1s;
-      }
-      .aHome {
-        width: 4rem;
-        margin-left: 1rem;
-        padding: 0 0;
-        
-        svg{
-          font-size: 1.8rem;
-          margin: auto;
-        }
-      }
-    }
+  a:hover {
+    opacity: 1;
+    background-color: rgb(228, 228, 228);
+  }
 
-    .btnBox {
-      display: none;
-    }
+  svg {
+    margin: 0 5px;
   }
 }

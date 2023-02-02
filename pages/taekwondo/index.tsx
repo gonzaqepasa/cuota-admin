@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
+import Title from "../../src/components/AddUser/Title/Title";
 
 export interface typesActivityTaekwondo {
   id: number;
@@ -39,7 +40,9 @@ export default function Taekwondo(props: any) {
 
   return (
     <div className={`main background-taekwondo`}>
-      <ButtonAdd setModalAdd={setModalAdd} />
+      <Title activityName={"Taekwondo"} />
+
+      <ButtonAdd setModalAdd={setModalAdd} color={dataUser[0].activity.nameActivity} />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -50,7 +53,7 @@ export default function Taekwondo(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && <RenderList userData={dataUser} />}
+      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain} />}
     </div>
   );
 }

@@ -4,9 +4,9 @@ import { GetStaticPaths } from "next";
 import User from "../../../src/components/UserComponent/User";
 
 export default function UserData(props: any) {
-  const route = useRouter();
   // console.log(route.query.id);
   // console.log(props.data);
+  const route = useRouter();
 
 
   return (
@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // ...
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const res = await fetch(`http://${url}/user?activity=Funcional`);
+    const res = await fetch(`http://${url}/user?activity=Power Box`);
     const data = await res.json();
     const paths = data.map((user: any) => ({
       params: { id: String(user.id) },

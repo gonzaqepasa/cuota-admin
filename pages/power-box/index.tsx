@@ -4,21 +4,13 @@ import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
 
-export interface typesActivityRitmoKids {
-  id: number;
-  nameActivity: "Funcional";
-  modality: "2 Días" | "3 Días" | "Libre";
-}
 
-export default function RitmoKids(props: any) {
+export default function PowerBox(props: any) {
   /////////////// BORRAR ///////////////
   console.log("Desde el back : ", props);
   // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
   //////////////////////////////////////
-  //////// Informacion de sección Gym ////////
-  //   const modalityOptions = ["3 Días", "2 Días", "Libre"];
 
-  ////////////////////////////////////////////
   const [modalAdd, setModalAdd] = useState(false);
   const [dataUser, setDataUser] = useState(props.dataUser);
   const [dataActivity, setDataActivity] = useState(props.dataAct);
@@ -27,7 +19,7 @@ export default function RitmoKids(props: any) {
   async function getDataAgain() {
     try {
       const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-      const res = await fetch(`http://${url}/user?activity=Ritmo Kids`);
+      const res = await fetch(`http://${url}/user?activity=Power Box`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -39,10 +31,10 @@ export default function RitmoKids(props: any) {
   ////////////////////////////////////////////
 
   return (
-    <div className={`main background-ritmo-kids`}>
-      <Title activityName={"Ritmo Kids"} />
-      
-      <ButtonAdd setModalAdd={setModalAdd}  color={dataUser[0].activity.nameActivity}/>
+    <div className={`main background-power-box`}>
+      <Title activityName={"Power Box"} />
+
+      <ButtonAdd setModalAdd={setModalAdd} color={dataUser[0].activity.nameActivity} />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -53,7 +45,7 @@ export default function RitmoKids(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain} />}
+      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain}/>}
     </div>
   );
 }
@@ -61,8 +53,8 @@ export default function RitmoKids(props: any) {
 export async function getStaticProps() {
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const resUser = await fetch(`http://${url}/user?activity=Ritmo Kids`);
-    const resAct = await fetch(`http://${url}/activity?activity=Ritmo Kids`);
+    const resUser = await fetch(`http://${url}/user?activity=Power Box`);
+    const resAct = await fetch(`http://${url}/activity?activity=Power Box`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {
