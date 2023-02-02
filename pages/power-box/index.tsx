@@ -28,7 +28,7 @@ export default function PowerBox(props: any) {
   }
 
   ////////////////////////////////////////////
-  if (props.dataUser == false || props.dataAct == false) {
+  if (props.dataAct == false) {
     return (
       <div className={`main backg backg-power-box`}>
         Problemas en la base de datos{" "}

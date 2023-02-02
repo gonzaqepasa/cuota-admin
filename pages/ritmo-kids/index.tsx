@@ -37,7 +37,7 @@ export default function RitmoKids(props: any) {
   }
 
   ////////////////////////////////////////////
-  if (props.dataUser == false || props.dataAct == false)
+  if (props.dataAct == false)
     return (
       <div className={`main backg backg-ritmo-kids`}>
         Problemas en la base de datos{" "}

@@ -42,7 +42,7 @@ export default function Gym(props: {
   }
 
   ////////////////////////////////////////////
-  if (props.dataUser == false || props.dataAct == false) {
+  if (props.dataAct == false) {
     return (
       <div className={`main backg backg-funcional`}>
         Problemas en la base de datos{" "}

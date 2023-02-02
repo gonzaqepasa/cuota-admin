@@ -28,7 +28,7 @@ export default function Zumba(props: any) {
   }
 
   ////////////////////////////////////////////
-  if (props.dataUser == false || props.dataAct == false) {
+  if (props.dataAct == false) {
     return (
       <div className={`main main backg backg-zumba`}>
         Problemas en la base de datos{" "}
