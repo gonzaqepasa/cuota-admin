@@ -8,10 +8,10 @@ import styles from "./PricesRender.module.scss";
 export default function PricesRender({
   data,
 }: {
-  data: typesActivity[] | false;
+  data: typesActivity[] ;
 }) {
   // Component...
-  if (!data) return <div>No existe nada </div>;
+  
   return (
     <div className={`${styles.allPricesRender}`}>
       <Table responsive hover>
@@ -23,7 +23,7 @@ export default function PricesRender({
         </thead>
         <tbody>
           {orderById(data).map((el) => (
-            <tr>
+            <tr key={el.id}>
               {/* <td>{el.id}</td> */}
               <td
                 style={{
