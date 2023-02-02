@@ -28,9 +28,11 @@ export default function KickBoxing(props: any) {
   }
 
   ////////////////////////////////////////////
-
+  if (!props.dataUser || !props.dataAct) {
+    return <div className={`main backg backg-kick-boxing`}>Problemas en la base de datos </div>;
+  }
   return (
-    <div className={`main background-kick-boxing`}>
+    <div className={`main backg backg-kick-boxing`}>
       <Title activityName={"Kick Boxing"} />
 
       <ButtonAdd

@@ -4,7 +4,6 @@ import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
 
-
 export default function Zumba(props: any) {
   /////////////// BORRAR ///////////////
   console.log("Desde el back : ", props);
@@ -29,12 +28,17 @@ export default function Zumba(props: any) {
   }
 
   ////////////////////////////////////////////
-
+  if (!props.dataUser || !props.dataAct) {
+    return <div className={`main main backg backg-zumba`}>Problemas en la base de datos </div>;
+  }
   return (
-    <div className={`main background-zumba`}>
+    <div className={`main backg backg-zumba`}>
       <Title activityName={"Zumba"} />
 
-      <ButtonAdd setModalAdd={setModalAdd} color={dataUser[0].activity.nameActivity} />
+      <ButtonAdd
+        setModalAdd={setModalAdd}
+        color={dataUser[0].activity.nameActivity}
+      />
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -45,7 +49,9 @@ export default function Zumba(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {dataUser && <RenderList userData={dataUser} getDataAgain={getDataAgain} />}
+      {dataUser && (
+        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+      )}
     </div>
   );
 }

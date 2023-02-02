@@ -38,9 +38,9 @@ export default function RitmoKids(props: any) {
 
   ////////////////////////////////////////////
   if (!props.dataUser || !props.dataAct)
-    return <>Problemas en la base de datos </>;
+    return <div className={`main backg backg-ritmo-kids`}>Problemas en la base de datos </div >;
   return (
-    <div className={`main background-ritmo-kids`}>
+    <div className={`main backg backg-ritmo-kids`}>
       <Title activityName={"Ritmo Kids"} />
 
       <ButtonAdd

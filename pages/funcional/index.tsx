@@ -42,13 +42,15 @@ export default function Gym(props: {
   }
 
   ////////////////////////////////////////////
-
+  if (!props.dataUser || !props.dataAct) {
+    return <div className={`main backg backg-funcional`}>Problemas en la base de datos </div>;
+  }
   return (
-    <div className={`main background-funcional`}>
+    <div className={`main backg backg-funcional`}>
       <Title activityName={"Funcional"} />
       <ButtonAdd
         setModalAdd={setModalAdd}
-        color={dataUser?dataUser[0].activity.nameActivity:''}
+        color={props.dataUser[0].activity.nameActivity}
       />
       {dataActivity && modalAdd && (
         <AddUserForm
@@ -60,9 +62,7 @@ export default function Gym(props: {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      {props.dataUser && (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
-      )}
+      {<RenderList userData={dataUser} getDataAgain={getDataAgain} />}
     </div>
   );
 }
