@@ -18,7 +18,7 @@ export default function Gym(props: {
 }) {
   /////////////// BORRAR ///////////////
   console.log("Desde EL back : ", props);
-  // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
+  console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
   const modalityOptions = ["3 Días", "2 Días", "Libre"];
