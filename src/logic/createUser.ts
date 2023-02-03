@@ -27,7 +27,7 @@ export async function createUser(
         try {
           const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
           const { data } = await axios.post(
-            `https://ec2-100-25-130-131.compute-1.amazonaws.com:3000/user/create`,
+            `http://ec2-100-25-130-131.compute-1.amazonaws.com:3000/user/create`,
             objData
           );
           setModalAdd(false);
