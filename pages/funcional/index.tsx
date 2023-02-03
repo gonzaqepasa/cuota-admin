@@ -32,7 +32,7 @@ export default function Gym(props: {
   async function getDataAgain() {
     try {
       const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-      const res = await fetch(`http://${url}/user?activity=Funcional`);
+      const res = await fetch(`${url}/user?activity=Funcional`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -71,8 +71,8 @@ export default function Gym(props: {
 export async function getStaticProps() {
   try {
     const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const resUser = await fetch(`http://ec2-100-25-130-131.compute-1.amazonaws.com:3000/user?activity=Funcional`);
-    const resAct = await fetch(`http://ec2-100-25-130-131.compute-1.amazonaws.com:3000/activity?activity=Funcional`);
+    const resUser = await fetch(`${url}/user?activity=Funcional`);
+    const resAct = await fetch(`${url}/activity?activity=Funcional`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {
