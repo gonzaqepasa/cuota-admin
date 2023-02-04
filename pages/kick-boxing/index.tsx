@@ -18,7 +18,7 @@ export default function KickBoxing(props: any) {
 
   async function getDataAgain() {
     try {
-      const res = await fetch(`${url}/get-users?activity=Kick Boxing`);
+      const res = await fetch(`${url}/user/get-users?activity=Kick Boxing`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -58,8 +58,8 @@ export default function KickBoxing(props: any) {
 
 export async function getStaticProps() {
   try {
-    const resUser = await fetch(`${url}/get-users?activity=Kick Boxing`);
-    const resAct = await fetch(`${url}/get-activity?activity=Kick Boxing`);
+    const resUser = await fetch(`${url}/user/get-users?activity=Kick Boxing`);
+    const resAct = await fetch(`${url}/activity/get-activity?activity=Kick Boxing`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {

@@ -1,10 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../services/prismaConfig";
+import { prisma } from "../../../services/prismaConfig";
 
-type Data = {
-  name: string;
-};
+type Data = any
 
 export default async function handler(
   req: NextApiRequest,

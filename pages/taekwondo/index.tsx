@@ -27,8 +27,7 @@ export default function Taekwondo(props: any) {
 
   async function getDataAgain() {
     try {
-     
-      const res = await fetch(`${url}/get-users?activity=Taekwondo`);
+      const res = await fetch(`${url}/user/get-users?activity=Taekwondo`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -69,9 +68,10 @@ export default function Taekwondo(props: any) {
 
 export async function getStaticProps() {
   try {
-
-    const resUser = await fetch(`${url}/get-users?activity=Taekwondo`);
-    const resAct = await fetch(`${url}/get-activity?activity=Taekwondo`);
+    const resUser = await fetch(`${url}/user/get-users?activity=Taekwondo`);
+    const resAct = await fetch(
+      `${url}/activity/get-activity?activity=Taekwondo`
+    );
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {

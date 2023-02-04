@@ -33,7 +33,7 @@ export default function Gym(props: {
   async function getDataAgain() {
     try {
       
-      const res = await fetch(`${url}/get-users?activity=Funcional`);
+      const res = await fetch(`${url}/user/get-users?activity=Funcional`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -73,10 +73,10 @@ export async function getStaticProps() {
   try {
    
     const resUser = await fetch(
-      `${url}/get-users?activity=Funcional`
+      `${url}/user/get-users?activity=Funcional`
     );
     const resAct = await fetch(
-      `${url}/get-activity?activity=Funcional`
+      `${url}/activity/get-activity?activity=Funcional`
     );
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();

@@ -27,7 +27,7 @@ export default function RitmoKids(props: any) {
 
   async function getDataAgain() {
     try {
-      const res = await fetch(`${url}/get-users?activity=Ritmo Kids`);
+      const res = await fetch(`${url}/user/get-users?activity=Ritmo Kids`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -65,8 +65,10 @@ export default function RitmoKids(props: any) {
 
 export async function getStaticProps() {
   try {
-    const resUser = await fetch(`${url}/get-users?activity=Ritmo Kids`);
-    const resAct = await fetch(`${url}/get-activity?activity=Ritmo Kids`);
+    const resUser = await fetch(`${url}/user/get-users?activity=Ritmo Kids`);
+    const resAct = await fetch(
+      `${url}/activity/get-activity?activity=Ritmo Kids`
+    );
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {

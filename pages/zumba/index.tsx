@@ -18,8 +18,7 @@ export default function Zumba(props: any) {
 
   async function getDataAgain() {
     try {
-     
-      const res = await fetch(`${url}/get-users?activity=Zumba`);
+      const res = await fetch(`${url}/user/get-users?activity=Zumba`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -59,9 +58,8 @@ export default function Zumba(props: any) {
 
 export async function getStaticProps() {
   try {
-  
-    const resUser = await fetch(`${url}/get-users?activity=Zumba`);
-    const resAct = await fetch(`${url}/get-activity?activity=Zumba`);
+    const resUser = await fetch(`${url}/user/get-users?activity=Zumba`);
+    const resAct = await fetch(`${url}/activity/get-activity?activity=Zumba`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {
