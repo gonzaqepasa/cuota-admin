@@ -3,6 +3,7 @@ import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
+import { url } from "../../services/services-url";
 
 export default function Zumba(props: any) {
   /////////////// BORRAR ///////////////
@@ -17,8 +18,8 @@ export default function Zumba(props: any) {
 
   async function getDataAgain() {
     try {
-      const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-      const res = await fetch(`http://${url}/user?activity=Zumba`);
+     
+      const res = await fetch(`${url}/get-users?activity=Zumba`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -58,9 +59,9 @@ export default function Zumba(props: any) {
 
 export async function getStaticProps() {
   try {
-    const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const resUser = await fetch(`http://${url}/user?activity=Zumba`);
-    const resAct = await fetch(`http://${url}/activity?activity=Zumba`);
+  
+    const resUser = await fetch(`${url}/get-users?activity=Zumba`);
+    const resAct = await fetch(`${url}/get-activity?activity=Zumba`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {

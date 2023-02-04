@@ -1,3 +1,4 @@
+import { url } from "../../services/services-url";
 import PricesRender from "../../src/components/PricesRender/PricesRender";
 import { typesActivity } from "../../src/types/types-user";
 
@@ -19,8 +20,7 @@ export default function Prices({
 
 export async function getStaticProps() {
   try {
-    const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const resAct = await fetch(`http://${url}/activity`);
+    const resAct = await fetch(`${url}/get-activity`);
     const dataAct = await resAct.json();
 
     return {
