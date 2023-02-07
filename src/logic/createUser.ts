@@ -8,7 +8,8 @@ export async function createUser(
   objData: Object,
   nameUser: string,
   setModalAdd: Dispatch<SetStateAction<boolean>>,
-  getDataAgain: Function
+  getDataAgain: Function,
+  setLoad: Dispatch<SetStateAction<boolean>>
 ) {
   Swal.fire({
     reverseButtons: true,
@@ -25,6 +26,7 @@ export async function createUser(
   }).then((result) => {
     if (result.isConfirmed) {
       (async function () {
+        setLoad(true);
         try {
           const { data } = await axios.post(`${url}/user/create-user`, objData);
           setModalAdd(false);
@@ -37,6 +39,7 @@ export async function createUser(
             title: `Agregado!`,
             text: `${nameUser} fue agregado con exito!`,
           });
+          setLoad(false);
         } catch (err) {
           console.log(err);
           setModalAdd(false);

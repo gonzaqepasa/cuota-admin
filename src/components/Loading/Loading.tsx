@@ -1,5 +1,5 @@
 import Image from "next/image";
-import barsSvg from "./bars.svg";
+import barsSvg from "./bars2.svg";
 export default function Loading() {
   return (
     <>
