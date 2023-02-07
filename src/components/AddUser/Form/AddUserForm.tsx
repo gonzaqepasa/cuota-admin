@@ -52,13 +52,13 @@ export default function AddUserForm({
     validateFormInputs(name, setNameVal) &&
       createUser(toSendObj, name, setModalAdd, getDataAgain, setLoad);
   }
-  if (load) {
+  if (load)
     return (
       <div className={styles.allAddUserForm}>
         <Loading />;
       </div>
     );
-  }
+
   return (
     <div
       // onClick={() => setModalAdd(false)}
