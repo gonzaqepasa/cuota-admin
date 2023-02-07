@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Console } from "console";
+import { url } from "../../services/services-url";
 
 export async function createUser(
   objData: Object,
@@ -25,11 +26,7 @@ export async function createUser(
     if (result.isConfirmed) {
       (async function () {
         try {
-          const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-          const { data } = await axios.post(
-            `http://ec2-100-25-130-131.compute-1.amazonaws.com:3000/user/create`,
-            objData
-          );
+          const { data } = await axios.post(`${url}/user/create-user`, objData);
           setModalAdd(false);
           getDataAgain();
           console.log(data);

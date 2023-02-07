@@ -20,7 +20,7 @@ export default function Prices({
 
 export async function getStaticProps() {
   try {
-    const resAct = await fetch(`${url}/get-activity`);
+    const resAct = await fetch(`${url}/activity/get-activity`);
     const dataAct = await resAct.json();
 
     return {

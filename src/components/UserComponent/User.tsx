@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { auth } from "../../../firebase/firebaseConfig";
 import { FcCheckmark } from "react-icons/fc";
 import { FaMoneyBillWave, FaEdit } from "react-icons/fa";
-import { handleEditTurno } from "../../logic/editTurno";
+import { payMonth } from "../../logic/payMonth";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import Description from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
@@ -13,6 +13,7 @@ import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { Carousel } from "react-bootstrap";
 import Image from "next/image";
 import mp from "../../../styles/mp.png";
+import { url } from "../../../services/services-url";
 
 interface typesProps {
   userData: typesUser;
@@ -24,11 +25,9 @@ export default function User({ userData, id }: typesProps) {
     orderByMonth(userData.calendar.months)
   );
   const [user, setUser] = useState(userData);
-
   async function getUserAgain() {
     try {
-      const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-      const res = await fetch(`http://${url}/user/get-user?USER=${id}`);
+      const res = await fetch(`${url}/user/user?USER=${id}`);
       const data = await res.json();
       setMonthData(orderByMonth(data.calendar.months));
       setUser(data);
@@ -92,7 +91,11 @@ export default function User({ userData, id }: typesProps) {
                       </span>
                       <span>
                         {el.mothodPay === "MP" ? (
-                          <Image src={mp}  height={35} alt='no se encontr imagen'/>
+                          <Image
+                            src={mp}
+                            height={35}
+                            alt="no se encontr imagen"
+                          />
                         ) : (
                           <FaMoneyBillWave />
                         )}
@@ -122,7 +125,7 @@ export default function User({ userData, id }: typesProps) {
                     <button
                       disabled={!userData.active}
                       onClick={(e) =>
-                        handleEditTurno(
+                        payMonth(
                           e,
                           el.id,
                           userData.name,

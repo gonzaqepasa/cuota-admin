@@ -1,6 +1,7 @@
 import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
+import { url } from "../../services/services-url";
 
 export function editDescription(
   // Primer Parametro
@@ -29,14 +30,10 @@ export function editDescription(
     if (result.isConfirmed) {
       (async function () {
         try {
-          const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-          const { data } = await axios.put(
-            `http://${url}/user/description-edit`,
-            {
-              id,
-              description,
-            }
-          );
+          const { data } = await axios.put(`${url}/user/edit-description`, {
+            id,
+            description,
+          });
 
           Swal.fire({
             background: "#090202",
