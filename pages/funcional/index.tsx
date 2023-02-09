@@ -5,7 +5,7 @@ import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import { selectColor } from "../../src/logic/selectColor";
 import Title from "../../src/components/AddUser/Title/Title";
 import { typesActivity, typesUser } from "../../src/types/types-user";
-import { url } from "../../services/services-url";
+import { url } from "../../src/config/services-url";
 
 export interface typesActivityGym {
   id: number;
