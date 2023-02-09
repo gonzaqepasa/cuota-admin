@@ -78,6 +78,25 @@ export async function getUsers(activity: any) {
   }
 }
 
+export async function getUser({ id }: any) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        activity: true,
+        calendar: {
+          include: {
+            months: true,
+          },
+        },
+      },
+    });
+    return user;
+  } catch (err) {}
+}
+
 export async function editDescription({ id, description }: any) {
   try {
     const user = await prisma.user.update({
