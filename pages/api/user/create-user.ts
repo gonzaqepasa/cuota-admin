@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { arrayWithNamesMonths } from "../../../services/infoMonths";
+import { arrayWithNamesMonths } from "../../../src/config/infoMonths";
 import { prisma } from "../../../services/prismaConfig";
 
 type Data = any;
