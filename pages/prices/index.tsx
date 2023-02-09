@@ -1,4 +1,4 @@
-import { url } from "../../services/services-url";
+import { url } from "../../src/config/services-url";
 import PricesRender from "../../src/components/PricesRender/PricesRender";
 import { typesActivity } from "../../src/types/types-user";
 

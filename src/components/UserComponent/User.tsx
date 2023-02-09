@@ -13,7 +13,7 @@ import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { Carousel } from "react-bootstrap";
 import Image from "next/image";
 import mp from "../../../styles/mp.png";
-import { url } from "../../../services/services-url";
+import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
 
 interface typesProps {

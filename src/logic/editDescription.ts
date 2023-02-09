@@ -1,7 +1,7 @@
 import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
-import { url } from "../../services/services-url";
+import { url } from "../config/services-url";
 import { Dispatch, SetStateAction } from "react";
 
 export function editDescription(

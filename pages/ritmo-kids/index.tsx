@@ -3,7 +3,7 @@ import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
-import { url } from "../../services/services-url";
+import { url } from "../../src/config/services-url";
 
 export interface typesActivityRitmoKids {
   id: number;

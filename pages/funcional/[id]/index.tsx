@@ -3,7 +3,7 @@ import { GetStaticPaths } from "next";
 
 import User from "../../../src/components/UserComponent/User";
 import { typesUser } from "../../../src/types/types-user";
-import { url } from "../../../services/services-url";
+import { url } from "../../../src/config/services-url";
 
 export default function UserData(props: { data: typesUser | false }) {
   const route = useRouter();
