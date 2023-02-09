@@ -1,5 +1,55 @@
 import { typesUser } from "../src/types/types-user";
 import { prisma } from "./prismaConfig";
+import { arrayWithNamesMonths } from "../src/config/infoMonths";
+
+export async function createUser({
+  name,
+  email,
+  phone,
+  description,
+  activityId,
+}: any) {
+  try {
+    ////////////////////////////////////
+    const user = await prisma.user.create({
+      data: {
+        // Información personal
+        name,
+        email,
+        phone,
+        description,
+        //Informacion de actividad
+        active: true,
+        activity: {
+          connect: {
+            id: activityId,
+          },
+        },
+        //Informacion de pago
+        calendar: {
+          create: {
+            months: {
+              create: arrayWithNamesMonths.map((obj) => {
+                return {
+                  monthNum: obj.num,
+                  monthName: obj.name,
+                  addData: "",
+                  addAdmin: "",
+                  isPay: false,
+                  mothodPay: "",
+                  pricePay: 0,
+                };
+              }),
+            },
+          },
+        },
+      },
+    });
+    ////////////////////////////////////
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 export async function getUsers(activity: any) {
   try {
