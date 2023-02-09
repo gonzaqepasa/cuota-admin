@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../services/prismaConfig";
+import { getActivity } from "../../../services/activity.service";
 
-type Data = any
+type Data = any;
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,22 +11,10 @@ export default async function handler(
   try {
     const { activity } = req.query;
 
-    let data;
-    activity
-      ? (data = {
-          where: {
-            nameActivity: String(activity),
-          },
-        })
-      : (data = undefined);
-
-    const activities = await prisma.activity.findMany(data);
+    const activities = await getActivity({ activity });
 
     res.status(200).json(activities);
-    await prisma.$disconnect();
   } catch (err) {
     console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
   }
 }
