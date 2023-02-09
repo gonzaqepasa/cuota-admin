@@ -1,6 +1,7 @@
 import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
+import { url } from "../../services/services-url";
 
 export function visibilityUser(
   // Primer Parametro
@@ -28,14 +29,10 @@ export function visibilityUser(
     if (result.isConfirmed) {
       (async function () {
         try {
-          const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-          const { data } = await axios.put(
-            `http://${url}/user/visibility-user`,
-            {
-              id,
-              active,
-            }
-          );
+          const { data } = await axios.put(`${url}/user/edit-active`, {
+            id,
+            active,
+          });
 
           Swal.fire({
             background: "#090202",

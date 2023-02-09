@@ -35,4 +35,6 @@ export interface typesMonth {
   addData?: string;
   addAdmin?: string;
   isPay: boolean;
+  mothodPay: String;
+  pricePay: number;
 }

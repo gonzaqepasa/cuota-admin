@@ -1,8 +1,9 @@
 import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
+import { url } from "../../services/services-url";
 
-export function handleEditTurno(
+export function payMonth(
   e: MouseEvent<HTMLButtonElement>,
   id: number,
   userName: string,
@@ -27,8 +28,7 @@ export function handleEditTurno(
     if (result.isConfirmed) {
       (async function () {
         try {
-          const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-          const { data } = await axios.put(`http://${url}/month/pay-month`, {
+          const { data } = await axios.put(`${url}/month/pay-month`, {
             id,
             addAdmin,
             mothodPay,
@@ -53,7 +53,7 @@ export function handleEditTurno(
             text: `${userName} pago el mes de ${monthName}`,
           });
           console.log("esto llega del patch", data);
-          getUserAgain()
+          getUserAgain();
         } catch (err) {
           console.log(err);
           Swal.fire({

@@ -39,7 +39,7 @@ export default function RenderList({
   if (userData == false)
     return (
       <>
-        <h1>Problemas con el servidor</h1>
+        <h1>No hay usuarios agregados</h1>
       </>
     );
   return (

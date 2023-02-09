@@ -1,5 +1,5 @@
 import Image from "next/image";
-import barsSvg from "./bars.svg";
+import barsSvg from "./bars2.svg";
 export default function Loading() {
   return (
     <>
@@ -9,8 +9,8 @@ export default function Loading() {
 
       <style jsx>{`
         .bars-container {
-          width: 100vw;
-          height: 100vh;
+          width:100%;
+          height: 100%;
           display: flex;
           align-items: center;
           justify-content: center;

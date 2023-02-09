@@ -3,6 +3,7 @@ import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
+import { url } from "../../services/services-url";
 
 export default function PowerBox(props: any) {
   /////////////// BORRAR ///////////////
@@ -17,8 +18,7 @@ export default function PowerBox(props: any) {
 
   async function getDataAgain() {
     try {
-      const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-      const res = await fetch(`http://${url}/user?activity=Power Box`);
+      const res = await fetch(`${url}/get-users?activity=Power Box`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -57,9 +57,8 @@ export default function PowerBox(props: any) {
 
 export async function getStaticProps() {
   try {
-    const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const resUser = await fetch(`http://${url}/user?activity=Power Box`);
-    const resAct = await fetch(`http://${url}/activity?activity=Power Box`);
+    const resUser = await fetch(`${url}/get-users?activity=Power Box`);
+    const resAct = await fetch(`${url}/get-activity?activity=Power Box`);
     const dataAct = await resAct.json();
     const dataUser = await resUser.json();
     return {
