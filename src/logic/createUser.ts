@@ -2,12 +2,14 @@ import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Console } from "console";
+import { url } from "../../services/services-url";
 
 export async function createUser(
   objData: Object,
   nameUser: string,
   setModalAdd: Dispatch<SetStateAction<boolean>>,
-  getDataAgain: Function
+  getDataAgain: Function,
+  setLoad: Dispatch<SetStateAction<boolean>>
 ) {
   Swal.fire({
     reverseButtons: true,
@@ -24,12 +26,9 @@ export async function createUser(
   }).then((result) => {
     if (result.isConfirmed) {
       (async function () {
+        setLoad(true);
         try {
-          const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-          const { data } = await axios.post(
-            `http://ec2-100-25-130-131.compute-1.amazonaws.com:3000/user/create`,
-            objData
-          );
+          const { data } = await axios.post(`${url}/user/create-user`, objData);
           setModalAdd(false);
           getDataAgain();
           console.log(data);
@@ -40,6 +39,7 @@ export async function createUser(
             title: `Agregado!`,
             text: `${nameUser} fue agregado con exito!`,
           });
+          setLoad(false);
         } catch (err) {
           console.log(err);
           setModalAdd(false);

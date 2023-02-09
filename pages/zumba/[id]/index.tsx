@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
-
 import User from "../../../src/components/UserComponent/User";
 import { typesUser } from "../../../src/types/types-user";
+import { url } from "../../../services/services-url";
 
 export default function UserData(props: { data: typesUser | false }) {
   // console.log(route.query.id);
@@ -26,8 +26,7 @@ export default function UserData(props: { data: typesUser | false }) {
 export const getStaticPaths: GetStaticPaths = async () => {
   // ...
   try {
-    const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const res = await fetch(`http://${url}/user?activity=Zumba`);
+    const res = await fetch(`${url}/user/get-users?activity=Zumba`);
     const data = await res.json();
     const paths = data.map((user: any) => ({
       params: { id: String(user.id) },
@@ -41,8 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export async function getStaticProps({ params }: any) {
   try {
-    const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-    const res = await fetch(`http://${url}/user/get-user?USER=${params.id}`);
+    const res = await fetch(`${url}/user/user?USER=${params.id}`);
     const data = await res.json();
     return { props: { data } };
   } catch (error) {

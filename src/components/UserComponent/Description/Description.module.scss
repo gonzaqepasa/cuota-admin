@@ -5,6 +5,8 @@
   min-width: 60vw;
   font-family: $main-text;
   margin: 1rem 0;
+  min-height: 5rem;
+
   h5 {
     // color: $text3;
     margin: 2px 5px;
@@ -36,7 +38,7 @@
     // Input con logica de cambio
     .btnAcpCanBox {
       display: flex;
-align-items: center;
+      align-items: center;
       button {
         font-family: $main-text;
         font-weight: 700;
@@ -44,13 +46,13 @@ align-items: center;
         border: none;
         border-radius: 5px;
         padding: 0.4rem 0.6rem;
-        margin-right:0.2rem ;
+        margin-right: 0.2rem;
         box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.2) inset;
       }
       .btnAcp {
         background-color: rgb(0, 140, 233);
       }
-      .btnCan{
+      .btnCan {
         background-color: rgb(192, 192, 192);
       }
     }
@@ -61,14 +63,14 @@ align-items: center;
       color: $text2;
       transition: 0.1s;
       border-radius: 5px;
-    //   background-color: $backg-white2;
-    //   padding: 0.3rem;
+      //   background-color: $backg-white2;
+      //   padding: 0.3rem;
     }
     input:focus {
       outline: none;
       padding: 0.5rem;
       // background-color: red;
-    //   box-shadow: 0px 0px 3px black;
+      //   box-shadow: 0px 0px 3px black;
       border-radius: 5px;
     }
   }

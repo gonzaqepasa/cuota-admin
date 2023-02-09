@@ -5,6 +5,7 @@ import { validateFormInputs } from "../logic/validateAddInputs";
 import { createUser } from "../../../logic/createUser";
 import { typesActivity } from "../../../types/types-user";
 import { selectColor } from "../../../logic/selectColor";
+import Loading from "../../Loading/Loading";
 
 type typesPropsForm = {
   // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
@@ -22,6 +23,8 @@ export default function AddUserForm({
   getDataAgain,
   dataActivity,
 }: typesPropsForm) {
+  const [load, setLoad] = useState(false);
+
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
   const [phone, setPhone] = useState(0);
@@ -47,8 +50,14 @@ export default function AddUserForm({
     e.preventDefault();
     console.log(e);
     validateFormInputs(name, setNameVal) &&
-      createUser(toSendObj, name, setModalAdd, getDataAgain);
+      createUser(toSendObj, name, setModalAdd, getDataAgain, setLoad);
   }
+  if (load)
+    return (
+      <div className={styles.allAddUserForm}>
+        <Loading />;
+      </div>
+    );
 
   return (
     <div
@@ -57,7 +66,12 @@ export default function AddUserForm({
     >
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={`${styles.inputLabelBox}`}>
-          <label style={{color:selectColor(dataActivity[0].nameActivity)}} htmlFor="">Modalidad</label>
+          <label
+            style={{ color: selectColor(dataActivity[0].nameActivity) }}
+            htmlFor=""
+          >
+            Modalidad
+          </label>
           <select
             onChange={(e) => handleSelect(e.target.value, setActivity)}
             name="activity"
@@ -72,7 +86,7 @@ export default function AddUserForm({
         </div>
 
         <div className={`${styles.inputLabelBox}`} id="name">
-          <label style={{color:selectColor(dataActivity[0].nameActivity)}}>
+          <label style={{ color: selectColor(dataActivity[0].nameActivity) }}>
             Nombre y apellido <i style={{ color: "red" }}>*</i>
           </label>
           <input
@@ -88,7 +102,9 @@ export default function AddUserForm({
         </div>
 
         <div className={`${styles.inputLabelBox}`}>
-          <label style={{color:selectColor(dataActivity[0].nameActivity)}}>Descripcion</label>
+          <label style={{ color: selectColor(dataActivity[0].nameActivity) }}>
+            Descripcion
+          </label>
           <textarea
             placeholder="Ingrese alguna descripción..."
             autoComplete="none"

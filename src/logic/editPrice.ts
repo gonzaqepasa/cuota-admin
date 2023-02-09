@@ -1,6 +1,7 @@
 import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
+import { url } from "../../services/services-url";
 import { typesActivity } from "../types/types-user";
 import { numberToMoney } from "./numberToMoney";
 
@@ -30,14 +31,10 @@ export function editPrice(
     if (result.isConfirmed) {
       (async function () {
         try {
-          const url = process.env.NEXT_PUBLIC_DOMAIN_BACK || "localhost:3001";
-          const { data } = await axios.put(
-            `http://${url}/activity/price-edit`,
-            {
-              id,
-              price,
-            }
-          );
+          const { data } = await axios.put(`${url}/activity/edit-price`, {
+            id,
+            price,
+          });
 
           Swal.fire({
             background: "#090202",

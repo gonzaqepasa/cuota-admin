@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { typesUser } from "../../../types/types-user";
 import { editDescription } from "../../../logic/editDescription";
+import Loading from "../../Loading/Loading";
 
 export default function Description({
   id,
@@ -16,8 +17,16 @@ export default function Description({
   getDataAgain: Function;
 }) {
   // Component...
+
+  const [load, setLoad] = useState(false);
   const [editOn, setEditOn] = useState(false);
   const [descript, setDescript] = useState(description);
+  if (load)
+    return (
+      <div className={styles.allDescription}>
+        <Loading />
+      </div>
+    );
   return (
     <div className={`${styles.allDescription} `}>
       <h5 style={{ color }}>Descripción:</h5>
@@ -33,15 +42,16 @@ export default function Description({
             />
             <div className={`${styles.btnAcpCanBox}`}>
               <button
-              
-                onClick={(e) =>
+                onClick={(e) => {
+                  setLoad(true);
                   editDescription(
                     e,
                     { id: Number(id), description: descript },
                     getDataAgain,
-                    setEditOn
-                  )
-                }
+                    setEditOn,
+                    setLoad
+                  );
+                }}
                 className={`${styles.btnAcp}`}
               >
                 Cambiar

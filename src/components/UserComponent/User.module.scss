@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   // background-color: rgba(0, 0, 0, 0.8);
-
+  min-width: 100vw;
   .nameUserBox {
     // margin: 2rem 0;
     padding: 1rem 0rem;
@@ -53,134 +53,101 @@
     //   grid-gap: 1rem;
     padding: 2rem 0;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+    min-width: 100vw;
+
     .monthBox {
-      background-color: $backg-black1;
-      background-color: $green-succes;
+      background: $backg-black1;
+      // box-shadow: 0px 0px 50px black inset, 0px 0px 70px black inset;
+      border-radius: 5px;
 
-      border-radius: 10px;
-      height: 7rem;
-      width: 16rem;
+      width: 40rem;
+      margin: 0.2rem 0;
+      min-height: 4rem;
       max-width: 95vw;
-      margin: 1.2rem;
-      box-shadow: 0px 0px 50px black inset, 0px 0px 70px black inset;
+      border-bottom: solid 1px grey;
+      padding: 0.4rem;
 
-      position: relative;
+      // position: relative;
       display: flex;
-      flex-direction: column;
+      // flex-direction: column;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       //////////////////// Primera caja
       .monthNameBox {
-        width: 60%;
-        border-radius: 5px 5px 0 0;
-        display: flex;
-        justify-content: center;
+        // width: 60%;
+        // border-radius: 5px 5px 0 0;
+        // display: flex;
+        // justify-content: center;
         align-items: center;
-        background-color: rgba(255, 255, 255, 0);
+        // background-color: rgba(255, 255, 255, 0);
         // color: black;
-        height: 2rem;
-        position: absolute;
+        // position: absolute;
         // z-index: 500;
         transition: 0.4s;
         // color: rgba(255, 255, 255, 0.7);
-
-        h4 {
-          font-size: 1rem;
-          font-weight: 600;
+        margin: 0;
+        p {
+          margin: 0 0;
+          font-size: 1.2rem;
+          text-shadow: 1px 1px 5px black;
+          font-weight: 900;
           color: white;
         }
       }
 
       //////////////////// Segunda caja
       .conditionIsPayContainer {
-        height: inherit;
-        height: 100%;
-        width: 100%;
-        // background-color: red;
-        transition: 0.1s;
-        filter: opacity(1);
-
-        span {
+        .checkedBox {
           display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          height: 100%;
-          font-family: $main-text;
-          // padding: 8px;
-
-          // background-color: rgba(0, 0, 0, 0.2);
-          .checkImgContainer {
-            display: flex;
-            margin: 0.3rem;
-            align-items: center;
-            .check {
-              // background-color: rgba(0, 0, 0, 1);
-              // box-shadow: 1px 1px 5px black;
-              filter: drop-shadow(1px 1px 3px black);
-              width: initial;
-              border-radius: 50%;
-              font-size: 1.8rem;
-              display: flex;
-              justify-content: center;
-            }
-          }
-
-          h3,
-          p {
-            height: 1.8rem;
-            background-color: $backg-black1;
-            padding: 0 0.5rem;
-            display: flex;
-            align-items: center;
-          }
-
-          h3 {
-            font-size: 0.8rem;
-            color: white;
-            margin: 0 0;
-          }
-          p {
-            font-size: 0.9rem;
-            margin: 0 0;
-            color: rgb(170, 170, 170);
-          }
-        }
-
-        .allBtnContainer {
-          background-color: rgb(12, 12, 12);
-          border-radius: 5px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          font-family: $main-text;
-          h4 {
-            color: $main-color;
-            margin-top: 8px;
-            font-size: 1rem;
+          svg {
+            margin: 0 0.3rem;
           }
-          button {
-            height: 90%;
-            width: 90%;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            color: rgb(0, 225, 255);
-            cursor: pointer;
-            p {
-              font-weight: 600;
-              color: rgb(255, 255, 255);
-              text-shadow: 1px 1px 2px black;
-              font-size: 1rem;
-            }
+          p {
+            margin: 0 0.3rem;
+            font-family: $main-text;
+            font-weight: 600;
+            color: rgb(187, 187, 187);
           }
         }
       }
+      //////////////////// Ultima caja
+      .carrouselBox {
+        height: 100%;
+        width: 100%;
+        h3,
+        p {
+          height: 1rem;
+          margin: 0 0;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+
+        h3 {
+          color: rgb(190, 190, 190);
+        }
+        p {
+          color: rgb(172, 172, 172);
+        }
+      }
     }
-    .monthBox:hover {
+
+    .isPay {
+      background-color: $green-succes;
+      background: rgb(0, 0, 0);
+      background: radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0.9136029411764706) 0%,
+        rgba(3, 23, 0, 1) 100%
+      );
+    }
+
+    /*  .monthBox:hover {
       .monthNameBox {
         width: 100%;
         color: rgba(255, 255, 255, 1);
@@ -198,6 +165,6 @@
     .isInactive {
       filter: grayscale(0.8);
       opacity: 0.8;
-    }
+    } */
   }
 }
