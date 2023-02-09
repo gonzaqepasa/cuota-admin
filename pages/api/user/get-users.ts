@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../services/prismaConfig";
 
-type Data = any
+type Data = any;
 
 export default async function handler(
   req: NextApiRequest,
@@ -30,6 +30,7 @@ export default async function handler(
     res.status(200).json(users);
     await prisma.$disconnect();
   } catch (err) {
+    res.status(200).json(err);
     console.log(err);
     await prisma.$disconnect();
     process.exit(1);
