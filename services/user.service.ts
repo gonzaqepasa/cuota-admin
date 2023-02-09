@@ -21,9 +21,27 @@ export async function getUsers(activity: any) {
     const users = await prisma.user.findMany(data);
     await prisma.$disconnect();
     return users;
-    process.exit(1);
   } catch (err) {
     console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
+
+export async function editDescription({ id, description }: any) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        description,
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
     await prisma.$disconnect();
     process.exit(1);
   }
