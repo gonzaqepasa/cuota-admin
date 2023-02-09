@@ -46,3 +46,22 @@ export async function editDescription({ id, description }: any) {
     process.exit(1);
   }
 }
+
+export async function editActive({ id, active }: any) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        active: !active,
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
