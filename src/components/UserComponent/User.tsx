@@ -17,7 +17,7 @@ import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
 
 interface typesProps {
-  userData: typesUser;
+  userData: typesUser ;
   id: string;
 }
 
