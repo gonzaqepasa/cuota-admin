@@ -7,8 +7,6 @@ import Title from "../../src/components/AddUser/Title/Title";
 import { typesActivity, typesUser } from "../../src/types/types-user";
 import { url } from "../../src/config/services-url";
 import Loading from "../../src/components/Loading/Loading";
-import UserData from "./[id]";
-import { array, bool } from "prop-types";
 
 export interface typesActivityGym {
   id: number;
@@ -53,9 +51,7 @@ export default function Funcional() {
   useEffect(() => {
     (async function () {
       try {
-        const resUser = await fetch(
-          `${url}/user/get-users?activity=Funcional`
-        );
+        const resUser = await fetch(`${url}/user/get-users?activity=Funcional`);
         const resAct = await fetch(
           `${url}/activity/get-activity?activity=Funcional`
         );

@@ -50,28 +50,3 @@ export default function UserData() {
       </div>
     );
 }
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   // ...
-//   try {
-//     const res = await fetch(`${url}/user/get-users?activity=Funcional`);
-//     const data = await res.json();
-//     const paths = data.map((user: any) => ({
-//       params: { id: String(user.id) },
-//     }));
-//     return { paths, fallback: false };
-//   } catch (err) {
-//     console.log(err);
-//     return { paths: [], fallback: false };
-//   }
-// };
-
-// export async function getStaticProps({ params }: any) {
-//   try {
-//     const res = await fetch(`${url}/user/user?USER=${params.id}`);
-//     const data = await res.json();
-//     return { props: { data } };
-//   } catch (error) {
-//     return { props: { data: false } };
-//   }
-// }

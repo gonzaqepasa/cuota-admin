@@ -103,9 +103,35 @@ export default function User({ userData, id }: typesProps) {
                     <p>{numberToMoney(el.pricePay)}</p>
                   </div>
                 ) : (
-                  <div>no pago</div>
+                  <div className={styles.isFalse}>
+                    <button className={styles.btnPay}
+                      disabled={!userData.active}
+                      onClick={(e) =>
+                        payMonth(
+                          e,
+                          el.id,
+                          userData.name,
+                          el.monthName,
+                          auth.currentUser?.email,
+                          "MP",
+                          getUserAgain
+                        )
+                      }
+                    >
+                      <FaMoneyBillWave
+                        color={selectColor(user.activity.nameActivity)}
+                      />{" "}
+                      <p>Agregar pago</p>
+                    </button>
+                  </div>
                 )}
               </div>
+
+              {/*  {!el.isPay && <div>
+                
+                
+                </div>} */}
+
               {/* ////////////// Ultima Caja ////////////// */}
               {el.isPay && (
                 <div className={`${styles.carrouselBox}`}>
