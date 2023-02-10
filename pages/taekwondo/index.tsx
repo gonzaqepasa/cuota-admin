@@ -4,16 +4,13 @@ import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
 import { url } from "../../src/config/services-url";
+import Loading from "../../src/components/Loading/Loading";
 
-export interface typesActivityTaekwondo {
-  id: number;
-  nameActivity: "Funcional";
-  modality: "2 Días" | "3 Días" | "Libre";
-}
 
-export default function Taekwondo(props: any) {
+
+export default function Taekwondo() {
   /////////////// BORRAR ///////////////
-  console.log("Desde el back : ", props);
+  // console.log("Desde el back : ", props);
   // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
@@ -21,30 +18,52 @@ export default function Taekwondo(props: any) {
 
   ////////////////////////////////////////////
   const [modalAdd, setModalAdd] = useState(false);
-  const [dataUser, setDataUser] = useState(props.dataUser);
-  const [dataActivity, setDataActivity] = useState(props.dataAct);
+  const [dataUser, setDataUser] = useState([]);
+  const [dataActivity, setDataActivity] = useState([]);
+  const [load, setLoad] = useState(true);
+  const [error, setError] = useState({ msg: "" });
   //////// Funcion volver a llamadar data ////////
 
   async function getDataAgain() {
+    setLoad(true);
+
     try {
       const res = await fetch(`${url}/user/get-users?activity=Taekwondo`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
+      setLoad(false);
     } catch (err) {
       console.log(err);
+      setLoad(false);
     }
   }
+  ////////// useEffect //////////
 
+  useEffect(() => {
+    (async function () {
+      try {
+        const resUser = await fetch(`${url}/user/get-users?activity=Taekwondo`);
+        const resAct = await fetch(
+          `${url}/activity/get-activity?activity=Taekwondo`
+        );
+        const dataUser = await resUser.json();
+        const dataAct = await resAct.json();
+        setDataUser(dataUser);
+        setDataActivity(dataAct);
+        setLoad(false);
+      } catch (err) {
+        console.log(err);
+        setError({ msg: "Ocurrio un error en bd" });
+        setLoad(false);
+      }
+    })();
+  }, []);
+
+  //////////////////////////////
   ////////////////////////////////////////////
+  if (error.msg) return <> Error en la BD {error.msg}</>;
 
-  if (props.dataAct == false) {
-    return (
-      <div className={`main backg backg-taekwondo`}>
-        Problemas en la base de datos{" "}
-      </div>
-    );
-  }
   return (
     <div className={`main backg backg-taekwondo`}>
       <Title activityName={"Taekwondo"} />
@@ -60,13 +79,16 @@ export default function Taekwondo(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-
-      <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+      {load ? (
+        <Loading />
+      ) : (
+        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+      )}
     </div>
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   try {
     const resUser = await fetch(`${url}/user/get-users?activity=Taekwondo`);
     const resAct = await fetch(
@@ -89,4 +111,4 @@ export async function getStaticProps() {
       },
     };
   }
-}
+} */
