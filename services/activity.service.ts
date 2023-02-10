@@ -20,3 +20,21 @@ export async function getActivity({ activity }: any) {
     process.exit(1);
   }
 }
+
+export async function editPrice({ id, price }: any) {
+  try {
+    const activities = await prisma.activity.update({
+      where: { id: Number(id) },
+      data: {
+        price: Number(price),
+      },
+    });
+
+    await prisma.$disconnect();
+    return activities;
+  } catch (err) {
+    console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
