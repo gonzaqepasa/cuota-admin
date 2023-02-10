@@ -37,4 +37,5 @@ export interface typesMonth {
   isPay: boolean;
   mothodPay: String;
   pricePay: number;
+  id: number;
 }
