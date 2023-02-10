@@ -5,16 +5,12 @@ import { typesActivity } from "../../types/types-user";
 import EditPriceModal from "./EditPrice/EditPrice";
 import styles from "./PricesRender.module.scss";
 
-export default function PricesRender({
-  data,
-}: {
-  data: typesActivity[] ;
-}) {
+export default function PricesRender({ data }: { data: typesActivity[] }) {
   // Component...
-  
+
   return (
     <div className={`${styles.allPricesRender}`}>
-      <Table responsive hover>
+      <Table responsive >
         <thead>
           {/* <th>#</th> */}
           <th>Actividad</th>
@@ -35,13 +31,14 @@ export default function PricesRender({
                 {el.nameActivity}
               </td>
               <td
+                className={styles.modalityText}
                 style={{
                   textShadow: `1px 1px 10px ${selectColor(el.nameActivity)}`,
                 }}
               >
                 {el.modality}
               </td>
-              <td>
+              <td className={styles.priceText}>
                 {" "}
                 <EditPriceModal data={el} />
               </td>

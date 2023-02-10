@@ -5,4 +5,14 @@
   max-width: 95vw;
   font-family: $main-text;
   margin: 3rem 0;
+  th {
+    color: grey;
+  }
+  .modalityText {
+    color: white;
+  }
+
+  .priceText {
+    color: rgb(172, 172, 172);
+  }
 }

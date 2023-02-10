@@ -8,7 +8,6 @@
   min-height: 5rem;
 
   h5 {
-    // color: $text3;
     margin: 2px 5px;
     font-size: 0.9rem;
     text-shadow: 0px 0px 1px grey;
@@ -25,6 +24,7 @@
     // Parrafo con descripcion
     p {
       color: $text2;
+      font-size: 0.8rem;
     }
     .btnChangeDescription {
       position: absolute;
@@ -50,13 +50,15 @@
         box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.2) inset;
       }
       .btnAcp {
-        background-color: rgb(0, 140, 233);
+        background-color: rgb(0, 59, 99);
+        color: rgb(255, 255, 255);
       }
       .btnCan {
-        background-color: rgb(192, 192, 192);
+        background-color: rgb(199, 195, 195);
       }
     }
     input {
+      font-size: 0.8rem;
       background: none;
       border: none;
       width: 100%;
@@ -65,10 +67,12 @@
       border-radius: 5px;
       //   background-color: $backg-white2;
       //   padding: 0.3rem;
+      margin-right: 0.5rem;
     }
     input:focus {
       outline: none;
-      padding: 0.5rem;
+      box-shadow: 0px 0px 4px white;
+      padding-left: 0.5rem;
       // background-color: red;
       //   box-shadow: 0px 0px 3px black;
       border-radius: 5px;

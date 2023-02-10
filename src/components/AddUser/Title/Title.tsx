@@ -1,13 +1,14 @@
 import { selectColor } from "../../../logic/selectColor";
+import styles from "./Title.module.scss";
 
 export default function Title({ activityName }: { activityName: string }) {
   return (
-    <div className="tituleActivityDiv">
+    <div className={styles.tituleActivityDiv}>
       <h2
         style={{ borderBottom: `2px solid ${selectColor(activityName)}` }}
-        className="tituleActivityH2"
+        className={styles.tituleActivityH2}
       >
-      {activityName}
+        {activityName}
       </h2>
     </div>
   );

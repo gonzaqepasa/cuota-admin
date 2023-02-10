@@ -1,0 +1,15 @@
+@import '../../../../styles/variables';
+
+.tituleActivityDiv {
+    font-family: $main-text;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: $backg-white1;
+    h2 {
+      color: white;
+      font-weight: 700;
+      margin-top: 1rem;
+      text-shadow: 2px 2px 10px black;
+    }
+  }
