@@ -7,45 +7,56 @@
   // background-color: rgba(0, 0, 0, 0.8);
   min-width: 100vw;
   .nameUserBox {
+    background-color: $hunt2;
     // margin: 2rem 0;
-    padding: 1rem 0rem;
+    padding: 1rem 0rem 0.2rem 0rem;
     width: 100%;
 
     // box-shadow: 1px 1px 10px black;
-    background-color: $backg-white1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     font-family: $main-text;
+    padding-left: 10%;
     h2 {
       font-size: 1.8rem;
       color: white;
+      font-weight: 300;
       // border-bottom: solid grey 2px;
-      text-shadow: 2px 2px 10px black;
-      margin: 0.5rem 0;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+      margin: 0rem 0;
     }
-    h3 {
-      // font-variant: small-caps;
-      font-weight: 800;
-      font-size: 1.2rem;
-      margin: 0.2rem 0;
-      // color: $main-color;
-      text-shadow: 0px 0px 6px grey;
+    a {
+      text-decoration: inherit;
+      // color: red;
+      transition: 0.1s;
+      h3 {
+        // font-variant: small-caps;
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin: 0rem 0;
+        // color: $main-color;
+        text-shadow: 0px 0px 6px black;
+      }
+    }
+    a:hover{
+      transform: scale(1.03);
     }
   }
 
   .descriptionContainer {
-    background-color: $backg-white1;
+    background-color: $hunt2;
     // color: white;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 10%;
   }
 
   /////////////////////// MESES ///////////////////////////
   .monthsContainer {
-    background-color: $backg-black3;
+    background-color: $backg-black2;
     backdrop-filter: blur(4px);
     //   display: grid;
     //   grid-template-columns: repeat(3, auto);
@@ -60,17 +71,17 @@
     min-width: 100vw;
 
     .monthBox {
-      background: rgb(117, 117, 117);
+      background: rgba(0, 0, 0, 0.4);
       // box-shadow: 0px 0px 50px black inset, 0px 0px 70px black inset;
       border-radius: 5px;
-      outline: 2px solid grey;
-      transition: 1s;
+      outline: 2px solid rgb(10, 10, 10);
+      transition: 0.2s;
 
       width: 40rem;
       margin: 0.2rem 0;
-      min-height: 4rem;
+      min-height: 3rem;
       max-width: 90vw;
-      border-bottom: solid 1px grey;
+      // border-bottom: solid 1px grey;
       padding: 0.4rem;
 
       position: relative;
@@ -95,9 +106,9 @@
         margin: 0;
         p {
           margin: 0 0;
-          font-size: 1.2rem;
+          font-size: 1rem;
           text-shadow: 1px 1px 5px black;
-          font-weight: 900;
+          font-weight: 600;
           color: white;
         }
       }
@@ -135,16 +146,16 @@
             justify-content: flex-end;
             align-items: center;
             svg {
-              font-size: 2rem;
-              margin: 0 1rem;
+              font-size: 1.2rem;
+              margin: 0 0.5rem;
               transform: rotate(0deg);
-              transition: 0.8s;
+              transition: 0.2s;
             }
             p {
               font-family: $main-text;
               text-align: center;
               margin: 0;
-              font-weight: 800;
+              font-weight: 400;
               color: white;
               text-shadow: 1px 1px 5px black;
             }
@@ -164,10 +175,10 @@
         }
 
         h3 {
-          color: rgb(190, 190, 190);
+          color: rgb(238, 238, 238);
         }
         p {
-          color: rgb(172, 172, 172);
+          color: rgb(126, 126, 126);
         }
       }
     }
@@ -176,19 +187,19 @@
       .conditionIsPayContainer {
         .isFalse {
           svg {
-            transform: rotate(400deg);
+            transform: rotate(40deg);
           }
         }
       }
     }
 
     .isPay {
-      background-color: $green-succes;
+      // background-color: $green-succes;
       outline: 2px groove $green-succes;
       background: rgb(0, 0, 0);
       background: radial-gradient(
         circle,
-        rgba(0, 0, 0, 0.9136029411764706) 0%,
+        rgba(0, 0, 0, 0.4) 0%,
         rgba(3, 23, 0, 1) 100%
       );
     }

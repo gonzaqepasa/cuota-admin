@@ -62,18 +62,16 @@ export default function RenderList({
             key={el.id}
             className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}
             style={{
-              borderBottom: `2px solid ${selectColor(
+              borderBottom: `1px solid ${selectColor(
                 userData[0].activity.nameActivity
               )}`,
             }}
           >
-            <div className={`${styles.linkNameUser}`}>
-              <FaUserCheck
-                color={selectColor(userData[0].activity.nameActivity)}
-              />
-              <Link
-                href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}
-              >
+            <Link href={`/user/${el.id}`}>
+              <div className={`${styles.linkNameUser}`}>
+                <FaUserCheck
+                  color={selectColor(userData[0].activity.nameActivity)}
+                />
                 {el.name} -{" "}
                 <i
                   style={{
@@ -84,8 +82,8 @@ export default function RenderList({
                 >
                   {el.activity.modality}
                 </i>
-              </Link>
-            </div>
+              </div>
+            </Link>
             <div className={`${styles.iconBox}`}>
               <button
                 onClick={(e) => {

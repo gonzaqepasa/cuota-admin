@@ -1,8 +1,9 @@
 @import "../../../../styles/variables";
 
 .allDescription {
-  //   background-color: $backg-white2;
-  min-width: 60vw;
+  // background-color: $backg-white2;
+  width: 80vw;
+  // max-width: 30rem;
   font-family: $main-text;
   margin: 1rem 0;
   min-height: 5rem;
@@ -19,6 +20,7 @@
     display: flex;
     min-height: 3rem;
     padding: 0.3rem;
+    padding-right:3rem ;
     font-family: $main-text;
 
     // Parrafo con descripcion
