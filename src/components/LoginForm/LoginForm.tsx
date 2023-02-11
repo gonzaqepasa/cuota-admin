@@ -8,19 +8,25 @@ export default function LoginForm() {
   const [pass, setPass] = useState("");
   const [load, setLoad] = useState(false);
 
-  function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoad(true);
     loginUser(email, pass, setLoad);
   }
 
-  if (load) return <Loading />;
+  if (load)
+    return (
+      <div className="loadContainer">
+        <Loading />;
+      </div>
+    );
   return (
     <div className={`${styles.allLoginForm}`}>
-      <div>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className={`${styles.inputContainer}`}>
           <label htmlFor="email">Email</label>
           <input
+            placeholder="Ingrese Email"
             id="email"
             name="email"
             value={email}
@@ -31,6 +37,7 @@ export default function LoginForm() {
         <div className={`${styles.inputContainer}`}>
           <label htmlFor="pass">Contraseña</label>
           <input
+            placeholder="Ingrese contraseña..."
             id="pass"
             name="pass"
             value={pass}
@@ -38,10 +45,10 @@ export default function LoginForm() {
             type="password"
           />
         </div>
-        <div>
-          <button onClick={(e) => handleSubmit(e)}>Iniciar sesión</button>
+        <div className={styles.btnLogin}>
+          <button>Iniciar sesión</button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

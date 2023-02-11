@@ -10,9 +10,7 @@ export default function HomePage() {
         <h2>Sistema para controlar el pago de cuotas </h2>
       </div>
       <div className={styles.linkContainer}>
-        <Link href={"/gym"}>
-          <CgGym /> Funcional <CgGym />
-        </Link>
+        <p>Use la barra de navegacion para ir a las actividades... </p>
       </div>
       <div className={styles.signOutBtnContainer}>
         <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>

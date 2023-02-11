@@ -59,7 +59,7 @@ export default function User({ userData, id }: typesProps) {
           </h2>
             <Link
               style={{ color: selectColor(user.activity.nameActivity) }}
-              href={`/${user.activity.nameActivity.toLocaleLowerCase()}`}
+              href={`/${fromNameToUrl(user.activity.nameActivity.toLocaleLowerCase())}`}
             >
           <h3>
               {user.activity.nameActivity.toUpperCase()}
