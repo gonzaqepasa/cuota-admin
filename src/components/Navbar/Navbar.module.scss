@@ -4,4 +4,81 @@
   background-color: $hunt1;
   height: 3rem;
   width: 100%;
+  position: fixed;
+  display: flex;
+  top: 0;
+  z-index: 500;
+  .navWithBtn {
+    margin-top: 3rem;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    transition: 0.2s;
+    min-height: 5rem;
+    height: 100vh;
+
+    .responsiveBox {
+      width: 75vw;
+      height: inherit;
+
+      // background-color: red;
+      background-color: $hunt2;
+      .header {
+        color: white;
+        width: 100%;
+        .imgBox {
+          height: 5rem;
+          width: 2rem;
+          img {
+            height: 6rem;
+          }
+        }
+        .textBox {
+          padding-left: 1.5rem;
+          font-family: $main-text;
+          // background-color: red;
+          margin: 0.5rem 0;
+          p {
+          }
+        }
+      }
+      .navigation {
+        // background-color: grey;
+        background-color: $hunt1;
+        height: inherit;
+        font-family: $main-text;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        a {
+          color: grey;
+          padding: 0.1rem 0;
+          text-decoration: none;
+        }
+        a:hover {
+          color: $text1;
+        }
+      }
+    }
+    .btnTouchClose {
+      background-color: transparent;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+      width: 25vw;
+      height: 100%;
+      transition: 0s;
+    }
+    .btnColorTrans {
+      transition: 1s;
+
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .modalInactive {
+    transform: translateX(-100vw);
+  }
+  .hamburguerBox {
+    // background-color: red;
+    padding-left: 0.5rem;
+  }
 }

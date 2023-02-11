@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
 import { Spin as Hamburger } from "hamburger-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgGym, CgHome } from "react-icons/cg";
 import {
   GiHighPunch,
@@ -20,12 +20,50 @@ import Image from "next/image";
 import AdminSvg from "../../../styles/Admin.svg";
 import { useRouter } from "next/router";
 import { fromUrlToName } from "../../logic/fromNameToUrl";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebase/firebaseConfig";
+import { selectAvatar } from "../../logic/selectAvatar";
 
 export default function NavbarMain() {
   const route = useRouter();
+  const user = auth.currentUser;
+  useEffect(() => {}, []);
 
-  return <div className={`${styles.allNavbar}`}>
+  //////// Estados ////////
+  const [modal, setModal] = useState(false);
+  /////////////////////////
 
-    
-  </div>;
+  return (
+    <div className={`${styles.allNavbar}`}>
+      <div className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}>
+        <div className={`${styles.responsiveBox}`}>
+          <div className={`${styles.header}`}>
+            <div className={styles.imgBox}>
+              <img src={selectAvatar()} alt="" />
+            </div>
+            <div className={styles.textBox}>
+              <p>{user?.email}</p>
+            </div>
+          </div>
+          <nav className={`${styles.navigation}`}>
+            <Link href={"/prices"}>Precios</Link>
+            <br />
+            <Link href={"/funcional"}>Funcional </Link>
+            <Link href={"/taekwondo"}>Taekwondo</Link>
+            <Link href={"/ritmo-kids"}>Ritmo Kids</Link>
+            <Link href={"/power-box"}>Power Box</Link>
+            <Link href={"/zumba"}>Zumba</Link>
+            <Link href={"/kick-boxing"}>Kick-Boxing</Link>
+          </nav>
+        </div>
+        <button
+          onClick={() => setModal(false)}
+          className={`${styles.btnTouchClose} ${modal && styles.btnColorTrans}`}
+        ></button>
+      </div>
+      <div className={styles.hamburguerBox}>
+        <Hamburger size={25} color="grey" toggled={modal} toggle={setModal} />
+      </div>
+    </div>
+  );
 }

@@ -63,11 +63,11 @@ export default function RenderList({
           <div
             key={el.id}
             className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}
-            style={{
+            /* style={{
               borderBottom: `1px solid ${selectColor(
                 userData[0].activity.nameActivity
               )}`,
-            }}
+            }} */
           >
             <Link href={`/user/${el.id}`}>
               <div className={`${styles.linkNameUser}`}>
