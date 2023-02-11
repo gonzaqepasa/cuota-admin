@@ -4,6 +4,7 @@ import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
 import { url } from "../../src/config/services-url";
+import Loading from "../../src/components/Loading/Loading";
 
 export interface typesActivityRitmoKids {
   id: number;
@@ -11,9 +12,9 @@ export interface typesActivityRitmoKids {
   modality: "2 Días" | "3 Días" | "Libre";
 }
 
-export default function RitmoKids(props: any) {
+export default function RitmoKids() {
   /////////////// BORRAR ///////////////
-  console.log("Desde el back : ", props);
+  // console.log("Desde el back : ", props);
   // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
   //////////////////////////////////////
   //////// Informacion de sección Gym ////////
@@ -21,32 +22,60 @@ export default function RitmoKids(props: any) {
 
   ////////////////////////////////////////////
   const [modalAdd, setModalAdd] = useState(false);
-  const [dataUser, setDataUser] = useState(props.dataUser);
-  const [dataActivity, setDataActivity] = useState(props.dataAct);
+  const [dataUser, setDataUser] = useState([]);
+  const [dataActivity, setDataActivity] = useState([]);
+  const [load, setLoad] = useState(true);
+  const [error, setError] = useState({ msg: "" });
   //////// Funcion volver a llamadar data ////////
 
   async function getDataAgain() {
+    setLoad(true);
+
     try {
       const res = await fetch(`${url}/user/get-users?activity=Ritmo Kids`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
+      setLoad(false);
     } catch (err) {
       console.log(err);
+      setLoad(false);
     }
   }
+  ////////// useEffect //////////
 
+  useEffect(() => {
+    (async function () {
+      try {
+        const resUser = await fetch(
+          `${url}/user/get-users?activity=Ritmo Kids`
+        );
+        const resAct = await fetch(
+          `${url}/activity/get-activity?activity=Ritmo Kids`
+        );
+        const dataUser = await resUser.json();
+        const dataAct = await resAct.json();
+        setDataUser(dataUser);
+        setDataActivity(dataAct);
+        setLoad(false);
+      } catch (err) {
+        console.log(err);
+        setError({ msg: "Ocurrio un error en bd" });
+        setLoad(false);
+      }
+    })();
+  }, []);
+
+  //////////////////////////////
   ////////////////////////////////////////////
-  if (props.dataAct == false)
-    return (
-      <div className={`main backg backg-ritmo-kids`}>
-        Problemas en la base de datos{" "}
-      </div>
-    );
+  if (error.msg) return <> Error en la BD {error.msg}</>;
+
   return (
     <div className={`main backg backg-ritmo-kids`}>
       <Title activityName={"Ritmo Kids"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Ritmo Kids"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Ritmo kids"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -58,12 +87,20 @@ export default function RitmoKids(props: any) {
         />
       )}
 
-      <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+      {load ? (
+        <Loading />
+      ) : (
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
+      )}
     </div>
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   try {
     const resUser = await fetch(`${url}/user/get-users?activity=Ritmo Kids`);
     const resAct = await fetch(
@@ -86,4 +123,4 @@ export async function getStaticProps() {
       },
     };
   }
-}
+} */

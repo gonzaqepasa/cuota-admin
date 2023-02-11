@@ -2,17 +2,11 @@ import { useState, useEffect } from "react";
 import AddUserForm from "../../src/components/AddUser/Form/AddUserForm";
 import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
-import { selectColor } from "../../src/logic/selectColor";
+
 import Title from "../../src/components/AddUser/Title/Title";
-import { typesActivity, typesUser } from "../../src/types/types-user";
+
 import { url } from "../../src/config/services-url";
 import Loading from "../../src/components/Loading/Loading";
-
-export interface typesActivityGym {
-  id: number;
-  nameActivity: "Funcional";
-  modality: "2 Días" | "3 Días" | "Libre";
-}
 
 export default function Funcional() {
   /////////////// BORRAR ///////////////
@@ -75,7 +69,9 @@ export default function Funcional() {
   return (
     <div className={`main backg backg-funcional`}>
       <Title activityName={"Funcional"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Funcional"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Funcional"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -87,9 +83,15 @@ export default function Funcional() {
         />
       )}
       {load ? (
-        <Loading />
+        <div className="loadContainer">
+          <Loading />
+        </div>
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
       )}
     </div>
   );

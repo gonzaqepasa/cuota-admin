@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
 // Backgrounds
 $backg-black1: black;
-$backg-black2: rgba(0, 0, 0, 0.9);
-$backg-black3: rgba(0, 0, 0, 0.8);
+$backg-black2: rgba(7, 27, 36, 0.95);
+$backg-black3: rgba(0, 0, 0, 0.9);
 $backg-white1: rgb(12, 12, 12);
 $backg-white2: rgba(255, 255, 255, 0.5);
 
@@ -17,7 +17,13 @@ $text3: rgb(148, 20, 20);
 // MAIN
 $main-color: rgb(0, 217, 255);
 $main-textShadow: 1px 1px 3px $main-color;
-$main-text: "Raleway", sans-serif;
+$main-text: "Montserrat", sans-serif;
 // $main-text: 'Oswald', sans-serif;
 
 $green-succes: rgb(66, 207, 0);
+
+// Pallete
+$hunt1: #0f202b;
+$hunt2: #182935;
+$hunt3: #476d7c;
+$hunt4: #77abb7;

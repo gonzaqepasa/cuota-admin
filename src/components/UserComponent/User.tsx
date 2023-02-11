@@ -15,9 +15,10 @@ import Image from "next/image";
 import mp from "../../../styles/mp.png";
 import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
+import Link from "next/link";
 
 interface typesProps {
-  userData: typesUser ;
+  userData: typesUser;
   id: string;
 }
 
@@ -56,9 +57,14 @@ export default function User({ userData, id }: typesProps) {
           >
             {user.name}
           </h2>
-          <h3 style={{ color: selectColor(user.activity.nameActivity) }}>
-            {user.activity.nameActivity.toUpperCase()}
+            <Link
+              style={{ color: selectColor(user.activity.nameActivity) }}
+              href={`/${user.activity.nameActivity.toLocaleLowerCase()}`}
+            >
+          <h3>
+              {user.activity.nameActivity.toUpperCase()}
           </h3>
+            </Link>
         </div>
 
         {/*  <--- Contenedor de Card */}
@@ -104,7 +110,8 @@ export default function User({ userData, id }: typesProps) {
                   </div>
                 ) : (
                   <div className={styles.isFalse}>
-                    <button className={styles.btnPay}
+                    <button
+                      className={styles.btnPay}
                       disabled={!userData.active}
                       onClick={(e) =>
                         payMonth(

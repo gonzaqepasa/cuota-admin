@@ -32,14 +32,14 @@ export async function createUser(
           setModalAdd(false);
           getDataAgain();
           console.log(data);
-          Swal.fire({
-            background: "#090202",
-            color: "white",
-            icon: "success",
-            title: `Agregado!`,
-            text: `${nameUser} fue agregado con exito!`,
-          });
-          setLoad(false);
+          // Swal.fire({
+          //   background: "#090202",
+          //   color: "white",
+          //   icon: "success",
+          //   title: `Agregado!`,
+          //   text: `${nameUser} fue agregado con exito!`,
+          // });
+          // setLoad(false);
         } catch (err) {
           console.log(err);
           setModalAdd(false);

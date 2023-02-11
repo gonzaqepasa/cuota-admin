@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
 import { ImSearch } from "react-icons/im";
@@ -13,9 +13,11 @@ import { selectColor } from "../../logic/selectColor";
 export default function RenderList({
   userData,
   getDataAgain,
+  setLoad,
 }: {
   userData: typesUser[] | false;
   getDataAgain: Function;
+  setLoad: Dispatch<SetStateAction<boolean>>;
 }) {
   const [search, setSearch] = useState("");
   // const [dataToRender, setDataToRender] = useState(userData);
@@ -62,18 +64,16 @@ export default function RenderList({
             key={el.id}
             className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}
             style={{
-              borderBottom: `2px solid ${selectColor(
+              borderBottom: `1px solid ${selectColor(
                 userData[0].activity.nameActivity
               )}`,
             }}
           >
-            <div className={`${styles.linkNameUser}`}>
-              <FaUserCheck
-                color={selectColor(userData[0].activity.nameActivity)}
-              />
-              <Link
-                href={`/${fromNameToUrl(el.activity.nameActivity)}/${el.id}`}
-              >
+            <Link href={`/user/${el.id}`}>
+              <div className={`${styles.linkNameUser}`}>
+                <FaUserCheck
+                  color={selectColor(userData[0].activity.nameActivity)}
+                />
                 {el.name} -{" "}
                 <i
                   style={{
@@ -84,15 +84,16 @@ export default function RenderList({
                 >
                   {el.activity.modality}
                 </i>
-              </Link>
-            </div>
+              </div>
+            </Link>
             <div className={`${styles.iconBox}`}>
               <button
                 onClick={(e) => {
                   visibilityUser(
                     e,
                     { id: Number(el.id), active: el.active },
-                    getDataAgain
+                    getDataAgain,
+                    setLoad
                   );
                 }}
               >

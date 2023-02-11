@@ -4,8 +4,8 @@
   // background-color: white;
   // background-color: aqua;
   // color: black;
-  min-height: 95vh;
-  background-color: $backg-white1;
+  // min-height: 95vh;
+  background-color: $hunt2;
   // background: rgba(0, 0, 0, 0.5);
   width: 100%;
   //   height: 450px;
@@ -26,44 +26,67 @@
       //   background-color: blue;
       display: flex;
       flex-direction: column;
-      margin: 2rem 0;
+      // margin: 0.2rem 0;
       font-family: $main-text;
       label {
         margin: 0.2rem 0;
       }
       select {
+        transition: 0.2s;
+
         height: 3rem;
         border: none;
-        background-color: rgba(140, 140, 140, 0.3);
-        // color:red;
+        background-color: transparent;
+        color: $text2;
+
         border-radius: 5px;
         option {
-          // background-color: black;
+          background-color: $hunt1;
         }
       }
       input {
         height: 3rem;
         border: none;
-        background-color: rgba(140, 140, 140, 0.3);
-        // color:red;
+        transition: 0.2s;
+        color: $text2;
         font-size: 1rem;
         border-radius: 5px;
         padding: 0 5px;
+        background-color: transparent;
       }
       textarea {
+        transition: 0.2s;
+
         max-width: 100%;
         min-width: 100%;
         min-height: 4rem;
+        max-height: 10rem;
         padding: 5px;
         border-radius: 5px;
         border: none;
-        background-color: rgba(140, 140, 140, 0.3);
+        color: $text2;
+        background-color: transparent;
       }
+
+      select:hover,
+      textarea:hover,
+      input:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      select:focus,
+      input:focus,
+      textarea:focus {
+        background-color: rgba(0, 0, 0, 0.3);
+        outline: none;
+        padding-left: 0.5em;
+      }
+
       .nameValInput {
-        outline: 1px red solid;
+        outline: 1px rgb(255, 0, 0) solid;
       }
       .nameValItalic {
-        color: red;
+        color: rgb(255, 2, 2);
         margin-top: 2px;
         font-size: 0.9rem;
         @media (max-width: 650px) {
@@ -74,20 +97,33 @@
 
     .btnContainer {
       // background-color: red;
+      margin-top: 1rem;
       display: flex;
       justify-content: center;
       button {
-        height: 3rem;
-        width: 5rem;
+        font-family: $main-text;
+        padding: 0.2rem 1rem;
         margin: 0 0.5rem;
         border: none;
         border-radius: 5px;
+        transition: 0.2s;
+        color: $text2;
+        text-shadow: 1px 1px 3px rgb(29, 29, 29);
+        filter: opacity(0.8);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
       }
       .btnAccept {
-        background-color: rgb(0, 73, 0);
+        background-color: rgb(2, 70, 2);
       }
       .btnCancel {
-        background-color: rgb(139, 0, 0);
+        background-color: transparent;
+        border: 1px solid rgb(104, 0, 0);
+        color: rgb(247, 0, 0);
+      }
+
+      button:hover {
+        filter: opacity(1);
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
       }
     }
   }

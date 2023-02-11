@@ -13,16 +13,17 @@
     .spanSearch {
       height: 3rem;
       margin: 2rem 0;
-      border-radius: 15px;
       width: 18rem;
-      background-color: rgba(0, 0, 0, 1);
-      box-shadow: 1px 1px 5px grey;
-
+      // background-color: rgba(0, 0, 0, 1);
+      // box-shadow: 1px 1px 5px grey;
+      border-bottom: 2px solid grey;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       position: relative;
       input {
+        border-radius: 5px;
+        color: white;
         background: none;
         border: none;
         height: 100%;
@@ -30,54 +31,57 @@
         position: absolute;
         padding: 0 1rem;
         transition: 0.2s;
+        font-family: $main-text;
+        font-weight: 300;
       }
       input:focus {
         outline: none;
+        background-color: rgba(128, 128, 128, 0.1);
       }
       svg {
         margin: 0 1rem;
+        color: rgb(153, 153, 153);
       }
     }
   }
 
   .linksContainer {
-    box-shadow: 1px 1px 8px black;
-    background-color: $backg-black1;
+    // box-shadow: 1px 1px 8px black;
+    // background-color: $backg-black1;
 
     padding: 0 1rem;
     border-radius: 5px;
-    width: 90%;
-    max-width: 40rem;
+    width: 95%;
+    max-width: 50rem;
     display: flex;
     flex-direction: column;
     .linkBox {
       // background-color: green;
-      margin: 1rem 0;
-      border-bottom: solid 1px grey;
-      padding: 0.4rem;
+      margin: 0.1rem 0;
+      width: 100%;
+      // border-bottom: solid 1px grey;
+      padding: 0.3rem 0.4rem;
       font-size: 1.2rem;
       font-family: $main-text;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-
-      .linkNameUser {
-        svg {
-          color: $main-color;
-          margin: 0 0.4rem;
-        }
-        a {
-          //   box-shadow: 0px 0px 5px black;
-          transition: 0.1s;
-          color: rgb(172, 172, 172);
-          font-weight: 600;
-          text-decoration: none;
-        }
-        a:hover {
-          transform: scale(1.01);
-          // font-size: 1.6rem;
-          color: white;
-          text-shadow: 0px 0px 5px grey;
+      // justify-content: space-between;
+      a {
+        text-decoration: none;
+        //   box-shadow: 0px 0px 5px black;
+        transition: 0.1s;
+        color: rgb(172, 172, 172);
+        font-weight: 400;
+        text-decoration: none;
+        width: inherit;
+        .linkNameUser {
+          svg {
+            color: $main-color;
+            margin: 0 0.4rem;
+          }
+          i {
+            text-shadow: 1px 1px 2px black;
+          }
         }
       }
 
@@ -100,6 +104,15 @@
         button:hover {
           opacity: 1;
         }
+      }
+    }
+    .linkBox:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      a {
+        transform: scale(1.01);
+        // font-size: 1.6rem;
+        color: white;
+        text-shadow: 0px 0px 5px grey;
       }
     }
   }

@@ -4,41 +4,66 @@ import RenderList from "../../src/components/RenderList/RenderList";
 import ButtonAdd from "../../src/components/AddUser/ButtonAdd/ButtomAdd";
 import Title from "../../src/components/AddUser/Title/Title";
 import { url } from "../../src/config/services-url";
+import Loading from "../../src/components/Loading/Loading";
 
-export default function PowerBox(props: any) {
+export default function PowerBox() {
   /////////////// BORRAR ///////////////
-  console.log("Desde el back : ", props);
+  // console.log("Desde el back : ", props);
   // console.log("URL env : ", process.env.NEXT_PUBLIC_DOMAIN_BACK);
   //////////////////////////////////////
 
   const [modalAdd, setModalAdd] = useState(false);
-  const [dataUser, setDataUser] = useState(props.dataUser);
-  const [dataActivity, setDataActivity] = useState(props.dataAct);
+  const [dataUser, setDataUser] = useState([]);
+  const [dataActivity, setDataActivity] = useState([]);
+  const [load, setLoad] = useState(true);
+  const [error, setError] = useState({ msg: "" });
   //////// Funcion volver a llamadar data ////////
 
   async function getDataAgain() {
+    setLoad(true);
     try {
       const res = await fetch(`${url}/get-users?activity=Power Box`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
+      setLoad(false);
     } catch (err) {
       console.log(err);
+      setLoad(false);
     }
   }
+  ////////// useEffect //////////
 
+  useEffect(() => {
+    (async function () {
+      try {
+        const resUser = await fetch(`${url}/user/get-users?activity=Power Box`);
+        const resAct = await fetch(
+          `${url}/activity/get-activity?activity=Power Box`
+        );
+        const dataUser = await resUser.json();
+        const dataAct = await resAct.json();
+        setDataUser(dataUser);
+        setDataActivity(dataAct);
+        setLoad(false);
+      } catch (err) {
+        console.log(err);
+        setError({ msg: "Ocurrio un error en bd" });
+        setLoad(false);
+      }
+    })();
+  }, []);
+
+  //////////////////////////////
   ////////////////////////////////////////////
-  if (props.dataAct == false) {
-    return (
-      <div className={`main backg backg-power-box`}>
-        Problemas en la base de datos{" "}
-      </div>
-    );
-  }
+  if (error.msg) return <> Error en la BD {error.msg}</>;
+
   return (
     <div className={`main backg backg-power-box`}>
       <Title activityName={"Power Box"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Power Box"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Power Box"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -49,13 +74,20 @@ export default function PowerBox(props: any) {
           getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
         />
       )}
-      (
-      <RenderList userData={dataUser} getDataAgain={getDataAgain} />)
+      {load ? (
+        <Loading />
+      ) : (
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
+      )}
     </div>
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   try {
     const resUser = await fetch(`${url}/get-users?activity=Power Box`);
     const resAct = await fetch(`${url}/get-activity?activity=Power Box`);
@@ -77,3 +109,4 @@ export async function getStaticProps() {
     };
   }
 }
+ */

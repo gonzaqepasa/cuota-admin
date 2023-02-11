@@ -1,39 +1,7 @@
 @import "../../../styles/variables";
 
-.enlaces {
-  // background-color: red;
-  text-decoration: none;
-  color: #0000008c;
-  // margin-top: 1rem;
-  padding-right: var(--bs-navbar-nav-link-padding-x);
-  padding-left: var(--bs-navbar-nav-link-padding-x);
-  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-}
-.enlaces:hover {
-  color: var(--bs-navbar-active-color);
-}
-.NavDropdownItem {
+.allNavbar {
+  background-color: $hunt1;
+  height: 3rem;
   width: 100%;
-  padding: 2px 8px;
-  display: flex;
-  a {
-    // background-color: red;
-    font-family: $main-text;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: black;
-    text-decoration: none;
-    width: 100%;
-    opacity: 0.9;
-    transition: 0.1s;
-  }
-
-  a:hover {
-    opacity: 1;
-    background-color: rgb(228, 228, 228);
-  }
-
-  svg {
-    margin: 0 5px;
-  }
 }

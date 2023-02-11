@@ -1,7 +1,7 @@
 @import "../../../../styles/variables";
 
 .allButtonAdd {
-  background-color: $backg-white1;
+  background-color: $hunt2;
   // position: absolute;
   width: 100%;
   padding: 0.6rem;
@@ -29,7 +29,7 @@
   button:hover::before {
     content: "Agregar nuevo usuario";
     font-size: 0.7rem;
-    color: rgb(0, 0, 0);
+    color: rgb(148, 148, 148);
     font-family: $main-text;
     // box-shadow: 1px 1px 1px grey;
     margin-right:  0.5rem;

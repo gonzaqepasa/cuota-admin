@@ -12,12 +12,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(0, 0, 0);
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(4, 4, 4, 0.9) 100%
-  );
+ background-color: $hunt2;
+}
+
+.loadContainer {
+  min-height: 90vh;
+  height: inherit;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $backg-black3;
 }
 html,
 body {
@@ -35,21 +40,21 @@ a {
   background-position: center;
   background-attachment: fixed;
 }
-.backg-taekwondo {
-  background-image: url("http://186.33.208.70/libraries/TimThumb/timthumb.inc.php?src=/files/noticias/1533597428_taekwondo-mundial-26.jpg&w=877&h=500");
-}
-.backg-funcional {
-  background-image: url("https://www.infobae.com/new-resizer/CumrOyQTi8FIE2moXs9vXaAc5o0=/768x512/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/R6HJEVMS6BDN3J4X4TF2MTYBOI.jpg");
-}
-.backg-ritmo-kids {
-  background-image: url("https://lebal.es/wp-content/uploads/2018/09/ni%C3%B1os_bailando_escuela_le_bal.jpg");
-}
-.backg-zumba {
-  background-image: url("https://www.verywellfit.com/thmb/SaUyT2h2ujEDx4zCAU0ilFclWqI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/4688722-GettyImages-950806258-06e1e050ab184f3694fd96017c9a42ee.jpg");
-}
-.backg-kick-boxing {
-  background-image: url("https://cdn.onefc.com/wp-content/uploads/2020/09/Superlek-Kiatmoo9-Fahdi-Khaled-kickboxing-1920X1280-27.jpg");
-}
+//  .backg-taekwondo {
+//   background-image: url("http://186.33.208.70/libraries/TimThumb/timthumb.inc.php?src=/files/noticias/1533597428_taekwondo-mundial-26.jpg&w=877&h=500");
+// }
+// .backg-funcional {
+//   background-image: url("https://www.infobae.com/new-resizer/CumrOyQTi8FIE2moXs9vXaAc5o0=/768x512/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/R6HJEVMS6BDN3J4X4TF2MTYBOI.jpg");
+// }
+// .backg-ritmo-kids {
+//   background-image: url("https://lebal.es/wp-content/uploads/2018/09/ni%C3%B1os_bailando_escuela_le_bal.jpg");
+// }
+// .backg-zumba {
+//   background-image: url("https://www.verywellfit.com/thmb/SaUyT2h2ujEDx4zCAU0ilFclWqI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/4688722-GettyImages-950806258-06e1e050ab184f3694fd96017c9a42ee.jpg");
+// }
+// .backg-kick-boxing {
+//   background-image: url("https://cdn.onefc.com/wp-content/uploads/2020/09/Superlek-Kiatmoo9-Fahdi-Khaled-kickboxing-1920X1280-27.jpg");
+// } 
 
 .swal2-modal {
   box-shadow: 0px 0px 5px black;
