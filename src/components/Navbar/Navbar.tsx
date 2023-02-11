@@ -46,14 +46,28 @@ export default function NavbarMain() {
             </div>
           </div>
           <nav className={`${styles.navigation}`}>
-            <Link href={"/prices"}>Precios</Link>
+            <Link onClick={() => setModal(false)} href={"/prices"}>
+              Precios
+            </Link>
             <br />
-            <Link href={"/funcional"}>Funcional </Link>
-            <Link href={"/taekwondo"}>Taekwondo</Link>
-            <Link href={"/ritmo-kids"}>Ritmo Kids</Link>
-            <Link href={"/power-box"}>Power Box</Link>
-            <Link href={"/zumba"}>Zumba</Link>
-            <Link href={"/kick-boxing"}>Kick-Boxing</Link>
+            <Link onClick={() => setModal(false)} href={"/funcional"}>
+              Funcional{" "}
+            </Link>
+            <Link onClick={() => setModal(false)} href={"/taekwondo"}>
+              Taekwondo
+            </Link>
+            <Link onClick={() => setModal(false)} href={"/ritmo-kids"}>
+              Ritmo Kids
+            </Link>
+            <Link onClick={() => setModal(false)} href={"/power-box"}>
+              Power Box
+            </Link>
+            <Link onClick={() => setModal(false)} href={"/zumba"}>
+              Zumba
+            </Link>
+            <Link onClick={() => setModal(false)} href={"/kick-boxing"}>
+              Kick-Boxing
+            </Link>
           </nav>
         </div>
         <button

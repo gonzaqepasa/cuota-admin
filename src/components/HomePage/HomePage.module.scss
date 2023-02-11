@@ -1,7 +1,7 @@
 @import "../../../styles/variables";
 
 .allHomePage {
-  // background-color: $backg-black2;
+  background-color: $hunt2;
   border-radius: 10px;
   width: 100%;
   min-height: 20rem;
@@ -24,10 +24,14 @@
 
   .linkContainer {
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.8);
+    // background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     max-width: 18rem;
     flex-direction: column;
+    p {
+      color: rgb(196, 196, 196);
+      text-align: center;
+    }
     a {
       border-radius: 5px;
       transition: 0.2s;
@@ -41,7 +45,7 @@
       font-weight: 600;
       svg {
         color: grey;
-        margin: 0 1rem ;
+        margin: 0 1rem;
         font-size: 2rem;
       }
     }
