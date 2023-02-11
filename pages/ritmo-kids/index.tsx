@@ -73,7 +73,9 @@ export default function RitmoKids() {
   return (
     <div className={`main backg backg-ritmo-kids`}>
       <Title activityName={"Ritmo Kids"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Ritmo Kids"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Ritmo kids"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -88,7 +90,11 @@ export default function RitmoKids() {
       {load ? (
         <Loading />
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
       )}
     </div>
   );

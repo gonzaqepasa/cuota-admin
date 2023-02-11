@@ -66,7 +66,9 @@ export default function KickBoxing() {
   return (
     <div className={`main backg backg-kick-boxing`}>
       <Title activityName={"Kick Boxing"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Kick Boxing"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Kick Boxing"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -80,7 +82,7 @@ export default function KickBoxing() {
       {load ? (
         <Loading />
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList setLoad={setLoad} userData={dataUser} getDataAgain={getDataAgain} />
       )}{" "}
     </div>
   );

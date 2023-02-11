@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MouseEvent } from "react";
+import { Dispatch, MouseEvent, SetStateAction } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/services-url";
 
@@ -9,7 +9,9 @@ export function visibilityUser(
   // Segundo parametro
   { id, active }: { id: number; active: boolean },
   // Tercer Parametro
-  getDataAgain: Function
+  getDataAgain: Function,
+  // Tercer Parametro
+  setLoad: Dispatch<SetStateAction<boolean>>
 ) {
   Swal.fire({
     reverseButtons: true,
@@ -28,13 +30,15 @@ export function visibilityUser(
   }).then((result) => {
     if (result.isConfirmed) {
       (async function () {
+        setLoad(true);
         try {
           const { data } = await axios.put(`${url}/user/edit-active`, {
             id,
             active,
           });
 
-          Swal.fire({
+          getDataAgain();
+          /*   Swal.fire({
             background: "#090202",
             color: "white",
             icon: "success",
@@ -42,8 +46,7 @@ export function visibilityUser(
             text: active
               ? `El usuario ahora se muestra en el fondo de la lista`
               : "El usuario se muestra activo ahora!",
-          });
-          getDataAgain();
+          }); */
           console.log("esto llega del patch", data);
           // getUserAgain()
         } catch (err) {

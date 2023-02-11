@@ -69,7 +69,9 @@ export default function Funcional() {
   return (
     <div className={`main backg backg-funcional`}>
       <Title activityName={"Funcional"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Funcional"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Funcional"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -85,7 +87,11 @@ export default function Funcional() {
           <Loading />
         </div>
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
       )}
     </div>
   );

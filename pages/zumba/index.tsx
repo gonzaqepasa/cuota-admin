@@ -63,7 +63,7 @@ export default function Zumba() {
     <div className={`main backg backg-zumba`}>
       <Title activityName={"Zumba"} />
 
-      <ButtonAdd setModalAdd={setModalAdd} color={"Zumba"} />
+      {!load && <ButtonAdd setModalAdd={setModalAdd} color={"Zumba"} />}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -78,7 +78,11 @@ export default function Zumba() {
       {load ? (
         <Loading />
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
       )}
     </div>
   );

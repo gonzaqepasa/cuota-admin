@@ -61,7 +61,9 @@ export default function PowerBox() {
   return (
     <div className={`main backg backg-power-box`}>
       <Title activityName={"Power Box"} />
-      <ButtonAdd setModalAdd={setModalAdd} color={"Power Box"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Power Box"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -75,7 +77,11 @@ export default function PowerBox() {
       {load ? (
         <Loading />
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
       )}
     </div>
   );

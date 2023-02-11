@@ -6,8 +6,6 @@ import Title from "../../src/components/AddUser/Title/Title";
 import { url } from "../../src/config/services-url";
 import Loading from "../../src/components/Loading/Loading";
 
-
-
 export default function Taekwondo() {
   /////////////// BORRAR ///////////////
   // console.log("Desde el back : ", props);
@@ -68,7 +66,9 @@ export default function Taekwondo() {
     <div className={`main backg backg-taekwondo`}>
       <Title activityName={"Taekwondo"} />
 
-      <ButtonAdd setModalAdd={setModalAdd} color={"Taekwondo"} />
+      {!load && (
+        <ButtonAdd setModalAdd={setModalAdd} color={"Taekwondo"} />
+      )}
       {dataActivity && modalAdd && (
         <AddUserForm
           dataActivity={dataActivity}
@@ -82,7 +82,11 @@ export default function Taekwondo() {
       {load ? (
         <Loading />
       ) : (
-        <RenderList userData={dataUser} getDataAgain={getDataAgain} />
+        <RenderList
+          setLoad={setLoad}
+          userData={dataUser}
+          getDataAgain={getDataAgain}
+        />
       )}
     </div>
   );

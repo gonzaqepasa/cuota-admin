@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
 import { ImSearch } from "react-icons/im";
@@ -13,9 +13,11 @@ import { selectColor } from "../../logic/selectColor";
 export default function RenderList({
   userData,
   getDataAgain,
+  setLoad,
 }: {
   userData: typesUser[] | false;
   getDataAgain: Function;
+  setLoad: Dispatch<SetStateAction<boolean>>;
 }) {
   const [search, setSearch] = useState("");
   // const [dataToRender, setDataToRender] = useState(userData);
@@ -90,7 +92,8 @@ export default function RenderList({
                   visibilityUser(
                     e,
                     { id: Number(el.id), active: el.active },
-                    getDataAgain
+                    getDataAgain,
+                    setLoad
                   );
                 }}
               >
