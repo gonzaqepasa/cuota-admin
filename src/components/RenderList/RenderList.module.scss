@@ -61,14 +61,15 @@
       width: 100%;
       // border-bottom: solid 1px grey;
       padding: 0.3rem 0.4rem;
-      font-size: 1.2rem;
       font-family: $main-text;
       display: flex;
       align-items: center;
       // justify-content: space-between;
       a {
         text-decoration: none;
-        //   box-shadow: 0px 0px 5px black;
+        font-size: 1rem;
+       border-bottom: 1px solid grey;
+          // box-shadow: 0px 0px 5px black;
         transition: 0.1s;
         color: rgb(172, 172, 172);
         font-weight: 400;
@@ -98,7 +99,7 @@
           border: none;
           display: grid;
           margin: auto;
-          color: white;
+          // color: white;
           opacity: 0.7;
         }
         button:hover {
