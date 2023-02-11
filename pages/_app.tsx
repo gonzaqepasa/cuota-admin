@@ -53,7 +53,13 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Create Next App</title>
       </Head>
 
-      {load ? <Loading /> : render()}
+      {load ? (
+        <div className="main">
+          <Loading />
+        </div>
+      ) : (
+        render()
+      )}
     </>
   );
 }
