@@ -81,7 +81,9 @@ export default function Funcional() {
         />
       )}
       {load ? (
-        <Loading />
+        <div className="loadContainer">
+          <Loading />
+        </div>
       ) : (
         <RenderList userData={dataUser} getDataAgain={getDataAgain} />
       )}
