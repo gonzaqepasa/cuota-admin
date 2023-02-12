@@ -57,14 +57,19 @@ export default function User({ userData, id }: typesProps) {
           >
             {user.name}
           </h2>
-            <Link
-              style={{ color: selectColor(user.activity.nameActivity) }}
-              href={`/${fromNameToUrl(user.activity.nameActivity.toLocaleLowerCase())}`}
-            >
-          <h3>
-              {user.activity.nameActivity.toUpperCase()}
-          </h3>
-            </Link>
+          <Link
+            style={{ color: selectColor(user.activity.nameActivity) }}
+            href={`/${fromNameToUrl(
+              user.activity.nameActivity.toLocaleLowerCase()
+            )}`}
+          >
+            <h3>
+              {user.activity.nameActivity.toUpperCase()} -{" "}
+              <i style={{ fontSize: "0.8rem", color: "grey" }}>
+                {user.activity.modality}{" "}
+              </i>
+            </h3>
+          </Link>
         </div>
 
         {/*  <--- Contenedor de Card */}
@@ -121,6 +126,7 @@ export default function User({ userData, id }: typesProps) {
                           el.monthName,
                           auth.currentUser?.email,
                           "MP",
+                          userData.activity.price,
                           getUserAgain
                         )
                       }

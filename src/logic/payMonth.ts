@@ -10,6 +10,7 @@ export function payMonth(
   monthName: string,
   addAdmin: string | null | undefined,
   mothodPay: string,
+  price:number,
   getUserAgain: Function
 ) {
   Swal.fire({
@@ -32,6 +33,7 @@ export function payMonth(
             id,
             addAdmin,
             mothodPay,
+            price
           });
           /*  const res = await fetch(`http://${url}/turno/pay-turno`, {
             method: "PUT", // or 'PUT'
