@@ -10,9 +10,9 @@ export default async function handler(
 ) {
   if (req.method === "PUT") {
     try {
-      const { id, addAdmin, mothodPay } = req.body;
+      const { id, addAdmin, mothodPay, price } = req.body;
 
-      const month = await payMonth({ id, addAdmin, mothodPay });
+      const month = await payMonth({ id, addAdmin, mothodPay, price });
 
       res.status(200).json(month);
     } catch (err) {

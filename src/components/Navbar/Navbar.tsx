@@ -28,7 +28,7 @@ export default function NavbarMain() {
   const route = useRouter();
   const user = auth.currentUser;
   useEffect(() => {}, []);
-
+  const avatar = selectAvatar();
   //////// Estados ////////
   const [modal, setModal] = useState(false);
   /////////////////////////
@@ -39,7 +39,7 @@ export default function NavbarMain() {
         <div className={`${styles.responsiveBox}`}>
           <div className={`${styles.header}`}>
             <div className={styles.imgBox}>
-              <img src={selectAvatar()} alt="" />
+              <img src={avatar} alt="" />
             </div>
             <div className={styles.textBox}>
               <p>{user?.email}</p>
