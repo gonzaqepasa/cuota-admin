@@ -10,19 +10,19 @@ export function payMonth(
   monthName: string,
   addAdmin: string | null | undefined,
   mothodPay: string,
-  price:number,
+  price: number,
   getUserAgain: Function
 ) {
   Swal.fire({
     reverseButtons: true,
-    background: "#090202",
+    background: "#0f202b",
     color: "white",
     title: "Estas seguro?",
     text: `${userName} pago el mes de ${monthName}`,
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
+    confirmButtonColor: "#476d7c",
+    cancelButtonColor: "#0f202b",
     confirmButtonText: "Si pago",
     cancelButtonText: "Cancelar",
   }).then((result) => {
@@ -33,7 +33,7 @@ export function payMonth(
             id,
             addAdmin,
             mothodPay,
-            price
+            price,
           });
           /*  const res = await fetch(`http://${url}/turno/pay-turno`, {
             method: "PUT", // or 'PUT'
@@ -48,7 +48,7 @@ export function payMonth(
           });
           const data = await res.json(); */
           Swal.fire({
-            background: "#090202",
+            background: "#0f202b",
             color: "white",
             icon: "success",
             title: `Pago aceptado!`,
@@ -59,7 +59,7 @@ export function payMonth(
         } catch (err) {
           console.log(err);
           Swal.fire({
-            background: "#090202",
+            background: "#0f202b",
             color: "white",
             icon: "error",
             title: `Error inesperado`,

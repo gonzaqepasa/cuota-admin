@@ -13,14 +13,14 @@ export async function createUser(
 ) {
   Swal.fire({
     reverseButtons: true,
-    background: "#090202",
+    background: "#0f202b",
     color: "white",
     title: "Agregar usuario",
     text: `Seguro quieres agregar a ${nameUser}`,
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
+    confirmButtonColor: "#476d7c",
+    cancelButtonColor: "#0f202b",
     confirmButtonText: "Si agregar",
     cancelButtonText: "Cancelar",
   }).then((result) => {
@@ -44,7 +44,7 @@ export async function createUser(
           console.log(err);
           setModalAdd(false);
           Swal.fire({
-            background: "#090202",
+            background: "#0f202b",
             color: "white",
             icon: "error",
             title: `Hubo un problema`,

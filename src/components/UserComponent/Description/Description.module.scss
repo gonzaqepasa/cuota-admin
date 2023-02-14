@@ -20,8 +20,9 @@
     display: flex;
     min-height: 3rem;
     padding: 0.3rem;
-    padding-right:3rem ;
+    padding-right: 3rem;
     font-family: $main-text;
+    justify-content: space-between;
 
     // Parrafo con descripcion
     p {
@@ -40,6 +41,7 @@
     // Input con logica de cambio
     .btnAcpCanBox {
       display: flex;
+      flex-direction: row-reverse;
       align-items: center;
       button {
         font-family: $main-text;
@@ -50,13 +52,21 @@
         padding: 0.4rem 0.6rem;
         margin-right: 0.2rem;
         box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.2) inset;
+        opacity: 0.7;
+        transition: 0.2s;
+      }
+      button:hover {
+        opacity: 1;
       }
       .btnAcp {
-        background-color: rgb(0, 59, 99);
+        background-color: $hunt4;
         color: rgb(255, 255, 255);
+        padding: 0.4rem 0.8rem;
       }
       .btnCan {
-        background-color: rgb(199, 195, 195);
+        background-color: transparent;
+        border: 1px solid $hunt3;
+        color: $hunt4;
       }
     }
     input {
@@ -65,18 +75,19 @@
       border: none;
       width: 100%;
       color: $text2;
-      transition: 0.1s;
+      transition: 0.2s;
       border-radius: 5px;
-      //   background-color: $backg-white2;
-      //   padding: 0.3rem;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding-left: 0.3rem;
       margin-right: 0.5rem;
+    }
+    input:hover {
+      background-color: rgba(0, 0, 0, 0.3);
     }
     input:focus {
       outline: none;
-      box-shadow: 0px 0px 4px white;
-      padding-left: 0.5rem;
-      // background-color: red;
-      //   box-shadow: 0px 0px 3px black;
+      padding-left: 0.6rem;
+      background-color: rgba(0, 0, 0, 0.6);
       border-radius: 5px;
     }
   }

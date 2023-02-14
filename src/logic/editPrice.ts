@@ -17,14 +17,14 @@ export function editPrice(
 ) {
   Swal.fire({
     reverseButtons: true,
-    background: "#090202",
+    background: "#0f202b",
     color: "white",
     title: `Cambiar precio a ${nameActivity} - ${modality}`,
     text: `El nuevo precio sería ${price}`,
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
+    confirmButtonColor: "#476d7c",
+    cancelButtonColor: "#0f202b",
     confirmButtonText: "Cambiar",
     cancelButtonText: "Cancelar",
   }).then((result) => {
@@ -37,7 +37,7 @@ export function editPrice(
           });
 
           Swal.fire({
-            background: "#090202",
+            background: "#0f202b",
             color: "white",
             icon: "success",
             title: "Precio cambiado",
@@ -53,7 +53,7 @@ export function editPrice(
           console.log(err);
 
           Swal.fire({
-            background: "#090202",
+            background: "#0f202b",
             color: "white",
             icon: "error",
             title: `Error inesperado`,

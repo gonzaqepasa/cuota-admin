@@ -22,7 +22,7 @@ export default function PowerBox() {
   async function getDataAgain() {
     setLoad(true);
     try {
-      const res = await fetch(`${url}/get-users?activity=Power Box`);
+      const res = await fetch(`${url}/user/get-users?activity=Power Box`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
