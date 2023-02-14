@@ -18,7 +18,7 @@
     height: 100vh;
 
     .responsiveBox {
-      width: 75vw;
+      min-width: 60vw;
       height: inherit;
 
       // background-color: red;
@@ -34,11 +34,12 @@
           }
         }
         .textBox {
-          padding-left: 1.5rem;
+          padding: 0 1.5rem;
           font-family: $main-text;
           // background-color: red;
           margin: 0.5rem 0;
           p {
+            font-size: 0.8rem;
           }
         }
       }
@@ -64,7 +65,7 @@
       background-color: transparent;
       background-color: rgba(0, 0, 0, 0);
       border: none;
-      width: 25vw;
+      width: inherit;
       height: 100%;
       transition: 0s;
     }
@@ -82,5 +83,33 @@
     display: flex;
     align-items: center;
     padding-left: 0.5rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .allNavbar {
+    // background-color: red;
+    // position: relative;
+
+    .navWithBtn {
+      display: flex;
+      .responsiveBox {
+        // position: relative;
+        min-width: 18rem;
+        width: auto;
+
+        .header {
+          .textBox {
+          }
+        }
+      }
+
+      .btnTouchClose {
+        // width: inherit;
+      }
+    }
+    .modalInactive {
+      transform: translateX(-100vw);
+    }
   }
 }
