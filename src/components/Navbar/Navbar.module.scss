@@ -34,12 +34,28 @@
           }
         }
         .textBox {
-          padding: 0 1.5rem;
+          padding: 0 1rem;
           font-family: $main-text;
           // background-color: red;
-          margin: 0.5rem 0;
+          margin-top: 0.5rem;
           p {
             font-size: 0.8rem;
+            margin: 0;
+          }
+        }
+        .signOutBtnContainer {
+          // background-color: green;
+          padding: 0 1rem;
+          button {
+            font-size: 0.8rem;
+            color: red;
+            border: none;
+            background: none;
+            opacity: 0.8;
+            transition: 0.1s;
+          }
+          button:hover {
+            opacity: 1;
           }
         }
       }

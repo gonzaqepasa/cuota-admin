@@ -23,6 +23,7 @@ import { fromUrlToName } from "../../logic/fromNameToUrl";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
 import { selectAvatar } from "../../logic/selectAvatar";
+import { signOutUser } from "../../../firebase/auth/signOut";
 
 export default function NavbarMain() {
   const route = useRouter();
@@ -44,6 +45,9 @@ export default function NavbarMain() {
             <div className={styles.textBox}>
               <p>{user?.email}</p>
             </div>
+            <div className={styles.signOutBtnContainer}>
+              <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
+            </div>
           </div>
           <nav className={`${styles.navigation}`}>
             <Link onClick={() => setModal(false)} href={"/prices"}>
@@ -56,9 +60,9 @@ export default function NavbarMain() {
             <Link onClick={() => setModal(false)} href={"/taekwondo"}>
               Taekwondo
             </Link>
-            <Link onClick={() => setModal(false)} href={"/ritmo-kids"}>
+            {/*    <Link onClick={() => setModal(false)} href={"/ritmo-kids"}>
               Ritmo Kids
-            </Link>
+            </Link> */}
             <Link onClick={() => setModal(false)} href={"/power-box"}>
               Power Box
             </Link>

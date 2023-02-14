@@ -15,7 +15,7 @@ export function visibilityUser(
 ) {
   Swal.fire({
     reverseButtons: true,
-    background: "#090202",
+    background: "#0f202b",
     color: "white",
     title: active ? "Usuario Activo!" : "Usuario Inactivo",
     text: active
@@ -23,8 +23,8 @@ export function visibilityUser(
       : "¿Quieres activar al usuario?",
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
+    confirmButtonColor: "#77abb7",
+    cancelButtonColor: "#182935",
     confirmButtonText: "Aceptar",
     cancelButtonText: "Cancelar",
   }).then((result) => {
@@ -52,7 +52,7 @@ export function visibilityUser(
         } catch (err) {
           console.log(err);
           Swal.fire({
-            background: "#090202",
+            background: "#0f202b",
             color: "white",
             icon: "error",
             title: `Error inesperado`,

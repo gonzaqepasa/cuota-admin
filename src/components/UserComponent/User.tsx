@@ -148,14 +148,8 @@ export default function User({ userData, id }: typesProps) {
               {/* ////////////// Ultima Caja ////////////// */}
               {el.isPay && (
                 <div className={`${styles.carrouselBox}`}>
-                  <Carousel controls={false} interval={3000} indicators={false}>
-                    <Carousel.Item>
-                      <h3>{el.addAdmin}</h3>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                      <p>{el.addData}</p>
-                    </Carousel.Item>
-                  </Carousel>
+                  <p>{el.addData}</p>
+                  <h3>{el.addAdmin}</h3>
                 </div>
               )}
             </div>
