@@ -44,7 +44,7 @@ export default function User({ userData, id }: typesProps) {
       <div
         className={`${styles.allUserComponent} backg backg-${fromNameToUrl(
           userData.activity.nameActivity.toLowerCase()
-        )}`}
+        )} ${!user.active && styles.isInactiveUser}`}
       >
         {/* <p>2023</p> */}
         <div className={styles.nameUserBox}>

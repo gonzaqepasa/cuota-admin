@@ -42,7 +42,7 @@ export default function RenderList({
   if (userData == false)
     return (
       <>
-        <h1>No hay usuarios agregados</h1>
+        <h2 style={{ color: "grey" }}>No hay usuarios agregados</h2>
       </>
     );
   return (
