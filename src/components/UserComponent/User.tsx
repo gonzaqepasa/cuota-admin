@@ -125,7 +125,6 @@ export default function User({ userData, id }: typesProps) {
                           userData.name,
                           el.monthName,
                           auth.currentUser?.email,
-                          "MP",
                           userData.activity.price,
                           getUserAgain
                         )
@@ -140,11 +139,6 @@ export default function User({ userData, id }: typesProps) {
                 )}
               </div>
 
-              {/*  {!el.isPay && <div>
-                
-                
-                </div>} */}
-
               {/* ////////////// Ultima Caja ////////////// */}
               {el.isPay && (
                 <div className={`${styles.carrouselBox}`}>
@@ -153,81 +147,6 @@ export default function User({ userData, id }: typesProps) {
                 </div>
               )}
             </div>
-
-            /*   <div
-              key={el.monthName}
-              className={`${styles.monthBox} ${
-                !userData.active && styles.isInactive
-              }`}
-            >
-              <div className={styles.monthNameBox}>
-                <h4> {el.monthName}</h4>
-              </div>
-              <div className={`${styles.conditionIsPayContainer}`}>
-                {el.isPay ? (
-                  <span>
-                    <div className={styles.checkImgContainer}>
-                      <span className={styles.check}>
-                        <FcCheckmark />
-                      </span>
-                      <span>
-                        {el.mothodPay === "MP" ? (
-                          <Image
-                            src={mp}
-                            height={35}
-                            alt="no se encontr imagen"
-                          />
-                        ) : (
-                          <FaMoneyBillWave />
-                        )}
-                      </span>
-                    </div>
-
-                    <Carousel
-                      controls={false}
-                      interval={3000}
-                      indicators={false}
-                    >
-                      <Carousel.Item>
-                        <h3>{el.addAdmin}</h3>
-                      </Carousel.Item>
-                      <Carousel.Item>
-                        <p>{el.addData}</p>
-                      </Carousel.Item>
-                    </Carousel>
-                  </span>
-                ) : (
-                  <div className={styles.allBtnContainer}>
-                    <h4
-                      style={{ color: selectColor(user.activity.nameActivity) }}
-                    >
-                      {el.monthName}
-                    </h4>
-                    <button
-                      disabled={!userData.active}
-                      onClick={(e) =>
-                        payMonth(
-                          e,
-                          el.id,
-                          userData.name,
-                          el.monthName,
-                          auth.currentUser?.email,
-                          "MP",
-                          getUserAgain
-                        )
-                      }
-                    >
-                      <FaMoneyBillWave
-                        color={selectColor(user.activity.nameActivity)}
-                      />{" "}
-                      <p>Agregar pago</p>
-                    </button>
-                  </div>
-                  ///////////////////////////////////////////////////
-                )
-                }
-              </div>
-            </div> */
           ))}
         </div>
       </div>

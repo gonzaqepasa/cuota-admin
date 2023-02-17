@@ -9,7 +9,7 @@ export function payMonth(
   userName: string,
   monthName: string,
   addAdmin: string | null | undefined,
-  mothodPay: string,
+
   price: number,
   getUserAgain: Function
 ) {
@@ -21,21 +21,29 @@ export function payMonth(
     text: `${userName} pago el mes de ${monthName}`,
     icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: "#476d7c",
+    showDenyButton: true,
+    denyButtonColor: "#379237",
+    confirmButtonColor: "#009ee3",
     cancelButtonColor: "#0f202b",
-    confirmButtonText: "Si pago",
+    denyButtonText: "Efectivo",
+    confirmButtonText: "Mercado Pago",
     cancelButtonText: "Cancelar",
   }).then((result) => {
+    let payMethod: "MP" | "EF" = "EF";
     if (result.isConfirmed) {
-      (async function () {
-        try {
-          const { data } = await axios.put(`${url}/month/pay-month`, {
-            id,
-            addAdmin,
-            mothodPay,
-            price,
-          });
-          /*  const res = await fetch(`http://${url}/turno/pay-turno`, {
+      payMethod = "MP";
+    } else if (result.isDenied) {
+      payMethod = "EF";
+    }
+    (async function () {
+      try {
+        const { data } = await axios.put(`${url}/month/pay-month`, {
+          id,
+          addAdmin,
+          mothodPay: payMethod,
+          price,
+        });
+        /*  const res = await fetch(`http://${url}/turno/pay-turno`, {
             method: "PUT", // or 'PUT'
             body: JSON.stringify({
               id,
@@ -47,27 +55,26 @@ export function payMonth(
             },
           });
           const data = await res.json(); */
-          Swal.fire({
-            background: "#0f202b",
-            color: "white",
-            icon: "success",
-            title: `Pago aceptado!`,
-            text: `${userName} pago el mes de ${monthName}`,
-          });
-          console.log("esto llega del patch", data);
-          getUserAgain();
-        } catch (err) {
-          console.log(err);
-          Swal.fire({
-            background: "#0f202b",
-            color: "white",
-            icon: "error",
-            title: `Error inesperado`,
-            text: `Consulte con el desarrollador (detalles en consola)`,
-          });
-        }
-      })();
-    }
+        Swal.fire({
+          background: "#0f202b",
+          color: "white",
+          icon: "success",
+          title: `Pago aceptado!`,
+          text: `${userName} pago el mes de ${monthName}`,
+        });
+        console.log("esto llega del patch", data);
+        getUserAgain();
+      } catch (err) {
+        console.log(err);
+        Swal.fire({
+          background: "#0f202b",
+          color: "white",
+          icon: "error",
+          title: `Error inesperado`,
+          text: `Consulte con el desarrollador (detalles en consola)`,
+        });
+      }
+    })();
   });
   e.preventDefault();
 }
