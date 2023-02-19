@@ -27,9 +27,10 @@ import { signOutUser } from "../../../firebase/auth/signOut";
 
 export default function NavbarMain() {
   const route = useRouter();
+  console.log(route.pathname);
   const user = auth.currentUser;
   // useEffect(() => {}, []);
-  const avatar = selectAvatar();
+  const avatar = selectAvatar(user?.email ? user.email[0] : null);
   //////// Estados ////////
   const [modal, setModal] = useState(false);
   /////////////////////////
@@ -50,32 +51,68 @@ export default function NavbarMain() {
             </div>
           </div>
           <nav className={`${styles.navigation}`}>
-            <Link onClick={() => setModal(false)} href={"/prices"}>
+            <Link
+              className={`${route.pathname === "/prices" && styles.isHere}`}
+              onClick={() => setModal(false)}
+              href={"/prices"}
+            >
               Precios
             </Link>
             <br />
-            <Link onClick={() => setModal(false)} href={"/gimnasio"}>
+            <Link
+              className={`${route.pathname === "/gimnasio" && styles.isHere}`}
+              onClick={() => setModal(false)}
+              href={"/gimnasio"}
+            >
               Gimnasio{" "}
             </Link>
-            <Link onClick={() => setModal(false)} href={"/taekwondo"}>
+            <Link
+              className={`${route.pathname === "/taekwondo" && styles.isHere}`}
+              onClick={() => setModal(false)}
+              href={"/taekwondo"}
+            >
               Taekwondo
             </Link>
             {/*    <Link onClick={() => setModal(false)} href={"/ritmo-kids"}>
               Ritmo Kids
             </Link> */}
-            <Link onClick={() => setModal(false)} href={"/power-box"}>
+            <Link
+              className={`${route.pathname === "/power-box" && styles.isHere}`}
+              onClick={() => setModal(false)}
+              href={"/power-box"}
+            >
               Power Box
             </Link>
-            <Link onClick={() => setModal(false)} href={"/zumba"}>
+            <Link
+              className={`${route.pathname === "/zumba" && styles.isHere}`}
+              onClick={() => setModal(false)}
+              href={"/zumba"}
+            >
               Zumba
             </Link>
-            <Link onClick={() => setModal(false)} href={"/kick-boxing"}>
+            <Link
+              className={`${
+                route.pathname === "/kick-boxing" && styles.isHere
+              }`}
+              onClick={() => setModal(false)}
+              href={"/kick-boxing"}
+            >
               Kick-Boxing
             </Link>
-            <Link onClick={() => setModal(false)} href={"/jiu-jitzu"}>
+            <Link
+              className={`${route.pathname === "/jiu-jitzu" && styles.isHere}`}
+              onClick={() => setModal(false)}
+              href={"/jiu-jitzu"}
+            >
               Jiu Jitzu
             </Link>
-            <Link onClick={() => setModal(false)} href={"/acrobacia-telas"}>
+            <Link
+              className={`${
+                route.pathname === "/acrobacia-telas" && styles.isHere
+              }`}
+              onClick={() => setModal(false)}
+              href={"/acrobacia-telas"}
+            >
               Acrobacia en telas
             </Link>
           </nav>
@@ -88,7 +125,7 @@ export default function NavbarMain() {
       <div className={styles.hamburguerBox}>
         <Hamburger
           size={25}
-          color="#77abb7"
+          color="#A5C9CA"
           toggled={modal}
           toggle={setModal}
         />

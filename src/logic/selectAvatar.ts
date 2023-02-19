@@ -11,8 +11,26 @@ const avatarAlbion = [
   "https://firebasestorage.googleapis.com/v0/b/sodapop-9f1d7.appspot.com/o/avatar%2FyKQyEkt.png?alt=media&token=57b3f681-3fd3-42ad-ac36-c1c6ade62645",
 ];
 
-export function selectAvatar(): string {
-  const index = Math.floor(Math.random() * avatarAlbion.length);
-  //   console.log(index);
-  return avatarAlbion[index];
+const avatarColours = [
+  "https://firebasestorage.googleapis.com/v0/b/sodapop-9f1d7.appspot.com/o/avatar%2FavatarColours%2Favatar1.svg?alt=media&token=3bb058fb-bbaf-40b9-a7cb-9d747a50386a",
+  "https://firebasestorage.googleapis.com/v0/b/sodapop-9f1d7.appspot.com/o/avatar%2FavatarColours%2Favatar6.svg?alt=media&token=0f30fa13-2593-45d4-b718-2ab430be49bb",
+  "https://firebasestorage.googleapis.com/v0/b/sodapop-9f1d7.appspot.com/o/avatar%2FavatarColours%2Favatar4.svg?alt=media&token=22a33718-9df7-4aa7-9cd4-fcafba8af46c",
+  "https://firebasestorage.googleapis.com/v0/b/sodapop-9f1d7.appspot.com/o/avatar%2FavatarColours%2Favatar2.svg?alt=media&token=5cf6864b-ca91-4561-ac81-5da8dfabfc34",
+  "https://firebasestorage.googleapis.com/v0/b/sodapop-9f1d7.appspot.com/o/avatar%2FavatarColours%2Favatar5.svg?alt=media&token=5c638433-ee1b-462d-95e9-2a3909cbcbf8",
+];
+
+export function selectAvatar(str: string | null): string {
+  if (typeof str !== null) {
+    if (str === "F") return avatarColours[0];
+    if (str === "J") return avatarColours[1];
+    if (str === "B") return avatarColours[2];
+    if (str === "C") return avatarColours[3];
+    return avatarColours[4];
+  } else {
+    return avatarColours[4];
+  }
+
+  // const index = Math.floor(Math.random() * avatarAlbion.length);
+  // //   console.log(index);
+  // return avatarAlbion[index];
 }

@@ -5,14 +5,37 @@
   max-width: 95vw;
   font-family: $main-text;
   margin: 3rem 0;
-  th {
-    color: grey;
-  }
-  .modalityText {
-    color: white;
-  }
+  .pricesContainer {
+    // background-color: green;
+    .priceBox {
+      position: relative;
+      background-color: $hunt1;
+      margin: 0.5rem 0;
+      // border-bottom: 2px solid grey;
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      padding: 0 1rem;
+      p {
+        margin: 0;
+      }
 
-  .priceText {
-    color: rgb(172, 172, 172);
+      .nameText {
+        min-width: 7.5rem;
+
+        padding-right: 10px;
+        font-weight: 400;
+        color: $text2;
+        @media (min-width: 485px) {
+          min-width: 14rem;
+        }
+      }
+      .modalityText {
+        font-style: italic;
+      }
+    }
+    .priceBox:hover {
+      background-color: $hunt3;
+    }
   }
 }

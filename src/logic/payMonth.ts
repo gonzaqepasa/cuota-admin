@@ -29,32 +29,20 @@ export function payMonth(
     confirmButtonText: "Mercado Pago",
     cancelButtonText: "Cancelar",
   }).then((result) => {
-    let payMethod: "MP" | "EF" = "EF";
     if (result.isConfirmed) {
-      payMethod = "MP";
+      pay("MP");
     } else if (result.isDenied) {
-      payMethod = "EF";
+      pay("EF");
     }
-    (async function () {
+    async function pay(method: "MP" | "EF") {
       try {
         const { data } = await axios.put(`${url}/month/pay-month`, {
           id,
           addAdmin,
-          mothodPay: payMethod,
+          mothodPay: method,
           price,
         });
-        /*  const res = await fetch(`http://${url}/turno/pay-turno`, {
-            method: "PUT", // or 'PUT'
-            body: JSON.stringify({
-              id,
-              addAdmin,
-              mothodPay,
-            }), // data can be `string` or {object}!
-            headers: {
-              "Content-Type": "application/object",
-            },
-          });
-          const data = await res.json(); */
+
         Swal.fire({
           background: "#0f202b",
           color: "white",
@@ -74,7 +62,7 @@ export function payMonth(
           text: `Consulte con el desarrollador (detalles en consola)`,
         });
       }
-    })();
+    }
   });
   e.preventDefault();
 }
