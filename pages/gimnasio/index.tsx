@@ -28,7 +28,7 @@ export default function Funcional() {
   async function getDataAgain() {
     setLoad(true);
     try {
-      const res = await fetch(`${url}/user/get-users?activity=Funcional`);
+      const res = await fetch(`${url}/user/get-users?activity=Gimnasio`);
       const data = await res.json();
       console.log("DATAAARTA ->>", data);
       setDataUser(data);
@@ -45,9 +45,9 @@ export default function Funcional() {
   useEffect(() => {
     (async function () {
       try {
-        const resUser = await fetch(`${url}/user/get-users?activity=Funcional`);
+        const resUser = await fetch(`${url}/user/get-users?activity=Gimnasio`);
         const resAct = await fetch(
-          `${url}/activity/get-activity?activity=Funcional`
+          `${url}/activity/get-activity?activity=Gimnasio`
         );
         const dataUser = await resUser.json();
         const dataAct = await resAct.json();
@@ -67,10 +67,10 @@ export default function Funcional() {
   ////////////////////////////////////////////
   if (error.msg) return <> Error en la BD {error.msg}</>;
   return (
-    <div className={`main backg backg-funcional`}>
-      <Title activityName={"Funcional"} />
+    <div className={`main backg backg-gimnasio`}>
+      <Title activityName={"Gimnasio"} />
       {!load && (
-        <ButtonAdd setModalAdd={setModalAdd} color={"Funcional"} />
+        <ButtonAdd setModalAdd={setModalAdd} color={"Gimnasio"} />
       )}
       {dataActivity && modalAdd && (
         <AddUserForm

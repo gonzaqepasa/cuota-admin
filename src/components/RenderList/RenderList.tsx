@@ -37,7 +37,7 @@ export default function RenderList({
     }
   }
 
-  // console.log("aca result", result);
+ 
 
   if (userData == false)
     return (
