@@ -29,7 +29,7 @@ export default function NavbarMain() {
   const route = useRouter();
   const user = auth.currentUser;
   // useEffect(() => {}, []);
-  const avatar = selectAvatar();
+  const avatar = selectAvatar(user?.email ? user.email[0] : null);
   //////// Estados ////////
   const [modal, setModal] = useState(false);
   /////////////////////////

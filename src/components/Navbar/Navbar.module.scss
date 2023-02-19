@@ -26,11 +26,13 @@
       .header {
         color: white;
         width: 100%;
+        padding-top: 3rem;
         .imgBox {
-          height: 5rem;
+          // height: 5rem;
           width: 2rem;
+          padding-left: 1rem;
           img {
-            height: 6rem;
+            height: 2rem;
           }
         }
         .textBox {
