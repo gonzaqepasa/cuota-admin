@@ -67,7 +67,7 @@ export default function AddUserForm({
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={`${styles.inputLabelBox}`}>
           <label
-            style={{ color: selectColor(dataActivity[0].nameActivity) }}
+            // style={{ color: selectColor(dataActivity[0].nameActivity) }}
             htmlFor=""
           >
             Modalidad
@@ -76,6 +76,7 @@ export default function AddUserForm({
             onChange={(e) => handleSelect(e.target.value, setActivity)}
             name="activity"
             id=""
+            style={{ color: selectColor(dataActivity[0].nameActivity) }}
           >
             {dataActivity.map((el: typesActivity) => (
               <option key={el.id} value={el.id}>
@@ -86,7 +87,9 @@ export default function AddUserForm({
         </div>
 
         <div className={`${styles.inputLabelBox}`} id="name">
-          <label style={{ color: selectColor(dataActivity[0].nameActivity) }}>
+          <label
+          //  style={{ color: selectColor(dataActivity[0].nameActivity) }}
+          >
             Nombre y apellido <i style={{ color: "red" }}>*</i>
           </label>
           <input
@@ -95,6 +98,7 @@ export default function AddUserForm({
             className={`${nameVal.val && styles.nameValInput}`}
             onChange={(e) => setName(e.target.value)}
             name="name"
+            style={{ color: selectColor(dataActivity[0].nameActivity) }}
           />
           <i className={`${nameVal.val && styles.nameValItalic}`}>
             {nameVal.msg}
@@ -102,10 +106,13 @@ export default function AddUserForm({
         </div>
 
         <div className={`${styles.inputLabelBox}`}>
-          <label style={{ color: selectColor(dataActivity[0].nameActivity) }}>
+          <label
+          // style={{ color: selectColor(dataActivity[0].nameActivity) }}
+          >
             Descripcion
           </label>
           <textarea
+            style={{ color: selectColor(dataActivity[0].nameActivity) }}
             placeholder="Ingrese alguna descripción..."
             autoComplete="none"
             onChange={(e) => setDescription(e.target.value)}

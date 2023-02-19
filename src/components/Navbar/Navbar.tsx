@@ -88,7 +88,7 @@ export default function NavbarMain() {
       <div className={styles.hamburguerBox}>
         <Hamburger
           size={25}
-          color="#77abb7"
+          color="#A5C9CA"
           toggled={modal}
           toggle={setModal}
         />

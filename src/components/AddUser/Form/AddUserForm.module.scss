@@ -32,16 +32,18 @@
         // margin: 0.2rem 0;
         font-weight: 300;
         font-size: 1rem;
+        color: $text1;
       }
 
       select,
       input,
       textarea {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.6);
         transition: 0.2s;
         color: $text2;
         border: none;
         border-radius: 5px;
+        font-weight: 400;
         font-size: 0.9rem;
       }
 
@@ -71,13 +73,13 @@
       select:hover,
       textarea:hover,
       input:hover {
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.8);
       }
 
       select:focus,
       input:focus,
       textarea:focus {
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 1);
         outline: none;
         padding-left: 0.5em;
       }
