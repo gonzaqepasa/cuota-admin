@@ -10,11 +10,14 @@
     .priceBox {
       position: relative;
       background-color: $hunt1;
+      border-radius: 5px;
       margin: 0.5rem 0;
       // border-bottom: 2px solid grey;
       display: flex;
       align-items: center;
       height: 3rem;
+      opacity: 0.9;
+      transition: 0.2s;
       padding: 0 1rem;
       p {
         margin: 0;
@@ -35,7 +38,7 @@
       }
     }
     .priceBox:hover {
-      background-color: $hunt3;
+      opacity: 1;
     }
   }
 }
