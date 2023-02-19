@@ -28,7 +28,7 @@ import { signOutUser } from "../../../firebase/auth/signOut";
 export default function NavbarMain() {
   const route = useRouter();
   const user = auth.currentUser;
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   const avatar = selectAvatar();
   //////// Estados ////////
   const [modal, setModal] = useState(false);
@@ -54,8 +54,8 @@ export default function NavbarMain() {
               Precios
             </Link>
             <br />
-            <Link onClick={() => setModal(false)} href={"/funcional"}>
-              Funcional{" "}
+            <Link onClick={() => setModal(false)} href={"/gimnasio"}>
+              Gimnasio{" "}
             </Link>
             <Link onClick={() => setModal(false)} href={"/taekwondo"}>
               Taekwondo
@@ -86,7 +86,12 @@ export default function NavbarMain() {
         ></button>
       </div>
       <div className={styles.hamburguerBox}>
-        <Hamburger size={25} color="#77abb7" toggled={modal} toggle={setModal} />
+        <Hamburger
+          size={25}
+          color="#77abb7"
+          toggled={modal}
+          toggle={setModal}
+        />
       </div>
     </div>
   );
