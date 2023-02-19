@@ -72,6 +72,12 @@ export default function NavbarMain() {
             <Link onClick={() => setModal(false)} href={"/kick-boxing"}>
               Kick-Boxing
             </Link>
+            <Link onClick={() => setModal(false)} href={"/jiu-jitzu"}>
+              Jiu Jitzu
+            </Link>
+            <Link onClick={() => setModal(false)} href={"/acrobacia-telas"}>
+              Acrobacia en telas
+            </Link>
           </nav>
         </div>
         <button
@@ -80,7 +86,7 @@ export default function NavbarMain() {
         ></button>
       </div>
       <div className={styles.hamburguerBox}>
-        <Hamburger size={25} color="grey" toggled={modal} toggle={setModal} />
+        <Hamburger size={25} color="#77abb7" toggled={modal} toggle={setModal} />
       </div>
     </div>
   );

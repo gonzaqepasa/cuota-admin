@@ -41,9 +41,9 @@ export default function RenderList({
 
   if (userData == false)
     return (
-      <>
-        <h1>No hay usuarios agregados</h1>
-      </>
+      <div className={styles.allRenderList}>
+        <h3 style={{ color: "white" }}>No hay usuarios agregados</h3>
+      </div>
     );
   return (
     <div className={`${styles.allRenderList}`}>
