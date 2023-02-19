@@ -46,30 +46,36 @@ export default function EditPriceModal({ data }: { data: typesActivity }) {
           >
             Aceptar
           </button>
-          <button className={styles.btnCan} onClick={() => {
-            setEditOn(false)
-            setNewPrice(data.price)
-            }}>
+          <button
+            className={styles.btnCan}
+            onClick={() => {
+              setEditOn(false);
+              setNewPrice(data.price);
+            }}
+          >
             Cancelar
           </button>
         </div>
       </div>
     </div>
   ) : (
-    <p style={{ position: "relative", fontWeight: 600 }}>
-      {numberToMoney(newPrice)}
-      <AiOutlineEdit
-        onClick={() => {
-          setEditOn(true);
-        }}
-        color={selectColor(data.nameActivity)}
-        style={{
-          position: "relative",
-          left: 10,
-          fontSize: "1.4rem",
-          cursor: "pointer",
-        }}
-      />
-    </p>
+    <div className={styles.allEditPirceModal}>
+      <p className={styles.paraPrice} style={{ position: "relative", fontWeight: 600 }}>
+
+        {numberToMoney(newPrice)}
+        <AiOutlineEdit
+          onClick={() => {
+            setEditOn(true);
+          }}
+          color={selectColor(data.nameActivity)}
+          style={{
+            position: "relative",
+            left: 10,
+            fontSize: "1.4rem",
+            cursor: "pointer",
+          }}
+        />
+      </p>
+    </div>
   );
 }
