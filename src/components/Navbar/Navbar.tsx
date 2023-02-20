@@ -58,6 +58,15 @@ export default function NavbarMain() {
             >
               Precios
             </Link>
+            <Link
+              className={`${
+                route.pathname === "/close-month" && styles.isHere
+              }`}
+              onClick={() => setModal(false)}
+              href={"/close-month"}
+            >
+              Cierre de mes
+            </Link>
             <br />
             <Link
               className={`${route.pathname === "/gimnasio" && styles.isHere}`}

@@ -31,3 +31,28 @@ export async function payMonth({ id, addAdmin, mothodPay, price }: any) {
     process.exit(1);
   }
 }
+
+export async function getMonths() {
+  try {
+    const months = prisma.month.findMany({
+      where: {
+        isPay: true,
+      },
+      include: {
+        calendar: {
+          include: {
+            User: {
+              include: { activity: true },
+            },
+          },
+        },
+      },
+    });
+    await prisma.$disconnect();
+    return months;
+  } catch (err) {
+    console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
