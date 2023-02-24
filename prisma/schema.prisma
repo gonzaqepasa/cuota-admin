@@ -82,8 +82,11 @@ model Month {
   pricePay  Int
 
   // A que calendario pertenece
-  calendar Calendar @relation(fields: [userId], references: [id])
-  userId   Int
+  calendar   Calendar @relation(fields: [calendarId], references: [id])
+  calendarId Int
+
+  //CheckIn 
+  checkIn CheckIn?
 }
 
 model CheckIn {
@@ -91,9 +94,11 @@ model CheckIn {
 
   value Int
 
-
-
   // Actividades 
   Activity   Activity? @relation(fields: [activityId], references: [id])
   activityId Int?
+
+  //Month
+  Month   Month @relation(fields: [monthId], references: [id])
+  monthId Int   @unique
 }
