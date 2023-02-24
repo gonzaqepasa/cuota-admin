@@ -60,16 +60,16 @@ export default function NavbarMain() {
             </Link>
             <br />
             <Link
-              className={`${route.pathname === "/gimnasio" && styles.isHere}`}
+              className={`${route.pathname === "/list/Gimnasio" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/gimnasio"}
+              href={"/list/Gimnasio"}
             >
               Gimnasio{" "}
             </Link>
             <Link
-              className={`${route.pathname === "/taekwondo" && styles.isHere}`}
+              className={`${route.pathname === "/list/Taekwondo" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/taekwondo"}
+              href={"/list/Taekwondo"}
             >
               Taekwondo
             </Link>
@@ -77,9 +77,9 @@ export default function NavbarMain() {
               Ritmo Kids
             </Link> */}
             <Link
-              className={`${route.pathname === "/power-box" && styles.isHere}`}
+              className={`${route.pathname === "/list/power-box" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/power-box"}
+              href={"/list/power-box"}
             >
               Power Box
             </Link>
