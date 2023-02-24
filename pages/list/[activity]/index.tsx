@@ -24,15 +24,22 @@ export default function List() {
   //Para obtener datos apenas ingresas a la pagina
   useEffect(() => {
     (async function () {
+      setLoad(true);
       try {
+        const resAct = await fetch(
+          `${url}/activity/get-activity?activity=${activity}`
+        );
+        const dataAct = await resAct.json();
+        (await dataAct.length) === 0 &&
+          setError({ msg: "Esta actividad no existe" });
+        setDataActivity(dataAct);
         const resUser = await fetch(
           `${url}/user/get-users?activity=${activity}`
         );
         const dataUser = await resUser.json();
-        (await dataUser.length) === 0 &&
-          setError({ msg: "No hay gente en la bd" });
         setDataUser(dataUser);
         setLoad(false);
+        setError({ msg: "" });
         console.log(dataUser);
       } catch (err) {
         setLoad(false);
@@ -41,26 +48,6 @@ export default function List() {
       }
     })();
   }, [activity]);
-
-  useEffect(() => {
-    (async function () {
-      try {
-        const resUser = await fetch(
-          `${url}/activity/get-activity?activity=${activity}`
-        );
-        const dataAct = await resUser.json();
-        (await dataAct.length) === 0 &&
-          setError({ msg: "No hay gente en la bd" });
-        setDataActivity(dataAct);
-        setLoad(false);
-        console.log(dataUser);
-      } catch (err) {
-        setLoad(false);
-        setError({ msg: "Problemas con la bd" });
-        console.log(err);
-      }
-    })();
-  }, []);
 
   async function getDataAgain() {
     setLoad(true);
@@ -84,25 +71,29 @@ export default function List() {
       </div>
     );
   if (error.msg) return <div className="main"> {error.msg}</div>;
-  return (
-    <div className="main">
-      <Title activityName={"Hola"} />
-      {!load && <ButtonAdd setModalAdd={setModalAdd} color={"Gimnasio"} />}
-      {dataActivity && modalAdd && (
-        <AddUserForm
-          dataActivity={dataActivity}
-          // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
-          // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
-          // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
-          setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
-          getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
-        />
-      )}
-      <RenderList
+  if (dataActivity.length !== 0)
+    return (
+      <div className="main">
+        <Title activityName={String(activity)} />
+
+        {!load && (
+          <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} />
+        )}
+        {dataActivity && modalAdd && (
+          <AddUserForm
+            dataActivity={dataActivity}
+            // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
+            // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
+            // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
+            setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
+            getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
+          />
+        )}
+        <RenderList
           setLoad={setLoad}
           userData={dataUser}
           getDataAgain={getDataAgain}
         />
-    </div>
-  );
+      </div>
+    );
 }
