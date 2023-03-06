@@ -19,8 +19,8 @@
     font-family: $main-text;
     padding-left: 10%;
     h2 {
-      font-size: 1.8rem;
-      color: white;
+      font-size: 1.6rem;
+      color: rgb(34, 34, 34);
       font-weight: 300;
       // border-bottom: solid grey 2px;
       text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
@@ -29,18 +29,19 @@
     a {
       text-decoration: inherit;
       // color: red;
-      transition: 0.1s;
       h3 {
+        transition: 0.5s;
         // font-variant: small-caps;
         font-weight: 500;
         font-size: 1.2rem;
         margin: 0rem 0;
         // color: $main-color;
-        text-shadow: 0px 0px 6px black;
+        text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.6);
       }
     }
-    a:hover {
-      transform: scale(1.03);
+    a h3:hover {
+      text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+      // transform: scale(1.03);
     }
   }
 
