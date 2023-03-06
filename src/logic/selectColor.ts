@@ -1,5 +1,5 @@
 export function selectColor(act: String): string {
-  if (act.toLowerCase() === "gimnasio") return `red`;
+  if (act.toLowerCase() === "gimnasio") return `#FF2E00`;
   if (act.toLowerCase() === "taekwondo") return `#1155DB`;
   if (act.toLowerCase() === "power box") return `#128300`;
   if (act.toLowerCase() === "zumba") return `#DB0135`;
