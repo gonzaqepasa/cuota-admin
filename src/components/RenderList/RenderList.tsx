@@ -9,6 +9,7 @@ import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import { visibilityUser } from "../../logic/visibilityUser";
 import { orderByActive } from "../../logic/orderByMonthName";
 import { selectColor } from "../../logic/selectColor";
+import { firstLetterUpper } from "../../logic/firstLetterUpper";
 
 export default function RenderList({
   userData,
@@ -74,7 +75,7 @@ export default function RenderList({
                 <FaUserCheck
                   color={selectColor(userData[0].activity.nameActivity)}
                 />
-                {el.name} -{" "}
+                {firstLetterUpper(el.name)} -{" "}
                 <i
                   style={{
                     fontWeight: 400,
