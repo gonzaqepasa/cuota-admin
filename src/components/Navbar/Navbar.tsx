@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
-import { Spin as Hamburger } from "hamburger-react";
+import { Divide  as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
 import { CgGym, CgHome } from "react-icons/cg";
 import {
@@ -125,7 +125,7 @@ export default function NavbarMain() {
       <div className={styles.hamburguerBox}>
         <Hamburger
           size={25}
-          color="#A5C9CA"
+          color="white"
           toggled={modal}
           toggle={setModal}
         />
