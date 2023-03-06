@@ -25,7 +25,7 @@ export function loginUser(
       setLoad(false);
 
       Swal.fire({
-        background: "#0f202b",
+        background: "#202020",
         color: "white",
         title: errorCode,
         icon: "error",

@@ -15,7 +15,7 @@ export function visibilityUser(
 ) {
   Swal.fire({
     reverseButtons: true,
-    background: "#0f202b",
+    background: "#202020",
     color: "white",
     title: active ? "Usuario Activo!" : "Usuario Inactivo",
     text: active
@@ -24,7 +24,7 @@ export function visibilityUser(
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#77abb7",
-    cancelButtonColor: "#182935",
+    cancelButtonColor: "#202020",
     confirmButtonText: "Aceptar",
     cancelButtonText: "Cancelar",
   }).then((result) => {

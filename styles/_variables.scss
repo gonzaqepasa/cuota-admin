@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
 // Backgrounds
-$backg-black1: black;
+$backg-black1: #171717;
 $backg-black2: rgba(31, 31, 31, 0.95);
 $backg-black3: rgba(0, 0, 0, 0.9);
 $backg-white1: rgb(12, 12, 12);
@@ -12,7 +12,8 @@ $backg-white2: rgba(255, 255, 255, 0.5);
 // Color Text
 $text1: rgb(207, 207, 207);
 $text2: rgb(209, 209, 209);
-$text3: rgb(148, 20, 20);
+$text3: rgb(0, 0, 0);
+$text-label-form: rgb(26, 26, 26);
 
 // MAIN
 $main-color: rgb(0, 217, 255);
@@ -24,6 +25,8 @@ $green-succes: rgb(66, 207, 0);
 
 // Pallete
 $hunt1: #191919;
-$hunt2: #395B64;
-$hunt3: #A5C9CA;
-$hunt4: #346e85;
+$hunt2: #f3f2ef;
+$hunt3: #8b8b8b;
+$hunt4: #0061a1;
+
+$test: #f3e300;
