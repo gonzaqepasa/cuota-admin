@@ -27,7 +27,7 @@ import { signOutUser } from "../../../firebase/auth/signOut";
 
 export default function NavbarMain() {
   const route = useRouter();
-  console.log(route.pathname);
+  console.log(route);
   const user = auth.currentUser;
   // useEffect(() => {}, []);
   const avatar = selectAvatar(user?.email ? user.email[0] : null);
@@ -60,16 +60,16 @@ export default function NavbarMain() {
             </Link>
             <br />
             <Link
-              className={`${route.pathname === "/gimnasio" && styles.isHere}`}
+              className={`${route.asPath === "/list/Gimnasio" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/gimnasio"}
+              href={"/list/Gimnasio"}
             >
               Gimnasio{" "}
             </Link>
             <Link
-              className={`${route.pathname === "/taekwondo" && styles.isHere}`}
+              className={`${route.asPath === "/list/Taekwondo" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/taekwondo"}
+              href={"/list/Taekwondo"}
             >
               Taekwondo
             </Link>
@@ -77,41 +77,41 @@ export default function NavbarMain() {
               Ritmo Kids
             </Link> */}
             <Link
-              className={`${route.pathname === "/power-box" && styles.isHere}`}
+              className={`${route.asPath === "/list/Power Box" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/power-box"}
+              href={"/list/Power Box"}
             >
               Power Box
             </Link>
             <Link
-              className={`${route.pathname === "/zumba" && styles.isHere}`}
+              className={`${route.asPath === "/Zumba" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/zumba"}
+              href={"/list/Zumba"}
             >
               Zumba
             </Link>
             <Link
               className={`${
-                route.pathname === "/kick-boxing" && styles.isHere
+                route.asPath === "/Kick Boxing" && styles.isHere
               }`}
               onClick={() => setModal(false)}
-              href={"/kick-boxing"}
+              href={"/list/Kick Boxing"}
             >
               Kick-Boxing
             </Link>
             <Link
-              className={`${route.pathname === "/jiu-jitzu" && styles.isHere}`}
+              className={`${route.asPath === "/Jiu Jitzu" && styles.isHere}`}
               onClick={() => setModal(false)}
-              href={"/jiu-jitzu"}
+              href={"/list/Jiu Jitzu"}
             >
               Jiu Jitzu
             </Link>
             <Link
               className={`${
-                route.pathname === "/acrobacia-telas" && styles.isHere
+                route.pathname === "/Acrobacia Telas" && styles.isHere
               }`}
               onClick={() => setModal(false)}
-              href={"/acrobacia-telas"}
+              href={"/list/Acrobacia telas"}
             >
               Acrobacia en telas
             </Link>
