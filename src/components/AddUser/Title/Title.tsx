@@ -5,7 +5,7 @@ export default function Title({ activityName }: { activityName: string }) {
   return (
     <div className={styles.tituleActivityDiv}>
       <h2
-        style={{ borderBottom: `1px solid ${selectColor(activityName)}` }}
+        style={{ borderBottom: `2px solid ${selectColor(activityName)}` }}
         className={styles.tituleActivityH2}
       >
         {activityName}

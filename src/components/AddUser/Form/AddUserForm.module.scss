@@ -6,6 +6,7 @@
   // color: black;
   // min-height: 95vh;
   background-color: $hunt2;
+  
   // background: rgba(0, 0, 0, 0.5);
   width: 100%;
   //   height: 450px;
@@ -30,9 +31,9 @@
       font-family: $main-text;
       label {
         // margin: 0.2rem 0;
-        font-weight: 300;
-        font-size: 1rem;
-        color: $text1;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: $text-label-form;
       }
 
       select,
@@ -43,8 +44,10 @@
         color: $text2;
         border: none;
         border-radius: 5px;
-        font-weight: 400;
+        font-weight: 600;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
         font-size: 0.9rem;
+        padding-left: 0.5rem;
       }
 
       select {
@@ -57,7 +60,6 @@
       input {
         height: 2.5rem;
 
-        padding: 0 5px;
         // background-color: transparent;
       }
       textarea {
@@ -65,7 +67,7 @@
         min-width: 100%;
         min-height: 4rem;
         max-height: 10rem;
-        padding: 5px;
+        padding: 0.5rem;
 
         // background-color: transparent;
       }
@@ -81,7 +83,7 @@
       textarea:focus {
         background-color: rgba(0, 0, 0, 1);
         outline: none;
-        padding-left: 0.5em;
+        padding-left: 0.8em;
       }
 
       .nameValInput {
@@ -120,8 +122,8 @@
       }
       .btnCancel {
         background-color: transparent;
-        border: 1px solid $hunt3;
-        color: $hunt3;
+        border: 1px solid $hunt4;
+        color: $hunt4;
       }
 
       button:hover {

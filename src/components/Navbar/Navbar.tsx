@@ -27,10 +27,10 @@ import { signOutUser } from "../../../firebase/auth/signOut";
 
 export default function NavbarMain() {
   const route = useRouter();
-  console.log(route);
+  console.log(route.asPath);
   const user = auth.currentUser;
   // useEffect(() => {}, []);
-  const avatar = selectAvatar(user?.email ? user.email[0] : null);
+  const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);
   //////// Estados ////////
   const [modal, setModal] = useState(false);
   /////////////////////////
@@ -77,14 +77,14 @@ export default function NavbarMain() {
               Ritmo Kids
             </Link> */}
             <Link
-              className={`${route.asPath === "/list/Power Box" && styles.isHere}`}
+              className={`${route.asPath === "/list/Power%20Box" && styles.isHere}`}
               onClick={() => setModal(false)}
               href={"/list/Power Box"}
             >
               Power Box
             </Link>
             <Link
-              className={`${route.asPath === "/Zumba" && styles.isHere}`}
+              className={`${route.asPath === "/list/Zumba" && styles.isHere}`}
               onClick={() => setModal(false)}
               href={"/list/Zumba"}
             >
@@ -92,7 +92,7 @@ export default function NavbarMain() {
             </Link>
             <Link
               className={`${
-                route.asPath === "/Kick Boxing" && styles.isHere
+                route.asPath === "/list/Kick%20Boxing" && styles.isHere
               }`}
               onClick={() => setModal(false)}
               href={"/list/Kick Boxing"}
@@ -100,7 +100,7 @@ export default function NavbarMain() {
               Kick-Boxing
             </Link>
             <Link
-              className={`${route.asPath === "/Jiu Jitzu" && styles.isHere}`}
+              className={`${route.asPath === "/list/Jiu%20Jitzu" && styles.isHere}`}
               onClick={() => setModal(false)}
               href={"/list/Jiu Jitzu"}
             >
@@ -108,7 +108,7 @@ export default function NavbarMain() {
             </Link>
             <Link
               className={`${
-                route.pathname === "/Acrobacia Telas" && styles.isHere
+                route.asPath === "/list/Acrobacia%20telas" && styles.isHere
               }`}
               onClick={() => setModal(false)}
               href={"/list/Acrobacia telas"}
