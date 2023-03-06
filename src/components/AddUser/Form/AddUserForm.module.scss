@@ -114,7 +114,7 @@
         color: $text2;
         text-shadow: 1px 1px 3px rgba(29, 29, 29, 0.4);
         filter: opacity(0.8);
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
       }
       .btnAccept {
         background-color: $hunt4;
@@ -128,7 +128,7 @@
 
       button:hover {
         filter: opacity(1);
-        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+        // box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       }
     }
   }

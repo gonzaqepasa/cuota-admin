@@ -15,7 +15,7 @@ export function payMonth(
 ) {
   Swal.fire({
     reverseButtons: true,
-    background: "#0f202b",
+    background: "#202020",
     color: "white",
     title: "Estas seguro?",
     text: `${userName} pago el mes de ${monthName}`,
@@ -24,7 +24,7 @@ export function payMonth(
     showDenyButton: true,
     denyButtonColor: "#379237",
     confirmButtonColor: "#009ee3",
-    cancelButtonColor: "#0f202b",
+    cancelButtonColor: "#202020",
     denyButtonText: "Efectivo",
     confirmButtonText: "Mercado Pago",
     cancelButtonText: "Cancelar",
@@ -44,7 +44,7 @@ export function payMonth(
         });
 
         Swal.fire({
-          background: "#0f202b",
+          background: "#202020",
           color: "white",
           icon: "success",
           title: `Pago aceptado!`,
@@ -55,7 +55,7 @@ export function payMonth(
       } catch (err) {
         console.log(err);
         Swal.fire({
-          background: "#0f202b",
+          background: "#202020",
           color: "white",
           icon: "error",
           title: `Error inesperado`,

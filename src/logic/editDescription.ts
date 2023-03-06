@@ -41,7 +41,7 @@ export function editDescription(
       console.log(err);
 
       Swal.fire({
-        background: "#0f202b",
+        background: "#202020",
         color: "white",
         icon: "error",
         title: `Error inesperado`,
