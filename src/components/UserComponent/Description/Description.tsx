@@ -32,7 +32,7 @@ export default function Description({
       <h5 style={{ color }}>Descripción:</h5>
       <div className={styles.detailContainer}>
         {editOn ? (
-          <>
+          <div className={styles.editOnDescription}>
             <input
               value={descript}
               onChange={(e) => {
@@ -66,7 +66,7 @@ export default function Description({
                 Cancelar
               </button>
             </div>
-          </>
+          </div>
         ) : (
           <>
             <p>{descript}</p>
