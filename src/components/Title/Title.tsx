@@ -1,7 +1,12 @@
-import { selectColor } from "../../../logic/selectColor";
+import { selectColor } from "../../logic/selectColor";
+import { typesActivity } from "../../types/types-user";
 import styles from "./Title.module.scss";
 
-export default function Title({ activityName }: { activityName: string }) {
+interface Props {
+  activityName: string;
+}
+
+export const Title: React.FC<Props> = ({ activityName }) => {
   return (
     <div className={styles.tituleActivityDiv}>
       <h2
@@ -12,4 +17,4 @@ export default function Title({ activityName }: { activityName: string }) {
       </h2>
     </div>
   );
-}
+};

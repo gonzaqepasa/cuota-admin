@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ButtonAdd from "../../../src/components/AddUser/ButtonAdd/ButtomAdd";
-import AddUserForm from "../../../src/components/AddUser/Form/AddUserForm";
-import Title from "../../../src/components/AddUser/Title/Title";
+import { ButtonAdd } from "../../../src/components/AddUser/ButtonAdd/ButtomAdd";
+import { AddUserForm } from "../../../src/components/AddUser/Form/AddUserForm";
+import { Title } from "../../../src/components/Title/Title";
 import Loading from "../../../src/components/Loading/Loading";
-import RenderList from "../../../src/components/RenderList/RenderList";
+import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/services-url";
 import { typesActivity } from "../../../src/types/types-user";
 
@@ -76,7 +76,7 @@ export default function List() {
       <div className="main">
         <Title activityName={String(activity)} />
 
-        {!load && (
+        {dataActivity && (
           <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} />
         )}
         {dataActivity && modalAdd && (
