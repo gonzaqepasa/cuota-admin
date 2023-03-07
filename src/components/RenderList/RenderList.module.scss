@@ -14,33 +14,36 @@
       height: 3rem;
       margin: 2rem 0;
       width: 18rem;
-      // background-color: rgba(0, 0, 0, 1);
+
       // box-shadow: 1px 1px 5px grey;
-      border-bottom: 2px solid grey;
+      // border-bottom: 2px solid grey;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       position: relative;
+      background-color: #ffffff;
+      border-radius: 50px;
       input {
-        border-radius: 5px;
-        color: white;
-        background: none;
+        border-radius: 50px;
+        color: rgb(39, 39, 39);
+        background-color: hsla(0, 0%, 9%, 0.0);
+
         border: none;
         height: 100%;
         width: inherit;
         position: absolute;
         padding: 0 1rem;
-        transition: 0.2s;
+        transition: 0.5s;
         font-family: $main-text;
-        font-weight: 300;
+        // font-weight: 300;
       }
       input:focus {
         outline: none;
-        background-color: rgba(128, 128, 128, 0.1);
+        background-color: hsla(0, 0%, 9%, 0.2);
       }
       svg {
         margin: 0 1rem;
-        color: rgb(153, 153, 153);
+        color: rgb(77, 77, 77);
       }
     }
   }

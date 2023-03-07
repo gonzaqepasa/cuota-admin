@@ -38,12 +38,12 @@ export default function RenderList({
     }
   }
 
- 
-
   if (userData == false)
     return (
       <div className={styles.allRenderList}>
-        <h3 style={{ color: "white", margin:'5rem 0' }}>No hay usuarios agregados</h3>
+        <h3 style={{ color: "white", margin: "5rem 0" }}>
+          No hay usuarios agregados
+        </h3>
       </div>
     );
   return (
@@ -53,6 +53,8 @@ export default function RenderList({
           <input
             placeholder="Buscar..."
             value={search}
+            name="search"
+            autoComplete="none"
             onChange={(e) => handleChange(e)}
           />
           <ImSearch />
