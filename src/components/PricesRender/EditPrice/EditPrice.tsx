@@ -6,7 +6,11 @@ import { numberToMoney } from "../../../logic/numberToMoney";
 import styles from "./EditPrice.module.scss";
 import { editPrice } from "../../../logic/editPrice";
 
-export default function EditPriceModal({ data }: { data: typesActivity }) {
+interface Props {
+  data: typesActivity;
+}
+
+export const EditPriceModal: React.FC<Props> = ({ data }) => {
   const [editOn, setEditOn] = useState(false);
   const [newPrice, setNewPrice] = useState(data.price);
 
@@ -60,8 +64,10 @@ export default function EditPriceModal({ data }: { data: typesActivity }) {
     </div>
   ) : (
     <div className={styles.allEditPirceModal}>
-      <p className={styles.paraPrice} style={{ position: "relative", fontWeight: 600 }}>
-
+      <p
+        className={styles.paraPrice}
+        style={{ position: "relative", fontWeight: 600 }}
+      >
         {numberToMoney(newPrice)}
         <AiOutlineEdit
           onClick={() => {
@@ -78,4 +84,4 @@ export default function EditPriceModal({ data }: { data: typesActivity }) {
       </p>
     </div>
   );
-}
+};
