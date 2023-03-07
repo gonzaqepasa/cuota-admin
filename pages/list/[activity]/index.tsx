@@ -38,7 +38,7 @@ export default function List() {
         );
         const dataUser = await resUser.json();
         setDataUser(dataUser);
-        setLoad(true);
+        setLoad(false);
         setError({ msg: "" });
         console.log(dataUser);
       } catch (err) {
