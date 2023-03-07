@@ -1,16 +1,15 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
 .tituleActivityDiv {
-    font-family: $main-text;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background: $hunt2;
-    h2 {
-      color: rgb(44, 44, 44);
-     
-      font-weight: 400;
-      margin-top: 1rem;
-      text-shadow: 1px 1px 5px black;
-    }
+  font-family: $main-text;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: $hunt2;
+  h2 {
+    color: $title;
+    font-weight: 400;
+    margin-top: 1rem;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
   }
+}
