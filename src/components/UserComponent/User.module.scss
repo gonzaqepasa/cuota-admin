@@ -64,7 +64,7 @@
   /////////////////////// MESES ///////////////////////////
   .monthsContainer {
     background-color: $backg-black2;
-    backdrop-filter: blur(4px);
+    // backdrop-filter: blur(4px);
     //   display: grid;
     //   grid-template-columns: repeat(3, auto);
     //   grid-template-rows: repeat(4, auto);
@@ -192,7 +192,7 @@
       }
     }
     .monthBox:hover {
-      background-color: $hunt3;
+      background-color: rgba(0, 0, 0, 0.2);
       .conditionIsPayContainer {
         .isFalse {
           svg {
