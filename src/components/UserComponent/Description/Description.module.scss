@@ -11,15 +11,17 @@
   h5 {
     margin: 2px 5px;
     font-size: 0.9rem;
-    text-shadow: 0px 0px 1px grey;
+
+    // text-shadow: 0px 0px 1px grey;
   }
 
   .detailContainer {
-    // background-color: green;
+    background-color: rgba(126, 126, 126, 0.2);
+    border-radius: 5px;
     position: relative;
     display: flex;
     min-height: 3rem;
-    padding: 0.3rem;
+    padding: 0.5rem;
     // padding-right: 3rem;
     font-family: $main-text;
     justify-content: space-between;
@@ -31,7 +33,7 @@
     }
     .btnChangeDescription {
       position: absolute;
-      right: 0;
+      right: 10px;
       border: none;
       background: none;
       font-size: 1.3rem;
@@ -67,7 +69,6 @@
         .btnAcp {
           background-color: $hunt4;
           color: rgb(255, 255, 255);
-          
         }
         .btnCan {
           background-color: transparent;
@@ -90,14 +91,12 @@
         padding-left: 0.3rem;
         margin: 0 0.5rem 1rem 0;
       }
-      input:hover {
-        background-color: rgba(0, 0, 0, 0.15);
-      }
+     
       input:focus {
         outline: none;
         padding-left: 0.6rem;
         color: $text2;
-        background-color: rgba(0, 0, 0, 0.8);
+        // background-color: rgba(0, 0, 0, 0.8);
         border-radius: 5px;
       }
     }

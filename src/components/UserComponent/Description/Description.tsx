@@ -5,19 +5,20 @@ import { typesUser } from "../../../types/types-user";
 import { editDescription } from "../../../logic/editDescription";
 import Loading from "../../Loading/Loading";
 
-export default function Description({
-  id,
-  description,
-  color,
-  getDataAgain,
-}: {
+interface Props {
   id: Number;
   description: string | undefined;
   color: string;
   getDataAgain: Function;
-}) {
-  // Component...
+}
 
+export const Description: React.FC<Props> = ({
+  id,
+  description,
+  color,
+  getDataAgain,
+}) => {
+  // Component...
   const [load, setLoad] = useState(false);
   const [editOn, setEditOn] = useState(false);
   const [descript, setDescript] = useState(description);
@@ -83,4 +84,4 @@ export default function Description({
       </div>
     </div>
   );
-}
+};

@@ -4,22 +4,23 @@ import { typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
 import { ImSearch } from "react-icons/im";
 import { FaUserCheck } from "react-icons/fa";
-import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import { visibilityUser } from "../../logic/visibilityUser";
 import { orderByActive } from "../../logic/orderByMonthName";
 import { selectColor } from "../../logic/selectColor";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 
-export default function RenderList({
+interface Props {
+  userData: typesUser[] | false;
+  getDataAgain: () => void;
+  setLoad: Dispatch<SetStateAction<boolean>>;
+}
+
+export const RenderList: React.FC<Props> = ({
   userData,
   getDataAgain,
   setLoad,
-}: {
-  userData: typesUser[] | false;
-  getDataAgain: Function;
-  setLoad: Dispatch<SetStateAction<boolean>>;
-}) {
+}) => {
   const [search, setSearch] = useState("");
   // const [dataToRender, setDataToRender] = useState(userData);
 
@@ -38,12 +39,12 @@ export default function RenderList({
     }
   }
 
- 
-
   if (userData == false)
     return (
       <div className={styles.allRenderList}>
-        <h3 style={{ color: "white", margin:'5rem 0' }}>No hay usuarios agregados</h3>
+        <h3 style={{ color: "white", margin: "5rem 0" }}>
+          No hay usuarios agregados
+        </h3>
       </div>
     );
   return (
@@ -53,6 +54,8 @@ export default function RenderList({
           <input
             placeholder="Buscar..."
             value={search}
+            name="search"
+            autoComplete="none"
             onChange={(e) => handleChange(e)}
           />
           <ImSearch />
@@ -110,4 +113,4 @@ export default function RenderList({
       </div>
     </div>
   );
-}
+};

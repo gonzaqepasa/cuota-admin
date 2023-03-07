@@ -1,12 +1,15 @@
 import { orderById } from "../../logic/orderByMonthName";
 import { selectColor } from "../../logic/selectColor";
 import { typesActivity } from "../../types/types-user";
-import EditPriceModal from "./EditPrice/EditPrice";
+import { EditPriceModal } from "./EditPrice/EditPrice";
 import styles from "./PricesRender.module.scss";
 
-export default function PricesRender({ data }: { data: typesActivity[] }) {
-  // Component...
+interface Props {
+  data: typesActivity[];
+}
 
+export const PricesRender: React.FC<Props> = ({ data }) => {
+  // Component...
   return (
     <div className={`${styles.allPricesRender}`}>
       <div className={styles.pricesContainer}>
@@ -36,4 +39,4 @@ export default function PricesRender({ data }: { data: typesActivity[] }) {
       </div>
     </div>
   );
-}
+};

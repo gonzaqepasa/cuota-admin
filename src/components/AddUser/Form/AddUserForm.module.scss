@@ -6,7 +6,7 @@
   // color: black;
   // min-height: 95vh;
   background-color: $hunt2;
-  
+
   // background: rgba(0, 0, 0, 0.5);
   width: 100%;
   //   height: 450px;
@@ -39,12 +39,12 @@
       select,
       input,
       textarea {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(231, 231, 231, 0.1);
         transition: 0.2s;
-       
+
         border: none;
         border-radius: 5px;
-        font-weight: 500;
+        font-weight: 400;
         // text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
         font-size: 0.9rem;
         padding-left: 0.5rem;
@@ -75,13 +75,13 @@
       select:hover,
       textarea:hover,
       input:hover {
-        background-color: rgba(0, 0, 0, 0.25);
+        background-color: rgba(231, 231, 231, 0.15);
       }
 
       select:focus,
       input:focus,
       textarea:focus {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(231, 231, 231, 0.05);
         outline: none;
         padding-left: 1em;
       }
@@ -115,6 +115,7 @@
         text-shadow: 1px 1px 3px rgba(29, 29, 29, 0.4);
         filter: opacity(0.8);
         box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+        font-size: 0.9rem;
       }
       .btnAccept {
         background-color: $hunt4;
@@ -122,7 +123,7 @@
       }
       .btnCancel {
         background-color: transparent;
-        border: 1px solid $hunt4;
+        // border: 1px solid $hunt4;
         color: $hunt4;
       }
 
