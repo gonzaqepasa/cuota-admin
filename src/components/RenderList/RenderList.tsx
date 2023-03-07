@@ -54,6 +54,8 @@ export const RenderList: React.FC<Props> = ({
           <input
             placeholder="Buscar..."
             value={search}
+            name="search"
+            autoComplete="none"
             onChange={(e) => handleChange(e)}
           />
           <ImSearch />
