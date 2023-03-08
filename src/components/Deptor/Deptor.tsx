@@ -18,13 +18,13 @@ export const Deptor: React.FC<Props> = ({
   setMonthSelected,
 }) => {
   return (
-    <>
+    <div className={styles.allDeptor}>
       <TitleDeptor />
       <SelectMonth
         monthSelected={monthSelected}
         setMonthSelected={setMonthSelected}
       />
       <RenderDeptor dataMonths={dataMonths} />
-    </>
+    </div>
   );
 };

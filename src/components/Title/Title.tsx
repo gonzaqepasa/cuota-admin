@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { selectColor } from "../../logic/selectColor";
 import { typesActivity } from "../../types/types-user";
 import styles from "./Title.module.scss";
@@ -15,6 +16,9 @@ export const Title: React.FC<Props> = ({ activityName }) => {
       >
         {activityName}
       </h2>
+      <Link href={`/quien-debe?activity=${activityName}`}>
+            ¿Quién debe?
+          </Link>
     </div>
   );
 };

@@ -20,13 +20,17 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
     if (activity === title) {
       setView(true);
     }
-  });
+  }, [activity]);
+  const handleClose = () => {
+    setView(!view);
+    router.push(`/quien-debe?`);
+  };
   return (
     <div
       className={`${styles.allCardDeptors}`}
       //   style={{ border: ` 1px solid ${selectColor(title)} ` }}
     >
-      <button onClick={() => setView(!view)} className={`${styles.cardHead} `}>
+      <button onClick={() => handleClose()} className={`${styles.cardHead} `}>
         <div className={styles.numberLengthBox}>
           <p className={styles.paraLength}>{data.length}</p>
         </div>
@@ -36,7 +40,7 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
         <div className={styles.btnViewBox}>
           <button
             disabled={data.length === 0}
-            onClick={() => setView(!view)}
+            onClick={() => handleClose()}
             className={`${styles.btnView} `}
             style={{
               border: `1px solid ${selectColor(title)}`,
@@ -60,6 +64,9 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
             </i>
           </Link>
         ))}
+      </div>
+      <div>
+        <Link href={`/list/${title}`}>ir a la lista</Link>
       </div>
     </div>
   );
