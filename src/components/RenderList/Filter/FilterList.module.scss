@@ -1,0 +1,39 @@
+@import "../../../../styles/variables";
+.allFilterList {
+  display: flex;
+  flex-wrap: wrap;
+  //   height: 3rem;
+  align-items: center;
+  justify-content: center;
+//   background-color: $hunt3;
+  margin: 1rem 0;
+  max-width: 30rem;
+  width: 90%;
+  .textContainer {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-family: $main-text;
+    .checkbox {
+      transition: .5s;
+      height: 1rem;
+      width: 1rem;
+    }
+    .checkbox[type="checkbox"]:checked {
+      box-shadow: 0 0 0 3px $green-succes;
+    }
+    p {
+      transition: 0.2s;
+      margin: 0 1rem;
+      color: $text2;
+      font-size: 0.8rem;
+    }
+  }
+  .filterContainer {
+    transition: 0.2s;
+  }
+  .filterDisabled {
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+}

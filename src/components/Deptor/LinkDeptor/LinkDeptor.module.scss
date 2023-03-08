@@ -1,0 +1,11 @@
+@import "../../../../styles/variables";
+
+.link {
+  color: $text3;
+  transition: 0.1s;
+  font-size: 0.9rem;
+}
+
+.link:hover {
+  color: $text1;
+}
