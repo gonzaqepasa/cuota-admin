@@ -7,22 +7,22 @@ import { typesActivity } from "../../../types/types-user";
 import { selectColor } from "../../../logic/selectColor";
 import Loading from "../../Loading/Loading";
 
-type typesPropsForm = {
+interface Props {
   // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   // modalityOptions: string[];
-  getDataAgain: Function;
+  getDataAgain: () => void;
   dataActivity: typesActivity[];
-};
+}
 
-export default function AddUserForm({
+export const AddUserForm: React.FC<Props> = ({
   // modalityOptions,
   // activity,
   // setActivity,
   setModalAdd,
   getDataAgain,
   dataActivity,
-}: typesPropsForm) {
+}) => {
   const [load, setLoad] = useState(false);
 
   //////////////// Estados de los inputs ////////////////
@@ -133,4 +133,4 @@ export default function AddUserForm({
       </form>
     </div>
   );
-}
+};

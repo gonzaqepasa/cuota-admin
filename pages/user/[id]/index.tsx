@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { GetStaticPaths } from "next";
 
-import User from "../../../src/components/UserComponent/User";
+import { User } from "../../../src/components/UserComponent/User";
 import { typesUser } from "../../../src/types/types-user";
 import { url } from "../../../src/config/services-url";
 import Loading from "../../../src/components/Loading/Loading";
@@ -19,6 +19,7 @@ export default function UserData() {
   useEffect(() => {
     (async function () {
       try {
+        setLoad(true);
         const resUser = await fetch(`${url}/user/user?USER=${route.query.id}`);
         /*  const resAct = await fetch(
           `${url}/activity/get-activity?activity=Funcional`
@@ -36,7 +37,7 @@ export default function UserData() {
         console.log(err);
       }
     })();
-  }, []);
+  }, [route.query.id]);
 
   //////////////////////////////
   if (load) return <Loading />;

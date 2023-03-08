@@ -7,7 +7,7 @@ import { FcCheckmark } from "react-icons/fc";
 import { FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import { payMonth } from "../../logic/payMonth";
 import { orderByMonth } from "../../logic/orderByMonthName";
-import Description from "./Description/Description";
+import {Description} from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { Carousel } from "react-bootstrap";
@@ -17,12 +17,12 @@ import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
 import Link from "next/link";
 
-interface typesProps {
+interface Props {
   userData: typesUser;
   id: string;
 }
 
-export default function User({ userData, id }: typesProps) {
+export const User: React.FC<Props> = ({ userData, id }) => {
   const [monthData, setMonthData] = useState<any>(
     orderByMonth(userData.calendar.months)
   );
@@ -59,9 +59,7 @@ export default function User({ userData, id }: typesProps) {
           </h2>
           <Link
             style={{ color: selectColor(user.activity.nameActivity) }}
-            href={`/${fromNameToUrl(
-              user.activity.nameActivity.toLocaleLowerCase()
-            )}`}
+            href={`/list/${fromNameToUrl(user.activity.nameActivity)}`}
           >
             <h3>
               {user.activity.nameActivity.toUpperCase()} -{" "}
@@ -152,4 +150,4 @@ export default function User({ userData, id }: typesProps) {
       </div>
     );
   return <div>No existe este usuario</div>;
-}
+};

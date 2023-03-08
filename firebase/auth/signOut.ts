@@ -7,14 +7,14 @@ export function signOutUser(e: MouseEvent<HTMLButtonElement>) {
   e.preventDefault();
   Swal.fire({
     reverseButtons: true,
-    background: "#0f202b",
+    background: "#202020",
     color: "white",
     title: "Cerrar sesión",
     text: `Seguro quieres cerrar la sesión`,
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#476d7c",
-    cancelButtonColor: "#0f202b",
+    cancelButtonColor: "#202020",
     confirmButtonText: "Si",
     cancelButtonText: "Cancelar",
   }).then((result) => {

@@ -21,7 +21,7 @@ const avatarColours = [
 
 export function selectAvatar(str: string | null): string {
   if (typeof str !== null) {
-    if (str === "F") return avatarColours[0];
+    if (str === "H") return avatarColours[0];
     if (str === "J") return avatarColours[1];
     if (str === "B") return avatarColours[2];
     if (str === "C") return avatarColours[3];

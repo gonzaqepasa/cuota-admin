@@ -16,7 +16,7 @@ export default async function handler(
 
     res.status(200).json(users);
   } catch (err) {
-    res.status(300).json(err);
+    res.status(300).json({ err: err, msg: "Problema con la base de datos" });
     console.log(err);
   }
 }

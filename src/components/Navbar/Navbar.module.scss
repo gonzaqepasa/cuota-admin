@@ -24,7 +24,6 @@
       // background-color: red;
       background-color: $hunt2;
       .header {
-        color: white;
         width: 100%;
         padding-top: 3rem;
         .imgBox {
@@ -32,7 +31,10 @@
           width: 2rem;
           padding-left: 1rem;
           img {
-            height: 2rem;
+            height: 3rem;
+            border-radius: 50%;
+
+            box-shadow: 0px 0px 2px black;
           }
         }
         .textBox {
@@ -41,6 +43,8 @@
           // background-color: red;
           margin-top: 0.5rem;
           p {
+            font-weight: 400;
+            color: $nav-email;
             font-size: 0.8rem;
             margin: 0;
           }
@@ -70,14 +74,16 @@
         display: flex;
         flex-direction: column;
         a {
-          color: grey;
-
-          padding: 0 1.5rem;
+          color: $nav-a;
+          opacity: 1;
+          font-weight: 300;
+          padding: 0.2rem 0 0 1.5rem;
+          margin-top: 0.3rem;
           text-decoration: none;
           position: relative;
         }
         a:hover {
-          color: $text1;
+          color: $nav-a-hover;
         }
         a::before {
           content: "";
@@ -85,7 +91,7 @@
           width: 100%;
           height: 2px;
           border-radius: 4px;
-          background-color: $hunt3;
+          background-color: white;
           bottom: 0;
           left: 0;
           transform-origin: right;
@@ -97,10 +103,14 @@
           transform: scaleX(1);
         }
         .isHere {
-          background-color: $hunt2;
-          color: $hunt3;
-          font-weight: 500;
-          border-bottom: solid 2px $hunt3;
+          background-color: rgb(255, 255, 255);
+          color: black;
+          // border-bottom: solid 2px white;
+          transition: 0.3s;
+        }
+        .isHere:hover {
+          background-color: rgba(255, 255, 255, 1);
+          color: black;
         }
       }
     }
