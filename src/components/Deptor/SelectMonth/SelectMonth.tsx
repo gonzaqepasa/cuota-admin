@@ -6,14 +6,17 @@ import { typesMonthNames } from "../../../types/types-user";
 interface Props {
   monthSelected: typesMonthNames;
   setMonthSelected: Dispatch<SetStateAction<typesMonthNames>>;
+  filterOn: boolean;
 }
 export const SelectMonth: React.FC<Props> = ({
   monthSelected,
   setMonthSelected,
+  filterOn,
 }) => {
   return (
     <div className={`${styles.allRender}`}>
       <select
+        disabled={!filterOn}
         value={monthSelected}
         onChange={(e: any) => setMonthSelected(e.target.value)}
         name=""

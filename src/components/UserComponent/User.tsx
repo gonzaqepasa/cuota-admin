@@ -16,6 +16,7 @@ import mp from "../../../styles/mp.png";
 import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
 import Link from "next/link";
+import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 
 interface Props {
   userData: typesUser;
@@ -68,9 +69,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
               </i>
             </h3>
           </Link>
-          <Link href={`/quien-debe?activity=${user.activity.nameActivity}`}>
-            ¿Quién debe?
-          </Link>
+          <LinkDeptor activityName={user.activity.nameActivity} />
         </div>
 
         {/*  <--- Contenedor de Card */}

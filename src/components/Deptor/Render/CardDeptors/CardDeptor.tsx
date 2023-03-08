@@ -64,9 +64,9 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
             </i>
           </Link>
         ))}
-      </div>
-      <div>
-        <Link href={`/list/${title}`}>ir a la lista</Link>
+        <div>
+          <Link href={`/list/${title}`}>ir a la lista</Link>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Deptor } from "../../src/components/Deptor/Deptor";
-import { arrayMonth } from "../../src/components/Deptor/logic/moths.d";
+import { arrayMonth, dateMonth } from "../../src/components/Deptor/logic/moths.d";
 
 import Loading from "../../src/components/Loading/Loading";
 import { url } from "../../src/config/services-url";
@@ -16,14 +16,13 @@ export default function CloseMonth() {
   const [dataMonths, setDataMonths] = useState([]);
   const [error, setError] = useState({ msg: "" });
   ////////// DATE ////////////
-  const date = new Date().getMonth();
   // console.log(date);
   ////////// Meses //////////
 
-  console.log(arrayMonth[date]);
+  console.log(arrayMonth[dateMonth]);
 
   const [monthSelected, setMonthSelected] = useState<typesMonthNames>(
-    arrayMonth[date]
+    arrayMonth[dateMonth]
   );
   ///////////////////////////
   useEffect(() => {
