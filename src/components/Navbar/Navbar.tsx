@@ -58,6 +58,15 @@ export default function NavbarMain() {
             >
               Precios
             </Link>
+            <Link
+              className={`${
+                route.asPath === "/quien-debe" && styles.isHere
+              }`}
+              onClick={() => setModal(false)}
+              href={"/quien-debe"}
+            >
+             ¿Quién debe?
+            </Link>
             <br />
             <Link
               className={`${route.asPath === "/list/Gimnasio" && styles.isHere}`}

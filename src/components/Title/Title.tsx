@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { selectColor } from "../../logic/selectColor";
 import { typesActivity } from "../../types/types-user";
+import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 import styles from "./Title.module.scss";
 
 interface Props {
@@ -15,6 +17,7 @@ export const Title: React.FC<Props> = ({ activityName }) => {
       >
         {activityName}
       </h2>
+      <LinkDeptor activityName={activityName} />
     </div>
   );
 };

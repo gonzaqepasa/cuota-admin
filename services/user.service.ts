@@ -64,6 +64,9 @@ export async function getUsers(activity: any) {
           },
           include: {
             activity: true,
+            calendar: {
+              include: { months: true },
+            },
           },
         })
       : (data = undefined);
