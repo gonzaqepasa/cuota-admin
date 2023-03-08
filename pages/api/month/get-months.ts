@@ -10,7 +10,9 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     try {
-      const months = await getMonths();
+      const { month } = req.query;
+      const monthName = String(month);
+      const months = await getMonths({ monthName, isPay: false });
 
       res.status(200).json(months);
     } catch (err) {

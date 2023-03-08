@@ -32,11 +32,18 @@ export async function payMonth({ id, addAdmin, mothodPay, price }: any) {
   }
 }
 
-export async function getMonths() {
+export async function getMonths({
+  monthName,
+  isPay,
+}: {
+  monthName: string;
+  isPay: boolean;
+}) {
   try {
-    const months = prisma.month.findMany({
+    const months = await prisma.month.findMany({
       where: {
-        isPay: true,
+        isPay,
+        monthName,
       },
       include: {
         calendar: {

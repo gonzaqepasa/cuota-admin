@@ -7,7 +7,7 @@ import { FcCheckmark } from "react-icons/fc";
 import { FaMoneyBillWave, FaEdit } from "react-icons/fa";
 import { payMonth } from "../../logic/payMonth";
 import { orderByMonth } from "../../logic/orderByMonthName";
-import {Description} from "./Description/Description";
+import { Description } from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { Carousel } from "react-bootstrap";
@@ -67,6 +67,9 @@ export const User: React.FC<Props> = ({ userData, id }) => {
                 {user.activity.modality}{" "}
               </i>
             </h3>
+          </Link>
+          <Link href={`/quien-debe?activity=${user.activity.nameActivity}`}>
+            ¿Quién debe?
           </Link>
         </div>
 

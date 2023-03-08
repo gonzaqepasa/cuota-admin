@@ -60,12 +60,12 @@ export default function NavbarMain() {
             </Link>
             <Link
               className={`${
-                route.pathname === "/close-month" && styles.isHere
+                route.asPath === "/quien-debe" && styles.isHere
               }`}
               onClick={() => setModal(false)}
-              href={"/close-month"}
+              href={"/quien-debe"}
             >
-              Cierre de mes
+             ¿Quién debe?
             </Link>
             <br />
             <Link
