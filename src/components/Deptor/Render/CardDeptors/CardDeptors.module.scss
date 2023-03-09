@@ -82,7 +82,7 @@
     padding: 5px 1rem;
     .eachUser {
       //   background-color: $hunt3;
-      animation: animate 0.5s;
+      animation: $animate 0.3s ease-in-out ;
       display: flex;
       min-width: 50%;
       align-items: center;
@@ -108,12 +108,3 @@
   }
 }
 
-@keyframes animate {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}

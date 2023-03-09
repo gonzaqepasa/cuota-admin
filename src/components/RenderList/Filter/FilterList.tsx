@@ -26,7 +26,10 @@ export const FilterList: React.FC<Props> = ({
           checked={filterOn}
           onChange={() => setFilterOn(!filterOn)}
         />
-        <p className={`${!filterOn && styles.filterDisabled}`}>
+        <p
+          onClick={() => setFilterOn(!filterOn)}
+          className={`${!filterOn && styles.filterDisabled}`}
+        >
           Mostrar solo los que deben el mes :
         </p>
       </div>
