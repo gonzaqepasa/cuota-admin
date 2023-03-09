@@ -1,103 +1,113 @@
 @import "../../../../styles/variables";
 
-.allDescription {
-  // background-color: $backg-white2;
-  width: 80vw;
-  // max-width: 30rem;
-  font-family: $main-text;
-  margin: 1rem 0;
-  min-height: 5rem;
+.descriptionContainer {
+  background-color: $hunt2;
+  // color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 10%;
 
-  h5 {
-    margin: 2px 5px;
-    font-size: 0.9rem;
-
-    // text-shadow: 0px 0px 1px grey;
-  }
-
-  .detailContainer {
-    background-color: rgba(126, 126, 126, 0.2);
-    border-radius: 5px;
-    position: relative;
-    display: flex;
-    min-height: 3rem;
-    padding: 0.5rem;
-    // padding-right: 3rem;
+  .allDescription {
+    // background-color: $backg-white2;
+    width: 80vw;
+    // max-width: 30rem;
     font-family: $main-text;
-    justify-content: space-between;
+    margin: 1rem 0;
+    min-height: 5rem;
 
-    // Parrafo con descripcion
-    p {
-      color: $text3;
-      font-size: 0.8rem;
-    }
-    .btnChangeDescription {
-      position: absolute;
-      right: 10px;
-      border: none;
-      background: none;
-      font-size: 1.3rem;
-      color: $text3;
+    h5 {
+      margin: 2px 5px;
+      font-size: 0.9rem;
+
+      // text-shadow: 0px 0px 1px grey;
     }
 
-    // Input con logica de cambio
-    .editOnDescription {
-      // background-color: grey;
+    .detailContainer {
+      background-color: rgba(126, 126, 126, 0.2);
+      border-radius: 5px;
+      position: relative;
       display: flex;
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      .btnAcpCanBox {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: center;
-        button {
-          font-family: $main-text;
-          font-weight: 700;
-          font-size: 0.7rem;
-          border: none;
-          border-radius: 5px;
-          padding: 0.2rem 0.6rem;
-          margin-right: 0.2rem;
-          box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.2) inset;
-          opacity: 0.7;
-          transition: 0.2s;
-        }
-        button:hover {
-          opacity: 1;
-        }
-        .btnAcp {
-          background-color: $hunt4;
-          color: rgb(255, 255, 255);
-        }
-        .btnCan {
-          background-color: transparent;
-          border: 1px solid $hunt3;
-          color: $hunt4;
-        }
+      min-height: 3rem;
+      padding: 0.5rem;
+      // padding-right: 3rem;
+      font-family: $main-text;
+      justify-content: space-between;
+
+      // Parrafo con descripcion
+      p {
+        color: $text3;
+        font-size: 0.8rem;
+      }
+      .btnChangeDescription {
+        position: absolute;
+        right: 10px;
+        border: none;
+        background: none;
+        font-size: 1.3rem;
+        color: $text3;
       }
 
-      input {
-        font-size: 0.8rem;
-        background: none;
-        border: none;
+      // Input con logica de cambio
+      .editOnDescription {
+        // background-color: grey;
+        display: flex;
         width: 100%;
-        height: 2rem;
-        color: $text3;
-        transition: 0.2s;
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.1);
-        // background-color: red;
-        padding-left: 0.3rem;
-        margin: 0 0.5rem 1rem 0;
-      }
-     
-      input:focus {
-        outline: none;
-        padding-left: 0.6rem;
-        color: $text2;
-        // background-color: rgba(0, 0, 0, 0.8);
-        border-radius: 5px;
+        flex-direction: column;
+        align-items: center;
+        .btnAcpCanBox {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          button {
+            font-family: $main-text;
+            font-weight: 700;
+            font-size: 0.7rem;
+            border: none;
+            border-radius: 5px;
+            padding: 0.2rem 0.6rem;
+            margin-right: 0.2rem;
+            box-shadow: -10px -10px 20px rgba(0, 0, 0, 0.2) inset;
+            opacity: 0.7;
+            transition: 0.2s;
+          }
+          button:hover {
+            opacity: 1;
+          }
+          .btnAcp {
+            background-color: $hunt4;
+            color: rgb(255, 255, 255);
+          }
+          .btnCan {
+            background-color: transparent;
+            border: 1px solid $hunt3;
+            color: $hunt4;
+          }
+        }
+
+        input {
+          font-size: 0.8rem;
+          background: none;
+          border: none;
+          width: 100%;
+          height: 2rem;
+          color: $text3;
+          transition: 0.2s;
+          border-radius: 5px;
+          background-color: rgba(0, 0, 0, 0.1);
+          // background-color: red;
+          padding-left: 0.3rem;
+          margin: 0 0.5rem 1rem 0;
+        }
+
+        input:focus {
+          outline: none;
+          padding-left: 0.6rem;
+          color: $text2;
+          // background-color: rgba(0, 0, 0, 0.8);
+          border-radius: 5px;
+        }
       }
     }
   }

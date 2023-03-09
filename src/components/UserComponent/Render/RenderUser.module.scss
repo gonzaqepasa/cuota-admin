@@ -1,0 +1,307 @@
+@import "../../../../styles/variables";
+/////////////////////// MESES ///////////////////////////
+.monthsContainer {
+  background-color: $hunt1;
+
+  // backdrop-filter: blur(4px);
+  //   display: grid;
+  //   grid-template-columns: repeat(3, auto);
+  //   grid-template-rows: repeat(4, auto);
+  //   grid-gap: 1rem;
+  min-height: 70vh;
+
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+
+  .CardPay {
+    // background-color: $hunt2;
+    border-bottom: solid 1px grey;
+    width: 40rem;
+    margin: 0.2rem 0;
+    min-height: 3rem;
+    max-width: 90vw;
+    // border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: $main-text;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    position: relative;
+    p {
+      margin: 0;
+    }
+
+    .nameContainer,
+    .stateContainer,
+    .emailContainer,
+    .dateContainer {
+      display: flex;
+      align-items: center;
+      color: $text2;
+      height: 1.8rem;
+      animation: $animate ease-in-out 0.2s;
+      .label {
+        color: $text3;
+        width: initial;
+        font-size: 0.8rem;
+        font-weight: 400;
+      }
+      @media (min-width: 400px) {
+        .label {
+          width: 8rem;
+        }
+      }
+    }
+
+    .nameContainer {
+      // background-color: green;
+      font-weight: 500;
+      font-size: 0.9rem;
+      svg {
+        margin: 0 0.5rem;
+        // font-size: 1.3rem;
+      }
+    }
+    .stateContainer {
+      // background-color: blue;
+      .pay {
+        color: $green-succes;
+        font-weight: 500;
+      }
+      .noPay {
+        color: rgb(202, 0, 0);
+      }
+      img {
+        margin: 0 0.5rem;
+      }
+      svg {
+        color: $green-succes;
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+      }
+      .btnPay {
+        border: none;
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        color: $text1;
+        padding: 0.6rem 1rem;
+        background-color: transparent;
+        transition: 0.5s;
+        background: rgb(130, 130, 130);
+        background: linear-gradient(
+          180deg,
+          rgba(130, 130, 130, 0) 0%,
+          rgba(0, 0, 0, 1) 100%
+        );
+        display: flex;
+        align-items: center;
+        svg {
+          font-size: 1.4rem;
+          margin: 0;
+        }
+      }
+      .btnPay:hover {
+        background-color: $backg-black3;
+
+        color: $title;
+        svg {
+          // color: white;
+          animation: jump 1s ease-in-out;
+        }
+      }
+    }
+    .emailContainer {
+      // background-color: grey;
+    }
+    .dateContainer {
+      color: $text4;
+    }
+  }
+
+  //////////////////////////////////////////////////////////
+  ///
+  ///
+  @keyframes jump {
+    0% {
+      transform: translateY(0rem);
+    }
+    20% {
+      transform: translateY(-0.3rem);
+    }
+    50% {
+      transform: translateY(0.3rem);
+    }
+    70% {
+      transform: translateY(-0.2rem);
+    }
+    100% {
+      transform: translateY(0rem);
+    }
+  }
+
+  ///
+  //////////////////////////////////////////////////////////
+
+  .monthBox {
+    background: rgba(0, 0, 0, 0.4);
+    // box-shadow: 0px 0px 50px black inset, 0px 0px 70px black inset;
+    border-radius: 5px;
+    outline: 2px solid rgb(10, 10, 10);
+    transition: 0.2s;
+
+    width: 40rem;
+    margin: 0.2rem 0;
+    min-height: 3rem;
+    max-width: 90vw;
+    // border-bottom: solid 1px grey;
+    padding: 0.4rem;
+
+    position: relative;
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    //////////////////// Primera caja
+    .monthNameBox {
+      // width: 60%;
+      // border-radius: 5px 5px 0 0;
+      // display: flex;
+      // justify-content: center;
+      align-items: center;
+      // background-color: rgba(255, 255, 255, 0);
+      // color: black;
+      // position: absolute;
+      // z-index: 500;
+      transition: 0.4s;
+      // color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+      p {
+        margin: 0 0;
+        font-size: 1rem;
+        text-shadow: 1px 1px 5px black;
+        font-weight: 600;
+        color: white;
+      }
+    }
+
+    //////////////////// Segunda caja
+    .conditionIsPayContainer {
+      .checkedBox {
+        display: flex;
+        align-items: center;
+        svg {
+          margin: 0 0.3rem;
+          color: $green-succes;
+          font-size: 1.1rem;
+        }
+        p {
+          margin: 0 0.3rem;
+          font-family: $main-text;
+          font-weight: 600;
+          color: rgb(139, 139, 139);
+        }
+      }
+      .isFalse {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        // background-color: red;
+
+        .btnPay {
+          margin: auto auto;
+          width: 80%;
+          height: 100%;
+          border: none;
+          background-color: transparent;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          svg {
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
+            transform: rotate(0deg);
+            transition: 0.2s;
+          }
+          p {
+            font-family: $main-text;
+            text-align: center;
+            margin: 0;
+            font-weight: 400;
+            color: white;
+            text-shadow: 1px 1px 5px black;
+          }
+        }
+      }
+    }
+    //////////////////// Ultima caja
+    .carrouselBox {
+      height: 100%;
+      width: 100%;
+      h3,
+      p {
+        // height: 1rem;
+        margin: 0 0;
+        font-size: 0.8rem;
+      }
+
+      h3 {
+        color: rgb(184, 179, 179);
+        font-weight: 600;
+      }
+      p {
+        color: rgb(126, 126, 126);
+      }
+    }
+  }
+  .monthBox:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    .conditionIsPayContainer {
+      .isFalse {
+        svg {
+          transform: rotate(40deg);
+        }
+      }
+    }
+  }
+
+  .isPay {
+    // background-color: $green-succes;
+    outline: 2px groove $green-succes;
+    background: rgb(0, 0, 0);
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgb(5, 34, 0) 100%
+    );
+  }
+
+  /*  .monthBox:hover {
+      .monthNameBox {
+        width: 100%;
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(0, 0, 0, 0.6);
+        h4 {
+          text-shadow: 0px 0px 2px rgb(170, 170, 170);
+          color: white;
+        }
+      }
+      .conditionIsPayContainer {
+        filter: opacity(1);
+      }
+    }
+
+    .isInactive {
+      filter: grayscale(0.8);
+      opacity: 0.8;
+    } */
+}

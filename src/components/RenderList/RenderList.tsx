@@ -29,11 +29,18 @@ export const RenderList: React.FC<Props> = ({
   getDataAgain,
   setLoad,
 }) => {
+  //////// ESTADOS ////////
+  // Para el buscador (Searcher)
   const [search, setSearch] = useState("");
+  // Para el select de meses (FilterList)
   const [monthSelected, setMonthSelected] = useState<typesMonthNames>(
     arrayMonth[dateMonth]
   );
+  // Para el resultado de la busqueda
   const [result, setResult] = useState<[] | typesUser[]>([]);
+  const [resultFilter, setResultFilter] = useState(result);
+  /////////////////////////
+
   const [filterOn, setFilterOn] = useState(false);
   // const [dataToRender, setDataToRender] = useState(userData);
 
@@ -54,7 +61,6 @@ export const RenderList: React.FC<Props> = ({
       }
     }
   }, [search, userData]);
-  let [resultFilter, setResultFilter] = useState(result);
   useEffect(() => {
     setResultFilter(
       result.filter((user) => {
@@ -81,6 +87,7 @@ export const RenderList: React.FC<Props> = ({
         setMonthSelected={setMonthSelected}
         filterOn={filterOn}
       />
+
       <SearcherList handleChange={handleChange} search={search} />
       <div className={styles.linksContainer}>
         {orderByActive(filterOn ? resultFilter : result).map((el) => (
