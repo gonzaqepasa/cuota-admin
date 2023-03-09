@@ -3,8 +3,7 @@ import { typesMonth, typesUser } from "../../types/types-user";
 import styles from "./User.module.scss";
 import Swal from "sweetalert2";
 import { auth } from "../../../firebase/firebaseConfig";
-import { FcCheckmark } from "react-icons/fc";
-import { FaMoneyBillWave, FaEdit } from "react-icons/fa";
+
 import { payMonth } from "../../logic/payMonth";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
@@ -12,12 +11,12 @@ import { selectColor } from "../../logic/selectColor";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { Carousel } from "react-bootstrap";
 import Image from "next/image";
-import mp from "../../../styles/mp.png";
 import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
 import Link from "next/link";
 import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 import { NameUser } from "./NameUser/NameUser";
+import { RenderUser } from "./Render/RenderUser";
 
 interface Props {
   userData: typesUser;
@@ -55,74 +54,12 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           description={user.description}
           getDataAgain={getUserAgain}
         />
-
-        <div className={`${styles.monthsContainer}`}>
-          {monthData.map((el: typesMonth) => (
-            ///////////////// Componente CardMonth /////////////////
-            <div
-              className={`${styles.monthBox} ${el.isPay && styles.isPay} `}
-              key={el.monthName}
-            >
-              {/* ////////////// Priemra Caja ////////////// */}
-              <div className={styles.monthNameBox}>
-                <p
-                  style={{
-                    borderBottom: `2px solid ${selectColor(
-                      userData.activity.nameActivity
-                    )}`,
-                  }}
-                >
-                  {el.monthName}
-                </p>
-              </div>
-              {/* ////////////// Segunda Caja ////////////// */}
-              <div className={styles.conditionIsPayContainer}>
-                {el.isPay ? (
-                  <div className={`${styles.checkedBox}`}>
-                    <FcCheckmark />
-                    {el.mothodPay === "MP" ? (
-                      <Image src={mp} height={25} alt="no se encontr imagen" />
-                    ) : (
-                      <FaMoneyBillWave />
-                    )}
-                    <p>{numberToMoney(el.pricePay)}</p>
-                  </div>
-                ) : (
-                  <div className={styles.isFalse}>
-                    <button
-                      className={styles.btnPay}
-                      disabled={!userData.active}
-                      onClick={(e) =>
-                        payMonth(
-                          e,
-                          el.id,
-                          userData.name,
-                          el.monthName,
-                          auth.currentUser?.email,
-                          userData.activity.price,
-                          getUserAgain
-                        )
-                      }
-                    >
-                      <FaMoneyBillWave
-                        color={selectColor(user.activity.nameActivity)}
-                      />{" "}
-                      <p>Agregar pago</p>
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* ////////////// Ultima Caja ////////////// */}
-              {el.isPay && (
-                <div className={`${styles.carrouselBox}`}>
-                  <p>{el.addData}</p>
-                  <h3>{el.addAdmin}</h3>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <RenderUser
+          user={user}
+          userData={userData}
+          monthData={monthData}
+          getUserAgain={getUserAgain}
+        />
       </div>
     );
   return <div>No existe este usuario</div>;
