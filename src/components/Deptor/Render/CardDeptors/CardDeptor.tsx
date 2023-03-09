@@ -4,6 +4,7 @@ import { selectColor } from "../../../../logic/selectColor";
 import { VscChevronDown, VscChevronUp } from "react-icons/vsc";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LazyLoad from "react-lazy-load";
 
 interface Props {
   title: string;
@@ -52,16 +53,26 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
       </button>
       <div className={`${styles.renderContainer} ${!view && styles.noView}`}>
         {data.map((user: any) => (
-          <Link
-            href={`/user/${user.calendar.User.id}`}
-            className={styles.eachUser}
+          <LazyLoad
             key={user.id}
+            onContentVisible={() => {
+              console.log("loaded!");
+            }}
+            height={32}
+            // width={600}
+            threshold={0.5}
           >
-            <p>{user.calendar.User.name}</p>
-            <i style={{ color: `${selectColor(title)}` }}>
-              {"   ->  "} {user.calendar.User.activity.modality}
-            </i>
-          </Link>
+            <Link
+              href={`/user/${user.calendar.User.id}`}
+              className={styles.eachUser}
+              key={user.id}
+            >
+              <p>{user.calendar.User.name}</p>
+              <i style={{ color: `${selectColor(title)}` }}>
+                {"   ->  "} {user.calendar.User.activity.modality}
+              </i>
+            </Link>
+          </LazyLoad>
         ))}
         <div>
           <Link href={`/list/${title}`}>ir a la lista</Link>

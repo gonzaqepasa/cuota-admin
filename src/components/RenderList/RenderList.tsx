@@ -89,7 +89,7 @@ export const RenderList: React.FC<Props> = ({
         filterOn={filterOn}
       />
 
-      <SearcherList handleChange={handleChange} search={search} />
+      <SearcherList handleChange={handleChange} search={search} setSearch={setSearch} />
       <div className={styles.linksContainer}>
         {orderByActive(filterOn ? resultFilter : result).map((el) => (
           <LazyLoad
