@@ -6,61 +6,8 @@
   align-items: center;
   // background-color: rgba(0, 0, 0, 0.8);
   min-width: 100vw;
-  .nameUserBox {
-    background-color: $hunt2;
-    // margin: 2rem 0;
-    padding: 1rem 0rem 0.2rem 0rem;
-    width: 100%;
-
-    // box-shadow: 1px 1px 10px black;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-family: $main-text;
-    font-size: 1rem;
-    padding-left: 10%;
-    h2 {
-      font-size: 1.2em;
-      color: $name-title;
-      font-weight: 400;
-      // border-bottom: solid grey 2px;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-      margin: 0rem 0;
-    }
-    a {
-      text-decoration: inherit;
-      // color: red;
-      h3 {
-        transition: 0.5s;
-        // font-variant: small-caps;
-        font-weight: 500;
-        font-size: 0.9em;
-        margin: 0rem 0;
-        // color: $main-color;
-        text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.6);
-      }
-    }
-    a h3:hover {
-      text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
-      // transform: scale(1.03);
-    }
-  }
-  @media (min-width: 750px) {
-    .nameUserBox {
-      font-size: 1.4rem;
-    }
-  }
   
-  .descriptionContainer {
-    background-color: $hunt2;
-    // color: white;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 10%;
-  }
-
+  
   /////////////////////// MESES ///////////////////////////
   .monthsContainer {
     background-color: $backg-black2;

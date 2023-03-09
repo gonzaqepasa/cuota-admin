@@ -29,58 +29,60 @@ export const Description: React.FC<Props> = ({
       </div>
     );
   return (
-    <div className={`${styles.allDescription} `}>
-      <h5 style={{ color }}>Descripción:</h5>
-      <div className={styles.detailContainer}>
-        {editOn ? (
-          <div className={styles.editOnDescription}>
-            <input
-              value={descript}
-              onChange={(e) => {
-                setDescript(e.target.value);
-              }}
-              placeholder="Ingrese descripción..."
-            />
-            <div className={`${styles.btnAcpCanBox}`}>
-              <button
-                onClick={(e) => {
-                  setLoad(true);
-                  editDescription(
-                    e,
-                    { id: Number(id), description: descript },
-                    getDataAgain,
-                    setEditOn,
-                    setLoad
-                  );
+    <div className={styles.descriptionContainer}>
+      <div className={`${styles.allDescription} `}>
+        <h5 style={{ color }}>Descripción:</h5>
+        <div className={styles.detailContainer}>
+          {editOn ? (
+            <div className={styles.editOnDescription}>
+              <input
+                value={descript}
+                onChange={(e) => {
+                  setDescript(e.target.value);
                 }}
-                className={`${styles.btnAcp}`}
-              >
-                Cambiar
-              </button>
+                placeholder="Ingrese descripción..."
+              />
+              <div className={`${styles.btnAcpCanBox}`}>
+                <button
+                  onClick={(e) => {
+                    setLoad(true);
+                    editDescription(
+                      e,
+                      { id: Number(id), description: descript },
+                      getDataAgain,
+                      setEditOn,
+                      setLoad
+                    );
+                  }}
+                  className={`${styles.btnAcp}`}
+                >
+                  Cambiar
+                </button>
+                <button
+                  onClick={() => {
+                    setEditOn(false);
+                    setDescript(description);
+                  }}
+                  className={`${styles.btnCan}`}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <p>{descript}</p>
               <button
                 onClick={() => {
-                  setEditOn(false);
-                  setDescript(description);
+                  setEditOn(true);
                 }}
-                className={`${styles.btnCan}`}
+                className={`${styles.btnChangeDescription}`}
               >
-                Cancelar
+                <FaEdit color={color} />
               </button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <p>{descript}</p>
-            <button
-              onClick={() => {
-                setEditOn(true);
-              }}
-              className={`${styles.btnChangeDescription}`}
-            >
-              <FaEdit color={color} />
-            </button>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

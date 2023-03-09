@@ -17,6 +17,7 @@ import { url } from "../../config/services-url";
 import { numberToMoney } from "../../logic/numberToMoney";
 import Link from "next/link";
 import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
+import { NameUser } from "./NameUser/NameUser";
 
 interface Props {
   userData: typesUser;
@@ -47,41 +48,14 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           userData.activity.nameActivity.toLowerCase()
         )} ${!user.active && styles.isInactiveUser}`}
       >
-        {/* <p>2023</p> */}
-        <div className={styles.nameUserBox}>
-          <h2
-            style={{
-              borderBottom: `solid 2px ${selectColor(
-                user.activity.nameActivity
-              )}`,
-            }}
-          >
-            {user.name}
-          </h2>
-          <Link
-            style={{ color: selectColor(user.activity.nameActivity) }}
-            href={`/list/${fromNameToUrl(user.activity.nameActivity)}`}
-          >
-            <h3>
-              {user.activity.nameActivity.toUpperCase()} -{" "}
-              <i style={{ fontSize: "0.8rem", color: "grey" }}>
-                {user.activity.modality}{" "}
-              </i>
-            </h3>
-          </Link>
-          <LinkDeptor activityName={user.activity.nameActivity} />
-        </div>
+        <NameUser user={user} />
+        <Description
+          id={Number(id)}
+          color={selectColor(user.activity.nameActivity)}
+          description={user.description}
+          getDataAgain={getUserAgain}
+        />
 
-        {/*  <--- Contenedor de Card */}
-
-        <div className={styles.descriptionContainer}>
-          <Description
-            id={Number(id)}
-            color={selectColor(user.activity.nameActivity)}
-            description={user.description}
-            getDataAgain={getUserAgain}
-          />
-        </div>
         <div className={`${styles.monthsContainer}`}>
           {monthData.map((el: typesMonth) => (
             ///////////////// Componente CardMonth /////////////////
