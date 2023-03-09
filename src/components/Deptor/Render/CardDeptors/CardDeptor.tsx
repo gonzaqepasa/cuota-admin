@@ -23,7 +23,6 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
   }, [activity]);
   const handleClose = () => {
     setView(!view);
-    router.push(`/quien-debe?`);
   };
   return (
     <div
@@ -41,13 +40,13 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
           <button
             disabled={data.length === 0}
             onClick={() => handleClose()}
-            className={`${styles.btnView} `}
+            className={`${styles.btnView} ${view && styles.btnUp} `}
             style={{
               border: `1px solid ${selectColor(title)}`,
               color: selectColor(title),
             }}
           >
-            {!view ? <VscChevronDown /> : <VscChevronUp />}
+            <VscChevronDown />
           </button>
         </div>
       </button>
