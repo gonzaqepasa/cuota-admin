@@ -17,6 +17,7 @@ import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
 import { arrayMonth, dateMonth } from "../Deptor/logic/moths.d";
+import LazyLoad from "react-lazy-load";
 
 interface Props {
   userData: typesUser[] | false;
@@ -91,51 +92,63 @@ export const RenderList: React.FC<Props> = ({
       <SearcherList handleChange={handleChange} search={search} />
       <div className={styles.linksContainer}>
         {orderByActive(filterOn ? resultFilter : result).map((el) => (
-          <div
+          <LazyLoad
             key={el.id}
-            className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}
-            /* style={{
-              borderBottom: `1px solid ${selectColor(
-                userData[0].activity.nameActivity
-              )}`,
-            }} */
+            onContentVisible={() => {
+              console.log("loaded!");
+            }}
+            height={32}
+            // width={600}
+            threshold={0.5}
           >
-            <Link href={`/user/${el.id}`}>
-              <div className={`${styles.linkNameUser}`}>
-                <FaUserCheck
-                  color={selectColor(userData[0].activity.nameActivity)}
-                />
-                {firstLetterUpper(el.name)} -{" "}
-                <i
-                  style={{
-                    fontWeight: 400,
-                    fontSize: "0.9rem",
-                    color: selectColor(el.activity.nameActivity),
+            <div
+              key={el.id}
+              className={`${styles.linkBox} ${
+                !el.active && styles.inactiveUser
+              }`}
+              /* style={{
+                borderBottom: `1px solid ${selectColor(
+                  userData[0].activity.nameActivity
+                  )}`,
+                }} */
+            >
+              <Link href={`/user/${el.id}`}>
+                <div className={`${styles.linkNameUser}`}>
+                  <FaUserCheck
+                    color={selectColor(userData[0].activity.nameActivity)}
+                  />
+                  {firstLetterUpper(el.name)} -{" "}
+                  <i
+                    style={{
+                      fontWeight: 400,
+                      fontSize: "0.9rem",
+                      color: selectColor(el.activity.nameActivity),
+                    }}
+                  >
+                    {el.activity.modality}
+                  </i>
+                </div>
+              </Link>
+              <div className={`${styles.iconBox}`}>
+                <button
+                  onClick={(e) => {
+                    visibilityUser(
+                      e,
+                      { id: Number(el.id), active: el.active },
+                      getDataAgain,
+                      setLoad
+                    );
                   }}
                 >
-                  {el.activity.modality}
-                </i>
+                  {el.active ? (
+                    <MdOutlineVisibility color="white" />
+                  ) : (
+                    <MdOutlineVisibilityOff color="grey" />
+                  )}
+                </button>
               </div>
-            </Link>
-            <div className={`${styles.iconBox}`}>
-              <button
-                onClick={(e) => {
-                  visibilityUser(
-                    e,
-                    { id: Number(el.id), active: el.active },
-                    getDataAgain,
-                    setLoad
-                  );
-                }}
-              >
-                {el.active ? (
-                  <MdOutlineVisibility color="white" />
-                ) : (
-                  <MdOutlineVisibilityOff color="grey" />
-                )}
-              </button>
             </div>
-          </div>
+          </LazyLoad>
         ))}
       </div>
     </div>
