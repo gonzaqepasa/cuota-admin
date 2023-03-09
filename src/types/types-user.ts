@@ -39,3 +39,17 @@ export interface typesMonth {
   pricePay: number;
   id: number;
 }
+
+export type typesMonthNames =
+  | "Enero"
+  | "Febrero"
+  | "Marzo"
+  | "Abril"
+  | "Mayo"
+  | "Junio"
+  | "Julio"
+  | "Agosto"
+  | "Septiembre"
+  | "Octubre"
+  | "Noviembre"
+  | "Diciembre";

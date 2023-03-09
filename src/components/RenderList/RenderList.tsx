@@ -1,14 +1,22 @@
 import Link from "next/link";
-import { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
-import { typesUser } from "../../types/types-user";
+import {
+  useState,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+} from "react";
+import { typesMonthNames, typesUser } from "../../types/types-user";
 import styles from "./RenderList.module.scss";
-import { ImSearch } from "react-icons/im";
 import { FaUserCheck } from "react-icons/fa";
 import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import { visibilityUser } from "../../logic/visibilityUser";
 import { orderByActive } from "../../logic/orderByMonthName";
 import { selectColor } from "../../logic/selectColor";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
+import { SearcherList } from "./Searcher/SearcherList";
+import { FilterList } from "./Filter/FilterList";
+import { arrayMonth, dateMonth } from "../Deptor/logic/moths.d";
 
 interface Props {
   userData: typesUser[] | false;
@@ -21,24 +29,48 @@ export const RenderList: React.FC<Props> = ({
   getDataAgain,
   setLoad,
 }) => {
+  //////// ESTADOS ////////
+  // Para el buscador (Searcher)
   const [search, setSearch] = useState("");
+  // Para el select de meses (FilterList)
+  const [monthSelected, setMonthSelected] = useState<typesMonthNames>(
+    arrayMonth[dateMonth]
+  );
+  // Para el resultado de la busqueda
+  const [result, setResult] = useState<[] | typesUser[]>([]);
+  const [resultFilter, setResultFilter] = useState(result);
+  /////////////////////////
+
+  const [filterOn, setFilterOn] = useState(false);
   // const [dataToRender, setDataToRender] = useState(userData);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
     // setDataToRender(filterUsers);
   }
-  let result: [] | typesUser[] = [];
-  if (userData) {
-    if (!search) {
-      result = userData;
-    } else {
-      result = userData.filter((el) =>
-        String(el.name).toLowerCase().includes(search.toLowerCase())
-      );
+  useEffect(() => {
+    if (userData) {
+      if (!search) {
+        setResult(userData);
+      } else {
+        setResult(
+          userData.filter((el) =>
+            String(el.name).toLowerCase().includes(search.toLowerCase())
+          )
+        );
+      }
     }
-  }
-
+  }, [search, userData]);
+  useEffect(() => {
+    setResultFilter(
+      result.filter((user) => {
+        return user.calendar.months.find((m) => {
+          return m.monthName === monthSelected && m.isPay === false;
+        });
+      })
+    );
+  }, [monthSelected, result]);
+  console.log("Aca reuslt asdasd", resultFilter);
   if (userData == false)
     return (
       <div className={styles.allRenderList}>
@@ -49,21 +81,16 @@ export const RenderList: React.FC<Props> = ({
     );
   return (
     <div className={`${styles.allRenderList}`}>
-      <div className={styles.inputSearchContainer}>
-        <div className={styles.spanSearch}>
-          <input
-            placeholder="Buscar..."
-            value={search}
-            name="search"
-            autoComplete="none"
-            onChange={(e) => handleChange(e)}
-          />
-          <ImSearch />
-        </div>
-      </div>
+      <FilterList
+        setFilterOn={setFilterOn}
+        monthSelected={monthSelected}
+        setMonthSelected={setMonthSelected}
+        filterOn={filterOn}
+      />
 
+      <SearcherList handleChange={handleChange} search={search} />
       <div className={styles.linksContainer}>
-        {orderByActive(result).map((el) => (
+        {orderByActive(filterOn ? resultFilter : result).map((el) => (
           <div
             key={el.id}
             className={`${styles.linkBox} ${!el.active && styles.inactiveUser}`}

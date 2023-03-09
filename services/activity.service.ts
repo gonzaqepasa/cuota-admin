@@ -38,3 +38,25 @@ export async function editPrice({ id, price }: any) {
     process.exit(1);
   }
 }
+
+export async function getActivityForCloseMonth() {
+  try {
+    const activities = await prisma.activity.findMany({
+      include: {
+        User: {
+          include: {
+            calendar: {
+              include: { months: true },
+            },
+          },
+        },
+      },
+    });
+    await prisma.$disconnect();
+    return activities;
+  } catch (err) {
+    console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
