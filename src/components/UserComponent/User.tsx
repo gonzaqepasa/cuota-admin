@@ -17,6 +17,7 @@ import Link from "next/link";
 import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 import { NameUser } from "./NameUser/NameUser";
 import { RenderUser } from "./Render/RenderUser";
+import { ConfigUser } from "./Config/ConfigUser";
 
 interface Props {
   userData: typesUser;
@@ -60,6 +61,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           monthData={monthData}
           getUserAgain={getUserAgain}
         />
+        <ConfigUser userData={userData}  />
       </div>
     );
   return <div>No existe este usuario</div>;

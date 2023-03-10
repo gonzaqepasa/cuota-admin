@@ -137,3 +137,19 @@ export async function editActive({ id, active }: any) {
     process.exit(1);
   }
 }
+
+export async function deleteUser({ id }: any) {
+  try {
+    const user = await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
