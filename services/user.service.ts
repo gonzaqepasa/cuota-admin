@@ -45,6 +45,7 @@ export async function createUser({
         },
       },
     });
+    return user;
     ////////////////////////////////////
   } catch (err) {
     console.log(err);
