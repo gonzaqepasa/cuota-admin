@@ -15,7 +15,9 @@ export const ConfigUser: React.FC<Props> = ({ userData }) => {
           Si elimina el usuario se perdera la información relacionada (pagos,
           descripción ,etc.)
         </p>
-        <button onClick={() => deleteUserLogic(userData.id, userData.name)}>
+        <button
+          onClick={() => deleteUserLogic(userData.calendar.id, userData.name)}
+        >
           Eliminar Usuario
         </button>
       </div>

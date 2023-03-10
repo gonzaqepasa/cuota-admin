@@ -27,6 +27,7 @@ export interface typesActivity {
 
 export interface typesCalendar {
   months: typesMonth[];
+  id:number
 }
 
 export interface typesMonth {

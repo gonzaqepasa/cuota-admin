@@ -140,9 +140,12 @@ export async function editActive({ id, active }: any) {
 
 export async function deleteUser({ id }: any) {
   try {
-    const user = await prisma.user.delete({
+    const user = await prisma.calendar.delete({
       where: {
         id,
+      },
+      include: {
+        User: true,
       },
     });
 
