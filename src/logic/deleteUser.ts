@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { url } from "../config/services-url";
 
-export function deleteUserLogic(id: any, nameUser: string) {
+export function deleteUserLogic(id: any, nameUser: string, cb: () => void) {
   Swal.fire({
     reverseButtons: true,
     background: "#202020",
@@ -27,9 +27,10 @@ export function deleteUserLogic(id: any, nameUser: string) {
             background: "#202020",
             color: "white",
             icon: "success",
-            title: `Agregado!`,
+            title: `ELIMINADO!`,
             text: `${nameUser} fue eliminado!`,
           });
+          cb()
         } catch (err) {
           console.log(err);
 

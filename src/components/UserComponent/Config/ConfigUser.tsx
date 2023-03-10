@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { deleteUserLogic } from "../../../logic/deleteUser";
 import { typesUser } from "../../../types/types-user";
 import styles from "./ConfigUser.module.scss";
@@ -7,6 +8,7 @@ interface Props {
 }
 
 export const ConfigUser: React.FC<Props> = ({ userData }) => {
+  const route = useRouter();
   return (
     <div className={styles.allConfigUser}>
       <div className={styles.textContainer}>
@@ -16,7 +18,11 @@ export const ConfigUser: React.FC<Props> = ({ userData }) => {
           descripción ,etc.)
         </p>
         <button
-          onClick={() => deleteUserLogic(userData.calendar.id, userData.name)}
+          onClick={() =>
+            deleteUserLogic(userData.calendar.id, userData.name, () =>
+              route.push(`/list/${userData.activity.nameActivity}`)
+            )
+          }
         >
           Eliminar Usuario
         </button>
