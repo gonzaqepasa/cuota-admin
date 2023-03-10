@@ -14,7 +14,7 @@ export async function createUser({
     const user = await prisma.user.create({
       data: {
         // Información personal
-        name,
+        name: name.toLowerCase(),
         email,
         phone,
         description,
@@ -45,6 +45,7 @@ export async function createUser({
         },
       },
     });
+    return user;
     ////////////////////////////////////
   } catch (err) {
     console.log(err);
@@ -100,6 +101,27 @@ export async function getUser({ id }: any) {
   } catch (err) {}
 }
 
+export async function getUserValidate({ name }: any) {
+  try {
+    const user = await prisma.user.findMany({
+      where: {
+        name,
+      },
+      include: {
+        activity: true,
+        calendar: {
+          include: {
+            months: true,
+          },
+        },
+      },
+    });
+    return user;
+  } catch (err) {
+    return false;
+  }
+}
+
 export async function editDescription({ id, description }: any) {
   try {
     const user = await prisma.user.update({
@@ -127,6 +149,25 @@ export async function editActive({ id, active }: any) {
       },
       data: {
         active: !active,
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
+
+export async function deleteUser({ id }: any) {
+  try {
+    const user = await prisma.calendar.delete({
+      where: {
+        id,
+      },
+      include: {
+        User: true,
       },
     });
 

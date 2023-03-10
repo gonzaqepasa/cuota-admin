@@ -22,12 +22,12 @@ model User {
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   active     Boolean
-  activity   Activity @relation(fields: [activityId], references: [id])
+  activity   Activity  @relation(fields: [activityId], references: [id])
   activityId Int
   // Información de pago
   // Se genera de forma automatica
-  calendar   Calendar @relation(fields: [calendarId], references: [id])
-  calendarId Int      @unique
+  calendar   Calendar? @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+  calendarId Int?      @unique
 }
 
 model Activity {
@@ -40,9 +40,6 @@ model Activity {
 
   //Todos los usuarios que tienen esta actividad
   User User[]
-
-  //Todas las entradas de precios
-  checkIn CheckIn[]
 }
 
 model Calendar {
@@ -82,23 +79,6 @@ model Month {
   pricePay  Int
 
   // A que calendario pertenece
-  calendar   Calendar @relation(fields: [calendarId], references: [id])
-  calendarId Int
-
-  //CheckIn 
-  checkIn CheckIn?
-}
-
-model CheckIn {
-  id Int @id @default(autoincrement())
-
-  value Int
-
-  // Actividades 
-  Activity   Activity? @relation(fields: [activityId], references: [id])
-  activityId Int?
-
-  //Month
-  Month   Month @relation(fields: [monthId], references: [id])
-  monthId Int   @unique
+  calendar Calendar? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   Int?
 }
