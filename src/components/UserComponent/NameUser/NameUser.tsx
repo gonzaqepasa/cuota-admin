@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 import { fromNameToUrl } from "../../../logic/fromNameToUrl";
 import { selectColor } from "../../../logic/selectColor";
 import { LinkDeptor } from "../../Deptor/LinkDeptor/LinkDeptor";
@@ -16,7 +17,7 @@ export const NameUser: React.FC<Props> = ({ user }) => {
           borderBottom: `solid 2px ${selectColor(user.activity.nameActivity)}`,
         }}
       >
-        {user.name}
+        {firstLetterUpper(user.name)}
       </h2>
       <Link
         style={{ color: selectColor(user.activity.nameActivity) }}

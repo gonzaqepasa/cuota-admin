@@ -14,7 +14,7 @@ export async function createUser({
     const user = await prisma.user.create({
       data: {
         // Información personal
-        name,
+        name: name.toLowerCase(),
         email,
         phone,
         description,
@@ -99,6 +99,27 @@ export async function getUser({ id }: any) {
     });
     return user;
   } catch (err) {}
+}
+
+export async function getUserValidate({ name }: any) {
+  try {
+    const user = await prisma.user.findMany({
+      where: {
+        name,
+      },
+      include: {
+        activity: true,
+        calendar: {
+          include: {
+            months: true,
+          },
+        },
+      },
+    });
+    return user;
+  } catch (err) {
+    return false;
+  }
 }
 
 export async function editDescription({ id, description }: any) {
