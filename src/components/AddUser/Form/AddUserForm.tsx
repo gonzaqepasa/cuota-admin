@@ -6,6 +6,7 @@ import { createUser } from "../../../logic/createUser";
 import { typesActivity } from "../../../types/types-user";
 import { selectColor } from "../../../logic/selectColor";
 import Loading from "../../Loading/Loading";
+import { useRouter } from "next/router";
 
 interface Props {
   // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
@@ -24,7 +25,7 @@ export const AddUserForm: React.FC<Props> = ({
   dataActivity,
 }) => {
   const [load, setLoad] = useState(false);
-
+  const route = useRouter();
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
   const [phone, setPhone] = useState(0);
@@ -50,7 +51,15 @@ export const AddUserForm: React.FC<Props> = ({
     e.preventDefault();
     console.log(e);
     validateFormInputs(name, setNameVal) &&
-      createUser(toSendObj, name, setModalAdd, getDataAgain, setLoad);
+      createUser({
+        objData: toSendObj,
+        nameUser: name,
+        setModalAdd,
+        getDataAgain,
+        dataActivity,
+        setLoad,
+        cb: ({ id }) => route.push(`/user/${id}`),
+      });
   }
   if (load)
     return (
@@ -120,14 +129,14 @@ export const AddUserForm: React.FC<Props> = ({
           />
         </div>
         <div className={`${styles.btnContainer}`}>
+          <button className={`${styles.btnAccept}`} type="submit">
+            Agregar
+          </button>
           <button
             className={`${styles.btnCancel}`}
             onClick={() => setModalAdd(false)}
           >
             Cancelar
-          </button>
-          <button className={`${styles.btnAccept}`} type="submit">
-            Agregar
           </button>
         </div>
       </form>
