@@ -4,10 +4,12 @@ import Swal from "sweetalert2";
 import { Console } from "console";
 import { url } from "../config/services-url";
 import { firstLetterUpper } from "./firstLetterUpper";
+import { typesActivity } from "../types/types-user";
 
 interface Params {
   objData: Object;
   nameUser: string;
+  dataActivity: typesActivity[];
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   getDataAgain: Function;
   setLoad: Dispatch<SetStateAction<boolean>>;
@@ -19,13 +21,17 @@ export async function createUser({
   nameUser,
   setModalAdd,
   getDataAgain,
+  dataActivity,
+
   setLoad,
   cb,
 }: Params) {
   (async () => {
     setLoad(true);
     const name = nameUser.toLowerCase().trim();
-    const res = await axios.get(`${url}/user/user-val?USER=${name}`);
+    const res = await axios.get(
+      `${url}/user/user-val?USER=${name}&ACTIVITY=${dataActivity[0].nameActivity}`
+    );
     console.log("esto es res", res.data);
     if (res.data.length > 0) {
       Swal.fire({
