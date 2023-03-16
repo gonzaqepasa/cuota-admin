@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Console } from "console";
 import { url } from "../config/services-url";
+import { firstLetterUpper } from "./firstLetterUpper";
 
 interface Params {
   objData: Object;
@@ -23,16 +24,15 @@ export async function createUser({
 }: Params) {
   (async () => {
     setLoad(true);
-    const res = await axios.get(
-      `${url}/user/user-val?USER=${nameUser.toLowerCase()}`
-    );
+    const name = nameUser.toLowerCase().trim();
+    const res = await axios.get(`${url}/user/user-val?USER=${name}`);
     console.log("esto es res", res.data);
     if (res.data.length > 0) {
       Swal.fire({
         reverseButtons: true,
         background: "#202020",
         color: "white",
-        title: `Ya existe un usuario llamado ${nameUser}`,
+        title: `Ya existe un usuario llamado ${firstLetterUpper(name)}`,
         text: `Deseas crearlo igual o ir al perfil del usuario`,
         icon: "warning",
         showCancelButton: true,
@@ -40,14 +40,14 @@ export async function createUser({
         confirmButtonColor: "#476d7c",
         cancelButtonColor: "#202020",
         denyButtonColor: "#505050",
-        denyButtonText: "Ir al perfil",
-        confirmButtonText: "Agregar",
+        denyButtonText: "Crear",
+        confirmButtonText: "Ir al perfil",
         cancelButtonText: "Cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
-          create();
-        } else if (result.isDenied) {
           cb({ id: res.data[0].id });
+        } else if (result.isDenied) {
+          create();
         } else {
           setLoad(false);
         }
@@ -58,7 +58,7 @@ export async function createUser({
         background: "#202020",
         color: "white",
         title: "Agregar usuario",
-        text: `Seguro quieres agregar a ${nameUser}`,
+        text: `Seguro quieres agregar a ${firstLetterUpper(name)}`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#476d7c",

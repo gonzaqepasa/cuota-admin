@@ -128,14 +128,14 @@ export const AddUserForm: React.FC<Props> = ({
           />
         </div>
         <div className={`${styles.btnContainer}`}>
+          <button className={`${styles.btnAccept}`} type="submit">
+            Agregar
+          </button>
           <button
             className={`${styles.btnCancel}`}
             onClick={() => setModalAdd(false)}
           >
             Cancelar
-          </button>
-          <button className={`${styles.btnAccept}`} type="submit">
-            Agregar
           </button>
         </div>
       </form>
