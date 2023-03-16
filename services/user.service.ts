@@ -2,13 +2,18 @@ import { type typesUser } from "../src/types/types-user";
 import { prisma } from "./prismaConfig";
 import { arrayWithNamesMonths } from "../src/config/infoMonths";
 
+type Props = Pick<
+  typesUser,
+  "name" | "email" | "phone" | "description" | "activityId"
+>;
+
 export async function createUser({
   name,
   email,
   phone,
   description,
   activityId,
-}: typesUser) {
+}: Props) {
   try {
     ////////////////////////////////////
     const user = await prisma.user.create({
