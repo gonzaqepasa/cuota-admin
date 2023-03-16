@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
-import { Divide  as Hamburger } from "hamburger-react";
+import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
 import { CgGym, CgHome } from "react-icons/cg";
 import {
@@ -45,9 +45,9 @@ export default function NavbarMain() {
             </div>
             <div className={styles.textBox}>
               <p>{user?.email}</p>
-            </div>
-            <div className={styles.signOutBtnContainer}>
-              <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
+              <div className={styles.signOutBtnContainer}>
+                <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
+              </div>
             </div>
           </div>
           <nav className={`${styles.navigation}`}>
@@ -59,24 +59,28 @@ export default function NavbarMain() {
               Precios
             </Link>
             <Link
-              className={`${
-                route.asPath === "/quien-debe" && styles.isHere
-              }`}
+              className={`${route.asPath === "/quien-debe" && styles.isHere}`}
               onClick={() => setModal(false)}
               href={"/quien-debe"}
             >
-             ¿Quién debe?
+              ¿Quién debe?
             </Link>
             <br />
             <Link
-              className={`${route.asPath === "/list/Gimnasio" && styles.isHere}`}
+              style={{ color: ` ${selectColor("Gimnasio")}` }}
+              className={`${
+                route.asPath === "/list/Gimnasio" && styles.isHere
+              }`}
               onClick={() => setModal(false)}
               href={"/list/Gimnasio"}
             >
               Gimnasio{" "}
             </Link>
             <Link
-              className={`${route.asPath === "/list/Taekwondo" && styles.isHere}`}
+              style={{ color: ` ${selectColor("Taekwondo")}` }}
+              className={`${
+                route.asPath === "/list/Taekwondo" && styles.isHere
+              }`}
               onClick={() => setModal(false)}
               href={"/list/Taekwondo"}
             >
@@ -86,13 +90,17 @@ export default function NavbarMain() {
               Ritmo Kids
             </Link> */}
             <Link
-              className={`${route.asPath === "/list/Power%20Box" && styles.isHere}`}
+              style={{ color: ` ${selectColor("Power Box")}` }}
+              className={`${
+                route.asPath === "/list/Power%20Box" && styles.isHere
+              }`}
               onClick={() => setModal(false)}
               href={"/list/Power Box"}
             >
               Power Box
             </Link>
             <Link
+              style={{ color: ` ${selectColor("Zumba")}` }}
               className={`${route.asPath === "/list/Zumba" && styles.isHere}`}
               onClick={() => setModal(false)}
               href={"/list/Zumba"}
@@ -100,6 +108,9 @@ export default function NavbarMain() {
               Zumba
             </Link>
             <Link
+              style={{
+                color: ` ${selectColor("Kick Boxing")}`,
+              }}
               className={`${
                 route.asPath === "/list/Kick%20Boxing" && styles.isHere
               }`}
@@ -109,13 +120,21 @@ export default function NavbarMain() {
               Kick-Boxing
             </Link>
             <Link
-              className={`${route.asPath === "/list/Jiu%20Jitzu" && styles.isHere}`}
+              style={{
+                color: ` ${selectColor("Jiu Jitzu")}`,
+              }}
+              className={`${
+                route.asPath === "/list/Jiu%20Jitzu" && styles.isHere
+              }`}
               onClick={() => setModal(false)}
               href={"/list/Jiu Jitzu"}
             >
               Jiu Jitzu
             </Link>
             <Link
+              style={{
+                color: ` ${selectColor("Acrobacia telas")}`,
+              }}
               className={`${
                 route.asPath === "/list/Acrobacia%20telas" && styles.isHere
               }`}
@@ -132,12 +151,7 @@ export default function NavbarMain() {
         ></button>
       </div>
       <div className={styles.hamburguerBox}>
-        <Hamburger
-          size={25}
-          color="white"
-          toggled={modal}
-          toggle={setModal}
-        />
+        <Hamburger size={25} color="white" toggled={modal} toggle={setModal} />
       </div>
     </div>
   );
