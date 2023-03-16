@@ -106,11 +106,14 @@ export async function getUser({ id }: any) {
   } catch (err) {}
 }
 
-export async function getUserValidate({ name }: any) {
+export async function getUserValidate({ name, activity }: any) {
   try {
     const user = await prisma.user.findMany({
       where: {
         name,
+        activity: {
+          nameActivity: activity,
+        },
       },
       include: {
         activity: true,

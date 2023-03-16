@@ -56,6 +56,7 @@ export const AddUserForm: React.FC<Props> = ({
         nameUser: name,
         setModalAdd,
         getDataAgain,
+        dataActivity,
         setLoad,
         cb: ({ id }) => route.push(`/user/${id}`),
       });

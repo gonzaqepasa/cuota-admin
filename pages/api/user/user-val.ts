@@ -10,8 +10,9 @@ export default async function handler(
 ) {
   try {
     const name = req.query.USER;
+    const activity = req.query.ACTIVITY;
 
-    const user = await getUserValidate({ name });
+    const user = await getUserValidate({ name, activity });
 
     res.status(200).json(user);
   } catch (err) {
