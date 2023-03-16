@@ -1,4 +1,4 @@
-import { typesUser } from "../src/types/types-user";
+import { type typesUser } from "../src/types/types-user";
 import { prisma } from "./prismaConfig";
 import { arrayWithNamesMonths } from "../src/config/infoMonths";
 
@@ -8,13 +8,13 @@ export async function createUser({
   phone,
   description,
   activityId,
-}: any) {
+}: typesUser) {
   try {
     ////////////////////////////////////
     const user = await prisma.user.create({
       data: {
         // Información personal
-        name: name.toLowerCase(),
+        name: name.toLowerCase().trim(),
         email,
         phone,
         description,

@@ -2,7 +2,7 @@ export interface typesUser {
   // Información personal
   // Se genera a travez de inputs
   name: string;
-  phone?: number;
+  phone?: string;
   email?: string;
   dni?: number;
   description?: string;
@@ -11,6 +11,7 @@ export interface typesUser {
   // Se genera con el select agarrando información de los estados
   active: boolean;
   activity: typesActivity;
+  activityId: number;
 
   // Información de pago
   // Se genera de forma automatica
@@ -27,7 +28,7 @@ export interface typesActivity {
 
 export interface typesCalendar {
   months: typesMonth[];
-  id:number
+  id: number;
 }
 
 export interface typesMonth {
