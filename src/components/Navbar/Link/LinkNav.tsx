@@ -46,7 +46,7 @@ export const LinkActivity: React.FC<Props2> = ({
         onClick={() => setModal(false)}
         href={`/${href}`}
       >
-        <p style={{ color: ` ${selectColor(text)}`, fontSize: "1rem" }}>
+        <p style={{ color: ` ${selectColor(text)}`, fontSize: "0.9rem" }}>
           {text.charAt(0)}
         </p>
         {text.slice(1, text.length)}

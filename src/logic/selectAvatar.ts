@@ -24,7 +24,7 @@ export function selectAvatar(str: string | null): string {
     if (str === "H") return avatarColours[0];
     if (str === "J") return avatarColours[1];
     if (str === "B") return avatarColours[2];
-    if (str === "C") return avatarColours[3];
+    if (str === "Y") return avatarColours[0];
     return avatarColours[4];
   } else {
     return avatarColours[4];
