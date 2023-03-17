@@ -18,10 +18,11 @@ $text4: rgb(104, 104, 104);
 $text-black1: rgb(0, 0, 0);
 
 // Nav
-$nav-background: rgb(15, 15, 15);
-$nav-email: white;
-$nav-a: white;
-$nav-a-hover: rgb(189, 189, 189);
+$nav-background: rgba(0, 0, 0, 1);
+$nav-email: rgb(216, 216, 216);
+$nav-a: rgb(221, 221, 221);
+$nav-a-activity: rgb(179, 179, 179);
+$nav-a-hover: rgb(255, 255, 255);
 
 // Render List
 $name-title: white;
