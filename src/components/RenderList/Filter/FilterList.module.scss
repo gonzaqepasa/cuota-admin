@@ -20,7 +20,7 @@
       width: 1rem;
     }
     .checkbox[type="checkbox"]:checked {
-      box-shadow: 0 0 0 3px $green-succes;
+      box-shadow: 0 0 10px 2px $green-succes;
     }
     p {
       transition: 0.2s;

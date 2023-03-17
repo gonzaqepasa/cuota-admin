@@ -5,6 +5,7 @@ import { VscChevronDown, VscChevronUp } from "react-icons/vsc";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import LazyLoad from "react-lazy-load";
+import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 
 interface Props {
   title: string;
@@ -67,9 +68,9 @@ export const CardDeptors: React.FC<Props> = ({ title, data }) => {
               className={styles.eachUser}
               key={user.id}
             >
-              <p>{user.calendar.User.name}</p>
+              <p>{firstLetterUpper(user.calendar.User.name)}</p>
               <i style={{ color: `${selectColor(title)}` }}>
-                {"   ->  "} {user.calendar.User.activity.modality}
+                {"   -  "} {user.calendar.User.activity.modality}
               </i>
             </Link>
           </LazyLoad>
