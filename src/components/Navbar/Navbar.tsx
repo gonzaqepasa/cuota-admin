@@ -1,29 +1,13 @@
-import Link from "next/link";
 import styles from "./Navbar.module.scss";
-import { Divide  as Hamburger } from "hamburger-react";
+import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
-import { CgGym, CgHome } from "react-icons/cg";
-import {
-  GiHighPunch,
-  GiMusicalNotes,
-  GiBoxingGlove,
-  GiWinterGloves,
-} from "react-icons/gi";
-import { HiMusicNote } from "react-icons/hi";
-// Imports Bootstrap
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { selectColor } from "../../logic/selectColor";
-import Image from "next/image";
-import AdminSvg from "../../../styles/Admin.svg";
 import { useRouter } from "next/router";
-import { fromUrlToName } from "../../logic/fromNameToUrl";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase/firebaseConfig";
+import { FaArrowCircleUp } from "react-icons/fa";
 import { selectAvatar } from "../../logic/selectAvatar";
 import { signOutUser } from "../../../firebase/auth/signOut";
+import { LinkActivity, LinkNav } from "./Link/LinkNav";
 
 export default function NavbarMain() {
   const route = useRouter();
@@ -33,112 +17,102 @@ export default function NavbarMain() {
   const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);
   //////// Estados ////////
   const [modal, setModal] = useState(false);
+  const [isTop, setIsTop] = useState(true);
+  const [toTop, setToTop] = useState(true);
   /////////////////////////
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      window.scrollY < 30 ? setIsTop(true) : setIsTop(false);
+      window.scrollY < 300 ? setToTop(true) : setToTop(false);
+
+    });
+
+  }, []);
+
   return (
-    <div className={`${styles.allNavbar}`}>
-      <div className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}>
-        <div className={`${styles.responsiveBox}`}>
-          <div className={`${styles.header}`}>
-            <div className={styles.imgBox}>
-              <img src={avatar} alt="" />
+    <>
+      <div className={`${styles.allNavbar} ${isTop && styles.isTopNav}`}>
+        <div
+          className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}
+        >
+          <div className={`${styles.responsiveBox}`}>
+            <div className={`${styles.header}`}>
+              <div className={styles.imgBox}>
+                <img src={avatar} alt="" />
+              </div>
+              <div className={styles.textBox}>
+                <p>{user?.email}</p>
+                <div className={styles.signOutBtnContainer}>
+                  <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
+                </div>
+              </div>
             </div>
-            <div className={styles.textBox}>
-              <p>{user?.email}</p>
-            </div>
-            <div className={styles.signOutBtnContainer}>
-              <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
-            </div>
+            <nav className={`${styles.navigation}`}>
+              <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
+                <LinkNav href={"/prices"} text="Precios" setModal={setModal} />
+                <LinkNav
+                  text="¿Quién debe?"
+                  setModal={setModal}
+                  href={"/quien-debe"}
+                />
+              </div>
+
+              <div className={`${styles.activityLinks}`}>
+                <LinkActivity
+                  setModal={setModal}
+                  text="Gimnasio"
+                  href="/list/Gimnasio"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="Taekwondo"
+                  href="/list/Taekwondo"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="Power Box"
+                  href="/list/Power%20Box"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="Zumba"
+                  href="/list/Zumba"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="Jiu Jitzu"
+                  href="/list/Jiu%20Jitzu"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="Acrobacia telas"
+                  href="/list/Acrobacia%20telas"
+                />
+              </div>
+            </nav>
           </div>
-          <nav className={`${styles.navigation}`}>
-            <Link
-              className={`${route.pathname === "/prices" && styles.isHere}`}
-              onClick={() => setModal(false)}
-              href={"/prices"}
-            >
-              Precios
-            </Link>
-            <Link
-              className={`${
-                route.asPath === "/quien-debe" && styles.isHere
-              }`}
-              onClick={() => setModal(false)}
-              href={"/quien-debe"}
-            >
-             ¿Quién debe?
-            </Link>
-            <br />
-            <Link
-              className={`${route.asPath === "/list/Gimnasio" && styles.isHere}`}
-              onClick={() => setModal(false)}
-              href={"/list/Gimnasio"}
-            >
-              Gimnasio{" "}
-            </Link>
-            <Link
-              className={`${route.asPath === "/list/Taekwondo" && styles.isHere}`}
-              onClick={() => setModal(false)}
-              href={"/list/Taekwondo"}
-            >
-              Taekwondo
-            </Link>
-            {/*    <Link onClick={() => setModal(false)} href={"/ritmo-kids"}>
-              Ritmo Kids
-            </Link> */}
-            <Link
-              className={`${route.asPath === "/list/Power%20Box" && styles.isHere}`}
-              onClick={() => setModal(false)}
-              href={"/list/Power Box"}
-            >
-              Power Box
-            </Link>
-            <Link
-              className={`${route.asPath === "/list/Zumba" && styles.isHere}`}
-              onClick={() => setModal(false)}
-              href={"/list/Zumba"}
-            >
-              Zumba
-            </Link>
-            <Link
-              className={`${
-                route.asPath === "/list/Kick%20Boxing" && styles.isHere
-              }`}
-              onClick={() => setModal(false)}
-              href={"/list/Kick Boxing"}
-            >
-              Kick-Boxing
-            </Link>
-            <Link
-              className={`${route.asPath === "/list/Jiu%20Jitzu" && styles.isHere}`}
-              onClick={() => setModal(false)}
-              href={"/list/Jiu Jitzu"}
-            >
-              Jiu Jitzu
-            </Link>
-            <Link
-              className={`${
-                route.asPath === "/list/Acrobacia%20telas" && styles.isHere
-              }`}
-              onClick={() => setModal(false)}
-              href={"/list/Acrobacia telas"}
-            >
-              Acrobacia en telas
-            </Link>
-          </nav>
+          <button
+            onClick={() => setModal(false)}
+            className={`${styles.btnTouchClose} ${
+              modal && styles.btnColorTrans
+            }`}
+          ></button>
         </div>
-        <button
-          onClick={() => setModal(false)}
-          className={`${styles.btnTouchClose} ${modal && styles.btnColorTrans}`}
-        ></button>
+        <div className={styles.hamburguerBox}>
+          <Hamburger
+            size={25}
+            color="white"
+            toggled={modal}
+            toggle={setModal}
+          />
+        </div>
       </div>
-      <div className={styles.hamburguerBox}>
-        <Hamburger
-          size={25}
-          color="white"
-          toggled={modal}
-          toggle={setModal}
-        />
+      <div className={`${styles.toTop} ${toTop && styles.toTopOn}`}>
+        <button  onClick={() => (document.documentElement.scrollTop = 0)}>
+          <FaArrowCircleUp />
+        </button>
       </div>
-    </div>
+    </>
   );
 }
