@@ -17,7 +17,7 @@ export default function NavbarMain() {
   const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);
   //////// Estados ////////
   const [modal, setModal] = useState(false);
-  const [isTop, setIsTop] = useState(false);
+  const [isTop, setIsTop] = useState(true);
   const [toTop, setToTop] = useState(true);
   /////////////////////////
 
