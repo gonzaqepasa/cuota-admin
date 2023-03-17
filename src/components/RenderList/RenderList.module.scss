@@ -9,17 +9,21 @@
   width: 100%;
   align-items: center;
   padding-bottom: 2rem;
-  
+
   .linksContainer {
     // box-shadow: 1px 1px 8px black;
-    // background-color: $backg-black1;
-
-    padding: 0 1rem;
+    background-color: $hunt1;
+    
+    // box-shadow: 1px 1px 30px $hunt2;
+    border-radius: 2rem;
+    height: 30rem;
+    padding: 0.2rem 1rem;
     border-radius: 5px;
     width: 95%;
     max-width: 50rem;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
     .linkBox {
       animation: $animate 0.2s ease-in-out;
       // background-color: green;
@@ -89,7 +93,6 @@
     opacity: 0.3;
   }
 }
-
 
 @keyframes animate {
   0% {

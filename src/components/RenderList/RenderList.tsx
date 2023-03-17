@@ -89,15 +89,19 @@ export const RenderList: React.FC<Props> = ({
         filterOn={filterOn}
       />
 
-      <SearcherList handleChange={handleChange} search={search} setSearch={setSearch} />
-      <div className={styles.linksContainer}>
+      <SearcherList
+        handleChange={handleChange}
+        search={search}
+        setSearch={setSearch}
+      />
+      <div className={`scroll ${styles.linksContainer}`}>
         {orderByActive(filterOn ? resultFilter : result).map((el) => (
           <LazyLoad
             key={el.id}
             onContentVisible={() => {
               console.log("loaded!");
             }}
-            height={32}
+            height={35}
             // width={600}
             threshold={0.5}
           >
