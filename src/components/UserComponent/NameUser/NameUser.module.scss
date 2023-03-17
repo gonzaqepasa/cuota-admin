@@ -12,14 +12,48 @@
   font-family: $main-text;
   font-size: 1rem;
   padding-left: 10%;
-  h2 {
-    font-size: 1.2em;
-    color: $name-title;
-    font-weight: 400;
-    // border-bottom: solid grey 2px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    margin: 0rem 0;
+  .nameContainer {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    h2 {
+      font-size: 1.2em;
+      color: $name-title;
+      font-weight: 400;
+      // border-bottom: solid grey 2px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      margin: 0rem 0;
+    }
+    button {
+      margin: 0 1rem;
+      background-color: transparent;
+      border: none;
+      svg {
+        color: $text3;
+        margin: 0 0.2rem;
+      }
+    }
   }
+
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+
+    .nameInput {
+      background-color: transparent;
+      border: none;
+      font-size: 1.2em;
+      color: $name-title;
+      font-weight: 400;
+    }
+    .nameInput:focus{
+      outline: none;
+      background-color: $hunt2;
+      color: $text2;
+    }
+  }
+
   a {
     text-decoration: inherit;
     // color: red;
@@ -40,6 +74,6 @@
 }
 @media (min-width: 750px) {
   .nameUserBox {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
