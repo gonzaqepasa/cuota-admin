@@ -95,6 +95,11 @@ export const RenderList: React.FC<Props> = ({
         setSearch={setSearch}
       />
       <div className={`scroll ${styles.linksContainer}`}>
+        <p
+          style={{ color: `${selectColor(userData[0].activity.nameActivity)}` }}
+        >
+          {filterOn ? resultFilter.length : result.length}
+        </p>
         {orderByActive(filterOn ? resultFilter : result).map((el) => (
           <LazyLoad
             key={el.id}

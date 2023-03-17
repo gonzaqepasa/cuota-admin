@@ -13,17 +13,21 @@
   .linksContainer {
     // box-shadow: 1px 1px 8px black;
     background-color: $hunt1;
-    
+
     // box-shadow: 1px 1px 30px $hunt2;
     border-radius: 2rem;
     height: 30rem;
-    padding: 0.2rem 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 5px;
     width: 95%;
     max-width: 50rem;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    p {
+      margin: 0;
+      font-family: $main-text;
+    }
     .linkBox {
       animation: $animate 0.2s ease-in-out;
       // background-color: green;
