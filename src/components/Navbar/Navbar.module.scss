@@ -18,27 +18,27 @@
     height: 100vh;
 
     .responsiveBox {
-      min-width: 70vw;
+      min-width: 18rem;
       height: inherit;
 
       // background-color: red;
       background-color: $hunt2;
       .header {
         width: 100%;
-        padding-top: 3rem;
+        padding: 2rem 0 0.5rem 0rem;
         .imgBox {
           // height: 5rem;
           width: 2rem;
-          padding-left: 1rem;
+          padding-left: 0.5rem;
           img {
-            height: 3rem;
+            height: 2rem;
             border-radius: 50%;
 
             box-shadow: 0px 0px 2px black;
           }
         }
         .textBox {
-          padding: 0 1rem;
+          padding: 0 0.5rem;
           font-family: $main-text;
           // background-color: red;
           margin-top: 0.5rem;
@@ -48,20 +48,20 @@
             font-size: 0.8rem;
             margin: 0;
           }
-        }
-        .signOutBtnContainer {
-          // background-color: green;
-          padding: 0 1rem;
-          button {
-            font-size: 0.8rem;
-            color: red;
-            border: none;
-            background: none;
-            opacity: 0.8;
-            transition: 0.1s;
-          }
-          button:hover {
-            opacity: 1;
+          .signOutBtnContainer {
+            // background-color: green;
+            // padding: 0 1rem;
+            button {
+              font-size: 0.8rem;
+              color: red;
+              border: none;
+              background: none;
+              opacity: 0.8;
+              transition: 0.1s;
+            }
+            button:hover {
+              opacity: 1;
+            }
           }
         }
       }
@@ -73,45 +73,12 @@
         padding: 1rem 0;
         display: flex;
         flex-direction: column;
-        a {
-          font-size: 0.9rem;
-          color: $nav-a;
-          opacity: 1;
-          font-weight: 300;
-          padding: 0.2rem 0 0 1.5rem;
-          margin-top: 0.3rem;
-          text-decoration: none;
-          position: relative;
-        }
-        a:hover {
-          color: $nav-a-hover;
-        }
-        a::before {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 2px;
-          border-radius: 4px;
-          background-color: white;
-          bottom: 0;
-          left: 0;
-          transform-origin: right;
-          transform: scaleX(0);
-          transition: transform 0.3s ease-in-out;
-        }
-        a:hover::before {
-          transform-origin: left;
-          transform: scaleX(1);
-        }
-        .isHere {
-          background-color: rgb(255, 255, 255);
-          color: black;
-          // border-bottom: solid 2px white;
-          transition: 0.3s;
-        }
-        .isHere:hover {
-          background-color: rgba(255, 255, 255, 1);
-          color: black;
+        padding: 0 1rem;
+        .firstLinks {
+          margin: 1rem 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
         }
       }
     }
@@ -139,31 +106,138 @@
     padding-left: 0.5rem;
   }
 }
+.toTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  transition: 0.3s ease-in-out;
+  opacity: 1;
+  
 
-@media (min-width: 700px) {
+  button {
+    background-color: transparent;
+    border: none;
+    color: $text3;
+    transition: 0.2s;
+    svg {
+      font-size: 3rem;
+    }
+  }
+  button:hover {
+    color: $text2;
+  }
+}
+.toTopOn {
+  opacity: 0;
+
+}
+
+@media (min-width: 950px) {
   .allNavbar {
-    // background-color: red;
-    // position: relative;
+    height: 2.5rem;
+    background-color: $hunt2;
+    width: 100%;
+    transition: 0.3s;
+    padding-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    top: 0;
+    z-index: 500;
 
     .navWithBtn {
+      margin: 0;
+      position: relative;
+      width: initial;
       display: flex;
+      transition: 0.2s;
+      min-height: initial;
+      height: 100%;
+      transform: translateX(0vw);
+      width: 100vw;
       .responsiveBox {
-        // position: relative;
-        min-width: 18rem;
-        width: auto;
-
+        height: 100%;
+        background: transparent;
+        position: relative;
+        min-width: initial;
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
         .header {
+          background: transparent;
+          height: inherit;
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+          width: initial;
+          .imgBox {
+            height: initial;
+            width: initial;
+            padding: 0 5px 0 0;
+            img {
+              height: 1.5rem;
+            }
+          }
           .textBox {
+            justify-content: flex-end;
+            padding: 0 5px 0 0;
+            p {
+              font-size: 0.7rem;
+            }
+
+            .signOutBtnContainer {
+              padding: 0;
+              display: flex;
+              justify-content: flex-end;
+              button {
+                font-size: 0.7rem;
+              }
+            }
+          }
+        }
+        .navigation {
+          flex-direction: column;
+          background: transparent;
+          // flex-wrap: wrap;
+          align-items: flex-start;
+          justify-content: flex-end;
+          .firstLinks {
+            display: none;
+            flex-direction: row;
+            justify-content: center;
+            height: inherit;
+            margin: 0.3rem 0;
+          }
+          .isTop {
+            animation: $animate 0.4s ease-in-out;
+            // background-color: red;
+            display: flex;
+          }
+          .activityLinks {
+            margin: 0rem 0;
+            display: flex;
           }
         }
       }
 
       .btnTouchClose {
-        // width: inherit;
+        display: none;
       }
     }
-    .modalInactive {
-      transform: translateX(-100vw);
+
+    .hamburguerBox {
+      display: none;
     }
+
+    .modalInactive {
+      // transform: translateX(-100vw);
+    }
+  }
+  .isTopNav {
+    height: 5rem;
+    background-color: transparent;
+
   }
 }
