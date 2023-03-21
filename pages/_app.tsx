@@ -1,7 +1,5 @@
 import "../styles/globals.scss";
-import "../styles/bootstrap-edit.scss";
 import type { AppProps } from "next/app";
-
 import Head from "next/head";
 import { auth } from "../firebase/firebaseConfig";
 import { useState } from "react";
