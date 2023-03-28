@@ -112,7 +112,6 @@
   right: 2rem;
   transition: 0.3s ease-in-out;
   opacity: 1;
-  
 
   button {
     background-color: transparent;
@@ -129,13 +128,12 @@
 }
 .toTopOn {
   opacity: 0;
-
 }
 
 @media (min-width: 950px) {
   .allNavbar {
     height: 2.5rem;
-    background-color: $hunt2;
+    background-color: $nav-background;
     width: 100%;
     transition: 0.3s;
     padding-bottom: 0.3rem;
@@ -238,6 +236,5 @@
   .isTopNav {
     height: 5rem;
     background-color: transparent;
-
   }
 }

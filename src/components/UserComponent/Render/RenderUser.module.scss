@@ -2,18 +2,10 @@
 /////////////////////// MESES ///////////////////////////
 .monthsContainer {
   background-color: $hunt1;
-
-  // backdrop-filter: blur(4px);
-  //   display: grid;
-  //   grid-template-columns: repeat(3, auto);
-  //   grid-template-rows: repeat(4, auto);
-  //   grid-gap: 1rem;
   min-height: 70vh;
-
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
-  // flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   min-width: 100vw;
