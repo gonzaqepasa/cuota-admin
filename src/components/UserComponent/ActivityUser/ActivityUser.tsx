@@ -14,13 +14,12 @@ export const ActivityUser: React.FC<Props> = ({ user }) => {
       <Link
         style={{ color: selectColor(user.activity.nameActivity) }}
         href={`/list/${fromNameToUrl(user.activity.nameActivity)}`}
+        className={styles.linkActivity}
       >
-        <h3>
-          {user.activity.nameActivity.toUpperCase()} -{" "}
-          <i style={{ fontSize: "0.8rem", color: "grey" }}>
-            {user.activity.modality}{" "}
-          </i>
-        </h3>
+        {user.activity.nameActivity.toUpperCase()} -{" "}
+        <i style={{ fontSize: "0.8rem", color: "grey" }}>
+          {user.activity.modality}{" "}
+        </i>
       </Link>
       <LinkDeptor activityName={user.activity.nameActivity} />
     </div>

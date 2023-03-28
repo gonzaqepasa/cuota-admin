@@ -44,7 +44,7 @@ export const LinkActivity: React.FC<Props2> = ({
           route.asPath === `${href}` && styles.isHere
         }`}
         onClick={() => setModal(false)}
-        href={`/${href}`}
+        href={`${href}`}
       >
         <p style={{ color: ` ${selectColor(text)}`, fontSize: "0.9rem" }}>
           {text.charAt(0)}
