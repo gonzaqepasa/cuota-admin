@@ -19,6 +19,9 @@ export interface typesUser {
 
   id?: string;
 }
+
+export type typesEditName = Pick<typesUser, "id" | "name">;
+
 export interface typesActivity {
   nameActivity: string;
   modality: string;

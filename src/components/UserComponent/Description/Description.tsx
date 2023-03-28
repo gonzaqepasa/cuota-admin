@@ -9,7 +9,7 @@ interface Props {
   id: Number;
   description: string | undefined;
   color: string;
-  getDataAgain: Function;
+  getDataAgain: () => void;
 }
 
 export const Description: React.FC<Props> = ({

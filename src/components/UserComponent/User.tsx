@@ -18,6 +18,7 @@ import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 import { NameUser } from "./NameUser/NameUser";
 import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";
+import { ActivityUser } from "./ActivityUser/ActivityUser";
 
 interface Props {
   userData: typesUser;
@@ -48,7 +49,8 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           userData.activity.nameActivity.toLowerCase()
         )} ${!user.active && styles.isInactiveUser}`}
       >
-        <NameUser user={user} />
+        <NameUser getDataAgain={getUserAgain} user={user} />
+        <ActivityUser user={user} />
         <Description
           id={Number(id)}
           color={selectColor(user.activity.nameActivity)}
@@ -61,7 +63,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           monthData={monthData}
           getUserAgain={getUserAgain}
         />
-        <ConfigUser userData={userData}  />
+        <ConfigUser userData={userData} />
       </div>
     );
   return <div>No existe este usuario</div>;
