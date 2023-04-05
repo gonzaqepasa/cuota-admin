@@ -2,6 +2,7 @@ import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/services-url";
+import { firstLetterUpper } from "./firstLetterUpper";
 
 export function payMonth(
   e: MouseEvent<HTMLButtonElement>,
@@ -18,7 +19,7 @@ export function payMonth(
     background: "#202020",
     color: "white",
     title: "Estas seguro?",
-    text: `${userName} pago el mes de ${monthName}`,
+    text: `${firstLetterUpper(userName)} pago el mes de ${monthName}`,
     icon: "warning",
     showCancelButton: true,
     showDenyButton: true,
