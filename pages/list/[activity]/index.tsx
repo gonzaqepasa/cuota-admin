@@ -77,7 +77,7 @@ export default function List() {
         <Title activityName={String(activity)} />
 
         {dataActivity && (
-          <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} />
+          <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} modalAdd={modalAdd} />
         )}
         {dataActivity && modalAdd && (
           <AddUserForm
