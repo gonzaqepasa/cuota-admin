@@ -24,7 +24,7 @@ export const Description: React.FC<Props> = ({
   const [descript, setDescript] = useState(description);
   if (load)
     return (
-      <div className={styles.allDescription}>
+      <div className={styles.descriptionContainer}>
         <Loading />
       </div>
     );
