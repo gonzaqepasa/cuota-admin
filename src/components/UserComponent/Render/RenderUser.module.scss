@@ -88,29 +88,7 @@
     }
   }
 
-  //////////////////////////////////////////////////////////
-  ///
-  ///
-  @keyframes jump {
-    0% {
-      transform: translateY(0rem);
-    }
-    20% {
-      transform: translateY(-0.3rem);
-    }
-    50% {
-      transform: translateY(0.3rem);
-    }
-    70% {
-      transform: translateY(-0.2rem);
-    }
-    100% {
-      transform: translateY(0rem);
-    }
-  }
 
-  ///
-  //////////////////////////////////////////////////////////
 
   .monthBox {
     background: rgba(0, 0, 0, 0.4);

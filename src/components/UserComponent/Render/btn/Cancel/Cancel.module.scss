@@ -7,15 +7,19 @@
   bottom: 0.1rem;
   background-color: transparent;
   border: none;
-  color: $text4;
+  color: $text1;
   font-size: 0.7rem;
   font-weight: 300;
-  //   padding: 0.5rem 1rem;
-
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.6;
+  svg {
+    color: $text4 !important;
+    margin: 0 2px !important;
+  }
   &:hover {
-    // background-color: #000;
-    color: $text3;
+    opacity: 0.8;
   }
 }

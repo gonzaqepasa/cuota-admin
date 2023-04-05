@@ -28,6 +28,6 @@
   color: $title;
   svg {
     // color: white;
-    animation: jump 1s ease-in-out;
+    animation: $animateJump 0.5s ease-in-out;
   }
 }
