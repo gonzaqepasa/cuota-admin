@@ -63,3 +63,29 @@ export async function getMonths({
     process.exit(1);
   }
 }
+
+export async function cancelPayMonth({ id, addAdmin }: any) {
+  try {
+    if (!id) {
+      throw new Error("Faltan argumentos");
+    }
+
+    const month = await prisma.month.update({
+      where: {
+        id,
+      },
+      data: {
+        isPay: false,
+        addData: " ",
+        addAdmin: " ",
+      },
+    });
+
+    await prisma.$disconnect();
+    return month;
+  } catch (err) {
+    console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}

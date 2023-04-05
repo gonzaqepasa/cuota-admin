@@ -1,0 +1,21 @@
+@import "../../../../../../styles/variables.scss";
+
+.cancelPay {
+  position: absolute;
+  font-family: $main-text;
+  right: 0;
+  bottom: 0.1rem;
+  background-color: transparent;
+  border: none;
+  color: $text4;
+  font-size: 0.7rem;
+  font-weight: 300;
+  //   padding: 0.5rem 1rem;
+
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    // background-color: #000;
+    color: $text3;
+  }
+}

@@ -78,37 +78,7 @@
         font-size: 1.2rem;
         margin: 0 0.5rem;
       }
-      .btnPay {
-        border: none;
-        position: absolute;
-        right: 0;
-        bottom: 5px;
-        color: $text1;
-        padding: 0.6rem 1rem;
-        background-color: transparent;
-        transition: 0.5s;
-        background: rgb(130, 130, 130);
-        background: linear-gradient(
-          180deg,
-          rgba(130, 130, 130, 0) 0%,
-          rgba(0, 0, 0, 1) 100%
-        );
-        display: flex;
-        align-items: center;
-        svg {
-          font-size: 1.4rem;
-          margin: 0;
-        }
-      }
-      .btnPay:hover {
-        background-color: $backg-black3;
-
-        color: $title;
-        svg {
-          // color: white;
-          animation: jump 1s ease-in-out;
-        }
-      }
+      
     }
     .emailContainer {
       // background-color: grey;
