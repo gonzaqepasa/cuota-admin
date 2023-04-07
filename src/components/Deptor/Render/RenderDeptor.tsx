@@ -1,8 +1,9 @@
+import { typesMonth } from "../../../types/types-user";
 import { CardDeptors } from "./CardDeptors/CardDeptor";
 import styles from "./RenderDeptor.module.scss";
 
 interface Props {
-  dataMonths: any;
+  dataMonths: typesMonth[];
 }
 
 export const RenderDeptor: React.FC<Props> = ({ dataMonths }) => {

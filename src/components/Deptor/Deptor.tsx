@@ -1,4 +1,4 @@
-import { typesMonthNames } from "../../types/types-user";
+import { typesMonth, typesMonthNames } from "../../types/types-user";
 import styles from "./Deptor.module.scss";
 import { arrayMonth } from "./logic/moths";
 import { Dispatch, SetStateAction } from "react";
@@ -7,7 +7,7 @@ import { RenderDeptor } from "./Render/RenderDeptor";
 import { TitleDeptor } from "./Title/TitleDeptor";
 
 interface Props {
-  dataMonths: any;
+  dataMonths: typesMonth[];
   monthSelected: typesMonthNames;
   setMonthSelected: Dispatch<SetStateAction<typesMonthNames>>;
 }
