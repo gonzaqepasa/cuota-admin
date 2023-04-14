@@ -84,6 +84,11 @@ export default function NavbarMain() {
                 />
                 <LinkActivity
                   setModal={setModal}
+                  text="Kick Boxing"
+                  href="/list/Kick%20Boxing"
+                />
+                <LinkActivity
+                  setModal={setModal}
                   text="GAP + Funcional"
                   activityName="GAP Funcional"
                   href="/list/GAP%20Funcional"
