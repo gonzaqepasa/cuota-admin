@@ -44,6 +44,11 @@ export async function getMonths({
       where: {
         isPay,
         monthName,
+        calendar: {
+          User: {
+            active: true,
+          },
+        },
       },
       include: {
         calendar: {

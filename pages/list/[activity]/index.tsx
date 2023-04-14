@@ -7,6 +7,7 @@ import Loading from "../../../src/components/Loading/Loading";
 import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/services-url";
 import { typesActivity } from "../../../src/types/types-user";
+import { Notification } from "../../../src/components/Notification/Notification";
 
 export default function List() {
   const router = useRouter();
@@ -77,7 +78,11 @@ export default function List() {
         <Title activityName={String(activity)} />
 
         {dataActivity && (
-          <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} modalAdd={modalAdd} />
+          <ButtonAdd
+            setModalAdd={setModalAdd}
+            color={String(activity)}
+            modalAdd={modalAdd}
+          />
         )}
         {dataActivity && modalAdd && (
           <AddUserForm
@@ -94,6 +99,7 @@ export default function List() {
           userData={dataUser}
           getDataAgain={getDataAgain}
         />
+        <Notification dataUser={dataUser} />
       </div>
     );
 }
