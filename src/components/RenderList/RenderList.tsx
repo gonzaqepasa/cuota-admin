@@ -71,7 +71,7 @@ export const RenderList: React.FC<Props> = ({
       })
     );
   }, [monthSelected, result]);
-  console.log("Aca reuslt asdasd", resultFilter);
+  // console.log("Aca reuslt asdasd", resultFilter);
   if (userData == false)
     return (
       <div className={styles.allRenderList}>

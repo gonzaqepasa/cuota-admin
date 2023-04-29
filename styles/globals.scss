@@ -85,3 +85,7 @@ a {
     font-weight: 400 !important;
   }
 }
+
+.animate-one{
+  animation: $animate 1s ease-in-out;
+}
