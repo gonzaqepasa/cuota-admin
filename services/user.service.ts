@@ -1,8 +1,8 @@
-import { type typesUser } from "../src/types/types-user";
+import { typesEditName, type typesUser } from "../src/types/types-user";
 import { prisma } from "./prismaConfig";
 import { arrayWithNamesMonths } from "../src/config/infoMonths";
 
-type Props = Pick<
+type typesCreateUser = Pick<
   typesUser,
   "name" | "email" | "phone" | "description" | "activityId"
 >;
@@ -13,7 +13,7 @@ export async function createUser({
   phone,
   description,
   activityId,
-}: Props) {
+}: typesCreateUser) {
   try {
     ////////////////////////////////////
     const user = await prisma.user.create({
@@ -126,6 +126,26 @@ export async function getUserValidate({ name, activity }: any) {
     });
     return user;
   } catch (err) {
+    await prisma.$disconnect();
+    return false;
+  }
+}
+
+export async function editName({ id, name }: typesEditName) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        name: name.toLowerCase().trim(),
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
+    await prisma.$disconnect();
     return false;
   }
 }

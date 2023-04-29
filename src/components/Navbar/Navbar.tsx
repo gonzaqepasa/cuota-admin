@@ -25,9 +25,7 @@ export default function NavbarMain() {
     window.addEventListener("scroll", () => {
       window.scrollY < 30 ? setIsTop(true) : setIsTop(false);
       window.scrollY < 300 ? setToTop(true) : setToTop(false);
-
     });
-
   }, []);
 
   return (
@@ -86,8 +84,14 @@ export default function NavbarMain() {
                 />
                 <LinkActivity
                   setModal={setModal}
-                  text="Acrobacia telas"
-                  href="/list/Acrobacia%20telas"
+                  text="Kick Boxing"
+                  href="/list/Kick%20Boxing"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="GAP + Funcional"
+                  activityName="GAP Funcional"
+                  href="/list/GAP%20Funcional"
                 />
               </div>
             </nav>
@@ -109,7 +113,7 @@ export default function NavbarMain() {
         </div>
       </div>
       <div className={`${styles.toTop} ${toTop && styles.toTopOn}`}>
-        <button  onClick={() => (document.documentElement.scrollTop = 0)}>
+        <button onClick={() => (document.documentElement.scrollTop = 0)}>
           <FaArrowCircleUp />
         </button>
       </div>

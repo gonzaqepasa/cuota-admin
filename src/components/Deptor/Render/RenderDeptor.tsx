@@ -44,9 +44,9 @@ export const RenderDeptor: React.FC<Props> = ({ dataMonths }) => {
       ),
     },
     {
-      title: "Acrobacia telas",
+      title: "GAP Funcional",
       data: dataMonths.filter(
-        (m: any) => m.calendar.User.activity.nameActivity === "Acrobacia telas"
+        (m: any) => m.calendar.User.activity.nameActivity === "GAP Funcional"
       ),
     },
   ];

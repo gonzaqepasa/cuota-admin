@@ -1,45 +1,131 @@
 @import "../../../../styles/variables";
-.nameUserBox {
+.allNameUser {
   background-color: $hunt2;
+  // background-color: red;
   // margin: 2rem 0;
-  padding: 1rem 0rem 0.2rem 0rem;
+  // padding: 1rem 0rem 0.2rem 0rem;
+  padding-left: 10%;
   width: 100%;
 
-  // box-shadow: 1px 1px 10px black;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-family: $main-text;
-  font-size: 1rem;
-  padding-left: 10%;
-  h2 {
-    font-size: 1.2em;
-    color: $name-title;
-    font-weight: 400;
-    // border-bottom: solid grey 2px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    margin: 0rem 0;
-  }
-  a {
-    text-decoration: inherit;
-    // color: red;
-    h3 {
-      transition: 0.5s;
-      // font-variant: small-caps;
-      font-weight: 500;
-      font-size: 0.9em;
-      margin: 0rem 0;
-      // color: $main-color;
-      text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.6);
+  .staticBox {
+    display: flex;
+    // flex-direction: column;
+    height: 2rem;
+    align-items: flex-end;
+    font-family: $main-text;
+
+    .nameContainer,
+    .inputContainer {
+      display: flex;
+      align-items: flex-end;
+      // background-color: blue;
+      height: 100%;
+      font-size: 1rem;
     }
-  }
-  a h3:hover {
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
-    // transform: scale(1.03);
-  }
-}
-@media (min-width: 750px) {
-  .nameUserBox {
-    font-size: 1.4rem;
+
+    @media (min-width: 600px) {
+      .nameContainer,
+      .inputContainer {
+        font-size: 1.4rem;
+      }
+    }
+
+    .nameContainer {
+      animation: $animate 0.3s ease-in-out;
+      h2 {
+        font-size: 1.2em;
+        color: $name-title;
+        font-weight: 400;
+        // border-bottom: solid grey 2px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        margin: 0rem 0;
+      }
+      button {
+        margin: 0 1rem;
+        background-color: transparent;
+        border: none;
+        font-size: 1.1rem;
+        transition: 0.2s;
+        opacity: 0.6;
+
+        display: flex;
+        align-items: flex-end;
+
+        p {
+          color: $text2;
+          margin: 0;
+          font-size: 0.6rem;
+        }
+
+        svg {
+          color: $text3;
+          margin: 0 0.2rem;
+        }
+      }
+      button:hover {
+        opacity: 1;
+      }
+    }
+    .inputContainer {
+      position: relative;
+      .nameInput {
+        background-color: transparent;
+        height: 100%;
+        border: none;
+        font-size: 0.8em;
+        color: $text3;
+        transition: 0.2s;
+        font-weight: 400;
+        background-color: rgba(200, 200, 200, 0.1);
+        border-radius: 5px;
+        padding-right: 3.5rem;
+        padding-left: 0.3rem;
+      }
+
+      .err {
+        outline: red solid 1px;
+      }
+      .errorMsg {
+        position: absolute;
+        top: -1rem;
+        left: 0;
+        color: red;
+        font-size: 0.7em;
+        font-weight: 400;
+        font-family: $main-text;
+      }
+
+      .nameInput:hover {
+        background-color: rgba(200, 200, 200, 0.15);
+      }
+      .nameInput:focus {
+        outline: none;
+        background-color: rgba(200, 200, 200, 0.2);
+
+        padding-left: 0.6em;
+        color: $text2;
+      }
+      .btnBox {
+        position: absolute;
+        right: 0;
+        // background-color: green;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        button {
+          opacity: 0.8;
+          background-color: transparent;
+          display: flex;
+          border: none;
+          margin: 0 4px;
+          transition: 0.2s;
+        }
+        button:hover {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+    }
   }
 }

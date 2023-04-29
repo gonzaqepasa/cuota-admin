@@ -15,13 +15,19 @@ input:focus,select:focus,textarea:focus,button:focus{
 }
 
 .main {
-  padding-top: 6rem;
+  padding-top: 5rem;
   min-height: 102vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: $hunt2;
+}
+
+@media (min-width: 600px) {
+  .main {
+    padding-top: 7rem;
+  }
 }
 
 .loadContainer {

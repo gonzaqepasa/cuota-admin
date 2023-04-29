@@ -2,18 +2,10 @@
 /////////////////////// MESES ///////////////////////////
 .monthsContainer {
   background-color: $hunt1;
-
-  // backdrop-filter: blur(4px);
-  //   display: grid;
-  //   grid-template-columns: repeat(3, auto);
-  //   grid-template-rows: repeat(4, auto);
-  //   grid-gap: 1rem;
   min-height: 70vh;
-
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
-  // flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   min-width: 100vw;
@@ -51,6 +43,7 @@
         width: initial;
         font-size: 0.8rem;
         font-weight: 400;
+        margin-right: 0.5rem;
       }
       @media (min-width: 400px) {
         .label {
@@ -85,37 +78,7 @@
         font-size: 1.2rem;
         margin: 0 0.5rem;
       }
-      .btnPay {
-        border: none;
-        position: absolute;
-        right: 0;
-        bottom: 5px;
-        color: $text1;
-        padding: 0.6rem 1rem;
-        background-color: transparent;
-        transition: 0.5s;
-        background: rgb(130, 130, 130);
-        background: linear-gradient(
-          180deg,
-          rgba(130, 130, 130, 0) 0%,
-          rgba(0, 0, 0, 1) 100%
-        );
-        display: flex;
-        align-items: center;
-        svg {
-          font-size: 1.4rem;
-          margin: 0;
-        }
-      }
-      .btnPay:hover {
-        background-color: $backg-black3;
-
-        color: $title;
-        svg {
-          // color: white;
-          animation: jump 1s ease-in-out;
-        }
-      }
+      
     }
     .emailContainer {
       // background-color: grey;
@@ -125,29 +88,7 @@
     }
   }
 
-  //////////////////////////////////////////////////////////
-  ///
-  ///
-  @keyframes jump {
-    0% {
-      transform: translateY(0rem);
-    }
-    20% {
-      transform: translateY(-0.3rem);
-    }
-    50% {
-      transform: translateY(0.3rem);
-    }
-    70% {
-      transform: translateY(-0.2rem);
-    }
-    100% {
-      transform: translateY(0rem);
-    }
-  }
 
-  ///
-  //////////////////////////////////////////////////////////
 
   .monthBox {
     background: rgba(0, 0, 0, 0.4);
