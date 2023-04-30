@@ -99,7 +99,7 @@ export default function List() {
           userData={dataUser}
           getDataAgain={getDataAgain}
         />
-        <Notification activity={String(activity)} />
+        <Notification activity={String(activity)} getDataAgain={getDataAgain} />
       </div>
     );
 }

@@ -11,7 +11,7 @@ export function visibilityUser(
   // Tercer Parametro
   getDataAgain: Function,
   // Tercer Parametro
-  setLoad: Dispatch<SetStateAction<boolean>>
+  setLoad?: Dispatch<SetStateAction<boolean>>
 ) {
   Swal.fire({
     reverseButtons: true,
@@ -30,7 +30,7 @@ export function visibilityUser(
   }).then((result) => {
     if (result.isConfirmed) {
       (async function () {
-        setLoad(true);
+        setLoad && setLoad(true);
         try {
           const { data } = await axios.put(`${url}/user/edit-active`, {
             id,
