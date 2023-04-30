@@ -19,6 +19,7 @@ import { NameUser } from "./NameUser/NameUser";
 import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";
 import { ActivityUser } from "./ActivityUser/ActivityUser";
+import { visibilityUser } from "../../logic/visibilityUser";
 
 interface Props {
   userData: typesUser;
@@ -57,6 +58,22 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           description={user.description}
           getDataAgain={getUserAgain}
         />
+        {!user.active && (
+          <div className="w-screen hunt2 flex justify-center">
+            <button
+              className={`text-white mb-5 hover:text-blue-300`}
+              onClick={(e) =>
+                visibilityUser(
+                  e,
+                  { id: Number(user.id), active: false },
+                  getUserAgain
+                )
+              }
+            >
+              REACTIVAR USUARIO
+            </button>
+          </div>
+        )}
         <RenderUser
           user={user}
           userData={userData}

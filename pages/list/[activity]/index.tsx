@@ -7,11 +7,12 @@ import Loading from "../../../src/components/Loading/Loading";
 import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/services-url";
 import { typesActivity } from "../../../src/types/types-user";
+import { Notification } from "../../../src/components/Notification/Notification";
 
 export default function List() {
   const router = useRouter();
-  console.log(router.query);
   const { activity } = router.query;
+  // console.log(activity);
 
   // Estados de componente
   const [modalAdd, setModalAdd] = useState(false);
@@ -40,7 +41,7 @@ export default function List() {
         setDataUser(dataUser);
         setLoad(false);
         setError({ msg: "" });
-        console.log(dataUser);
+        // console.log(dataUser);
       } catch (err) {
         setLoad(false);
         setError({ msg: "Problemas con la bd" });
@@ -54,7 +55,7 @@ export default function List() {
     try {
       const res = await fetch(`${url}/user/get-users?activity=${activity}`);
       const data = await res.json();
-      console.log("DATAAARTA ->>", data);
+      // console.log("DATAAARTA ->>", data);
       setDataUser(data);
       setLoad(false);
     } catch (err) {
@@ -77,7 +78,11 @@ export default function List() {
         <Title activityName={String(activity)} />
 
         {dataActivity && (
-          <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} modalAdd={modalAdd} />
+          <ButtonAdd
+            setModalAdd={setModalAdd}
+            color={String(activity)}
+            modalAdd={modalAdd}
+          />
         )}
         {dataActivity && modalAdd && (
           <AddUserForm
@@ -94,6 +99,7 @@ export default function List() {
           userData={dataUser}
           getDataAgain={getDataAgain}
         />
+        <Notification activity={String(activity)} getDataAgain={getDataAgain} />
       </div>
     );
 }

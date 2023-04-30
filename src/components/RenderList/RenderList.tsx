@@ -18,6 +18,7 @@ import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
 import { arrayMonth, dateMonth } from "../Deptor/logic/moths.d";
 import LazyLoad from "react-lazy-load";
+import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 
 interface Props {
   userData: typesUser[] | false;
@@ -71,7 +72,7 @@ export const RenderList: React.FC<Props> = ({
       })
     );
   }, [monthSelected, result]);
-  console.log("Aca reuslt asdasd", resultFilter);
+  // console.log("Aca reuslt asdasd", resultFilter);
   if (userData == false)
     return (
       <div className={styles.allRenderList}>
@@ -136,6 +137,7 @@ export const RenderList: React.FC<Props> = ({
                   >
                     {el.activity.modality}
                   </i>
+                  <MsgDeptor user={el} />
                 </div>
               </Link>
               <div className={`${styles.iconBox}`}>
