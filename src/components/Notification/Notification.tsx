@@ -17,7 +17,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
   const [userDebtor, setUserDebtor] = useState<typesMonth[]>([]);
   const [view, setView] = useState<boolean>(false);
   const random = Math.floor(Math.random() * userDebtor.length);
-  const userDebtorRandom = userDebtor[random];
+  let userDebtorRandom = userDebtor[random];
   console.log(userDebtor);
   const route = useRouter();
 
@@ -42,7 +42,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      console.log("holasdasdasdasd");
+      // console.log("holasdasdasdasd");
       setView(true);
     }, 30000);
     return () => clearTimeout(timeout);
@@ -60,6 +60,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
             <button
               onClick={() => {
                 setView(false);
+                userDebtorRandom = userDebtor[random];
               }}
               className={`absolute text-red-700 top-0 right-2 font-semibold flex justify-center`}
             >
