@@ -51,7 +51,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
   return (
     <div className={`fixed bottom-5 left-5 `}>
       {userDebtor.length > 0 && (
-        <div className=" backg-1 rounded-lg mr-2">
+        <div className=" backg-animate rounded-lg mr-2">
           <div
             className={`relative ${
               view ? "flex" : "hidden"

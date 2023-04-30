@@ -9,17 +9,18 @@
 }
 
 .backg-animate {
-  background-image: linear-gradient(
+/*   background-image: linear-gradient(
     45deg,
     rgba(4, 25, 31, 0.9) 0%,
     hwb(204 0% 98% / 0.9) 18%,
     rgba(0, 0, 0, 0.9) 45%,
     rgba(17, 0, 24, 0.9) 75%,
     rgba(16, 0, 22, 0.9) 100%
-  );
-  backdrop-filter: blur(2px);
+  ); */
+  background-color: #000;
+  // backdrop-filter: blur(2px);
   animation: bg-run 10s infinite ease-in-out;
-  box-shadow: -70px -20px 100px rgba(0, 49, 68, 0.3) inset, 1px 2px 10px #000;
+  box-shadow: -70px -20px 100px rgba(0, 49, 68, 0.1) inset, 1px 2px 10px #000;
 }
 
 @keyframes bg-run {
@@ -28,13 +29,13 @@
   }
 
   25% {
-    box-shadow: 0px -50px 70px rgba(87, 0, 109, 0.3) inset, 1px 2px 10px #000;
+    box-shadow: 0px -50px 100px rgba(87, 0, 109, 0.3) inset, 1px 2px 10px #000;
   }
   50% {
-    box-shadow: 50px 20px 70px rgba(0, 105, 109, 0.2) inset, 1px 2px 10px #000;
+    box-shadow: 70px 20px 100px rgba(0, 93, 180, 0.2) inset, 1px 2px 10px #000;
   }
   75% {
-    box-shadow: 0px -50px 100px rgba(36, 0, 66, 0.2) inset, 1px 2px 10px #000;
+    box-shadow: 50px -50px 100px rgba(36, 0, 66, 0.2) inset, 1px 2px 10px #000;
   }
   100% {
     box-shadow: -70px -20px 100px rgba(0, 49, 68, 0.3) inset, 1px 2px 10px #000;
