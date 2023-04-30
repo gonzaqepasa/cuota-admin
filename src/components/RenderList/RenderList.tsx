@@ -18,6 +18,7 @@ import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
 import { arrayMonth, dateMonth } from "../Deptor/logic/moths.d";
 import LazyLoad from "react-lazy-load";
+import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 
 interface Props {
   userData: typesUser[] | false;
@@ -136,6 +137,7 @@ export const RenderList: React.FC<Props> = ({
                   >
                     {el.activity.modality}
                   </i>
+                  <MsgDeptor user={el} />
                 </div>
               </Link>
               <div className={`${styles.iconBox}`}>
