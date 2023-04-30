@@ -10,13 +10,17 @@ export const MsgDeptor: React.FC<Props> = ({ user }) => {
   });
   console.log(aux, "asdasdasdasdasdasd");
 
-  return (
-    <p
-      className={`${
-        aux?.isPay === false ? "flex" : "hidden"
-      } px-3 text-xs text-white   rounded-lg bg-red-700`}
-    >
-      no pago
-    </p>
-  );
+  if (aux?.isPay === false) {
+    return (
+      <p className={`"flex" px-3 text-xs text-white   rounded-lg bg-red-700`}>
+        no pago
+      </p>
+    );
+  } else {
+    return (
+      <p className={`"flex" px-3 text-xs text-white   rounded-lg bg-green-700`}>
+        pago
+      </p>
+    );
+  }
 };
