@@ -12,7 +12,7 @@ export const MsgDeptor: React.FC<Props> = ({ user }) => {
 
   if (aux?.isPay === false) {
     return (
-      <p className={`"flex" px-3 text-xs text-white   rounded-lg bg-red-700`}>
+      <p className={`"flex" px-3 text-xs text-neutral-400   rounded-lg bg-neutral-700`}>
         no pago
       </p>
     );

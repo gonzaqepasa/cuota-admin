@@ -54,9 +54,9 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
   }, [view]);
 
   return (
-    <div className={`fixed bottom-5 left-5 `}>
+    <div className={`fixed bottom-5 left-5 shadow-md`}>
       {userDebtor.length > 0 && userDebtorRandom?.id && (
-        <div className=" backg-animate rounded-lg mr-2">
+        <div className=" bg-neutral-800  rounded-lg border border-neutral-500 mr-2">
           <div
             className={`relative ${
               view ? "flex" : "hidden"
@@ -66,9 +66,9 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
               onClick={() => {
                 setView(false);
               }}
-              className={`absolute text-red-700 top-0 right-2 font-semibold flex justify-center`}
+              className={`absolute text-red-700 top-1 transition right-3 font-semibold flex justify-center hover:text-red-600`}
             >
-              x
+              X
             </button>
             <p className={`text-neutral-300 font-extralight text-base`}>
               <i style={{ color: selectColor(activity) }}>
