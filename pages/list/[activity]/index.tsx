@@ -74,7 +74,7 @@ export default function List() {
   if (error.msg) return <div className="main"> {error.msg}</div>;
   if (dataActivity.length !== 0)
     return (
-      <div className="main">
+      <div className="main hunt2">
         <Title activityName={String(activity)} />
 
         {dataActivity && (

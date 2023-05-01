@@ -1,15 +1,30 @@
 @import "variables.scss";
 
-.hunt2 {
+.hunt-2 {
   background: $hunt2;
 }
+
+.backg-img {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/cuota-admin-2e674.appspot.com/o/img%2Fdone%2Ffotoprueba.png?alt=media&token=8894eeaa-8c38-4349-ad99-bc67149c8774");
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}
 .backg-1 {
-  background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
-  background: rgb(10, 10, 10);
+  // background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+  // background: rgb(10, 10, 10);
+  background-image: linear-gradient(
+    45deg,
+    rgba(4, 25, 31, 0.9) 0%,
+    hwb(204 0% 98% / 0.9) 18%,
+    rgba(0, 0, 0, 0.9) 45%,
+    rgba(17, 0, 24, 0.9) 75%,
+    rgba(16, 0, 22, 0.9) 100%
+  );
 }
 
 .backg-animate {
-/*   background-image: linear-gradient(
+  /*   background-image: linear-gradient(
     45deg,
     rgba(4, 25, 31, 0.9) 0%,
     hwb(204 0% 98% / 0.9) 18%,
