@@ -49,14 +49,14 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
     const timeout = setTimeout(() => {
       // console.log("holasdasdasdasd");
       setView(true);
-    }, 5000);
+    }, 300000);
     return () => clearTimeout(timeout);
   }, [view]);
 
   return (
     <div className={`fixed bottom-5 left-5 shadow-md`}>
       {userDebtor.length > 0 && userDebtorRandom?.id && (
-        <div className=" bg-neutral-800  rounded-lg border border-neutral-500 mr-2">
+        <div className=" backg-animate  rounded-lg  mr-2">
           <div
             className={`relative ${
               view ? "flex" : "hidden"
@@ -68,7 +68,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
               }}
               className={`absolute text-red-700 top-1 transition right-3 font-semibold flex justify-center hover:text-red-600`}
             >
-              X
+              x
             </button>
             <p className={`text-neutral-300 font-extralight text-base`}>
               <i style={{ color: selectColor(activity) }}>

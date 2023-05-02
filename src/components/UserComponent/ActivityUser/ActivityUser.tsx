@@ -21,7 +21,7 @@ export const ActivityUser: React.FC<Props> = ({ user }) => {
           {user.activity.modality}{" "}
         </i>
       </Link>
-      <LinkDeptor activityName={user.activity.nameActivity} />
+      {/* <LinkDeptor activityName={user.activity.nameActivity} /> */}
     </div>
   );
 };
