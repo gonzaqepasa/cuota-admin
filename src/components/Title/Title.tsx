@@ -17,7 +17,7 @@ export const Title: React.FC<Props> = ({ activityName }) => {
       >
         {activityName}
       </h2>
-      <LinkDeptor activityName={activityName} />
+      {/* <LinkDeptor activityName={activityName} /> */}
     </div>
   );
 };

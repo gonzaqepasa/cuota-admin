@@ -42,11 +42,11 @@ export default function UserData() {
   //////////////////////////////
   if (load) return <Loading />;
   if (error.msg) {
-    return <div className={`main backg backg-funcional`}>{error.msg}</div>;
+    return <div className={`main backg-1`}>{error.msg}</div>;
   }
   if (typeof data !== "boolean")
     return (
-      <div className={`main background-funcional`}>
+      <div className={`main backg-1`}>
         <User userData={data} id={String(route.query.id)} />
       </div>
     );

@@ -46,9 +46,9 @@ export const User: React.FC<Props> = ({ userData, id }) => {
   if (user)
     return (
       <div
-        className={`${styles.allUserComponent} backg backg-${fromNameToUrl(
-          userData.activity.nameActivity.toLowerCase()
-        )} ${!user.active && styles.isInactiveUser}`}
+        className={`${styles.allUserComponent}  ${
+          !user.active && styles.isInactiveUser
+        }`}
       >
         <NameUser getDataAgain={getUserAgain} user={user} />
         <ActivityUser user={user} />
