@@ -11,7 +11,7 @@ import { LinkActivity, LinkNav } from "./Link/LinkNav";
 
 export default function NavbarMain() {
   const route = useRouter();
-  console.log(route.asPath);
+  // console.log(route.asPath);
   const user = auth.currentUser;
   // useEffect(() => {}, []);
   const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);

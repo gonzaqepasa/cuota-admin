@@ -15,15 +15,17 @@ export const ButtonAdd: React.FC<Props> = ({
   modalAdd,
 }) => {
   return (
-    <div className={`${styles.allButtonAdd} ${modalAdd && styles.modalOn}`}>
+    <div className={` w-3/4 flex justify-end `}>
       {
         <button
-          className={`${styles.btn} `}
+          className={`flex text-sm `}
           onClick={(e) => setModalAdd((state: boolean) => !state)}
         >
-          <p className={`${modalAdd && styles.paraOn}`}>Agregar usuario</p>
-          <span className={`${modalAdd && styles.spanOn}`}>
-            <MdAdd size={35} color={selectColor(color)} />
+          <p className={`text-neutral-400 hover:text-neutral-300 ${!modalAdd ? "flex" : "hidden"}`}>
+            Agregar usuario
+          </p>
+          <span className={`transition rotate-180 ${modalAdd && "rotate-45"} opacity-80 hover:opacity-100`}>
+            <MdAdd size={25} color={selectColor(color)} />
           </span>
         </button>
       }
