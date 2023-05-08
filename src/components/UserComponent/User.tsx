@@ -16,7 +16,7 @@ interface Props {
   id: string;
 }
 
-export const User: React.FC<Props> = ({ userData, id }) => {
+ const User: React.FC<Props> = ({ userData, id }) => {
   const [monthData, setMonthData] = useState<any>(
     orderByMonth(userData.calendar.months)
   );
@@ -75,3 +75,5 @@ export const User: React.FC<Props> = ({ userData, id }) => {
     );
   return <div>No existe este usuario</div>;
 };
+
+export default User;

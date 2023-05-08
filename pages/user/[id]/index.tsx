@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { User } from "../../../src/components/UserComponent/User";
+import User from "../../../src/components/UserComponent/User";
 import { url } from "../../../src/config/services-url";
 import Loading from "../../../src/components/Loading/Loading";
 
