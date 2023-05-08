@@ -1,20 +1,10 @@
-import { MouseEvent, useState } from "react";
-import { typesMonth, typesUser } from "../../types/types-user";
+import { useState } from "react";
+import { typesUser } from "../../types/types-user";
 import styles from "./User.module.scss";
-import Swal from "sweetalert2";
-import { auth } from "../../../firebase/firebaseConfig";
-
-import { payMonth } from "../../logic/payMonth";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
-import { fromNameToUrl } from "../../logic/fromNameToUrl";
-import { Carousel } from "react-bootstrap";
-import Image from "next/image";
 import { url } from "../../config/services-url";
-import { numberToMoney } from "../../logic/numberToMoney";
-import Link from "next/link";
-import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 import { NameUser } from "./NameUser/NameUser";
 import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";

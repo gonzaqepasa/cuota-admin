@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { GetStaticPaths } from "next";
-
 import { User } from "../../../src/components/UserComponent/User";
-import { typesUser } from "../../../src/types/types-user";
 import { url } from "../../../src/config/services-url";
 import Loading from "../../../src/components/Loading/Loading";
 
