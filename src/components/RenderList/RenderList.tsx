@@ -46,10 +46,6 @@ export const RenderList: React.FC<Props> = ({
   const [filterOn, setFilterOn] = useState(false);
   // const [dataToRender, setDataToRender] = useState(userData);
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setSearch(e.target.value);
-    // setDataToRender(filterUsers);
-  }
   useEffect(() => {
     if (userData) {
       if (!search) {
@@ -63,16 +59,7 @@ export const RenderList: React.FC<Props> = ({
       }
     }
   }, [search, userData]);
-  useEffect(() => {
-    setResultFilter(
-      result.filter((user) => {
-        return user.calendar.months.find((m) => {
-          return m.monthName === monthSelected && m.isPay === false;
-        });
-      })
-    );
-  }, [monthSelected, result]);
-  // console.log("Aca reuslt asdasd", resultFilter);
+
   if (userData == false)
     return (
       <div className={styles.allRenderList}>
@@ -84,24 +71,21 @@ export const RenderList: React.FC<Props> = ({
   return (
     <div className={`${styles.allRenderList}`}>
       <FilterList
-        setFilterOn={setFilterOn}
         monthSelected={monthSelected}
         setMonthSelected={setMonthSelected}
-        filterOn={filterOn}
+        setResultFilter={setResultFilter}
+        result={result}
+        search={search}
       />
 
-      <SearcherList
-        handleChange={handleChange}
-        search={search}
-        setSearch={setSearch}
-      />
+      <SearcherList search={search} setSearch={setSearch} />
       <div className={`scroll ${styles.linksContainer}`}>
         <p
           style={{ color: `${selectColor(userData[0].activity.nameActivity)}` }}
         >
-          {filterOn ? resultFilter.length : result.length}
+          {resultFilter.length}
         </p>
-        {orderByActive(filterOn ? resultFilter : result).map((el) => (
+        {orderByActive(resultFilter).map((el) => (
           <LazyLoad
             key={el.id}
             onContentVisible={() => {
@@ -137,7 +121,7 @@ export const RenderList: React.FC<Props> = ({
                   >
                     {el.activity.modality}
                   </i>
-                  <MsgDeptor user={el} />
+                  <MsgDeptor user={el} month={monthSelected} />
                 </div>
               </Link>
               <div className={`${styles.iconBox}`}>

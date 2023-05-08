@@ -1,5 +1,8 @@
 @import "variables.scss";
 
+.hunt-3 {
+  background: $hunt3;
+}
 .hunt-2 {
   background: $hunt2;
 }
@@ -15,11 +18,11 @@
   background: rgb(10, 10, 10);
      background-image: linear-gradient(
     45deg,
-    rgba(13, 80, 99, 0.9) 0%,
-    hwb(205 0% 90% / 0.9) 34%,
-    rgba(0, 0, 0, 0.9) 65%,
-    rgba(7, 0, 10, 0.9) 75%,
-    rgba(7, 0, 10, 0.9) 100%
+    rgba(37, 37, 37, 0.9) 0%,
+    hwb(0 12% 88% / 0.9) 34%,
+    rgba(20, 20, 20, 0.9) 65%,
+    rgba(12, 12, 12, 0.9) 75%,
+    rgba(0, 0, 0, 0.9) 100%
   ); 
   
 }

@@ -3,23 +3,24 @@ import { mesActual } from "../../Deptor/logic/moths.d";
 
 interface Props {
   user: typesUser;
+  month: string;
 }
-export const MsgDeptor: React.FC<Props> = ({ user }) => {
+export const MsgDeptor: React.FC<Props> = ({ user, month }) => {
   const aux = user.calendar.months.find((m) => {
-    return m.monthName === mesActual();
+    return m.monthName === month;
   });
-  console.log(aux, "asdasdasdasdasdasd");
+  // console.log(aux, "asdasdasdasdasdasd");
 
   if (aux?.isPay === false) {
     return (
-      <p className={`"flex" px-3 text-xs text-neutral-400   rounded-lg bg-neutral-700`}>
-        no pago
-      </p>
+      <p
+        className={`flex  text-xs text-neutral-400 h-2 w-2  rounded-lg bg-red-800`}
+      ></p>
     );
   } else {
     return (
-      <p className={`"flex" px-3 text-xs text-white   rounded-lg bg-green-700`}>
-        pago
+      <p className={`flex px-3 text-xs text-white font-extralight  rounded-lg bg-green-700`}>
+        pagó
       </p>
     );
   }
