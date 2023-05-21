@@ -89,7 +89,7 @@ export const RenderList: React.FC<Props> = ({
           <LazyLoad
             key={el.id}
             onContentVisible={() => {
-              console.log("loaded!");
+              console.log("loaded user!");
             }}
             height={35}
             // width={600}

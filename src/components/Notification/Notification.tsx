@@ -36,7 +36,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
         const random = Math.floor(Math.random() * userDebtorActivity.length);
         setUserDebtor(userDebtorActivity);
         setUserDeptorRandom(userDebtorActivity[random]);
-        console.log("Esto no debe pasar cuando abro y cierro addUser");
+        // console.log("Esto no debe pasar cuando abro y cierro addUser");
       } catch (err) {
         console.log(err);
       }

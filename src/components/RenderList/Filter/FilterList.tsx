@@ -45,7 +45,7 @@ export const FilterList: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    console.log(state);
+    // console.log(state);
 
     if (state === "todos") {
       setResultFilter(result);
