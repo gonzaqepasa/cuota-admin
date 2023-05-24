@@ -21,15 +21,13 @@ export default function UserData() {
       try {
         setLoad(true);
         const resUser = await fetch(`${url}/user/user?USER=${route.query.id}`);
-        /*  const resAct = await fetch(
-          `${url}/activity/get-activity?activity=Funcional`
-        ); */
         const dataUser = await resUser.json();
+
+        // console.log(dataUser);
         (await dataUser.length) === 0 &&
           setError({ msg: "No hay gente en la bd" });
         setData(dataUser);
         setLoad(false);
-
         // const dataAct = await resAct.json();
       } catch (err) {
         setLoad(false);

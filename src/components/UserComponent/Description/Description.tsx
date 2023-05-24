@@ -34,41 +34,49 @@ export const Description: React.FC<Props> = ({
         <h5 style={{ color }}>Descripción:</h5>
         <div className={styles.detailContainer}>
           {editOn ? (
-            <div className={styles.editOnDescription}>
-              <input
-                value={descript}
-                onChange={(e) => {
-                  setDescript(e.target.value);
-                }}
-                placeholder="Ingrese descripción..."
-              />
-              <div className={`${styles.btnAcpCanBox}`}>
-                <button
-                  onClick={(e) => {
-                    setLoad(true);
-                    editDescription(
-                      e,
-                      { id: Number(id), description: descript },
-                      getDataAgain,
-                      setEditOn,
-                      setLoad
-                    );
+            <>
+              <div className={`z-20 ${styles.editOnDescription}`}>
+                <input
+                  value={descript}
+                  onChange={(e) => {
+                    setDescript(e.target.value);
                   }}
-                  className={`${styles.btnAcp}`}
-                >
-                  Cambiar
-                </button>
-                <button
-                  onClick={() => {
-                    setEditOn(false);
-                    setDescript(description);
-                  }}
-                  className={`${styles.btnCan}`}
-                >
-                  Cancelar
-                </button>
+                  placeholder="Ingrese descripción..."
+                />
+                <div className={`${styles.btnAcpCanBox}`}>
+                  <button
+                    onClick={(e) => {
+                      setLoad(true);
+                      editDescription(
+                        e,
+                        { id: Number(id), description: descript },
+                        getDataAgain,
+                        setEditOn,
+                        setLoad
+                      );
+                    }}
+                    className={`${styles.btnAcp}`}
+                  >
+                    Cambiar
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditOn(false);
+                      setDescript(description);
+                    }}
+                    className={`${styles.btnCan}`}
+                  >
+                    Cancelar
+                  </button>
+                </div>
               </div>
-            </div>
+              <button
+                onClick={() => {
+                  setEditOn(false);
+                }}
+                className="fixed h-full w-screen top-0 left-0 opacity-80 z-10 bg-black"
+              ></button>
+            </>
           ) : (
             <>
               <p>{descript}</p>

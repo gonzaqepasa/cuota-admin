@@ -27,10 +27,10 @@ interface Props {
 }
 
 export const User: React.FC<Props> = ({ userData, id }) => {
-  const [monthData, setMonthData] = useState<any>(
-    orderByMonth(userData.calendar.months)
-  );
   const [user, setUser] = useState(userData);
+  const [monthData, setMonthData] = useState<any>(
+    orderByMonth(user.calendar.months)
+  );
   async function getUserAgain() {
     try {
       const res = await fetch(`${url}/user/user?USER=${id}`);
@@ -51,7 +51,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
         }`}
       >
         <NameUser getDataAgain={getUserAgain} user={user} />
-        <ActivityUser user={user} />
+        <ActivityUser getDataAgain={getUserAgain} user={user} />
         <Description
           id={Number(id)}
           color={selectColor(user.activity.nameActivity)}

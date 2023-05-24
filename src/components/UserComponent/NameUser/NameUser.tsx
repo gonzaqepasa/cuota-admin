@@ -5,7 +5,7 @@ import { fromNameToUrl } from "../../../logic/fromNameToUrl";
 import { selectColor } from "../../../logic/selectColor";
 import { VscEdit } from "react-icons/vsc";
 import { LinkDeptor } from "../../Deptor/LinkDeptor/LinkDeptor";
-import styles from "./NameUser.module.scss";
+
 import { FcCheckmark, FcCancel } from "react-icons/fc";
 import { validateFormInputs } from "../../AddUser/logic/validateAddInputs";
 import Loading from "../../Loading/Loading";
@@ -50,50 +50,57 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
   }
 
   return (
-    <div className={styles.allNameUser}>
+    <div className={`w-5/6 flex `}>
       {!load ? (
-        <div className={`${styles.staticBox} `}>
+        <div className={`h-8 `}>
           {editOn ? (
-            <div className={styles.inputContainer}>
-              {nameVal.val && <p className={styles.errorMsg}>{nameVal.msg}</p>}
-              <input
-                value={name}
-                onChange={(e) => handleChange(e)}
-                autoComplete={"none"}
-                type="text"
-                className={`${styles.nameInput} ${nameVal.val && styles.err}`}
-              ></input>
-              <div className={styles.btnBox}>
-                <button
-                  onClick={() => handleSubmit()}
-                  className={styles.btnAcept}
-                >
-                  <FcCheckmark />
-                </button>
-                <button
-                  className={styles.btnCancel}
-                  onClick={() => {
-                    setEditOn(false);
-                    setName(user.name);
-                    setNameVal({ val: false, msg: "" });
-                  }}
-                >
-                  <FcCancel />
-                </button>
+            <>
+              <div className={`flex relative z-20 items-center `}>
+                <input
+                  value={name}
+                  onChange={(e) => handleChange(e)}
+                  autoComplete={"none"}
+                  type="text"
+                  className={`rounded transition text-neutral-200 px-1 pr-10 bg-neutral-800 ${
+                    nameVal.val
+                      ? "  border-red-700 border"
+                      : "border-neutral-600 border"
+                  }`}
+                ></input>
+                <div className={"absolute right-0 flex items-center"}>
+                  <button onClick={() => handleSubmit()} className={``}>
+                    <FcCheckmark />
+                  </button>
+                  <button
+                    className={`mx-1`}
+                    onClick={() => {
+                      setEditOn(false);
+                      setName(user.name);
+                      setNameVal({ val: false, msg: "" });
+                    }}
+                  >
+                    <FcCancel />
+                  </button>
+                </div>
+
+                {nameVal.val && <p className={`text-red-700`}>{nameVal.msg}</p>}
               </div>
-            </div>
+              <button
+                onClick={() => {
+                  setEditOn(false);
+                }}
+                className="fixed h-full w-screen top-0 left-0 opacity-80 z-10 bg-black"
+              ></button>
+            </>
           ) : (
-            <div className={styles.nameContainer}>
-              <h2
-              /*    style={{
-                borderBottom: `solid 2px ${selectColor(
-                  user.activity.nameActivity
-                )}`,
-              }} */
-              >
+            <div className={`flex items-center `}>
+              <h2 className={`text-neutral-200 text-2xl`}>
                 {firstLetterUpper(name)}
               </h2>
-              <button onClick={() => setEditOn(true)}>
+              <button
+                className={`flex items-center ml-2 text-neutral-400 text-xs`}
+                onClick={() => setEditOn(true)}
+              >
                 <VscEdit />
                 <p>editar</p>
               </button>
@@ -101,7 +108,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
           )}
         </div>
       ) : (
-        <div className={`${styles.staticBox}`}>
+        <div className={`h-8`}>
           <Loading size={20} />
         </div>
       )}
