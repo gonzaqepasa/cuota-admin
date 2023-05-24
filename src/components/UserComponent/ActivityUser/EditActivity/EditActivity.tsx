@@ -70,7 +70,7 @@ export const EditActivity: React.FC<Props> = ({
         onChange={(e) => {
           handleChange(e);
         }}
-        className={` w-44 bg-neutral-800 rounded text-neutral-200 border border-neutral-600`}
+        className={` w-44 bg-neutral-800 font-light text-neutral-200 border-b-2 border-neutral-600`}
         id=""
       >
         <option>seleccionar</option>

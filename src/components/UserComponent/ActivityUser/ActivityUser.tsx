@@ -47,13 +47,13 @@ export const ActivityUser: React.FC<Props> = ({ user, getDataAgain }) => {
           <i className="px-2 text-sm animate-one" style={{ color: "grey" }}>
             {user.activity.modality}{" "}
           </i>
-          <button
+        {  <button
             className={`text-xs flex items-center mx-1 text-neutral-400`}
             onClick={() => setEditOn(true)}
           >
             <VscEdit />
             cambiar
-          </button>
+          </button>}
         </div>
       )}
       {/* ////////////////////////////////////////////////////////////////////////// */}

@@ -52,24 +52,25 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
   return (
     <div className={`w-5/6 flex `}>
       {!load ? (
-        <div className={`h-8 `}>
+        <div className={`h-8  `}>
           {editOn ? (
             <>
-              <div className={`flex relative z-20 items-center `}>
+              <div className={`flex relative h-full z-20 items-center `}>
                 <input
+                  placeholder="Ingrese nombre..."
                   value={name}
                   onChange={(e) => handleChange(e)}
                   autoComplete={"none"}
                   type="text"
-                  className={`rounded transition text-neutral-200 px-1 pr-10 bg-neutral-800 ${
+                  className={` h-full transition font-lightasd text-neutral-200 px-1 pr-10 bg-neutral-800 ${
                     nameVal.val
                       ? "  border-red-700 border"
-                      : "border-neutral-600 border"
+                      : "border-neutral-600 border-b-2"
                   }`}
                 ></input>
-                <div className={"absolute right-0 flex items-center"}>
+                <div className={"mx-1 right-0 flex items-center"}>
                   <button onClick={() => handleSubmit()} className={``}>
-                    <FcCheckmark />
+                    <FcCheckmark size={20} />
                   </button>
                   <button
                     className={`mx-1`}
@@ -79,11 +80,15 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
                       setNameVal({ val: false, msg: "" });
                     }}
                   >
-                    <FcCancel />
+                    <FcCancel size={20} />
                   </button>
                 </div>
 
-                {nameVal.val && <p className={`text-red-700`}>{nameVal.msg}</p>}
+                {nameVal.val && (
+                  <p className={`text-red-600 font-extralight text-xs`}>
+                    {nameVal.msg}
+                  </p>
+                )}
               </div>
               <button
                 onClick={() => {
