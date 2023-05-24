@@ -56,7 +56,7 @@ export const RenderUser: React.FC<Props> = ({
                 <FcCancel />
                 <ButtonPay
                   el={el}
-                  userData={userData}
+                  userData={user}
                   getUserAgain={getUserAgain}
                 />
               </>

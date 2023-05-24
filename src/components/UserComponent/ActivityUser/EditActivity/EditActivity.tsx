@@ -46,7 +46,7 @@ export const EditActivity: React.FC<Props> = ({
 
   if (load)
     return (
-      <div className="h-8  w-56 flex items-center">
+      <div className="h-8  w-56 z-20 flex items-center">
         <Loading size={20} />
       </div>
     );
