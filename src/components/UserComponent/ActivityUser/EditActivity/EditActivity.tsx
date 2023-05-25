@@ -65,22 +65,32 @@ export const EditActivity: React.FC<Props> = ({
     console.log(selectedActivity);
   };
   return (
-    <div className={`h-8 flex relative z-20 items-center`}>
+    <div
+      className={`h-8 flex relative z-20 items-center backg-input-edit p-2 rounded`}
+    >
       <select
         onChange={(e) => {
           handleChange(e);
         }}
-        className={` w-44 bg-neutral-800 font-light text-neutral-200 border-b-2 border-neutral-600`}
+        className={` w-44 bg-transparent font-light text-neutral-200 border-b-2 border-green-600`}
         id=""
       >
-        <option>seleccionar</option>
+        <option className="bg-black">seleccionar</option>
         {activityRender.map((a, i) => (
-          <option disabled={a.id === activity.id} value={a.id} key={i}>
+          <option
+            className="bg-neutral-800"
+            disabled={a.id === activity.id}
+            value={a.id}
+            key={i}
+          >
             {a.modality}
           </option>
         ))}
       </select>
-      <button onClick={() => setEditOn(false)}>
+      <button
+        className="opacity-80 transition-opacity hover:opacity-100"
+        onClick={() => setEditOn(false)}
+      >
         <FcCancel size={20} className="mx-1" />
       </button>
     </div>

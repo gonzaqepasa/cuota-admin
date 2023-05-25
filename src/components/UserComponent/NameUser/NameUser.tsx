@@ -55,25 +55,30 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
         <div className={`h-8  `}>
           {editOn ? (
             <>
-              <div className={`flex relative h-full z-20 items-center `}>
+              <div
+                className={`flex backg-input-edit relative h-full z-20 items-center p-1 rounded`}
+              >
                 <input
                   placeholder="Ingrese nombre..."
                   value={name}
                   onChange={(e) => handleChange(e)}
                   autoComplete={"none"}
                   type="text"
-                  className={` h-full transition font-lightasd text-neutral-200 px-1 pr-10 bg-neutral-800 ${
+                  className={` h-full transition font-lightasd text-neutral-200 px-1 pr-10 bg-transparent ${
                     nameVal.val
-                      ? "  border-red-700 border"
-                      : "border-neutral-600 border-b-2"
+                      ? "  border-red-700 border-b-2"
+                      : "border-green-700 border-b-2"
                   }`}
                 ></input>
-                <div className={"mx-1 right-0 flex items-center"}>
-                  <button onClick={() => handleSubmit()} className={``}>
+                <div className={"mx-1 right-0 flex  items-center"}>
+                  <button
+                    onClick={() => handleSubmit()}
+                    className={`opacity-80 transition-opacity hover:opacity-100`}
+                  >
                     <FcCheckmark size={20} />
                   </button>
                   <button
-                    className={`mx-1`}
+                    className={`mx-1 opacity-80 transition-opacity hover:opacity-100`}
                     onClick={() => {
                       setEditOn(false);
                       setName(user.name);
@@ -85,7 +90,9 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
                 </div>
 
                 {nameVal.val && (
-                  <p className={`text-red-600 font-extralight text-xs`}>
+                  <p
+                    className={`absolute -top-4 text-red-600 font-extralight text-xs`}
+                  >
                     {nameVal.msg}
                   </p>
                 )}
@@ -103,7 +110,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
                 {firstLetterUpper(name)}
               </h2>
               <button
-                className={`flex items-center ml-2 text-neutral-400 text-xs`}
+                className={`flex items-center ml-2 text-neutral-400 text-xs opacity-80 transition-opacity hover:opacity-100`}
                 onClick={() => setEditOn(true)}
               >
                 <VscEdit />
