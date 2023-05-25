@@ -17,11 +17,11 @@ export function visibilityUser(
     reverseButtons: true,
     background: "#202020",
     color: "white",
-    title: active ? "Usuario Activo!" : "Usuario Inactivo",
+
     text: active
       ? "¿Quieres dejar inactivo al usuario?"
       : "¿Quieres activar al usuario?",
-    icon: "warning",
+
     showCancelButton: true,
     confirmButtonColor: "#77abb7",
     cancelButtonColor: "#202020",

@@ -81,33 +81,7 @@ a {
   background-image: url("https://www.lugoneseditorial.com.ar/salud/wp-content/uploads/2021/09/telas-1-scaled.jpg");
 }
 
-.swal2-modal {
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 
-  padding: 0 1rem !important;
-
-  .swal2-title {
-    padding: 0.5rem 0;
-    font-size: 1.3rem;
-  }
-
-  .swal2-html-container {
-    margin: 0.5rem 0;
-    font-size: 1rem;
-  }
-  .swal2-actions {
-    margin: 1rem 0rem;
-    button {
-      font-size: 0.9rem;
-    }
-  }
-
-  .swal2-icon {
-    font-size: 0.5rem;
-    width: 40px;
-    height: 40px;
-  }
-}
 
 .animate-one {
   animation: $animate 0.3s ease-in-out;

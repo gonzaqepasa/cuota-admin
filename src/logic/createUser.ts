@@ -65,7 +65,7 @@ export async function createUser({
         color: "white",
         title: "Agregar usuario",
         text: `Seguro quieres agregar a ${firstLetterUpper(name)}`,
-        icon: "warning",
+
         showCancelButton: true,
         confirmButtonColor: "#476d7c",
         cancelButtonColor: "#202020",
@@ -89,11 +89,14 @@ export async function createUser({
 
       cb({ id: data.id });
       Swal.fire({
-        background: "#202020",
+        background: "green",
         color: "white",
-        icon: "success",
-        title: `Agregado!`,
         text: `${nameUser} fue agregado con exito!`,
+        title: false,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 3000,
+        backdrop: false,
       });
       setLoad(false);
       return data;
@@ -101,11 +104,14 @@ export async function createUser({
       console.log(err);
       setModalAdd(false);
       Swal.fire({
-        background: "#202020",
+        background: "red",
         color: "white",
-        icon: "error",
-        title: `Hubo un problema`,
-        text: `Consulte con el desarrollador`,
+        text: `Hubo un problema, consulte con el desarrollador`,
+        title: false,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 2000,
+        backdrop: false,
       });
     }
   };
