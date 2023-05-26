@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { typesUser } from "../../types/types-user";
-import styles from "./User.module.scss";
+
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
@@ -36,22 +36,30 @@ export const User: React.FC<Props> = ({ userData, id }) => {
   if (user)
     return (
       <div
-        className={`${styles.allUserComponent}  ${
-          !user.active && styles.isInactiveUser
+        className={`flex flex-col items-center   min-h-screen  ${
+          !user.active && `opacity-40 `
         }`}
       >
-        <NameUser getDataAgain={getUserAgain} user={user} />
-        <ActivityUser getDataAgain={getUserAgain} user={user} />
-        <Description
-          id={Number(id)}
-          color={selectColor(user.activity.nameActivity)}
-          description={user.description}
-          getDataAgain={getUserAgain}
-        />
-        {!user.active && (
-          <div className="w-screen hunt2 flex justify-center">
+        <div className="flex items-end flex-wrap  justify-center pb-4  w-11/12">
+          <div className={` backg-card-user  h-full rounded w-96  p-2 m-2`}>
+            <NameUser getDataAgain={getUserAgain} user={user} />
+            <ActivityUser getDataAgain={getUserAgain} user={user} />
+            <Description
+              id={Number(id)}
+              color={selectColor(user.activity.nameActivity)}
+              description={user.description}
+              getDataAgain={getUserAgain}
+            />
+          </div>
+          <div className={`backg-card-user rounded  h-full w-96 p-2 m-2`}>
+            <ConfigUser userData={userData} />
+          </div>
+        </div>
+
+        {!user.active ? (
+          <div className="w-screen h-40  flex  justify-center">
             <button
-              className={`text-white mb-5 hover:text-blue-300`}
+              className={`text-white mb-5 hover:text-blue-300 `}
               onClick={(e) =>
                 visibilityUser(
                   e,
@@ -63,14 +71,14 @@ export const User: React.FC<Props> = ({ userData, id }) => {
               REACTIVAR USUARIO
             </button>
           </div>
+        ) : (
+          <RenderUser
+            user={user}
+            userData={userData}
+            monthData={monthData}
+            getUserAgain={getUserAgain}
+          />
         )}
-        <RenderUser
-          user={user}
-          userData={userData}
-          monthData={monthData}
-          getUserAgain={getUserAgain}
-        />
-        <ConfigUser userData={userData} />
       </div>
     );
   return <div>No existe este usuario</div>;

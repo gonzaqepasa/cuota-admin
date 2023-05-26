@@ -1,7 +1,5 @@
-import styles from "./Description.module.scss";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import { typesUser } from "../../../types/types-user";
 import { editDescription } from "../../../logic/editDescription";
 import Loading from "../../Loading/Loading";
 
@@ -29,7 +27,7 @@ export const Description: React.FC<Props> = ({
       </div>
     );
   return (
-    <div className={` h-24  w-5/6`}>
+    <div className={` h-24  w-full cursor-text`}>
       <h5 className={`${editOn && "relative z-20"}`} style={{ color }}>
         Descripción:
       </h5>
@@ -98,7 +96,9 @@ export const Description: React.FC<Props> = ({
               className={`relative flex h-16 overflow-y-auto rounded p-1   min-w-full`}
             >
               {descript ? (
-                <p className="font-light text-neutral-200 pr-4">{descript}</p>
+                <p className="font-light text-sm text-neutral-300 pr-4">
+                  {descript}
+                </p>
               ) : (
                 <p className={`font-light text-neutral-600`}>
                   {" "}

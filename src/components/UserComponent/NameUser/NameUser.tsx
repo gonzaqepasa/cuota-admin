@@ -50,7 +50,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
   }
 
   return (
-    <div className={`w-5/6 flex `}>
+    <div className={`w-full flex `}>
       {!load ? (
         <div className={`h-8  `}>
           {editOn ? (

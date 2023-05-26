@@ -10,21 +10,34 @@ interface Props {
 export const ConfigUser: React.FC<Props> = ({ userData }) => {
   const route = useRouter();
   return (
-    <div className={styles.allConfigUser}>
-      <div className={styles.textContainer}>
-        <h4>Eliminar usuario</h4>
-        <p>
-          Si elimina el usuario se perdera la información relacionada (pagos,
-          descripción ,etc.)
+    <div className={` flex flex-col items-end  w-full h-full  `}>
+      <div className="py-1  flex flex-col items-end border-b-2 w-full border-neutral-700">
+        <h4 className={`text-neutral-200 text-sm`}>
+          {userData.active ? "Desactivar usuario" : "Activar usuario"}
+        </h4>
+        <button className="text-sm text-cyan-700 hover:text-cyan-600 transition-colors">
+          {userData.active ? "Desactivar" : "Activar"}
+        </button>
+      </div>
+
+      <div
+        className={
+          " py-1  flex flex-col items-end border-b-2 w-full border-neutral-700"
+        }
+      >
+        <h4 className={`text-neutral-200 text-sm`}>Eliminar usuario</h4>
+        <p className={`text-xs text-neutral-500 text-right`}>
+          Se perdera la información relacionada *
         </p>
         <button
+          className={`text-sm text-red-700 transition-colors hover:text-red-600`}
           onClick={() =>
             deleteUserLogic(userData.calendar.id, userData.name, () =>
               route.push(`/list/${userData.activity.nameActivity}`)
             )
           }
         >
-          Eliminar Usuario
+          Eliminar
         </button>
       </div>
     </div>
