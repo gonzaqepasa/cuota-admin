@@ -50,7 +50,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
   }
 
   return (
-    <div className={`w-full flex `}>
+    <div className={`w-full flex  relative`}>
       {!load ? (
         <div className={`h-8  `}>
           {editOn ? (
@@ -105,16 +105,15 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
               ></button>
             </>
           ) : (
-            <div className={`flex items-center `}>
+            <div className={`flex  items-center `}>
               <h2 className={`text-neutral-200 text-2xl`}>
                 {firstLetterUpper(name)}
               </h2>
               <button
-                className={`flex items-center ml-2 text-neutral-400 text-xs opacity-80 transition-opacity hover:opacity-100`}
+                className={`flex absolute right-0 items-center ml-2 text-neutral-100 bg-neutral-600 p-1 rounded-md text-xs opacity-80 transition-opacity hover:opacity-100`}
                 onClick={() => setEditOn(true)}
               >
-                <VscEdit />
-                <p>editar</p>
+                <VscEdit size={13} />
               </button>
             </div>
           )}

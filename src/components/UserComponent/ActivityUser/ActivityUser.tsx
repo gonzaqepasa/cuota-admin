@@ -18,7 +18,7 @@ export const ActivityUser: React.FC<Props> = ({ user, getDataAgain }) => {
   // const [modality, setModality] = useState(user.activity.modality);
 
   return (
-    <div className={`w-5/6  flex`}>
+    <div className={`w-full relative flex`}>
       {/* ////////////////////////////////////////////////////////////////////////// */}
       {editOn ? (
         <>
@@ -49,11 +49,10 @@ export const ActivityUser: React.FC<Props> = ({ user, getDataAgain }) => {
           </i>
           {
             <button
-              className={`text-xs flex items-center mx-1 opacity-80 transition-opacity duration-500 hover:opacity-100 text-neutral-400`}
+              className={`text-xs absolute right-0 flex p-1 text-neutral-100 bg-neutral-600 rounded-md items-center  opacity-80 transition-opacity duration-500 hover:opacity-100 `}
               onClick={() => setEditOn(true)}
             >
-              <VscEdit />
-              cambiar
+              <VscEdit size={13} />
             </button>
           }
         </div>
