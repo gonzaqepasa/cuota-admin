@@ -37,7 +37,7 @@ export const Description: React.FC<Props> = ({
             <div
               className={`relative flex rounded p-1 backg-input-edit ${
                 editOn && "z-20"
-              } min-w-full`}
+              } w-full`}
             >
               <textarea
                 className={`w-full bg-transparent transition duration-500  ${
@@ -93,7 +93,7 @@ export const Description: React.FC<Props> = ({
               onClick={() => {
                 setEditOn(true);
               }}
-              className={`relative flex h-16 overflow-y-auto rounded p-1   min-w-full`}
+              className={`relative flex h-16 overflow-y-auto rounded p-1   w-full`}
             >
               {descript ? (
                 <p className="font-light text-sm text-neutral-300 pr-4">

@@ -2,7 +2,6 @@ import { payMonth } from "../../../../../logic/payMonth";
 import { selectColor } from "../../../../../logic/selectColor";
 import { MdAdd } from "react-icons/md";
 import { auth } from "../../../../../../firebase/firebaseConfig";
-import styles from "./Pay.module.scss";
 
 interface Props {
   el: any;
@@ -10,14 +9,12 @@ interface Props {
   getUserAgain: () => void;
 }
 
-export const ButtonPay: React.FC<Props> = ({ el, userData,getUserAgain }) => {
+export const ButtonPay: React.FC<Props> = ({ el, userData, getUserAgain }) => {
   return (
     <button
-      style={{
-        borderBottom: `solid 1px ${selectColor(
-          userData.activity.nameActivity
-        )}`,
-      }}
+      // style={{
+      //   color: ` ${selectColor(userData.activity.nameActivity)}`,
+      // }}
       onClick={(e) => {
         payMonth(
           e,
@@ -29,10 +26,10 @@ export const ButtonPay: React.FC<Props> = ({ el, userData,getUserAgain }) => {
           getUserAgain
         );
       }}
-      className={styles.btnPay}
+      className={`absolute bg-neutral-700 hover:bg-neutral-600 shadow  shadow-neutral-900 text-cyan-600 hover:text-cyan-500 transition-colors  right-2 bottom-2 flex items-center px-3 py-1 rounded font-light `}
     >
-      <MdAdd color={selectColor(userData.activity.nameActivity)} />
-      PAGAR MES
+      <MdAdd color="white" />
+      Pagar mes
     </button>
   );
 };

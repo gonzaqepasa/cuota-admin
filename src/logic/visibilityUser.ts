@@ -9,7 +9,7 @@ export function visibilityUser(
   // Segundo parametro
   { id, active }: { id: number; active: boolean },
   // Tercer Parametro
-  getDataAgain: Function,
+  getDataAgain: () => void,
   // Tercer Parametro
   setLoad?: Dispatch<SetStateAction<boolean>>
 ) {

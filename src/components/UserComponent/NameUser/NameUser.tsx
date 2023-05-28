@@ -110,7 +110,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
                 {firstLetterUpper(name)}
               </h2>
               <button
-                className={`flex absolute right-0 items-center ml-2 text-neutral-100 bg-neutral-600 p-1 rounded-md text-xs opacity-80 transition-opacity hover:opacity-100`}
+                className={`flex absolute right-0 items-center ml-2 text-neutral-100 bg-neutral-600 p-1 rounded-md text-xs  transition-colors hover:bg-cyan-900`}
                 onClick={() => setEditOn(true)}
               >
                 <VscEdit size={13} />

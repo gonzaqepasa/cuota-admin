@@ -1,6 +1,5 @@
 import { payCancel } from "../../../../../logic/payCancel";
 import { type typesMonth } from "../../../../../types/types-user";
-import styles from "./Cancel.module.scss";
 import { FcCancel } from "react-icons/fc";
 
 interface Props {
@@ -15,9 +14,12 @@ export const ButtonCancel: React.FC<Props> = ({ el, getUserAgain }) => {
   }
 
   return (
-    <button onClick={() => handleCancel()} className={`${styles.cancelPay}`}>
+    <button
+      onClick={() => handleCancel()}
+      className={`absolute right-1 bottom-1 flex items-center text-neutral-500 transition-colors hover:text-neutral-400 text-xs`}
+    >
       Cancelar Pago
-      <FcCancel size={14} />
+      <FcCancel className="mx-1" size={12} />
     </button>
   );
 };

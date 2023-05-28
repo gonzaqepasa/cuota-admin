@@ -49,7 +49,7 @@ export const ActivityUser: React.FC<Props> = ({ user, getDataAgain }) => {
           </i>
           {
             <button
-              className={`text-xs absolute right-0 flex p-1 text-neutral-100 bg-neutral-600 rounded-md items-center  opacity-80 transition-opacity duration-500 hover:opacity-100 `}
+              className={`text-xs absolute right-0 flex p-1 text-neutral-100 bg-neutral-600 rounded-md items-center   transition-colors hover:bg-cyan-900`}
               onClick={() => setEditOn(true)}
             >
               <VscEdit size={13} />

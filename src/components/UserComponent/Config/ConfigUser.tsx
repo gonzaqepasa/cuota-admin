@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import { deleteUserLogic } from "../../../logic/deleteUser";
 import { typesUser } from "../../../types/types-user";
-import styles from "./ConfigUser.module.scss";
+import { visibilityUser } from "../../../logic/visibilityUser";
 
 interface Props {
   userData: typesUser;
+  getDataAgain: () => void;
 }
 
-export const ConfigUser: React.FC<Props> = ({ userData }) => {
+export const ConfigUser: React.FC<Props> = ({ userData, getDataAgain }) => {
   const route = useRouter();
   return (
     <div className={` flex flex-col items-end  w-full h-full  `}>
@@ -15,7 +16,16 @@ export const ConfigUser: React.FC<Props> = ({ userData }) => {
         <h4 className={`text-neutral-200 text-sm`}>
           {userData.active ? "Desactivar usuario" : "Activar usuario"}
         </h4>
-        <button className="text-sm text-cyan-700 hover:text-cyan-600 transition-colors">
+        <button
+          onClick={(e) =>
+            visibilityUser(
+              e,
+              { id: Number(userData.id), active: userData.active },
+              getDataAgain
+            )
+          }
+          className="text-sm text-cyan-700 hover:text-cyan-600 transition-colors"
+        >
           {userData.active ? "Desactivar" : "Activar"}
         </button>
       </div>

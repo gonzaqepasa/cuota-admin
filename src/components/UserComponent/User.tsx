@@ -36,7 +36,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
   if (user)
     return (
       <div
-        className={`flex flex-col items-center   min-h-screen  ${
+        className={`flex flex-col items-center  w-screen  min-h-screen  ${
           !user.active && `opacity-40 `
         }`}
       >
@@ -52,7 +52,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
             />
           </div>
           <div className={`backg-card-user rounded  h-full w-96 p-2 m-2`}>
-            <ConfigUser userData={userData} />
+            <ConfigUser userData={user} getDataAgain={getUserAgain} />
           </div>
         </div>
 
