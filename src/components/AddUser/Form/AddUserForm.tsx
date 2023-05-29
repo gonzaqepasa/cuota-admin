@@ -1,13 +1,9 @@
-import styles from "./AddUserForm.module.scss";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
-import { handleSelect } from "../logic/handle-functions";
 import { validateFormInputs } from "../logic/validateAddInputs";
 import { createUser } from "../../../logic/createUser";
 import { typesActivity } from "../../../types/types-user";
-import { selectColor } from "../../../logic/selectColor";
 import Loading from "../../Loading/Loading";
 import { useRouter } from "next/router";
-import { color } from "../../../../styles/variables";
 import { ModalityInput } from "./Modality/ModalityInput";
 import { NameInput } from "./Name/NameInput";
 import { DescriptionInput } from "./Description/DescriptionInput";
@@ -68,8 +64,8 @@ export const AddUserForm: React.FC<Props> = ({
   }
   if (load)
     return (
-      <div className={styles.allAddUserForm}>
-        <Loading />;
+      <div className={"max-w-md w-5/6 py-5 "}>
+        <Loading size={30} />;
       </div>
     );
 
@@ -77,7 +73,7 @@ export const AddUserForm: React.FC<Props> = ({
     <div
       // onClick={() => setModalAdd(false)}
       // className={`${styles.allAddUserForm}`}
-      className="max-w-md w-5/6  rounded-sm "
+      className="max-w-md w-5/6  "
     >
       <form onSubmit={(e) => handleSubmit(e)}>
         <ModalityInput setActivity={setActivity} dataActivity={dataActivity} />

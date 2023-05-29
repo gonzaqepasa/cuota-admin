@@ -75,26 +75,11 @@ export default function List() {
   if (dataActivity.length !== 0)
     return (
       <div className="main backg-1">
-        <Title activityName={String(activity)} />
-
-        {dataActivity && (
-          <ButtonAdd
-            setModalAdd={setModalAdd}
-            color={String(activity)}
-            modalAdd={modalAdd}
-          />
-        )}
-        {dataActivity && modalAdd && (
-          <AddUserForm
-            dataActivity={dataActivity}
-            // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
-            // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
-            // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
-            setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
-            getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
-          />
-        )}
         <RenderList
+          activity={activity}
+          modalAdd={modalAdd}
+          dataActivity={dataActivity}
+          setModalAdd={setModalAdd}
           setLoad={setLoad}
           userData={dataUser}
           getDataAgain={getDataAgain}

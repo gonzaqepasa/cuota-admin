@@ -69,17 +69,17 @@ export const FilterList: React.FC<Props> = ({
   }, [state, result, monthSelected]);
 
   return (
-    <div className={`  flex flex-col items-center   `}>
+    <div className={`  flex flex-wrap items-center justify-center`}>
       <div
-        className={` border border-neutral-400 my-3  bg-neutral-900 rounded  flex`}
+        className={` border border-neutral-400 m-3  bg-neutral-900 rounded  flex`}
       >
         <button
           onClick={(e) => handleClick(e)}
           value={"todos"}
-          className={`border-none transition px-2 w-20 text-sm  text-neutral-400 
-          hover:bg-neutral-800 rounded-l ${
-            state === "todos" &&
-            "bg-neutral-300 text-neutral-800 hover:text-neutral-900 hover:bg-neutral-200"
+          className={`border-none transition px-2 w-20 text-sm   rounded-l ${
+            state === "todos"
+              ? "bg-neutral-300 text-neutral-800 hover:text-neutral-900 hover:bg-neutral-200"
+              : "text-neutral-400               hover:bg-neutral-800"
           }`}
         >
           Todos
@@ -87,9 +87,10 @@ export const FilterList: React.FC<Props> = ({
         <button
           onClick={(e) => handleClick(e)}
           value={"pagado"}
-          className={` border-none  transition px-2 w-20 text-sm text-neutral-400 hover:bg-neutral-800 ${
-            state === "pagado" &&
-            "bg-green-700 text-neutral-200 hover:bg-green-700"
+          className={` border-none  transition px-2 w-20 text-sm  ${
+            state === "pagado"
+              ? "bg-green-700 text-neutral-200 "
+              : "text-neutral-400 hover:bg-neutral-800"
           }`}
         >
           Pagos
@@ -97,9 +98,10 @@ export const FilterList: React.FC<Props> = ({
         <button
           onClick={(e) => handleClick(e)}
           value={"sin pagar"}
-          className={`transition rounded-r px-2 w-20 text-sm text-neutral-400 hover:bg-neutral-800 ${
-            state === "sin pagar" &&
-            "bg-red-700 hover:bg-red-700 text-neutral-200"
+          className={`transition rounded-r px-2 w-20 text-sm  ${
+            state === "sin pagar"
+              ? "bg-red-700 hover:bg-red-700 text-neutral-200"
+              : "text-neutral-400 hover:bg-neutral-800"
           }`}
         >
           Sin pagar

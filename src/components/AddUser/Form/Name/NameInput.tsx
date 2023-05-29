@@ -25,12 +25,16 @@ export const NameInput: React.FC<Props> = ({
         autoComplete="none"
         placeholder="Ingrese nombre..."
         // className={`${nameVal.val && styles.nameValInput}`}
-        className={`${nameVal.val && "border border-red-600"}  rounded-md  bg-neutral-800  text-sm p-2 font-normal`}
+        className={`${
+          nameVal.val && "border border-red-600"
+        }  rounded-md  bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 focus:outline text-sm p-2 font-normal`}
         onChange={(e) => setName(e.target.value)}
         name="name"
         style={{ color: selectColor(dataActivity[0].nameActivity) }}
       />
-      <i className={`${nameVal.val && "text-red-600 font-light text-xs"}`}>{nameVal.msg}</i>
+      <i className={`${nameVal.val && "text-red-600 font-light text-xs"}`}>
+        {nameVal.msg}
+      </i>
     </div>
   );
 };

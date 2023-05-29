@@ -22,7 +22,7 @@ export const ModalityInput: React.FC<Props> = ({
         Modalidad
       </label>
       <select
-        className={` bg-neutral-800 rounded-md p-1 font-normal text-sm`}
+        className={` bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 focus:outline rounded-md p-1 font-normal text-sm`}
         onChange={(e) => handleSelect(e.target.value, setActivity)}
         name="activity"
         id=""

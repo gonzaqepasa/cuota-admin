@@ -25,14 +25,14 @@ export const RenderUser: React.FC<Props> = ({
 }) => {
   const currentMonth = (monthName: string) => mesActual() === monthName;
   return (
-    <div className={` min-w-96 w-4/6 backg-card-user rounded p-1`}>
+    <div className={` min-w-96 w-4/6 backg-card-user rounded p-1 mb-16 `}>
       {monthData.map((el, index) => (
         <div
-          className={`relative   px-1 py-3 ${
+          className={`relative h-32 flex flex-col justify-around   px-1 py-3 ${
             currentMonth(el.monthName)
-              ? "border-2  border-cyan-700"
+              ? "border-2  border-cyan-600"
               : "border-b-2  border-neutral-700"
-          } ${(index - 1) % 2 && "bg-neutral-900 bg-opacity-50"}  `}
+          } ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}  `}
           key={index}
         >
           {/* Nombre de mes  */}

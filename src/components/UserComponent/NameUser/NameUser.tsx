@@ -100,6 +100,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
               <button
                 onClick={() => {
                   setEditOn(false);
+                  setName(user.name);
                 }}
                 className="fixed h-full w-screen top-0 left-0 opacity-80 z-10 bg-black"
               ></button>

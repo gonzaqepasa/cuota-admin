@@ -216,7 +216,7 @@ export async function deleteUser({ id }: any) {
   try {
     const user = await prisma.calendar.delete({
       where: {
-        id,
+        id: Number(id),
       },
       include: {
         User: true,
