@@ -49,7 +49,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
     const timeout = setTimeout(() => {
       // console.log("holasdasdasdasd");
       setView(true);
-    }, 5000);
+    }, 300000);
     return () => clearTimeout(timeout);
   }, [view]);
 
