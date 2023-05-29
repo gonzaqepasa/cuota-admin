@@ -6,8 +6,11 @@ import {
   SetStateAction,
   useEffect,
 } from "react";
-import { typesMonthNames, typesUser } from "../../types/types-user";
-import styles from "./RenderList.module.scss";
+import {
+  typesActivity,
+  typesMonthNames,
+  typesUser,
+} from "../../types/types-user";
 import { FaUserCheck } from "react-icons/fa";
 import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import { visibilityUser } from "../../logic/visibilityUser";
@@ -19,17 +22,28 @@ import { FilterList } from "./Filter/FilterList";
 import { arrayMonth, dateMonth } from "../Deptor/logic/moths.d";
 import LazyLoad from "react-lazy-load";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
+import { Title } from "../Title/Title";
+import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
+import { AddUserForm } from "../AddUser/Form/AddUserForm";
 
 interface Props {
+  activity: string | String[] | undefined;
   userData: typesUser[] | false;
   getDataAgain: () => void;
   setLoad: Dispatch<SetStateAction<boolean>>;
+  modalAdd: boolean;
+  dataActivity: typesActivity[];
+  setModalAdd: Dispatch<SetStateAction<boolean>>;
 }
 
 export const RenderList: React.FC<Props> = ({
   userData,
   getDataAgain,
   setLoad,
+  modalAdd,
+  dataActivity,
+  setModalAdd,
+  activity,
 }) => {
   //////// ESTADOS ////////
   // Para el buscador (Searcher)
@@ -42,9 +56,6 @@ export const RenderList: React.FC<Props> = ({
   const [result, setResult] = useState<[] | typesUser[]>([]);
   const [resultFilter, setResultFilter] = useState(result);
   /////////////////////////
-
-  const [filterOn, setFilterOn] = useState(false);
-  // const [dataToRender, setDataToRender] = useState(userData);
 
   useEffect(() => {
     if (userData) {
@@ -62,69 +73,110 @@ export const RenderList: React.FC<Props> = ({
 
   if (userData == false)
     return (
-      <div className={styles.allRenderList}>
-        <h3 style={{ color: "white", margin: "5rem 0" }}>
-          No hay usuarios agregados
-        </h3>
+      <div className={"flex flex-col min-h-screen w-screen items-center"}>
+        <div className="flex flex-col items-center backg-card-user my-3 px-6 max-w-196 w-screen rounded ">
+          <h3 className="text-neutral-300 my-4 text-lg">
+            No hay usuarios agregados
+          </h3>
+          {dataActivity && (
+            <AddUserForm
+              dataActivity={dataActivity}
+              // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
+              // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
+              // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
+              setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
+              getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
+            />
+          )}
+        </div>
       </div>
     );
   return (
-    <div className={`${styles.allRenderList}`}>
-      <FilterList
-        monthSelected={monthSelected}
-        setMonthSelected={setMonthSelected}
-        setResultFilter={setResultFilter}
-        result={result}
-        search={search}
-      />
+    <div className={` flex flex-col min-h-screen w-screen items-center`}>
+      <div className="flex flex-col items-center backg-card-user  px-6 max-w-196 w-screen rounded ">
+        <Title activityName={String(userData[0].activity.nameActivity)} />
+        <FilterList
+          monthSelected={monthSelected}
+          setMonthSelected={setMonthSelected}
+          setResultFilter={setResultFilter}
+          result={result}
+          search={search}
+        />
 
-      <SearcherList search={search} setSearch={setSearch} />
-      <div className={`scroll ${styles.linksContainer}`}>
+        <SearcherList search={search} setSearch={setSearch} />
+      </div>
+      <div className="flex flex-col items-center backg-card-user my-3 px-6 max-w-196 w-screen rounded ">
+        {dataActivity && (
+          <ButtonAdd
+            setModalAdd={setModalAdd}
+            color={String(activity)}
+            modalAdd={modalAdd}
+          />
+        )}
+        {dataActivity && modalAdd && (
+          <AddUserForm
+            dataActivity={dataActivity}
+            // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
+            // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
+            // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
+            setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
+            getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
+          />
+        )}
+      </div>
+      <div
+        className={`scroll flex flex-col items-start backg-card-user w-11/12 max-w-196 overflow-y-auto h-96  p-1 rounded`}
+      >
         <p
-          style={{ color: `${selectColor(userData[0].activity.nameActivity)}` }}
+          className="rounded-full flex items-center justify-center  text-sm text-neutral-900 mb-2 px-2"
+          style={{
+            background: `${selectColor(userData[0].activity.nameActivity)}`,
+          }}
         >
           {resultFilter.length}
         </p>
-        {orderByActive(resultFilter).map((el) => (
+        {orderByActive(resultFilter).map((el, index) => (
           <LazyLoad
+            className="w-full"
             key={el.id}
             onContentVisible={() => {
-              console.log("loaded!");
+              console.log("loaded user!");
             }}
-            height={35}
+            height={42}
             // width={600}
-            threshold={0.5}
+            threshold={0.6}
           >
             <div
               key={el.id}
-              className={`${styles.linkBox} ${
-                !el.active && styles.inactiveUser
-              }`}
+              className={`flex items-center rounded relative 
+               ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}   ${
+                !el.active && "opacity-30"
+              } hover:bg-cyan-900`}
               /* style={{
                 borderBottom: `1px solid ${selectColor(
                   userData[0].activity.nameActivity
                   )}`,
                 }} */
             >
-              <Link href={`/user/${el.id}`}>
-                <div className={`${styles.linkNameUser}`}>
-                  <FaUserCheck
-                    color={selectColor(userData[0].activity.nameActivity)}
-                  />
-                  {firstLetterUpper(el.name)} -{" "}
-                  <i
-                    style={{
-                      fontWeight: 400,
-                      fontSize: "0.9rem",
-                      color: selectColor(el.activity.nameActivity),
-                    }}
-                  >
-                    {el.activity.modality}
-                  </i>
-                  <MsgDeptor user={el} month={monthSelected} />
-                </div>
+              <Link
+                className="flex items-center pl-2 w-full py-2  text-neutral-300"
+                href={`/user/${el.id}`}
+              >
+                <FaUserCheck
+                  size={15}
+                  className="mx-1"
+                  color={selectColor(userData[0].activity.nameActivity)}
+                />
+                {firstLetterUpper(el.name)} -{" "}
+                <i
+                  className="mx-1  text-sm"
+                  style={{ color: selectColor(el.activity.nameActivity) }}
+                >
+                  {el.activity.modality}
+                </i>
+                <MsgDeptor user={el} month={monthSelected} />
               </Link>
-              <div className={`${styles.iconBox}`}>
+              <div className={`absolute right-2 flex items-center`}>
                 <button
                   onClick={(e) => {
                     visibilityUser(
@@ -136,9 +188,9 @@ export const RenderList: React.FC<Props> = ({
                   }}
                 >
                   {el.active ? (
-                    <MdOutlineVisibility color="white" />
+                    <MdOutlineVisibility size={20} color="white" />
                   ) : (
-                    <MdOutlineVisibilityOff color="grey" />
+                    <MdOutlineVisibilityOff size={20} color="grey" />
                   )}
                 </button>
               </div>

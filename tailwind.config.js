@@ -5,7 +5,15 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
+
+    minWidth: {
+      '96': '24rem'
+    },
+    maxWidth: {
+      "196": "46rem"
+    }
   },
   plugins: [],
 }

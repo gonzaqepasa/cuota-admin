@@ -25,13 +25,6 @@ export function editDescription(
         description,
       });
 
-      // Swal.fire({
-      //   background: "#090202",
-      //   color: "white",
-      //   icon: "success",
-      //   title: "Descripción cambiada!",
-      //   text: "Descripción cambiada con éxito!",
-      // });
       getDataAgain();
       setEditOn(false);
       setLoad(false);
@@ -41,11 +34,14 @@ export function editDescription(
       console.log(err);
 
       Swal.fire({
-        background: "#202020",
+        position: "bottom-end",
+        background: "red",
         color: "white",
-        icon: "error",
-        title: `Error inesperado`,
-        text: `Consulte con el desarrollador (detalles en consola)`,
+        text: "Hubo un problema, consule con el desarrollador",
+        title: false,
+        showConfirmButton: false,
+        timer: 2500,
+        backdrop: false,
       });
       setEditOn(false);
       setLoad(false);

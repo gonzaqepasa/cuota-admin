@@ -10,7 +10,10 @@
   margin: 0;
   font-family: $main-text;
 }
-input:focus,select:focus,textarea:focus,button:focus{
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
   outline: none;
 }
 
@@ -78,14 +81,12 @@ a {
   background-image: url("https://www.lugoneseditorial.com.ar/salud/wp-content/uploads/2021/09/telas-1-scaled.jpg");
 }
 
-.swal2-modal {
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-  * {
-    font-family: $main-text;
-    font-weight: 400 !important;
-  }
+.col-green-succes {
+  color: $green-succes;
 }
 
-.animate-one{
-  animation: $animate 1s ease-in-out;
+.animate-one {
+  animation: $animate 0.3s ease-in-out;
 }
+
+

@@ -36,7 +36,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
         const random = Math.floor(Math.random() * userDebtorActivity.length);
         setUserDebtor(userDebtorActivity);
         setUserDeptorRandom(userDebtorActivity[random]);
-        console.log("Esto no debe pasar cuando abro y cierro addUser");
+        // console.log("Esto no debe pasar cuando abro y cierro addUser");
       } catch (err) {
         console.log(err);
       }
@@ -49,14 +49,14 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
     const timeout = setTimeout(() => {
       // console.log("holasdasdasdasd");
       setView(true);
-    }, 250000);
+    }, 5000);
     return () => clearTimeout(timeout);
   }, [view]);
 
   return (
-    <div className={`fixed bottom-5 left-5 shadow-md`}>
+    <div className={`fixed bottom-5 left-5 `}>
       {userDebtor.length > 0 && userDebtorRandom?.id && (
-        <div className=" backg-1  rounded-lg border border-neutral-500  mr-2">
+        <div className=" backg-card-user  rounded  shadow-md shadow-neutral-900   mr-2">
           <div
             className={`relative ${
               view ? "flex" : "hidden"
@@ -66,14 +66,14 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
               onClick={() => {
                 setView(false);
               }}
-              className={`absolute text-red-700 top-1 transition right-3 font-semibold flex justify-center hover:text-red-600`}
+              className={`absolute bg-red-800 hover:bg-red-700 transition-colors h-6 w-6  text-neutral-300 top-0 right-0  rounded-tr rounded-bl-lg  text-xs  flex items-center justify-center hover:scale-105 `}
             >
-              x
+              X
             </button>
             <p className={`text-neutral-400 font-extralight my-3 `}>
               <i
                 className={`mx-1 text-neutral-300 `}
-                style={{ borderBottom: `solid 1px ${selectColor(activity)} ` }}
+                style={{ color: ` ${selectColor(activity)} ` }}
               >
                 {" "}
                 {firstLetterUpper(userDebtorRandom.calendar.User.name)}{" "}
@@ -92,7 +92,7 @@ export const Notification: React.FC<Props> = ({ activity, getDataAgain }) => {
                     getDataAgain
                   )
                 }
-                className={`text-sm transition  text-red-600 hover:text-red-500 `}
+                className={`text-sm transition  text-neutral-500 hover:text-neutral-400 `}
               >
                 {"No esta viniendo (Inactivar)"}
               </button>

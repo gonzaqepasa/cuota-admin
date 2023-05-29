@@ -1,5 +1,6 @@
 import "../styles/globals.scss";
 import "../styles/backgrounds.scss";
+import "../styles/swal.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { auth } from "../firebase/firebaseConfig";

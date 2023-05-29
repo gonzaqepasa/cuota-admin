@@ -49,7 +49,7 @@ export function payMonth(
           color: "white",
           icon: "success",
           title: `Pago aceptado!`,
-          text: `${userName} pago el mes de ${monthName}`,
+          text: `${firstLetterUpper(userName)} pago el mes de ${monthName}`,
         });
         console.log("esto llega del patch", data);
         getUserAgain();
