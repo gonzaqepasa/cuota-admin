@@ -1,14 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
-//
+
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap");
 
 //
 // Backgrounds
 $backg-black1: #171717;
-$backg-black2: rgba(31, 31, 31, 0.95);
+$backg-black2: rgba(24, 25, 26, 0.95);
 $backg-black3: rgba(0, 0, 0, 0.9);
 $backg-white1: rgb(12, 12, 12);
 $backg-white2: rgba(255, 255, 255, 0.5);
@@ -46,7 +42,7 @@ $green-succes: rgb(66, 207, 0);
 $red-delete: #cf0000;
 
 // Pallete
-$hunt1: #191919;
+$hunt1: #1e2022;
 $hunt2: rgb(20, 20, 20);
 $hunt3: #8b8b8b;
 $hunt4: #0061a1;
@@ -54,6 +50,7 @@ $hunt4: #0061a1;
 $test: #f3e300;
 
 $animate: effect;
+
 $animateJump: jump;
 
 @keyframes effect {
@@ -85,6 +82,10 @@ $animateJump: jump;
     transform: translateY(0rem);
   }
 }
+
+///
+//////////////////////////////////////////////////////////
+
 
 ///
 //////////////////////////////////////////////////////////

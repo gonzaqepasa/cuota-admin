@@ -32,6 +32,7 @@ export interface typesActivity {
 export interface typesCalendar {
   months: typesMonth[];
   id: number;
+  User: typesUser;
 }
 
 export interface typesMonth {
@@ -43,6 +44,7 @@ export interface typesMonth {
   mothodPay: String;
   pricePay: number;
   id: number;
+  calendar: typesCalendar;
 }
 
 export type typesMonthNames =

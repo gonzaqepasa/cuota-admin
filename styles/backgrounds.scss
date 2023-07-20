@@ -1,0 +1,79 @@
+@import "variables.scss";
+
+.hunt-3 {
+  background: $hunt3;
+}
+.hunt-2 {
+  background: $hunt2;
+}
+
+.backg-input-edit {
+  background-color: hsla(194, 12%, 73%, 0.3);
+  // box-shadow: 1px 1px 5px 2px rgba(153, 153, 153, 0.2);
+  
+
+}
+
+.backg-card-user {
+  // background-color: rgb(0, 3, 5);
+  background-image: linear-gradient(45deg, #030b0e 20%, #0e0202 100%);
+ 
+}
+
+.backg-img {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/cuota-admin-2e674.appspot.com/o/img%2Fdone%2F1.png?alt=media&token=9731b11d-18ac-42e6-8e97-61072ee6d056");
+  background-position: bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.backg-1 {
+  background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+  background: rgb(29, 30, 31);
+ /*  background-image: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    hwb(0 16% 84% / 0.9) 34%,
+    rgba(22, 22, 22, 0.9) 65%,
+    rgba(41, 41, 41, 0.9) 75%,
+    rgba(0, 0, 0, 0.9) 100%
+  ); */
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+.backg-animate {
+  /*   background-image: linear-gradient(
+    45deg,
+    rgba(4, 25, 31, 0.9) 0%,
+    hwb(204 0% 98% / 0.9) 18%,
+    rgba(0, 0, 0, 0.9) 45%,
+    rgba(17, 0, 24, 0.9) 75%,
+    rgba(16, 0, 22, 0.9) 100%
+  ); */
+  background-color: #000;
+  // background: $hunt2;
+
+  // backdrop-filter: blur(2px);
+  animation: bg-run 10s infinite ease-in-out;
+  box-shadow: -70px -20px 100px rgba(0, 49, 68, 0.1) inset, 1px 2px 10px #000;
+}
+
+@keyframes bg-run {
+  0% {
+    box-shadow: -70px -20px 100px rgba(0, 49, 68, 0.1) inset, 1px 2px 10px #000;
+  }
+
+  25% {
+    box-shadow: 0px -50px 100px rgba(87, 0, 109, 0.1) inset, 1px 2px 10px #000;
+  }
+  50% {
+    box-shadow: 70px 20px 100px rgba(0, 93, 180, 0.2) inset, 1px 2px 10px #000;
+  }
+  75% {
+    box-shadow: 50px -50px 100px rgba(36, 0, 66, 0.2) inset, 1px 2px 10px #000;
+  }
+  100% {
+    box-shadow: -70px -20px 100px rgba(0, 49, 68, 0.1) inset, 1px 2px 10px #000;
+  }
+}

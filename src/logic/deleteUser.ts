@@ -10,7 +10,7 @@ export function deleteUserLogic(id: any, nameUser: string, cb: () => void) {
     color: "white",
     title: "Eliminar usuario",
     text: `¿Seguro quieres eliminar a ${nameUser}?`,
-    icon: "warning",
+
     showCancelButton: true,
     confirmButtonColor: "#cf0000",
     cancelButtonColor: "#202020",
@@ -24,22 +24,28 @@ export function deleteUserLogic(id: any, nameUser: string, cb: () => void) {
 
           console.log(data);
           Swal.fire({
-            background: "#202020",
+            position: "bottom-end",
+            background: "grey",
             color: "white",
-            icon: "success",
-            title: `ELIMINADO!`,
-            text: `${nameUser} fue eliminado!`,
+            text: "Usuario eliminado con exito",
+            title: false,
+            showConfirmButton: false,
+            timer: 2500,
+            backdrop: false,
           });
-          cb()
+          cb();
         } catch (err) {
           console.log(err);
 
           Swal.fire({
-            background: "#202020",
+            position: "bottom-end",
+            background: "red",
             color: "white",
-            icon: "error",
-            title: `Hubo un problema`,
-            text: `Consulte con el desarrollador`,
+            text: "Hubo un error, consulte con el desarrollador",
+            title: false,
+            showConfirmButton: false,
+            timer: 2500,
+            backdrop: false,
           });
         }
       })();

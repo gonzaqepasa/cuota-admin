@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { GetStaticPaths } from "next";
-
-import { User } from "../../../src/components/UserComponent/User";
-import { typesUser } from "../../../src/types/types-user";
+import User from "../../../src/components/UserComponent/User";
 import { url } from "../../../src/config/services-url";
 import Loading from "../../../src/components/Loading/Loading";
 
@@ -21,15 +18,13 @@ export default function UserData() {
       try {
         setLoad(true);
         const resUser = await fetch(`${url}/user/user?USER=${route.query.id}`);
-        /*  const resAct = await fetch(
-          `${url}/activity/get-activity?activity=Funcional`
-        ); */
         const dataUser = await resUser.json();
+
+        // console.log(dataUser);
         (await dataUser.length) === 0 &&
           setError({ msg: "No hay gente en la bd" });
         setData(dataUser);
         setLoad(false);
-
         // const dataAct = await resAct.json();
       } catch (err) {
         setLoad(false);
@@ -42,11 +37,11 @@ export default function UserData() {
   //////////////////////////////
   if (load) return <Loading />;
   if (error.msg) {
-    return <div className={`main backg backg-funcional`}>{error.msg}</div>;
+    return <div className={`main backg-1`}>{error.msg}</div>;
   }
   if (typeof data !== "boolean")
     return (
-      <div className={`main background-funcional`}>
+      <div className={`main backg-1`}>
         <User userData={data} id={String(route.query.id)} />
       </div>
     );

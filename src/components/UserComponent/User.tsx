@@ -1,24 +1,14 @@
-import { MouseEvent, useState } from "react";
-import { typesMonth, typesUser } from "../../types/types-user";
-import styles from "./User.module.scss";
-import Swal from "sweetalert2";
-import { auth } from "../../../firebase/firebaseConfig";
-
-import { payMonth } from "../../logic/payMonth";
+import { useState } from "react";
+import { typesUser } from "../../types/types-user";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
-import { fromNameToUrl } from "../../logic/fromNameToUrl";
-import { Carousel } from "react-bootstrap";
-import Image from "next/image";
 import { url } from "../../config/services-url";
-import { numberToMoney } from "../../logic/numberToMoney";
-import Link from "next/link";
-import { LinkDeptor } from "../Deptor/LinkDeptor/LinkDeptor";
 import { NameUser } from "./NameUser/NameUser";
 import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";
 import { ActivityUser } from "./ActivityUser/ActivityUser";
+import { visibilityUser } from "../../logic/visibilityUser";
 
 interface Props {
   userData: typesUser;
@@ -26,10 +16,10 @@ interface Props {
 }
 
 export const User: React.FC<Props> = ({ userData, id }) => {
-  const [monthData, setMonthData] = useState<any>(
-    orderByMonth(userData.calendar.months)
-  );
   const [user, setUser] = useState(userData);
+  const [monthData, setMonthData] = useState<any>(
+    orderByMonth(user.calendar.months)
+  );
   async function getUserAgain() {
     try {
       const res = await fetch(`${url}/user/user?USER=${id}`);
@@ -45,26 +35,52 @@ export const User: React.FC<Props> = ({ userData, id }) => {
   if (user)
     return (
       <div
-        className={`${styles.allUserComponent} backg backg-${fromNameToUrl(
-          userData.activity.nameActivity.toLowerCase()
-        )} ${!user.active && styles.isInactiveUser}`}
+        className={`flex flex-col items-center  w-screen  min-h-screen  ${
+          !user.active && `opacity-40 `
+        }`}
       >
-        <NameUser getDataAgain={getUserAgain} user={user} />
-        <ActivityUser user={user} />
-        <Description
-          id={Number(id)}
-          color={selectColor(user.activity.nameActivity)}
-          description={user.description}
-          getDataAgain={getUserAgain}
-        />
-        <RenderUser
-          user={user}
-          userData={userData}
-          monthData={monthData}
-          getUserAgain={getUserAgain}
-        />
-        <ConfigUser userData={userData} />
+        <div className="flex items-end flex-wrap  justify-center pb-4  w-11/12">
+          <div className={` backg-card-user  h-full rounded w-96  p-2 m-2`}>
+            <NameUser getDataAgain={getUserAgain} user={user} />
+            <ActivityUser getDataAgain={getUserAgain} user={user} />
+            <Description
+              id={Number(id)}
+              color={selectColor(user.activity.nameActivity)}
+              description={user.description}
+              getDataAgain={getUserAgain}
+            />
+          </div>
+          <div className={`backg-card-user rounded  h-full w-96 p-2 m-2`}>
+            <ConfigUser userData={user} getDataAgain={getUserAgain} />
+          </div>
+        </div>
+
+        {!user.active ? (
+          <div className="w-screen h-40  flex  justify-center">
+            <button
+              className={`text-white mb-5 hover:text-blue-300 `}
+              onClick={(e) =>
+                visibilityUser(
+                  e,
+                  { id: Number(user.id), active: false },
+                  getUserAgain
+                )
+              }
+            >
+              REACTIVAR USUARIO
+            </button>
+          </div>
+        ) : (
+          <RenderUser
+            user={user}
+            userData={userData}
+            monthData={monthData}
+            getUserAgain={getUserAgain}
+          />
+        )}
       </div>
     );
   return <div>No existe este usuario</div>;
 };
+
+export default User;

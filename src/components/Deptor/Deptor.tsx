@@ -21,7 +21,6 @@ export const Deptor: React.FC<Props> = ({
     <div className={styles.allDeptor}>
       <TitleDeptor />
       <SelectMonth
-        filterOn={true}
         monthSelected={monthSelected}
         setMonthSelected={setMonthSelected}
       />

@@ -1,22 +1,21 @@
 import { arrayMonth } from "../logic/moths.d";
-import styles from "./SelectMonth.module.scss";
+
 import { Dispatch, SetStateAction } from "react";
 import { typesMonthNames } from "../../../types/types-user";
 
 interface Props {
   monthSelected: typesMonthNames;
   setMonthSelected: Dispatch<SetStateAction<typesMonthNames>>;
-  filterOn: boolean;
 }
 export const SelectMonth: React.FC<Props> = ({
   monthSelected,
   setMonthSelected,
-  filterOn,
 }) => {
   return (
-    <div className={`${styles.allRender}`}>
+    <div className={``}>
       <select
-        disabled={!filterOn}
+        className={`bg-neutral-900 transition text-neutral-300 text-sm border border-neutral-400 px-2 rounded hover:bg-neutral-800`}
+        disabled={false}
         value={monthSelected}
         onChange={(e: any) => setMonthSelected(e.target.value)}
         name=""

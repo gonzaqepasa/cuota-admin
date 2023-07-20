@@ -9,19 +9,19 @@ export function visibilityUser(
   // Segundo parametro
   { id, active }: { id: number; active: boolean },
   // Tercer Parametro
-  getDataAgain: Function,
+  getDataAgain: () => void,
   // Tercer Parametro
-  setLoad: Dispatch<SetStateAction<boolean>>
+  setLoad?: Dispatch<SetStateAction<boolean>>
 ) {
   Swal.fire({
     reverseButtons: true,
     background: "#202020",
     color: "white",
-    title: active ? "Usuario Activo!" : "Usuario Inactivo",
+
     text: active
       ? "¿Quieres dejar inactivo al usuario?"
       : "¿Quieres activar al usuario?",
-    icon: "warning",
+
     showCancelButton: true,
     confirmButtonColor: "#77abb7",
     cancelButtonColor: "#202020",
@@ -30,7 +30,7 @@ export function visibilityUser(
   }).then((result) => {
     if (result.isConfirmed) {
       (async function () {
-        setLoad(true);
+        setLoad && setLoad(true);
         try {
           const { data } = await axios.put(`${url}/user/edit-active`, {
             id,

@@ -11,7 +11,7 @@ import { LinkActivity, LinkNav } from "./Link/LinkNav";
 
 export default function NavbarMain() {
   const route = useRouter();
-  console.log(route.asPath);
+  // console.log(route.asPath);
   const user = auth.currentUser;
   // useEffect(() => {}, []);
   const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);
@@ -30,14 +30,14 @@ export default function NavbarMain() {
 
   return (
     <>
-      <div className={`${styles.allNavbar} ${isTop && styles.isTopNav}`}>
+      <div className={`  ${styles.allNavbar} ${isTop && styles.isTopNav }`}>
         <div
           className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}
         >
           <div className={`${styles.responsiveBox}`}>
             <div className={`${styles.header}`}>
               <div className={styles.imgBox}>
-                <img src={avatar} alt="" />
+                <img src={avatar} alt="asd" />
               </div>
               <div className={styles.textBox}>
                 <p>{user?.email}</p>
@@ -49,11 +49,11 @@ export default function NavbarMain() {
             <nav className={`${styles.navigation}`}>
               <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
                 <LinkNav href={"/prices"} text="Precios" setModal={setModal} />
-                <LinkNav
+              {/*   <LinkNav
                   text="¿Quién debe?"
                   setModal={setModal}
                   href={"/quien-debe"}
-                />
+                /> */}
               </div>
 
               <div className={`${styles.activityLinks}`}>
@@ -81,6 +81,11 @@ export default function NavbarMain() {
                   setModal={setModal}
                   text="Jiu Jitzu"
                   href="/list/Jiu%20Jitzu"
+                />
+                <LinkActivity
+                  setModal={setModal}
+                  text="Kick Boxing"
+                  href="/list/Kick%20Boxing"
                 />
                 <LinkActivity
                   setModal={setModal}

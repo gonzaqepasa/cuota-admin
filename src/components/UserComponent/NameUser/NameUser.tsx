@@ -5,7 +5,7 @@ import { fromNameToUrl } from "../../../logic/fromNameToUrl";
 import { selectColor } from "../../../logic/selectColor";
 import { VscEdit } from "react-icons/vsc";
 import { LinkDeptor } from "../../Deptor/LinkDeptor/LinkDeptor";
-import styles from "./NameUser.module.scss";
+
 import { FcCheckmark, FcCancel } from "react-icons/fc";
 import { validateFormInputs } from "../../AddUser/logic/validateAddInputs";
 import Loading from "../../Loading/Loading";
@@ -50,58 +50,77 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
   }
 
   return (
-    <div className={styles.allNameUser}>
+    <div className={`w-full flex  relative`}>
       {!load ? (
-        <div className={`${styles.staticBox} `}>
+        <div className={`h-8  `}>
           {editOn ? (
-            <div className={styles.inputContainer}>
-              {nameVal.val && <p className={styles.errorMsg}>{nameVal.msg}</p>}
-              <input
-                value={name}
-                onChange={(e) => handleChange(e)}
-                autoComplete={"none"}
-                type="text"
-                className={`${styles.nameInput} ${nameVal.val && styles.err}`}
-              ></input>
-              <div className={styles.btnBox}>
-                <button
-                  onClick={() => handleSubmit()}
-                  className={styles.btnAcept}
-                >
-                  <FcCheckmark />
-                </button>
-                <button
-                  className={styles.btnCancel}
-                  onClick={() => {
-                    setEditOn(false);
-                    setName(user.name);
-                    setNameVal({ val: false, msg: "" });
-                  }}
-                >
-                  <FcCancel />
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.nameContainer}>
-              <h2
-              /*    style={{
-                borderBottom: `solid 2px ${selectColor(
-                  user.activity.nameActivity
-                )}`,
-              }} */
+            <>
+              <div
+                className={`flex backg-input-edit relative h-full z-20 items-center p-1 rounded`}
               >
+                <input
+                  placeholder="Ingrese nombre..."
+                  value={name}
+                  onChange={(e) => handleChange(e)}
+                  autoComplete={"none"}
+                  type="text"
+                  className={` h-full transition font-lightasd text-neutral-200 px-1 pr-10 bg-transparent ${
+                    nameVal.val
+                      ? "  border-red-700 border-b-2"
+                      : "border-green-700 border-b-2"
+                  }`}
+                ></input>
+                <div className={"mx-1 right-0 flex  items-center"}>
+                  <button
+                    onClick={() => handleSubmit()}
+                    className={`opacity-80 transition-opacity hover:opacity-100`}
+                  >
+                    <FcCheckmark size={20} />
+                  </button>
+                  <button
+                    className={`mx-1 opacity-80 transition-opacity hover:opacity-100`}
+                    onClick={() => {
+                      setEditOn(false);
+                      setName(user.name);
+                      setNameVal({ val: false, msg: "" });
+                    }}
+                  >
+                    <FcCancel size={20} />
+                  </button>
+                </div>
+
+                {nameVal.val && (
+                  <p
+                    className={`absolute -top-4 text-red-600 font-extralight text-xs`}
+                  >
+                    {nameVal.msg}
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={() => {
+                  setEditOn(false);
+                  setName(user.name);
+                }}
+                className="fixed h-full w-screen top-0 left-0 opacity-80 z-10 bg-black"
+              ></button>
+            </>
+          ) : (
+            <div className={`flex  items-center `}>
+              <h2 className={`text-neutral-200 text-2xl`}>
                 {firstLetterUpper(name)}
               </h2>
-              <button onClick={() => setEditOn(true)}>
-                <VscEdit />
-                <p>editar</p>
+              <button
+                className={`flex absolute right-0 items-center ml-2 text-neutral-100 bg-neutral-600 p-1 rounded-md text-xs  transition-colors hover:bg-cyan-900`}
+                onClick={() => setEditOn(true)}
+              >
+                <VscEdit size={13} />
               </button>
             </div>
           )}
         </div>
       ) : (
-        <div className={`${styles.staticBox}`}>
+        <div className={`h-8`}>
           <Loading size={20} />
         </div>
       )}

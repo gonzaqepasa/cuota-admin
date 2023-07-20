@@ -7,11 +7,12 @@ import Loading from "../../../src/components/Loading/Loading";
 import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/services-url";
 import { typesActivity } from "../../../src/types/types-user";
+import { Notification } from "../../../src/components/Notification/Notification";
 
 export default function List() {
   const router = useRouter();
-  console.log(router.query);
   const { activity } = router.query;
+  // console.log(activity);
 
   // Estados de componente
   const [modalAdd, setModalAdd] = useState(false);
@@ -40,7 +41,7 @@ export default function List() {
         setDataUser(dataUser);
         setLoad(false);
         setError({ msg: "" });
-        console.log(dataUser);
+        // console.log(dataUser);
       } catch (err) {
         setLoad(false);
         setError({ msg: "Problemas con la bd" });
@@ -54,7 +55,7 @@ export default function List() {
     try {
       const res = await fetch(`${url}/user/get-users?activity=${activity}`);
       const data = await res.json();
-      console.log("DATAAARTA ->>", data);
+      // console.log("DATAAARTA ->>", data);
       setDataUser(data);
       setLoad(false);
     } catch (err) {
@@ -73,27 +74,17 @@ export default function List() {
   if (error.msg) return <div className="main"> {error.msg}</div>;
   if (dataActivity.length !== 0)
     return (
-      <div className="main">
-        <Title activityName={String(activity)} />
-
-        {dataActivity && (
-          <ButtonAdd setModalAdd={setModalAdd} color={String(activity)} modalAdd={modalAdd} />
-        )}
-        {dataActivity && modalAdd && (
-          <AddUserForm
-            dataActivity={dataActivity}
-            // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
-            // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
-            // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
-            setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
-            getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
-          />
-        )}
+      <div className="main backg-1">
         <RenderList
+          activity={activity}
+          modalAdd={modalAdd}
+          dataActivity={dataActivity}
+          setModalAdd={setModalAdd}
           setLoad={setLoad}
           userData={dataUser}
           getDataAgain={getDataAgain}
         />
+        <Notification activity={String(activity)} getDataAgain={getDataAgain} />
       </div>
     );
 }

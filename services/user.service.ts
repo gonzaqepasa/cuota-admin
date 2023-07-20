@@ -188,11 +188,35 @@ export async function editActive({ id, active }: any) {
   }
 }
 
+export async function changeActivityService({ id_user, id_activity }: any) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: Number(id_user),
+      },
+      data: {
+        activityId: Number(id_activity),
+      },
+      include: {
+        activity: true,
+        // calendar: true,
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
+    await prisma.$disconnect();
+    console.log(err);
+    process.exit(1);
+  }
+}
+
 export async function deleteUser({ id }: any) {
   try {
     const user = await prisma.calendar.delete({
       where: {
-        id,
+        id: Number(id),
       },
       include: {
         User: true,
