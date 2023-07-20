@@ -21,18 +21,18 @@ export default function LoginForm() {
     );
   return (
     <div
-      className={`flex backg-1 items-center justify-center min-h-screen   w-full`}
+      className={`flex items-center justify-center min-h-screen  backg-img w-full`}
     >
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-96 bg-neutral-300 p-5 rounded">
         <form className={`space-y-6`} onSubmit={(e) => handleSubmit(e)}>
           <div className={``}>
             <label
-              className={`block text-sm font-medium leading-6 text-gray-200`}
+              className={`block text-sm font-medium leading-6 text-neutral-700`}
               htmlFor="email"
             >
               Email
             </label>
-            <div className="mt-2">
+            <div className="">
               <input
                 required
                 className={`block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6`}
@@ -48,11 +48,11 @@ export default function LoginForm() {
           <div className={` `}>
             <label
               htmlFor="pass"
-              className={`block text-sm font-medium leading-6 text-gray-200`}
+              className={`block text-sm font-medium leading-6 text-neutral-700`}
             >
               Contraseña
             </label>
-            <div className="mt-2">
+            <div className="">
               <input
                 required
                 className={`block w-full rounded-md border-0 py-1.5 px-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6`}
