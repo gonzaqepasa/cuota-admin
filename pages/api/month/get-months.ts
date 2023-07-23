@@ -10,10 +10,18 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     try {
-      const { month, ispay } = req.query;
-      const monthName = String(month);
-      const isPay = ispay === "true" ? true : false;
-      const months = await getMonths({ monthName, isPay });
+      const { month, ispay, adddate } = req.query;
+      const monthName = month ? String(month) : undefined;
+      const isPay = () => {
+        if (ispay === "true") return true;
+        if (ispay === "false") return false;
+        return undefined;
+      };
+      const months = await getMonths({
+        monthName,
+        isPay: isPay(),
+        addData: adddate,
+      });
 
       res.status(200).json(months);
     } catch (err) {
