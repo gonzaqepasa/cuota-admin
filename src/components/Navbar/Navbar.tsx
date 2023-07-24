@@ -49,6 +49,7 @@ export default function NavbarMain() {
             <nav className={`${styles.navigation}`}>
               <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
                 <LinkNav href={"/prices"} text="Precios" setModal={setModal} />
+                <LinkNav href={"/resumen"} text="Resumen" setModal={setModal} />
               {/*   <LinkNav
                   text="¿Quién debe?"
                   setModal={setModal}
