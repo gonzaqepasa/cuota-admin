@@ -15,10 +15,10 @@ export default function handler(
     try {
       const activityCreate = await prisma.activity.createMany({
         data: [
-          { nameActivity: "Funcional", modality: "3 Días", price: 3200 },
-          { nameActivity: "Funcional", modality: "2 Días", price: 3000 },
-          { nameActivity: "Funcional", modality: "Libre", price: 3500 },
-          { nameActivity: "Taekwondo", modality: "Adultos", price: 2300 },
+          { nameActivity: "Gimnasio", modality: "3 Días", price: 3200 },
+          { nameActivity: "Gimnasio", modality: "2 Días", price: 3000 },
+          { nameActivity: "Gimnasio", modality: "Libre", price: 3500 },
+          { nameActivity: "TaekwGimnasioondo", modality: "Adultos", price: 2300 },
           { nameActivity: "Taekwondo", modality: "Infantiles", price: 2300 },
           { nameActivity: "Taekwondo", modality: "Yamila", price: 2300 },
           { nameActivity: "GAP Funcional", modality: "3 Días", price: 2500 },
