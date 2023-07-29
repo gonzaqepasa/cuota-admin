@@ -6,7 +6,7 @@ type Data = {
   name: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -18,7 +18,7 @@ export default function handler(
           { nameActivity: "Gimnasio", modality: "3 Días", price: 3200 },
           { nameActivity: "Gimnasio", modality: "2 Días", price: 3000 },
           { nameActivity: "Gimnasio", modality: "Libre", price: 3500 },
-          { nameActivity: "TaekwGimnasioondo", modality: "Adultos", price: 2300 },
+          { nameActivity: "Taekwondo", modality: "Adultos", price: 2300 },
           { nameActivity: "Taekwondo", modality: "Infantiles", price: 2300 },
           { nameActivity: "Taekwondo", modality: "Yamila", price: 2300 },
           { nameActivity: "GAP Funcional", modality: "3 Días", price: 2500 },
@@ -29,12 +29,11 @@ export default function handler(
         ],
       });
       console.log(activityCreate);
+      return activityCreate;
     } catch (err) {
       console.log(err);
     }
   }
-
-  createActivity();
-
-  res.status(200).json({ name: "John Doe" });
+  const response = await createActivity();
+  res.status(200).json(response);
 }

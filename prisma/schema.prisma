@@ -90,10 +90,12 @@ model Month {
 }
 
 model Payments {
-  id        Int     @id @default(autoincrement())
-  pricePay  Int
-  mehtodPay String
-  isPay     Boolean
+  id         Int       @id @default(autoincrement())
+  pricePay   Int?
+  methodPay  String?
+  isPay      Boolean
+  addData    String?
+  addAdmin   String?
 
   // Relacion con actividad
   activity   Activity? @relation(fields: [activityId], references: [id])
@@ -102,4 +104,8 @@ model Payments {
   // Relación con Month (uno a uno)
   month   Month? @relation(fields: [monthId], references: [id])
   monthId Int?   @unique
+
+  //Fecha 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
