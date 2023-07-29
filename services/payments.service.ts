@@ -16,8 +16,7 @@ interface typesToPay {
   isPay: boolean;
   methodPay: string;
   pricePay: number;
-  addData: string;
-  addAdmin: string;
+   addAdmin: string;
 }
 const Payments = {
   pay: async ({
@@ -27,15 +26,18 @@ const Payments = {
     pricePay,
     activityId,
     addAdmin,
-    addData,
-  }: typesToPay) => {
+    }: typesToPay) => {
     try {
+      const fecha = new Date();
+      const addData = `${fecha.getDate()}/${
+        fecha.getMonth() + 1
+      }/${fecha.getFullYear()}`;
       const data = await prisma.payments.create({
         data: {
           isPay: true,
           methodPay,
           addAdmin,
-          addData: addData.split(" ")[0],
+          addData: addData,
           pricePay: Number(pricePay),
           month: {
             connect: { id: Number(monthId) },
@@ -45,6 +47,7 @@ const Payments = {
           },
         },
       });
+      // console.log("aca estamosaasd",pricePay)
       await prisma.$disconnect();
       return data;
     } catch (err) {

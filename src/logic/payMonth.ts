@@ -4,16 +4,27 @@ import Swal from "sweetalert2";
 import { url } from "../config/services-url";
 import { firstLetterUpper } from "./firstLetterUpper";
 
-export function payMonth(
-  e: MouseEvent<HTMLButtonElement>,
-  id: number,
-  userName: string,
-  monthName: string,
-  addAdmin: string | null | undefined,
+interface typesToPay {
+  e: MouseEvent<HTMLButtonElement>;
+  id: number;
+  userName: string;
+  monthName: string;
+  addAdmin: string | null | undefined;
+  activityId: number;
+  pricePay: number;
+  getUserAgain: Function;
+}
 
-  price: number,
-  getUserAgain: Function
-) {
+export function payMonth({
+  e,
+  id,
+  userName,
+  monthName,
+  addAdmin,
+  activityId,
+  pricePay,
+  getUserAgain,
+}: typesToPay) {
   Swal.fire({
     reverseButtons: true,
     background: "#202020",
@@ -36,12 +47,15 @@ export function payMonth(
       pay("EF");
     }
     async function pay(method: "MP" | "EF") {
+      ////// PRIEMRA CAPA (1°)
+      // se hacen las llamadas a la api para pagar el mes
       try {
         const { data } = await axios.put(`${url}/month/pay-month`, {
           id,
           addAdmin,
           mothodPay: method,
-          price,
+          pricePay,
+          activityId,
         });
 
         Swal.fire({

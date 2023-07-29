@@ -1,6 +1,6 @@
 import { prisma } from "./prismaConfig";
 
-export async function payMonth({ id, addAdmin, mothodPay, price }: any) {
+export async function payMonth({ id, addAdmin, mothodPay, pricePay }: any) {
   try {
     if (!id || !addAdmin || !mothodPay) {
       throw new Error("Faltan argumentos");
@@ -19,7 +19,7 @@ export async function payMonth({ id, addAdmin, mothodPay, price }: any) {
         addData,
         addAdmin,
         mothodPay,
-        pricePay: price,
+        pricePay: pricePay,
       },
     });
 

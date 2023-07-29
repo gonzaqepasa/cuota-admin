@@ -16,15 +16,16 @@ export const ButtonPay: React.FC<Props> = ({ el, userData, getUserAgain }) => {
       //   color: ` ${selectColor(userData.activity.nameActivity)}`,
       // }}
       onClick={(e) => {
-        payMonth(
+        payMonth({
           e,
-          el.id,
-          userData.name,
-          el.monthName,
-          auth.currentUser?.email,
-          userData.activity.price,
-          getUserAgain
-        );
+          id: el.id,
+          userName: userData.name,
+          monthName: el.monthName,
+          addAdmin: auth.currentUser?.email,
+          getUserAgain,
+          pricePay: userData.activity.price,
+          activityId: userData.activity.id,
+        });
       }}
       className={`absolute bg-neutral-700 hover:bg-neutral-600 shadow  shadow-neutral-900 text-cyan-600 hover:text-cyan-500 transition-colors  right-2 bottom-2 flex items-center px-3 py-1 rounded font-light `}
     >
