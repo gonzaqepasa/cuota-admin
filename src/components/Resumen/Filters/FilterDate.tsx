@@ -1,21 +1,24 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { typesMonth, typesMonthNames } from "../../../types/types-user";
 import { SelectMonth } from "../../Deptor/SelectMonth/SelectMonth";
-import { mesActual } from "../../Deptor/logic/moths.d";
+import { mesActual } from "../../Deptor/logic/moths";
+import { useRouter } from "next/router";
 
 interface Props {
-  data: typesMonth[];
-  setData: Dispatch<SetStateAction<typesMonth[]>>;
+  data: any;
+  setData: Dispatch<SetStateAction<any>>;
 }
 
-const Filter: React.FC<Props> = ({ data, setData }) => {
+const FilterDate: React.FC<Props> = ({ data, setData }) => {
+  const router = useRouter();
+
   const handleChangeDate = (e: any) => {
     const day = e.target.value.split("-").reverse();
     // Para corregir el bug del 0 que no se muestra cuando el mes es de un solo caracter EJ: "07"
     day[1] !== undefined && day[1][0] === "0" ? (day[1] = day[1][1]) : day[1];
     day[0] !== undefined && day[0][0] === "0" ? (day[0] = day[0][1]) : day[0];
     const day3 = day.join("/");
-    setData(data.filter((el) => el.addData?.includes(day3)));
+    router.push({ query: { addData: day3 } });
     console.log(day3);
   };
 
@@ -35,4 +38,4 @@ const Filter: React.FC<Props> = ({ data, setData }) => {
   );
 };
 
-export default Filter;
+export default FilterDate;
