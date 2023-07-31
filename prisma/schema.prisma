@@ -40,9 +40,6 @@ model Activity {
 
   //Todos los usuarios que tienen esta actividad
   User User[]
-
-  // Todos los pagos hechos que tiene esta actividad
-  Payments Payments[]
 }
 
 model Calendar {
@@ -84,28 +81,4 @@ model Month {
   // A que calendario pertenece
   calendar Calendar? @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   Int?
-
-  // Relacion con Payments (uno a uno)
-  Payments Payments?
-}
-
-model Payments {
-  id         Int       @id @default(autoincrement())
-  pricePay   Int?
-  methodPay  String?
-  isPay      Boolean
-  addData    String?
-  addAdmin   String?
-
-  // Relacion con actividad
-  activity   Activity? @relation(fields: [activityId], references: [id])
-  activityId Int?
-
-  // Relación con Month (uno a uno)
-  month   Month? @relation(fields: [monthId], references: [id])
-  monthId Int?   @unique
-
-  //Fecha 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

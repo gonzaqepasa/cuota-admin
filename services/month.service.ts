@@ -1,6 +1,6 @@
 import { prisma } from "./prismaConfig";
 
-export async function payMonth({ id, addAdmin, mothodPay, pricePay }: any) {
+export async function payMonth({ id, addAdmin, mothodPay, price }: any) {
   try {
     if (!id || !addAdmin || !mothodPay) {
       throw new Error("Faltan argumentos");
@@ -19,7 +19,7 @@ export async function payMonth({ id, addAdmin, mothodPay, pricePay }: any) {
         addData,
         addAdmin,
         mothodPay,
-        pricePay: pricePay,
+        pricePay: price,
       },
     });
 
@@ -35,18 +35,15 @@ export async function payMonth({ id, addAdmin, mothodPay, pricePay }: any) {
 export async function getMonths({
   monthName,
   isPay,
-  addData,
 }: {
-  monthName: string | undefined;
-  isPay: boolean | undefined;
-  addData: String | any;
+  monthName: string;
+  isPay: boolean;
 }) {
   try {
     const months = await prisma.month.findMany({
       where: {
         isPay,
         monthName,
-        addData
       },
       include: {
         calendar: {

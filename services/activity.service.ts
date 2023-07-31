@@ -21,7 +21,7 @@ export async function getActivity({ activity }: any) {
   }
 }
 
-export async function editPrice({ id, price }: { id: number; price: number }) {
+export async function editPrice({ id, price }: any) {
   try {
     const activities = await prisma.activity.update({
       where: { id: Number(id) },

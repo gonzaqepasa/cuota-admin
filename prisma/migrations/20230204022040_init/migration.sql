@@ -7,7 +7,7 @@ CREATE TABLE "User" (
     "description" TEXT,
     "active" BOOLEAN NOT NULL,
     "activityId" INTEGER NOT NULL,
-    "calendarId" INTEGER,
+    "calendarId" INTEGER NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -40,7 +40,7 @@ CREATE TABLE "Month" (
     "isPay" BOOLEAN NOT NULL,
     "mothodPay" TEXT NOT NULL,
     "pricePay" INTEGER NOT NULL,
-    "userId" INTEGER,
+    "userId" INTEGER NOT NULL,
 
     CONSTRAINT "Month_pkey" PRIMARY KEY ("id")
 );
@@ -52,7 +52,7 @@ CREATE UNIQUE INDEX "User_calendarId_key" ON "User"("calendarId");
 ALTER TABLE "User" ADD CONSTRAINT "User_activityId_fkey" FOREIGN KEY ("activityId") REFERENCES "Activity"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_calendarId_fkey" FOREIGN KEY ("calendarId") REFERENCES "Calendar"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "User" ADD CONSTRAINT "User_calendarId_fkey" FOREIGN KEY ("calendarId") REFERENCES "Calendar"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Month" ADD CONSTRAINT "Month_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Calendar"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Month" ADD CONSTRAINT "Month_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Calendar"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
