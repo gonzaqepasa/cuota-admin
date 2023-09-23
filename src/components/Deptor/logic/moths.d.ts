@@ -14,6 +14,8 @@ export const arrayMonth: typesMonthNames[] = [
   "Noviembre",
   "Diciembre",
 ];
-export const dateMonth = new Date().getMonth();
+export const dateMonth: number = new Date().getMonth();
+
+export const monthOfPay = (month: string): number => arrayMonth.indexOf(month);
 
 export const mesActual = () => arrayMonth[dateMonth];

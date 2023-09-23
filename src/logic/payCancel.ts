@@ -2,14 +2,21 @@ import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/services-url";
+import { typesToCancelPayments } from "../../services/payments.service";
 
 interface payCancelProps {
   id: number;
   monthName: string;
   getUserAgain: () => void;
+  idToCancelPayments: typesToCancelPayments
 }
 
-export function payCancel({ id, monthName, getUserAgain }: payCancelProps) {
+export function payCancel({
+  id,
+  monthName,
+  getUserAgain,
+  idToCancelPayments,
+}: payCancelProps) {
   Swal.fire({
     reverseButtons: true,
     background: "#202020",
@@ -28,6 +35,7 @@ export function payCancel({ id, monthName, getUserAgain }: payCancelProps) {
         try {
           const { data } = await axios.put(`${url}/month/pay-cancel`, {
             id,
+            idToCancelPayments,
           });
 
           Swal.fire({

@@ -1,25 +1,26 @@
 import axios from "axios";
-import { MouseEvent } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/services-url";
 import { firstLetterUpper } from "./firstLetterUpper";
+import { typesMonth, typesUser } from "../types/types-user";
+import { dateMonth, monthOfPay } from "../components/Deptor/logic/moths.d";
+import { auth } from "../../firebase/firebaseConfig";
 
-export function payMonth(
-  e: MouseEvent<HTMLButtonElement>,
-  id: number,
-  userName: string,
-  monthName: string,
-  addAdmin: string | null | undefined,
+interface typesToPay {
+  month: typesMonth;
+  userData: typesUser;
+  getUserAgain: () => void;
+}
 
-  price: number,
-  getUserAgain: Function
-) {
+export function payMonth({ month, userData, getUserAgain }: typesToPay) {
   Swal.fire({
     reverseButtons: true,
     background: "#202020",
     color: "white",
     title: "Estas seguro?",
-    text: `${firstLetterUpper(userName)} pago el mes de ${monthName}`,
+    text: `${firstLetterUpper(userData.name)} pago el mes de ${
+      month.monthName
+    }`,
     icon: "warning",
     showCancelButton: true,
     showDenyButton: true,
@@ -38,20 +39,30 @@ export function payMonth(
     async function pay(method: "MP" | "EF") {
       try {
         const { data } = await axios.put(`${url}/month/pay-month`, {
-          id,
-          addAdmin,
+          id: month.id, // ID del mes
+          addAdmin: auth.currentUser?.email, //
           mothodPay: method,
-          price,
+          price: userData.activity.price,
+          activityId: userData.activity.id,
+          activityModality: userData.activity.modality,
+          activityName: userData.activity.nameActivity,
+          monthId: month.id,
+          monthName: month.monthName,
+          monthNum: monthOfPay(month.monthName),
+          userId: userData.id,        
+          userName: userData.name,
         });
-
+        console.log();
         Swal.fire({
           background: "#202020",
           color: "white",
           icon: "success",
           title: `Pago aceptado!`,
-          text: `${firstLetterUpper(userName)} pago el mes de ${monthName}`,
+          text: `${firstLetterUpper(userData.name)} pago el mes de ${
+            month.monthName
+          }`,
         });
-        console.log("esto llega del patch", data);
+        // console.log("esto llega del path", data);
         getUserAgain();
       } catch (err) {
         console.log(err);
@@ -65,5 +76,4 @@ export function payMonth(
       }
     }
   });
-  e.preventDefault();
 }
