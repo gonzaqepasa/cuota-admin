@@ -67,7 +67,15 @@ export const RenderUser: React.FC<Props> = ({
                     size={20}
                   />
                 )}
-                <ButtonCancel el={el} getUserAgain={getUserAgain} />
+                <ButtonCancel
+                  el={el}
+                  getUserAgain={getUserAgain}
+                  idToCancelPayments={{
+                    userId: userData.id,
+                    activityId: userData.activity.id,
+                    monthId:el.id
+                  }}
+                />
               </>
             ) : (
               <>

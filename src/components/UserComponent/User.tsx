@@ -31,7 +31,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
     }
   }
   //  console.log( Math.floor(Math.random()*10000))
-  console.log("esto es userdata", userData);
+  // console.log("esto es userdata", userData);
   if (user)
     return (
       <div
