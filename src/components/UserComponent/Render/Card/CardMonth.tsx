@@ -30,7 +30,9 @@ const CardMonth: React.FC<Props> = ({
   const [isOpen, setIsOpen] = useState(currentMonth(el.monthName));
   return (
     <div
-      className={`relative flex flex-col my-1 justify-around ${
+      id={el.monthName}
+      
+      className={`relative flex flex-col my-0 justify-around  ${
         currentMonth(el.monthName) && "border-2 border-cyan-900 rounded-xl"
       }   ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}  `}
       key={index}

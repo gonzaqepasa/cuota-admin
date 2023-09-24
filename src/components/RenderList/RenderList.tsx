@@ -19,7 +19,7 @@ import { selectColor } from "../../logic/selectColor";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
-import { arrayMonth, dateMonth } from "../Deptor/logic/moths.d";
+import { arrayMonth, dateMonth, mesActual } from "../Deptor/logic/moths.d";
 import LazyLoad from "react-lazy-load";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 import { Title } from "../Title/Title";
@@ -135,7 +135,7 @@ export const RenderList: React.FC<Props> = ({
         >
           {resultFilter.length}
         </p>
-        {orderByActive(resultFilter).map((el, index) => (
+        {orderByActive(resultFilter).map((el: typesUser, index) => (
           <LazyLoad
             className="w-full"
             key={el.id}
@@ -148,7 +148,7 @@ export const RenderList: React.FC<Props> = ({
           >
             <div
               key={el.id}
-              className={`flex items-center rounded relative 
+              className={`flex items-center rounded relative animate-one
                ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}   ${
                 !el.active && "opacity-30"
               } hover:bg-cyan-900`}

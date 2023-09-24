@@ -98,7 +98,7 @@ export const FilterList: React.FC<Props> = ({
         <button
           onClick={(e) => handleClick(e)}
           value={"sin pagar"}
-          className={`transition rounded-r px-2 w-20 text-sm  ${
+          className={`transition rounded-r px-2 w-25 text-sm  ${
             state === "sin pagar"
               ? "bg-red-700 hover:bg-red-700 text-neutral-200"
               : "text-neutral-400 hover:bg-neutral-800"
