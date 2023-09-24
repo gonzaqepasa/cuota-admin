@@ -36,7 +36,12 @@ export default function UserData() {
   }, [route.query.id]);
 
   //////////////////////////////
-  if (load) return <Loading />;
+  if (load)
+    return (
+      <main className="main">
+        <Loading />;
+      </main>
+    );
   if (error.msg) {
     return <div className={`main backg-1`}>{error.msg}</div>;
   }
