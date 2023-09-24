@@ -73,7 +73,7 @@ export const AddUserForm: React.FC<Props> = ({
     <div
       // onClick={() => setModalAdd(false)}
       // className={`${styles.allAddUserForm}`}
-      className="max-w-md w-5/6  "
+      className="max-w-md w-5/6 animate-one "
     >
       <form onSubmit={(e) => handleSubmit(e)}>
         <ModalityInput setActivity={setActivity} dataActivity={dataActivity} />

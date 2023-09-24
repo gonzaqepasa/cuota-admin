@@ -31,7 +31,6 @@ const CardMonth: React.FC<Props> = ({
   return (
     <div
       id={el.monthName}
-      
       className={`relative flex flex-col my-0 justify-around  ${
         currentMonth(el.monthName) && "border-2 border-cyan-900 rounded-xl"
       }   ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}  `}
@@ -40,17 +39,17 @@ const CardMonth: React.FC<Props> = ({
       {/* BOTON CON INFORMACION NO DETALLADA */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`  h-full flex items-center relative  ${
+        className={`  h-full flex items-center relative text-neutral-300  ${
           currentMonth(el.monthName)
-            ? "p-2 bg-cyan-900 hover:bg-cyan-800"
-            : "p-1 hover:bg-neutral-800"
+            ? "p-2 bg-cyan-900 hover:bg-neutral-300 hover:text-black"
+            : "p-1 hover:bg-neutral-300 hover:text-black"
         }  rounded-lg
          transition
         `}
       >
         <div>
           {/* TITULO */}
-          <h4 className={`text-neutral-300`}>{el.monthName}</h4>
+          <h4 className={``}>{el.monthName}</h4>
         </div>
 
         {/* PAGO */}
@@ -60,11 +59,7 @@ const CardMonth: React.FC<Props> = ({
 
         <div className={` flex  absolute right-1`}>
           {/* BOTON */}
-          <p
-            className={` transition-transform text-neutral-200 hover:text-neutral-100 ${
-              isOpen && "rotate-180"
-            } `}
-          >
+          <p className={` transition-transform  ${isOpen && "rotate-180"} `}>
             <IoIosArrowDown />
           </p>
         </div>
