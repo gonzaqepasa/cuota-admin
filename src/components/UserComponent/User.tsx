@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { typesUser } from "../../types/types-user";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
@@ -9,6 +9,7 @@ import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";
 import { ActivityUser } from "./ActivityUser/ActivityUser";
 import { visibilityUser } from "../../logic/visibilityUser";
+import { mesActual } from "../Deptor/logic/moths.d";
 
 interface Props {
   userData: typesUser;
@@ -30,6 +31,12 @@ export const User: React.FC<Props> = ({ userData, id }) => {
       console.log(error);
     }
   }
+  useEffect(() => {
+    const element = document.getElementById(mesActual());
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
   //  console.log( Math.floor(Math.random()*10000))
   // console.log("esto es userdata", userData);
   if (user)
