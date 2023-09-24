@@ -14,7 +14,7 @@ export default async function handler(
       const { id, addAdmin, mothodPay, price } = req.body;
 
       const month = await payMonth({ id, addAdmin, mothodPay, price });
-      await Payments.pay(req.body);
+      // await Payments.pay(req.body);
       console.log(req.body);
       res.status(200).json(month);
     } catch (err) {
