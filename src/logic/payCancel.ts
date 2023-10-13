@@ -38,11 +38,11 @@ export function payCancel({
 
       (async function () {
         try {
-          const month = await axios.put(`${url}/month/pay-cancel`, {
+          await axios.put(`${url}/month/pay-cancel`, {
             id,
             idToCancelPayments,
           });
-          const payment = await axios.delete(
+          await axios.delete(
             `${url}/payment/cancel-pay?userId=${idToCancelPayments.userId}&activityId=${idToCancelPayments.activityId}&monthId=${idToCancelPayments.monthId}`
           );
 
