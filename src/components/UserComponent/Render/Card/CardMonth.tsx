@@ -104,7 +104,7 @@ const CardMonth: React.FC<Props> = ({
                   el={el}
                   getUserAgain={getUserAgain}
                   idToCancelPayments={{
-                    userId: userData.id,
+                    userId: String(userData.id),
                     activityId: userData.activity.id,
                     monthId: el.id,
                   }}
