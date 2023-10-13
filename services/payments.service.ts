@@ -1,12 +1,11 @@
-import { db } from "../firebase/firebaseConfig";
-import UserData from "../pages/user/[id]";
-import { prisma } from "./prismaConfig";
-import { Timestamp, deleteDoc, doc, setDoc } from "firebase/firestore";
+import dbConnect from "../mongoose/mongooseConfig";
+import paymentsModel from "../mongoose/model/Payments/payments-model";
+
+dbConnect();
 
 interface typesToPay {
   pricePay: number;
   methodPay: string;
-  isPay: boolean;
   addData: string;
   addAdmin: string;
   activity: {
@@ -21,7 +20,6 @@ interface typesToPay {
   };
   user: {
     id: number;
-
     name: string;
   };
 }
@@ -31,14 +29,12 @@ export interface typesToCancelPayments {
   monthId: number;
 }
 
-const IDgenerator = (u: number, a: number, m: number): string =>
-  `u${u}a${a}m${m}`;
-
 const Payments = {
+  IDgenerator: (u: number, a: number, m: number): string => `u${u}a${a}m${m}`,
+
   pay: async ({
-    price,
-    mothodPay,
-    isPay,
+    pricePay,
+    methodPay,
     addAdmin,
     activityId,
     activityModality,
@@ -47,7 +43,6 @@ const Payments = {
     monthName,
     monthNum,
     userId,
-
     userName,
   }: any) => {
     ////// Fecha //////
@@ -58,9 +53,8 @@ const Payments = {
     /////////////////////
 
     const docData: typesToPay = {
-      pricePay: Number(price),
-      methodPay: String(mothodPay),
-      isPay: true,
+      pricePay: Number(pricePay),
+      methodPay: String(methodPay),
       addData: String(addData),
       addAdmin: String(addAdmin),
       activity: {
@@ -79,12 +73,10 @@ const Payments = {
       },
     };
     try {
-      const res = await setDoc(
-        doc(db, "Payments", IDgenerator(userId, activityId, monthId)),
-        docData
-      );
+      const payment = new paymentsModel(docData);
+      await payment.save();
 
-      return res;
+      return docData;
     } catch (err) {
       console.log(err);
     }
@@ -92,10 +84,13 @@ const Payments = {
 
   CancelPay: async ({ userId, activityId, monthId }: typesToCancelPayments) => {
     try {
-      const userDelete = await deleteDoc(
-        doc(db, "Payments", IDgenerator(Number(userId), activityId, monthId))
-      );
-      return userDelete;
+      const paymentCancel = await paymentsModel.deleteOne({
+        "user.id": userId,
+        "activity.id": activityId,
+        "month.id": monthId,
+      });
+
+      return paymentCancel;
     } catch (err) {
       console.log(err);
     }
