@@ -4,35 +4,31 @@ import { type typesMonth } from "../../../../../types/types-user";
 import { FcCancel } from "react-icons/fc";
 import { Dispatch, SetStateAction } from "react";
 
-
 interface Props {
   el: typesMonth;
   getUserAgain: () => void;
-  idToCancelPayments:typesToCancelPayments
+  idToCancelPayments: typesToCancelPayments;
   setIsLoad: Dispatch<SetStateAction<boolean>>;
-
 }
 
 export const ButtonCancel: React.FC<Props> = ({
   el,
   getUserAgain,
   idToCancelPayments,
-  setIsLoad
+  setIsLoad,
 }) => {
-  function handleCancel() {
-    console.log("Cancel");
-    payCancel({
-      id: el.id,
-      getUserAgain,
-      monthName: el.monthName,
-      idToCancelPayments,
-      setIsLoad
-    });
-  }
 
   return (
     <button
-      onClick={() => handleCancel()}
+      onClick={() =>
+        payCancel({
+          id: el.id,
+          getUserAgain,
+          monthName: el.monthName,
+          idToCancelPayments,
+          setIsLoad,
+        })
+      }
       className={`absolute right-1 bottom-1 flex items-center text-neutral-500 transition-colors hover:text-neutral-400 text-xs`}
     >
       Cancelar Pago

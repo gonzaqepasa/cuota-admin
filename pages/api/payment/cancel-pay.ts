@@ -13,7 +13,7 @@ export default async function handler(
     try {
       const { userId, activityId, monthId } = req.query;
       const pay = await Payments.CancelPay({
-        userId: String(userId),
+        userId: Number(userId),
         activityId: Number(activityId),
         monthId: Number(monthId),
       });
