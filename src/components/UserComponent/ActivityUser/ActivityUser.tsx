@@ -5,7 +5,7 @@ import { fromNameToUrl } from "../../../logic/fromNameToUrl";
 
 import { VscEdit } from "react-icons/vsc";
 import { typesUser } from "../../../types/types-user";
-import { url } from "../../../config/services-url";
+import { url } from "../../../config/env_d";
 import { EditActivity } from "./EditActivity/EditActivity";
 
 interface Props {

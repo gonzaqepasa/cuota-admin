@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { url } from "../config/services-url";
+import { url } from "../config/env_d";
 
 export function deleteUserLogic(id: any, nameUser: string, cb: () => void) {
   Swal.fire({

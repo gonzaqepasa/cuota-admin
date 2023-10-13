@@ -1,5 +1,4 @@
 import { url } from "../../src/config/env_d";
-import {PricesRender} from "../../src/components/PricesRender/PricesRender";
 import { typesActivity } from "../../src/types/types-user";
 import { useState, useEffect } from "react";
 import Loading from "../../src/components/Loading/Loading";
@@ -15,9 +14,10 @@ export default function Prices() {
     (async function () {
       setLoad(true);
       try {
-        const resAct = await fetch(`${url}/activity/get-activity`);
-        const dataAct = await resAct.json();
-        setDataAct(dataAct);
+        const resRes = await fetch(`${url}/resume/get-resume`);
+        const dataRes = await resRes.json();
+        setDataAct(dataRes);
+        console.log(dataRes)
         setLoad(false);
       } catch (err) {
         console.log(err);
@@ -26,7 +26,7 @@ export default function Prices() {
     })();
   }, []);
 
-  console.log(dataAct);
+  ////// Render
   if (load)
     return (
       <div className="main">
@@ -35,30 +35,5 @@ export default function Prices() {
     );
   if (typeof dataAct === "boolean")
     return <div className={`main`}>Problemas en el servidor {error.msg}</div>;
-  return (
-    <div className={`main `}>
-      <PricesRender data={dataAct} />
-    </div>
-  );
+  return <main className={`main`}></main>;
 }
-
-/* export async function getStaticProps() {
-  try {
-    const resAct = await fetch(`${url}/activity/get-activity`);
-    const dataAct = await resAct.json();
-
-    return {
-      props: {
-        dataAct,
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        dataAct: false,
-        // error: err,
-      },
-    };
-  }
-}
- */

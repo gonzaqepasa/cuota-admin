@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch, MouseEvent, SetStateAction } from "react";
 import Swal from "sweetalert2";
-import { url } from "../config/services-url";
+import { url } from "../config/env_d";
 
 export function visibilityUser(
   // Primer Parametro

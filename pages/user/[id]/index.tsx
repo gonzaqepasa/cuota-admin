@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import User from "../../../src/components/UserComponent/User";
-import { url } from "../../../src/config/services-url";
+import { url } from "../../../src/config/env_d";
 import Loading from "../../../src/components/Loading/Loading";
 import Payments from "../../../services/payments.service";
 

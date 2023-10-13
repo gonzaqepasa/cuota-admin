@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Console } from "console";
-import { url } from "../config/services-url";
+import { url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 import { typesActivity } from "../types/types-user";
 

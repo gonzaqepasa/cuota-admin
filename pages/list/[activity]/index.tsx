@@ -5,7 +5,7 @@ import { AddUserForm } from "../../../src/components/AddUser/Form/AddUserForm";
 import { Title } from "../../../src/components/Title/Title";
 import Loading from "../../../src/components/Loading/Loading";
 import { RenderList } from "../../../src/components/RenderList/RenderList";
-import { url } from "../../../src/config/services-url";
+import { url } from "../../../src/config/env_d";
 import { typesActivity } from "../../../src/types/types-user";
 import { Notification } from "../../../src/components/Notification/Notification";
 
