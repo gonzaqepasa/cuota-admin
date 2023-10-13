@@ -10,6 +10,7 @@ import mp from "../../../../../styles/mp.png";
 import { ButtonCancel } from "../btn/Cancel/Cancel";
 import { ButtonPay } from "../btn/Pay/Pay";
 import { useState } from "react";
+import Loading from "../../../Loading/Loading";
 
 interface Props {
   el: typesMonth;
@@ -28,6 +29,7 @@ const CardMonth: React.FC<Props> = ({
 }) => {
   const currentMonth = (monthName: string) => mesActual() === monthName;
   const [isOpen, setIsOpen] = useState(currentMonth(el.monthName));
+  const [isLoad, setIsLoad] = useState(false);
   return (
     <div
       id={el.monthName}
@@ -66,7 +68,12 @@ const CardMonth: React.FC<Props> = ({
       </button>
       {/* FIN DEL BOTON */}
 
-      {isOpen && (
+      {isLoad && isOpen && (
+        <div className="p-1 h-32 flex ">
+          <Loading size={30} />
+        </div>
+      )}
+      {isOpen && !isLoad && (
         <div className=" animate-one p-1 h-32">
           {/* Nombre de mes  */}
           <div className={"flex items-center"}>
@@ -121,6 +128,7 @@ const CardMonth: React.FC<Props> = ({
                   el={el}
                   userData={user}
                   getUserAgain={getUserAgain}
+                  setIsLoad={setIsLoad}
                 />
               </>
             )}
