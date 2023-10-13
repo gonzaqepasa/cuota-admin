@@ -3,7 +3,7 @@ import { typesUser } from "../../types/types-user";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
-import { url } from "../../config/services-url";
+import { url } from "../../config/env_d";
 import { NameUser } from "./NameUser/NameUser";
 import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";

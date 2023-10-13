@@ -1,4 +1,4 @@
-import { url } from "../../src/config/services-url";
+import { url } from "../../src/config/env_d";
 import {PricesRender} from "../../src/components/PricesRender/PricesRender";
 import { typesActivity } from "../../src/types/types-user";
 import { useState, useEffect } from "react";

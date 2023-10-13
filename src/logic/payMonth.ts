@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../config/services-url";
+import { url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 import { typesMonth, typesUser } from "../types/types-user";
 import { dateMonth, monthOfPay } from "../components/Deptor/logic/moths.d";

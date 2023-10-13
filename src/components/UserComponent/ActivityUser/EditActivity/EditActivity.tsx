@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent } from "react";
-import { url } from "../../../../config/services-url";
+import { url } from "../../../../config/env_d";
 import { typesActivity } from "../../../../types/types-user";
 import Loading from "../../../Loading/Loading";
 import { changeActivity } from "../../../../logic/changeActivity";

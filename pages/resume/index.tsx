@@ -1,4 +1,4 @@
-import { url } from "../../src/config/services-url";
+import { url } from "../../src/config/env_d";
 import { typesActivity } from "../../src/types/types-user";
 import { useState, useEffect } from "react";
 import Loading from "../../src/components/Loading/Loading";
