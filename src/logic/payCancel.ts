@@ -3,12 +3,14 @@ import { MouseEvent } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/env_d";
 import { typesToCancelPayments } from "../../services/payments.service";
+import { Dispatch, SetStateAction } from "react";
 
 interface payCancelProps {
   id: number;
   monthName: string;
   getUserAgain: () => void;
   idToCancelPayments: typesToCancelPayments;
+  setIsLoad: Dispatch<SetStateAction<boolean>>;
 }
 
 export function payCancel({
@@ -16,6 +18,7 @@ export function payCancel({
   monthName,
   getUserAgain,
   idToCancelPayments,
+  setIsLoad,
 }: payCancelProps) {
   Swal.fire({
     reverseButtons: true,
@@ -31,6 +34,8 @@ export function payCancel({
     cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
+      setIsLoad(true);
+
       (async function () {
         try {
           const month = await axios.put(`${url}/month/pay-cancel`, {
@@ -48,10 +53,13 @@ export function payCancel({
             title: `Pago Cancelado!`,
             text: `Cancelaste el pago del mes de ${monthName}`,
           });
+          setIsLoad(false);
 
           getUserAgain();
         } catch (err) {
           console.log(err);
+          setIsLoad(true);
+
           Swal.fire({
             background: "#202020",
             color: "white",
