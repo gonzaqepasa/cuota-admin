@@ -2,17 +2,22 @@ import { typesToCancelPayments } from "../../../../../../services/payments.servi
 import { payCancel } from "../../../../../logic/payCancel";
 import { type typesMonth } from "../../../../../types/types-user";
 import { FcCancel } from "react-icons/fc";
+import { Dispatch, SetStateAction } from "react";
+
 
 interface Props {
   el: typesMonth;
   getUserAgain: () => void;
   idToCancelPayments:typesToCancelPayments
+  setIsLoad: Dispatch<SetStateAction<boolean>>;
+
 }
 
 export const ButtonCancel: React.FC<Props> = ({
   el,
   getUserAgain,
   idToCancelPayments,
+  setIsLoad
 }) => {
   function handleCancel() {
     console.log("Cancel");
@@ -21,6 +26,7 @@ export const ButtonCancel: React.FC<Props> = ({
       getUserAgain,
       monthName: el.monthName,
       idToCancelPayments,
+      setIsLoad
     });
   }
 
