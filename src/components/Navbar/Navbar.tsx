@@ -30,7 +30,7 @@ export default function NavbarMain() {
 
   return (
     <>
-      <div className={`  ${styles.allNavbar} ${isTop && styles.isTopNav }`}>
+      <div className={`  ${styles.allNavbar} ${isTop && styles.isTopNav}`}>
         <div
           className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}
         >
@@ -49,7 +49,8 @@ export default function NavbarMain() {
             <nav className={`${styles.navigation}`}>
               <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
                 <LinkNav href={"/prices"} text="Precios" setModal={setModal} />
-              {/*   <LinkNav
+                <LinkNav href={"/resume"} text="Resumen" setModal={setModal} />
+                {/*   <LinkNav
                   text="¿Quién debe?"
                   setModal={setModal}
                   href={"/quien-debe"}
