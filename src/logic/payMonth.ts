@@ -5,14 +5,21 @@ import { firstLetterUpper } from "./firstLetterUpper";
 import { typesMonth, typesUser } from "../types/types-user";
 import { monthOfPay } from "../components/Deptor/logic/moths.d";
 import { auth } from "../../firebase/firebaseConfig";
+import { Dispatch, SetStateAction } from "react";
 
 interface typesToPay {
   month: typesMonth;
   userData: typesUser;
   getUserAgain: () => void;
+  setIsLoad: Dispatch<SetStateAction<boolean>>;
 }
 
-export function payMonth({ month, userData, getUserAgain }: typesToPay) {
+export function payMonth({
+  month,
+  userData,
+  getUserAgain,
+  setIsLoad,
+}: typesToPay) {
   Swal.fire({
     reverseButtons: true,
     background: "#202020",
@@ -37,6 +44,7 @@ export function payMonth({ month, userData, getUserAgain }: typesToPay) {
       pay("EF");
     }
     function pay(method: "MP" | "EF") {
+      setIsLoad(true);
       Promise.all([
         axios.put(`${url}/month/pay-month`, {
           id: month.id, // ID del mes
@@ -77,6 +85,7 @@ export function payMonth({ month, userData, getUserAgain }: typesToPay) {
               month.monthName
             }`,
           });
+          setIsLoad(false);
           getUserAgain();
           return [monthPay.data, payment.data];
         })
@@ -90,6 +99,7 @@ export function payMonth({ month, userData, getUserAgain }: typesToPay) {
             title: `Error inesperado`,
             text: `Consulte con el desarrollador (detalles en consola)`,
           });
+          setIsLoad(false);
           getUserAgain();
         });
     }
