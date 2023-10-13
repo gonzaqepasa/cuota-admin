@@ -11,11 +11,11 @@ export default async function handler(
 ) {
   if (req.method === "DELETE") {
     try {
-      const { userId, activityId, monthId } = req.body;
+      const { userId, activityId, monthId } = req.query;
       const pay = await Payments.CancelPay({
-        userId,
-        activityId,
-        monthId,
+        userId: String(userId),
+        activityId: Number(activityId),
+        monthId: Number(monthId),
       });
       // console.log(req.body);
       res.status(200).json(pay);

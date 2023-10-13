@@ -24,7 +24,7 @@ interface typesToPay {
   };
 }
 export interface typesToCancelPayments {
-  userId?: string;
+  userId: string;
   activityId: number;
   monthId: number;
 }

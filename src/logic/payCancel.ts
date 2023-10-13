@@ -8,7 +8,7 @@ interface payCancelProps {
   id: number;
   monthName: string;
   getUserAgain: () => void;
-  idToCancelPayments: typesToCancelPayments
+  idToCancelPayments: typesToCancelPayments;
 }
 
 export function payCancel({
@@ -33,10 +33,13 @@ export function payCancel({
     if (result.isConfirmed) {
       (async function () {
         try {
-          const { data } = await axios.put(`${url}/month/pay-cancel`, {
+          const month = await axios.put(`${url}/month/pay-cancel`, {
             id,
             idToCancelPayments,
           });
+          const payment = await axios.delete(
+            `${url}/payment/cancel-pay?userId=${idToCancelPayments.userId}&activityId=${idToCancelPayments.activityId}&monthId=${idToCancelPayments.monthId}`
+          );
 
           Swal.fire({
             background: "#202020",

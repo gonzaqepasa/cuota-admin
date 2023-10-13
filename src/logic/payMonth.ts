@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 import { typesMonth, typesUser } from "../types/types-user";
-import { dateMonth, monthOfPay } from "../components/Deptor/logic/moths.d";
+import { monthOfPay } from "../components/Deptor/logic/moths.d";
 import { auth } from "../../firebase/firebaseConfig";
 
 interface typesToPay {
@@ -36,9 +36,9 @@ export function payMonth({ month, userData, getUserAgain }: typesToPay) {
     } else if (result.isDenied) {
       pay("EF");
     }
-    async function pay(method: "MP" | "EF") {
-      try {
-        const { data } = await axios.put(`${url}/month/pay-month`, {
+    function pay(method: "MP" | "EF") {
+      Promise.all([
+        axios.put(`${url}/month/pay-month`, {
           id: month.id, // ID del mes
           addAdmin: auth.currentUser?.email, //
           mothodPay: method,
@@ -49,31 +49,49 @@ export function payMonth({ month, userData, getUserAgain }: typesToPay) {
           monthId: month.id,
           monthName: month.monthName,
           monthNum: monthOfPay(month.monthName),
-          userId: userData.id,        
+          userId: userData.id,
           userName: userData.name,
+        }),
+        axios.post(`${url}/payment/pay`, {
+          id: month.id, // ID del mes
+          addAdmin: auth.currentUser?.email, //
+          methodPay: method,
+          pricePay: userData.activity.price,
+          activityId: userData.activity.id,
+          activityModality: userData.activity.modality,
+          activityName: userData.activity.nameActivity,
+          monthId: month.id,
+          monthName: month.monthName,
+          monthNum: monthOfPay(month.monthName),
+          userId: userData.id,
+          userName: userData.name,
+        }),
+      ])
+        .then(([monthPay, payment]) => {
+          Swal.fire({
+            background: "#202020",
+            color: "white",
+            icon: "success",
+            title: `Pago aceptado!`,
+            text: `${firstLetterUpper(userData.name)} pago el mes de ${
+              month.monthName
+            }`,
+          });
+          getUserAgain();
+          return [monthPay.data, payment.data];
+        })
+
+        .catch((e) => {
+          console.log(e);
+          Swal.fire({
+            background: "#202020",
+            color: "white",
+            icon: "error",
+            title: `Error inesperado`,
+            text: `Consulte con el desarrollador (detalles en consola)`,
+          });
+          getUserAgain();
         });
-        console.log();
-        Swal.fire({
-          background: "#202020",
-          color: "white",
-          icon: "success",
-          title: `Pago aceptado!`,
-          text: `${firstLetterUpper(userData.name)} pago el mes de ${
-            month.monthName
-          }`,
-        });
-        // console.log("esto llega del path", data);
-        getUserAgain();
-      } catch (err) {
-        console.log(err);
-        Swal.fire({
-          background: "#202020",
-          color: "white",
-          icon: "error",
-          title: `Error inesperado`,
-          text: `Consulte con el desarrollador (detalles en consola)`,
-        });
-      }
     }
   });
 }
