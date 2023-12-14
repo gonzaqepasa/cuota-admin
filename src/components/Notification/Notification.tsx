@@ -5,7 +5,7 @@ import { typesActivity, typesMonth } from "../../types/types-user";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { selectColor } from "../../logic/selectColor";
 import { useRouter } from "next/router";
-import { editActive } from "../../../services/user.service";
+import { editActive } from "../../../server/services/user.service";
 import { visibilityUser } from "../../logic/visibilityUser";
 
 interface Props {

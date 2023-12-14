@@ -1,5 +1,5 @@
-import dbConnect from "../mongoose/mongooseConfig";
-import paymentsModel from "../mongoose/model/Payments/payments-model";
+import dbConnect from "../../mongoose/mongooseConfig";
+import paymentsModel from "../../mongoose/model/Payments/payments-model";
 
 dbConnect();
 

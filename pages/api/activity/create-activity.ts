@@ -1,6 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getUsers } from "../../../server/services/user.service";
+import {
+  createActivity,
+  getActivity,
+} from "../../../server/services/activity.service";
 
 type Data = any;
 
@@ -8,15 +11,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  if (req.method !== "POST") return `Metodo equivocado`;
   try {
-    const { activity } = req.query;
-    console.log(activity);
+    const { name } = req.body;
 
-    const users = await getUsers(activity);
+    const activities = await createActivity({ name });
 
-    res.status(200).json(users);
+    res.status(200).json(activities);
   } catch (err) {
-    res.status(300).json({ err: err, msg: "Problema con la base de datos" });
     console.log(err);
+    res.status(404).json(err);
   }
 }

@@ -1,19 +1,28 @@
 /* This is a database connection function*/
-import mongoose from "mongoose";
-import { URL_MONGODB } from "../src/config/env_d";
+const mongoose = require("mongoose");
+const { URL_MONGODB } = require("../server/config/env_d");
 
+export {};
 const connection: any = {}; /* creating connection object*/
+console.log("asddddddd Llego hastra ascascasd asdas");
 
 async function dbConnect() {
   /* check if we have connection to our databse*/
-  if (connection.isConnected) {
-    return;
+  try {
+    if (connection.isConnected) {
+      console.log("Ya existe una conexion, continuamos en esa!");
+      return;
+    }
+
+    /* connecting to our database */
+    const db = await mongoose.connect(URL_MONGODB, {});
+
+    connection.isConnected = db.connections[0].readyState;
+    console.log("|> Mongo DB conectado ");
+  } catch (e) {
+    console.log("Error", e);
   }
-
-  /* connecting to our database */
-  const db = await mongoose.connect(URL_MONGODB, {});
-
-  connection.isConnected = db.connections[0].readyState;
 }
+dbConnect();
 
-export default dbConnect;
+module.exports = {};

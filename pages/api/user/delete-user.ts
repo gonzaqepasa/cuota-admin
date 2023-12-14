@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { deleteUser } from "../../../services/user.service";
+import { deleteUser } from "../../../server/services/user.service";
 
 type Data = any;
 

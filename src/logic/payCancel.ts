@@ -2,7 +2,7 @@ import axios from "axios";
 import { MouseEvent } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/env_d";
-import { typesToCancelPayments } from "../../services/payments.service";
+import { typesToCancelPayments } from "../../server/services/payments.service";
 import { Dispatch, SetStateAction } from "react";
 
 interface payCancelProps {

@@ -1,3 +1,4 @@
+import Activity from "../models/activity/activity.model";
 import { prisma } from "./prismaConfig";
 
 export async function getActivity({ activity }: any) {
@@ -58,5 +59,16 @@ export async function getActivityForCloseMonth() {
     console.log(err);
     await prisma.$disconnect();
     process.exit(1);
+  }
+}
+export async function createActivity({ name }: { name: string }) {
+  try {
+    const activity = new Activity({ name });
+    await activity.save();
+
+    return activity;
+  } catch (err) {
+    console.log(err);
+    return err;
   }
 }

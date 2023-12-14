@@ -1,4 +1,4 @@
-import { typesToCancelPayments } from "../../../../../../services/payments.service";
+import { typesToCancelPayments } from "../../../../../../server/services/payments.service";
 import { payCancel } from "../../../../../logic/payCancel";
 import { type typesMonth } from "../../../../../types/types-user";
 import { FcCancel } from "react-icons/fc";

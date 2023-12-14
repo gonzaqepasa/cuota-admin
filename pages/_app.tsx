@@ -10,6 +10,7 @@ import LoginForm from "../src/components/LoginForm/LoginForm";
 import Loading from "../src/components/Loading/Loading";
 import Navbar from "../src/components/Navbar/Navbar";
 
+
 export default function App({ Component, pageProps }: AppProps) {
   ///////////  Logica de auth  ///////////
   const [authUser, setAuthUser] = useState<string | undefined>(undefined);

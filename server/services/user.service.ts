@@ -1,6 +1,7 @@
-import { typesEditName, type typesUser } from "../src/types/types-user";
+import { typesEditName, type typesUser } from "../../src/types/types-user";
 import { prisma } from "./prismaConfig";
-import { arrayWithNamesMonths } from "../src/config/infoMonths";
+
+import User from "../models/user/user.model";
 
 type typesCreateUser = Pick<
   typesUser,
@@ -15,45 +16,55 @@ export async function createUser({
   activityId,
 }: typesCreateUser) {
   try {
-    ////////////////////////////////////
-    const user = await prisma.user.create({
-      data: {
-        // Información personal
-        name: name.toLowerCase().trim(),
-        email,
-        phone,
-        description,
-        //Informacion de actividad
-        active: true,
-        activity: {
-          connect: {
-            id: activityId,
-          },
-        },
-        //Informacion de pago
-        calendar: {
-          create: {
-            months: {
-              create: arrayWithNamesMonths.map((obj) => {
-                return {
-                  monthNum: obj.num,
-                  monthName: obj.name,
-                  addData: "",
-                  addAdmin: "",
-                  isPay: false,
-                  mothodPay: "",
-                  pricePay: 0,
-                };
-              }),
-            },
-          },
-        },
-      },
+    const small = await new User({
+      name,
+      email,
+      phone,
+      description,
+      activity: activityId,
     });
-    return user;
+    await small.save();
+
+    ////////////////////////////////////
+    // const user = await prisma.user.create({
+    //   data: {
+    //     // Información personal
+    //     name: name.toLowerCase().trim(),
+    //     email,
+    //     phone,
+    //     description,
+    //     //Informacion de actividad
+    //     active: true,
+    //     activity: {
+    //       connect: {
+    //         id: activityId,
+    //       },
+    //     },
+    //     //Informacion de pago
+    //     calendar: {
+    //       create: {
+    //         months: {
+    //           create: arrayWithNamesMonths.map((obj) => {
+    //             return {
+    //               monthNum: obj.num,
+    //               monthName: obj.name,
+    //               addData: "",
+    //               addAdmin: "",
+    //               isPay: false,
+    //               mothodPay: "",
+    //               pricePay: 0,
+    //             };
+    //           }),
+    //         },
+    //       },
+    //     },
+    //   },
+    // });
+    // return user;
     ////////////////////////////////////
   } catch (err) {
     console.log(err);
+    return err;
   }
 }
 
