@@ -23,10 +23,15 @@ export interface typesUser {
 export type typesEditName = Pick<typesUser, "id" | "name">;
 
 export interface typesActivity {
-  nameActivity: string;
+  description: string;
   modality: string;
+  name: string;
   price: number;
-  id: number;
+  users: {};
+  payments: {};
+  business: {};
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface typesCalendar {
