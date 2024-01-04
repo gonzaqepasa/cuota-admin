@@ -6,8 +6,14 @@ import { ID_BUSINESS, url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 import { typesActivity } from "../types/types-user";
 
+export interface typesObjectToCreateUser {
+  name: string;
+  description: string;
+  id_activity: string;
+  id_business: string;
+}
 interface Params {
-  objData: Object;
+  objData: typesObjectToCreateUser;
   nameUser: string;
   dataActivity?: typesActivity[];
   setModalAdd: Dispatch<SetStateAction<boolean>>;
@@ -26,9 +32,9 @@ export async function createUser({
   setLoad,
   cb,
 }: Params) {
+  const nameTrim = objData.name.toLowerCase().trim();
   (async () => {
     setLoad(true);
-    const name = nameUser.toLowerCase().trim();
     const res = await axios.get(
       `${url}/api/user/findByBusiness/${ID_BUSINESS}?id_activity=${
         dataActivity && dataActivity[0]._id
@@ -40,7 +46,7 @@ export async function createUser({
         reverseButtons: true,
         background: "#202020",
         color: "white",
-        title: `Ya existe un usuario llamado ${firstLetterUpper(name)}`,
+        title: `Ya existe un usuario llamado ${firstLetterUpper(nameTrim)}`,
         text: `Deseas crearlo igual o ir al perfil del usuario`,
         icon: "warning",
         showCancelButton: true,
@@ -66,7 +72,7 @@ export async function createUser({
         background: "#202020",
         color: "white",
         title: "Agregar usuario",
-        text: `Seguro quieres agregar a ${firstLetterUpper(name)}`,
+        text: `Seguro quieres agregar a ${firstLetterUpper(nameTrim)}`,
 
         showCancelButton: true,
         confirmButtonColor: "#476d7c",
@@ -84,8 +90,14 @@ export async function createUser({
   })();
 
   const create = async () => {
+    const { description, id_activity, id_business } = objData;
     try {
-      const { data } = await axios.post(`${url}/api/user/create`, objData);
+      const { data } = await axios.post(`${url}/api/user/create`, {
+        name: nameTrim,
+        description,
+        id_activity: String(id_activity),
+        id_business: id_business,
+      });
       // setModalAdd(false);
       // getDataAgain();
 

@@ -1,6 +1,6 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { validateFormInputs } from "../logic/validateAddInputs";
-import { createUser } from "../../../logic/createUser";
+import { createUser, typesObjectToCreateUser } from "../../../logic/createUser";
 import { typesActivity } from "../../../types/types-user";
 import Loading from "../../Loading/Loading";
 import { useRouter } from "next/router";
@@ -51,22 +51,11 @@ export const AddUserForm: React.FC<Props> = ({
   });
 
   ////////////////////////////////////////////////////////////
-  const toSendObj: {
-    name: string;
-    description: string;
-    id_activity: string;
-    id_business: string;
-    email: string;
-    username: string;
-    phoneNumber: string;
-  } = {
+  const toSendObj: typesObjectToCreateUser = {
     name,
     description,
     id_activity: String(activity),
     id_business: ID_BUSINESS,
-    email: "",
-    username: "",
-    phoneNumber: "",
   };
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
