@@ -8,13 +8,16 @@ import { ModalityInput } from "./Modality/ModalityInput";
 import { NameInput } from "./Name/NameInput";
 import { DescriptionInput } from "./Description/DescriptionInput";
 import { ButtonForm } from "./Button/ButtonForm";
+import { ID_BUSINESS } from "../../../config/env_d";
+import { useAppDispatch } from "../../../redux/hooks";
+import { getBusinessFromApi } from "../../../logic/getBusiness";
 
 interface Props {
   // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   // modalityOptions: string[];
-  getDataAgain: () => void;
-  dataActivity: typesActivity[];
+
+  dataActivity?: typesActivity[];
 }
 
 export const AddUserForm: React.FC<Props> = ({
@@ -22,17 +25,22 @@ export const AddUserForm: React.FC<Props> = ({
   // activity,
   // setActivity,
   setModalAdd,
-  getDataAgain,
+
   dataActivity,
 }) => {
   const [load, setLoad] = useState(false);
   const route = useRouter();
+  const dispatch = useAppDispatch();
+  const getDataAgain = async () => {
+    const data = await getBusinessFromApi();
+    dispatch(data);
+  };
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
   const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [dni, setDni] = useState(0);
-  const [activity, setActivity] = useState(dataActivity[0].id);
+  const [activity, setActivity] = useState(dataActivity[0]._id);
   const [description, setDescription] = useState("");
   ///////////////////////////////////////////////////////
 
@@ -43,10 +51,22 @@ export const AddUserForm: React.FC<Props> = ({
   });
 
   ////////////////////////////////////////////////////////////
-  const toSendObj: { name: string; description: string; activityId: number } = {
+  const toSendObj: {
+    name: string;
+    description: string;
+    id_activity: string;
+    id_business: string;
+    email: string;
+    username: string;
+    phoneNumber: string;
+  } = {
     name,
     description,
-    activityId: activity,
+    id_activity: activity,
+    id_business: ID_BUSINESS,
+    email: "",
+    username: "",
+    phoneNumber: "",
   };
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

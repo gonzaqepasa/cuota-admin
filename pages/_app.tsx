@@ -9,6 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import LoginForm from "../src/components/LoginForm/LoginForm";
 import Loading from "../src/components/Loading/Loading";
 import Navbar from "../src/components/Navbar/Navbar";
+import ProviderRedux from "./ProviderRedux";
 
 export default function App({ Component, pageProps }: AppProps) {
   ///////////  Logica de auth  ///////////
@@ -58,7 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Loading />
         </div>
       ) : (
-        render()
+        <ProviderRedux>{render()}</ProviderRedux>
       )}
     </>
   );

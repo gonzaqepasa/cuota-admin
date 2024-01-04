@@ -1,13 +1,18 @@
 import styles from "./Navbar.module.scss";
 import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
-import { selectColor } from "../../logic/selectColor";
 import { useRouter } from "next/router";
 import { auth } from "../../../firebase/firebaseConfig";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { selectAvatar } from "../../logic/selectAvatar";
 import { signOutUser } from "../../../firebase/auth/signOut";
 import { LinkActivity, LinkNav } from "./Link/LinkNav";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { ActivityAdd } from "../../redux/slice/activitySlice";
+import { getActivityFromApi } from "../../logic/getActivity";
+import { typesActivity, typesBusiness } from "../../types/types-user";
+import { firstLetterUpper } from "../../logic/firstLetterUpper";
+import { getBusinessFromApi } from "../../logic/getBusiness";
 
 export default function NavbarMain() {
   const route = useRouter();
@@ -26,6 +31,20 @@ export default function NavbarMain() {
       window.scrollY < 30 ? setIsTop(true) : setIsTop(false);
       window.scrollY < 300 ? setToTop(true) : setToTop(false);
     });
+  }, []);
+  /////
+  const business: typesBusiness | null = useAppSelector((state) => state.value);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const data = await getBusinessFromApi();
+        dispatch(ActivityAdd(data));
+      } catch (e) {
+        console.log(e);
+      }
+    })();
   }, []);
 
   return (
@@ -48,52 +67,24 @@ export default function NavbarMain() {
             </div>
             <nav className={`${styles.navigation}`}>
               <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
-                <LinkNav href={"/activity"} text="Actividades" setModal={setModal} />
-                <LinkNav href={"/resume"} text="Resumen" setModal={setModal} />
-                {/*   <LinkNav
-                  text="¿Quién debe?"
+                <LinkNav
+                  href={"/activity"}
+                  text="Actividades"
                   setModal={setModal}
-                  href={"/quien-debe"}
-                /> */}
+                />
+                <LinkNav href={"/resume"} text="Resumen" setModal={setModal} />
               </div>
 
-              <div className={`${styles.activityLinks}`}>
-                <LinkActivity
-                  setModal={setModal}
-                  text="Gimnasio"
-                  href="/list/Gimnasio"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Taekwondo"
-                  href="/list/Taekwondo"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Power Box"
-                  href="/list/Power%20Box"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Zumba"
-                  href="/list/Zumba"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Jiu Jitzu"
-                  href="/list/Jiu%20Jitzu"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Kick Boxing"
-                  href="/list/Kick%20Boxing"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="GAP + Funcional"
-                  activityName="GAP Funcional"
-                  href="/list/GAP%20Funcional"
-                />
+              <div className={`lg:flex`}>
+                {business?.activities?.map((a, i) => (
+                  <LinkActivity
+                    key={i}
+                    setModal={setModal}
+                    activityName={firstLetterUpper(a.name)}
+                    modalityName={firstLetterUpper(a.modality)}
+                    href={`/list/${a._id}`}
+                  />
+                ))}
               </div>
             </nav>
           </div>

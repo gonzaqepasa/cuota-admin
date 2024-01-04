@@ -9,20 +9,18 @@ interface Props {
   month: string;
 }
 export const MsgDeptor: React.FC<Props> = ({ user, month }) => {
-  const aux = user.calendar.months.find((m) => {
-    return m.monthName === month;
-  });
+ 
   // console.log(aux, "asdasdasdasdasdasd");
 
-  if (aux?.isPay === false) {
-    return (
-      <p
-        className={`flex items-center justify-center text-xs font-semibold text-neutral-900 px-2 mx-1 rounded-lg bg-neutral-400`}
-      >
-        n-p
-      </p>
-    );
-  } else if (aux?.mothodPay === "MP") {
+  // if (aux?.isPay === false) {
+  //   return (
+  //     <p
+  //       className={`flex items-center justify-center text-xs font-semibold text-neutral-900 px-2 mx-1 rounded-lg bg-neutral-400`}
+  //     >
+  //       n-p
+  //     </p>
+  //   );
+  // } else if (aux?.mothodPay === "MP") {
     return (
       <Image
         src={mp}
@@ -31,7 +29,7 @@ export const MsgDeptor: React.FC<Props> = ({ user, month }) => {
         alt="no se encontr imagen"
       />
     );
-  } else {
-    return <FaMoneyBillWave className="mx-1" color="green" size={18} />;
-  }
+  // } else {
+  //   return <FaMoneyBillWave className="mx-1" color="green" size={18} />;
+  // }
 };

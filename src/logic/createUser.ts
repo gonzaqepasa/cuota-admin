@@ -2,14 +2,14 @@ import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Console } from "console";
-import { url } from "../config/env_d";
+import { ID_BUSINESS, url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 import { typesActivity } from "../types/types-user";
 
 interface Params {
   objData: Object;
   nameUser: string;
-  dataActivity: typesActivity[];
+  dataActivity?: typesActivity[];
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   getDataAgain: Function;
   setLoad: Dispatch<SetStateAction<boolean>>;
@@ -30,7 +30,7 @@ export async function createUser({
     setLoad(true);
     const name = nameUser.toLowerCase().trim();
     const res = await axios.get(
-      `${url}/user/user-val?USER=${name}&ACTIVITY=${dataActivity[0].nameActivity}`
+      `${url}/api/user/findByBusiness/${ID_BUSINESS}?id_activity=${dataActivity[0]._id}&name=${name}`
     );
     console.log("esto es res", res.data);
     if (res.data.length > 0) {
@@ -83,7 +83,7 @@ export async function createUser({
 
   const create = async () => {
     try {
-      const { data } = await axios.post(`${url}/user/create-user`, objData);
+      const { data } = await axios.post(`${url}/api/user/create`, objData);
       // setModalAdd(false);
       // getDataAgain();
 
@@ -103,6 +103,8 @@ export async function createUser({
     } catch (err) {
       console.log(err);
       setModalAdd(false);
+      setLoad(false);
+
       Swal.fire({
         background: "red",
         color: "white",
@@ -115,51 +117,4 @@ export async function createUser({
       });
     }
   };
-
-  /////////////////////////////////////////////////////////////////////////////////
-  // Swal.fire({
-  //   reverseButtons: true,
-  //   background: "#202020",
-  //   color: "white",
-  //   title: "Agregar usuario",
-  //   text: `Seguro quieres agregar a ${nameUser}`,
-  //   icon: "warning",
-  //   showCancelButton: true,
-  //   confirmButtonColor: "#476d7c",
-  //   cancelButtonColor: "#202020",
-  //   confirmButtonText: "Si agregar",
-  //   cancelButtonText: "Cancelar",
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
-  //     (async function () {
-  //       setLoad(true);
-  //       try {
-  //         const { data } = await axios.post(`${url}/user/create-user`, objData);
-  //         // setModalAdd(false);
-  //         // getDataAgain();
-
-  //         cb({ id: data.id });
-  //         Swal.fire({
-  //           background: "#202020",
-  //           color: "white",
-  //           icon: "success",
-  //           title: `Agregado!`,
-  //           text: `${nameUser} fue agregado con exito!`,
-  //         });
-  //         setLoad(false);
-  //         return data;
-  //       } catch (err) {
-  //         console.log(err);
-  //         setModalAdd(false);
-  //         Swal.fire({
-  //           background: "#202020",
-  //           color: "white",
-  //           icon: "error",
-  //           title: `Hubo un problema`,
-  //           text: `Consulte con el desarrollador`,
-  //         });
-  //       }
-  //     })();
-  //   }
-  // });
 }

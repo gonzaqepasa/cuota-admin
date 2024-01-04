@@ -4,7 +4,7 @@ import { typesActivity } from "../../../../types/types-user";
 
 interface Props {
   setName: Dispatch<SetStateAction<string>>;
-  dataActivity: typesActivity[];
+  dataActivity?: typesActivity[];
   nameVal: { val: boolean; msg: string };
 }
 
@@ -30,7 +30,7 @@ export const NameInput: React.FC<Props> = ({
         }  rounded-md  bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 focus:outline text-sm p-2 font-normal`}
         onChange={(e) => setName(e.target.value)}
         name="name"
-        style={{ color: selectColor(dataActivity[0].nameActivity) }}
+     
       />
       <i className={`${nameVal.val && "text-red-600 font-light text-xs"}`}>
         {nameVal.msg}

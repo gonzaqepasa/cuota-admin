@@ -9,7 +9,7 @@ export interface typesUser {
 
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
-  active: boolean;
+  status: "activo" | "inactivo";
   activity: typesActivity;
   activityId: number;
 
@@ -27,11 +27,28 @@ export interface typesActivity {
   modality: string;
   name: string;
   price: number;
-  users: {};
+  users: typesUser[];
   payments: {};
   business: {};
   createdAt: string;
   updatedAt: string;
+  _id: string;
+}
+
+export interface typesBusiness {
+  description: string;
+  name: string;
+  email?: string;
+  adress: string;
+  status: string;
+  points: string;
+
+  users: typesUser[];
+  activities: typesActivity[];
+  payments: any;
+
+  phoneNumber: string;
+  owner: string;
 }
 
 export interface typesCalendar {

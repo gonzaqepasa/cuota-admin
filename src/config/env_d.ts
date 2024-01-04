@@ -5,3 +5,6 @@ export const url =
 // Url para conectar con mongoose
 export const URL_MONGODB =
   process.env.URL_MONGODB || `mongodb://127.0.0.1:27017/${"cuota-admin"}`;
+
+
+export const ID_BUSINESS = "6595c6a8dcf13c553f51b1ed"

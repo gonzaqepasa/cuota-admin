@@ -1,4 +1,4 @@
-import { url } from "../../src/config/env_d";
+import { ID_BUSINESS, url } from "../../src/config/env_d";
 import { useState, useEffect } from "react";
 import Loading from "../../src/components/Loading/Loading";
 import axios from "axios";
@@ -19,10 +19,10 @@ export default function Activity() {
     (async function () {
       try {
         const { data } = await axios.get(
-          `${url}/api/activity/?id_business=658b7e198278ef37ba017cf9`
+          `${url}/api/activity/getAll?id_business=${ID_BUSINESS}`
         );
 
-        console.log(data);
+       
         setDataAct(data);
         setLoad(false);
       } catch (err) {

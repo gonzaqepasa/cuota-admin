@@ -4,8 +4,8 @@ import { handleSelect } from "../../logic/handle-functions";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  setActivity: Dispatch<SetStateAction<number>>;
-  dataActivity: typesActivity[];
+  setActivity: Dispatch<SetStateAction<string>>;
+  dataActivity?: typesActivity[];
 }
 
 export const ModalityInput: React.FC<Props> = ({
@@ -26,10 +26,9 @@ export const ModalityInput: React.FC<Props> = ({
         onChange={(e) => handleSelect(e.target.value, setActivity)}
         name="activity"
         id=""
-        style={{ color: selectColor(dataActivity[0].nameActivity) }}
       >
-        {dataActivity.map((el: typesActivity) => (
-          <option key={el.id} value={el.id}>
+        {dataActivity?.map((el: typesActivity) => (
+          <option key={el._id} value={el._id}>
             {el.modality}
           </option>
         ))}

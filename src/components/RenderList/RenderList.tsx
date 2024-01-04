@@ -8,6 +8,7 @@ import {
 } from "react";
 import {
   typesActivity,
+  typesBusiness,
   typesMonthNames,
   typesUser,
 } from "../../types/types-user";
@@ -15,29 +16,30 @@ import { FaUserCheck } from "react-icons/fa";
 import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import { visibilityUser } from "../../logic/visibilityUser";
 import { orderByActive } from "../../logic/orderByMonthName";
-import { selectColor } from "../../logic/selectColor";
+
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
 import { arrayMonth, dateMonth, mesActual } from "../Deptor/logic/moths.d";
 import LazyLoad from "react-lazy-load";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
-import { Title } from "../Title/Title";
+import { Title } from "./Title/Title";
 import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
 import { AddUserForm } from "../AddUser/Form/AddUserForm";
+import { getActivityFromApi } from "../../logic/getActivity";
 
 interface Props {
   activity: string | String[] | undefined;
-  userData: typesUser[] | false;
+  businessData?: typesBusiness;
   getDataAgain: () => void;
   setLoad: Dispatch<SetStateAction<boolean>>;
   modalAdd: boolean;
-  dataActivity: typesActivity[];
+  dataActivity?: typesActivity;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
 }
 
 export const RenderList: React.FC<Props> = ({
-  userData,
+  businessData,
   getDataAgain,
   setLoad,
   modalAdd,
@@ -58,20 +60,28 @@ export const RenderList: React.FC<Props> = ({
   /////////////////////////
 
   useEffect(() => {
-    if (userData) {
+    (async () => {
+      const data = await getActivityFromApi(dataActivity?._id);
+      setResult(data.users);
+      console.log("esto es la data ", data);
+    })();
+  }, [activity, dataActivity]);
+
+  useEffect(() => {
+    if (dataActivity?.users) {
       if (!search) {
-        setResult(userData);
+        setResult(dataActivity.users);
       } else {
         setResult(
-          userData.filter((el) =>
+          dataActivity.users.filter((el) =>
             String(el.name).toLowerCase().includes(search.toLowerCase())
           )
         );
       }
     }
-  }, [search, userData]);
+  }, [search, dataActivity?.users]);
 
-  if (userData == false)
+  if (dataActivity?.users.length === 0)
     return (
       <div className={"flex flex-col min-h-screen w-screen items-center"}>
         <div className="flex flex-col items-center backg-card-user my-3 px-6 max-w-196 w-screen rounded ">
@@ -80,7 +90,9 @@ export const RenderList: React.FC<Props> = ({
           </h3>
           {dataActivity && (
             <AddUserForm
-              dataActivity={dataActivity}
+              dataActivity={businessData?.activities.filter(
+                (a) => a.name === dataActivity.name
+              )}
               // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
               // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
               // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
@@ -94,7 +106,6 @@ export const RenderList: React.FC<Props> = ({
   return (
     <div className={` flex flex-col min-h-screen w-screen items-center`}>
       <div className="flex flex-col items-center backg-card-user  px-6 max-w-196 w-screen rounded ">
-        <Title activityName={String(userData[0].activity.nameActivity)} />
         <FilterList
           monthSelected={monthSelected}
           setMonthSelected={setMonthSelected}
@@ -115,7 +126,9 @@ export const RenderList: React.FC<Props> = ({
         )}
         {dataActivity && modalAdd && (
           <AddUserForm
-            dataActivity={dataActivity}
+            dataActivity={businessData?.activities.filter(
+              (a) => a.name === dataActivity.name
+            )}
             // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
             // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
             // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
@@ -127,15 +140,10 @@ export const RenderList: React.FC<Props> = ({
       <div
         className={`scroll flex flex-col items-start backg-card-user w-11/12 max-w-196 overflow-y-auto h-96  p-1 rounded`}
       >
-        <p
-          className="rounded-full flex items-center justify-center  text-sm text-neutral-900 mb-2 px-2"
-          style={{
-            background: `${selectColor(userData[0].activity.nameActivity)}`,
-          }}
-        >
+        <p className="rounded-full flex items-center justify-center  text-sm text-neutral-900 mb-2 px-2">
           {resultFilter.length}
         </p>
-        {orderByActive(resultFilter).map((el: typesUser, index) => (
+        {resultFilter.map((el: typesUser, index) => (
           <LazyLoad
             className="w-full"
             key={el.id}
@@ -150,7 +158,7 @@ export const RenderList: React.FC<Props> = ({
               key={el.id}
               className={`flex items-center rounded relative animate-one
                ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}   ${
-                !el.active && "opacity-30"
+                el.status !== "activo" && "opacity-30"
               } hover:bg-cyan-900`}
               /* style={{
                 borderBottom: `1px solid ${selectColor(
@@ -162,37 +170,34 @@ export const RenderList: React.FC<Props> = ({
                 className="flex items-center pl-2 w-full py-2  text-neutral-300"
                 href={`/user/${el.id}`}
               >
-                <FaUserCheck
-                  size={15}
-                  className="mx-1"
-                  color={selectColor(userData[0].activity.nameActivity)}
-                />
+                <FaUserCheck size={15} className="mx-1" />
                 {firstLetterUpper(el.name)} -{" "}
-                <i
-                  className="mx-1  text-sm"
-                  style={{ color: selectColor(el.activity.nameActivity) }}
-                >
-                  {el.activity.modality}
+                <i className="mx-1 text-neutral-500  text-sm">
+                  {
+                    businessData?.activities.find(
+                      (a) => a._id === String(el.activity)
+                    )?.modality
+                  }
                 </i>
                 <MsgDeptor user={el} month={monthSelected} />
               </Link>
               <div className={`absolute right-2 flex items-center`}>
-                <button
+                {/* <button
                   onClick={(e) => {
                     visibilityUser(
                       e,
-                      { id: Number(el.id), active: el.active },
+                      { id: Number(el.id), active: el.status },
                       getDataAgain,
                       setLoad
                     );
                   }}
                 >
-                  {el.active ? (
+                  {el.status === "activo" ? (
                     <MdOutlineVisibility size={20} color="white" />
                   ) : (
                     <MdOutlineVisibilityOff size={20} color="grey" />
                   )}
-                </button>
+                </button> */}
               </div>
             </div>
           </LazyLoad>

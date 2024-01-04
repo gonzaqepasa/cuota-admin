@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../config/env_d";
+import { ID_BUSINESS, url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 
 interface Params {
@@ -22,56 +22,26 @@ export async function createActivity({ objData, cb, setLoad }: Params) {
 
   (async () => {
     setLoad(true);
-    const res = await axios.get(
-      `${url}/api/activity/?id_business=658b7e198278ef37ba017cf9`
-    );
 
-    if (res.data.length > 0) {
-      Swal.fire({
-        reverseButtons: true,
-        background: "#202020",
-        color: "white",
-        title: `Ya existe una actividad llamado ${firstLetterUpper(nameTrim)}`,
-        text: `Deseas crearlo igual?`,
-        icon: "warning",
-        showCancelButton: true,
-        showDenyButton: false,
-        confirmButtonColor: "#476d7c",
-        cancelButtonColor: "#202020",
-        denyButtonColor: "#505050",
+    Swal.fire({
+      reverseButtons: true,
+      background: "#202020",
+      color: "white",
+      title: "Agregar actividad",
+      text: `Seguro quieres agregar la actividad ${firstLetterUpper(nameTrim)}`,
 
-        confirmButtonText: "Crear",
-        cancelButtonText: "Cancelar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          create();
-        } else {
-          setLoad(false);
-        }
-      });
-    } else {
-      Swal.fire({
-        reverseButtons: true,
-        background: "#202020",
-        color: "white",
-        title: "Agregar actividad",
-        text: `Seguro quieres agregar la actividad${firstLetterUpper(
-          nameTrim
-        )}`,
-
-        showCancelButton: true,
-        confirmButtonColor: "#476d7c",
-        cancelButtonColor: "#202020",
-        confirmButtonText: "Si crear",
-        cancelButtonText: "Cancelar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          create();
-        } else {
-          setLoad(false);
-        }
-      });
-    }
+      showCancelButton: true,
+      confirmButtonColor: "#476d7c",
+      cancelButtonColor: "#202020",
+      confirmButtonText: "Si crear",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        create();
+      } else {
+        setLoad(false);
+      }
+    });
   })();
 
   const create = async () => {
@@ -81,14 +51,14 @@ export async function createActivity({ objData, cb, setLoad }: Params) {
         modality,
         description,
         price,
-        id_business: "658b7e198278ef37ba017cf9",
+        id_business: ID_BUSINESS,
       });
       console.log({
         name: nameTrim,
         modality,
         description,
         price,
-        id_business: "658b7e198278ef37ba017cf9",
+        id_business: ID_BUSINESS,
       });
 
       Swal.fire({

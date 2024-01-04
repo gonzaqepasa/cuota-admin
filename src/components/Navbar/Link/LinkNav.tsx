@@ -1,12 +1,11 @@
 import Link from "next/link";
-import styles from "./LinkNav.module.scss";
+
 import { useRouter } from "next/router";
-import { selectColor } from "../../../logic/selectColor";
 
 interface Props {
   setModal: any;
   href: string;
-  text: string;
+  text?: string;
 }
 
 export const LinkNav: React.FC<Props> = ({ setModal, href, text }) => {
@@ -15,9 +14,7 @@ export const LinkNav: React.FC<Props> = ({ setModal, href, text }) => {
   return (
     <>
       <Link
-        className={`${styles.linkNav} ${
-          route.pathname === `${href}` && styles.isHere
-        }`}
+        className={` flex   items-start text-sm gap-1  text-neutral-300 hover:text-neutral-100  p-1 rounded transition ${route.pathname === `${href}` && ""}`}
         onClick={() => setModal(false)}
         href={`${href}`}
       >
@@ -28,11 +25,12 @@ export const LinkNav: React.FC<Props> = ({ setModal, href, text }) => {
 };
 interface Props2 extends Props {
   activityName?: string;
+  modalityName?: string;
 }
 export const LinkActivity: React.FC<Props2> = ({
   setModal,
   href,
-  text,
+  modalityName,
   activityName,
 }) => {
   const route = useRouter();
@@ -40,21 +38,14 @@ export const LinkActivity: React.FC<Props2> = ({
   return (
     <>
       <Link
-        className={`${styles.linkNav} ${styles.linkActivity} ${
-          route.asPath === `${href}` && styles.isHere
+        className={`flex   items-start text-sm gap-1  text-neutral-300 hover:text-neutral-100 hover:bg-blue-800/20 p-1 rounded transition ${
+          route.asPath === `${href}` && "bg-neutral-700"
         }`}
         onClick={() => setModal(false)}
         href={`${href}`}
       >
-        <p
-          style={{
-            color: ` ${selectColor(activityName ? activityName : text)}`,
-            fontSize: "0.9rem",
-          }}
-        >
-          {text.charAt(0)}
-        </p>
-        {text.slice(1, text.length)}
+        <p className="">{activityName}</p>
+        <p className="text-slate-400 font-light">{`${modalityName}`}</p>
       </Link>
     </>
   );
