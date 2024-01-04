@@ -40,7 +40,7 @@ export const AddUserForm: React.FC<Props> = ({
   const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [dni, setDni] = useState(0);
-  const [activity, setActivity] = useState(dataActivity[0]._id);
+  const [activity, setActivity] = useState(dataActivity && dataActivity[0]._id);
   const [description, setDescription] = useState("");
   ///////////////////////////////////////////////////////
 
@@ -62,7 +62,7 @@ export const AddUserForm: React.FC<Props> = ({
   } = {
     name,
     description,
-    id_activity: activity,
+    id_activity: String(activity),
     id_business: ID_BUSINESS,
     email: "",
     username: "",

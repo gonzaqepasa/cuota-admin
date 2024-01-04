@@ -4,7 +4,7 @@ import { handleSelect } from "../../logic/handle-functions";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  setActivity: Dispatch<SetStateAction<string>>;
+  setActivity: Dispatch<SetStateAction<string|undefined>>;
   dataActivity?: typesActivity[];
 }
 

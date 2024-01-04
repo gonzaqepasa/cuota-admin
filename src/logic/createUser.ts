@@ -30,7 +30,9 @@ export async function createUser({
     setLoad(true);
     const name = nameUser.toLowerCase().trim();
     const res = await axios.get(
-      `${url}/api/user/findByBusiness/${ID_BUSINESS}?id_activity=${dataActivity[0]._id}&name=${name}`
+      `${url}/api/user/findByBusiness/${ID_BUSINESS}?id_activity=${
+        dataActivity && dataActivity[0]._id
+      }&name=${name}`
     );
     console.log("esto es res", res.data);
     if (res.data.length > 0) {
