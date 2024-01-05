@@ -10,9 +10,10 @@ import { FcCheckmark, FcCancel } from "react-icons/fc";
 import { validateFormInputs } from "../../AddUser/logic/validateAddInputs";
 import Loading from "../../Loading/Loading";
 import { editName } from "../../../logic/editName";
+import { typesUser } from "../../../types/types-user";
 
 interface Props {
-  user: any;
+  user: typesUser;
   getDataAgain: () => void;
 }
 
@@ -31,23 +32,23 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
     if (nameVal.val) setNameVal({ val: false, msg: "" });
   }
 
-  function handleSubmit(): void {
-    if (name === user.name) return setEditOn(false);
-    validateFormInputs(name, setNameVal) &&
-      setName(
-        editName(
-          { id: user.id, name },
-          getDataAgain,
-          setEditOn,
-          setLoad,
-          setName
-        )
-      );
+  // function handleSubmit(): void {
+  //   if (name === user.name) return setEditOn(false);
+  //   validateFormInputs(name, setNameVal) &&
+  //     // setName(
+  //       // editName(
+  //       //   // { id: user.id, name },
+  //       //   getDataAgain,
+  //       //   setEditOn,
+  //       //   setLoad,
+  //       //   setName
+  //       // )
+  //     // );
 
-    // console.log(nameVal);
-    // console.log("submit");
-    // console.log(name);
-  }
+  //   // console.log(nameVal);
+  //   // console.log("submit");
+  //   // console.log(name);
+  // }
 
   return (
     <div className={`w-full flex  relative`}>
@@ -72,7 +73,7 @@ export const NameUser: React.FC<Props> = ({ user, getDataAgain }) => {
                 ></input>
                 <div className={"mx-1 right-0 flex  items-center"}>
                   <button
-                    onClick={() => handleSubmit()}
+                    // onClick={() => handleSubmit()}
                     className={`opacity-80 transition-opacity hover:opacity-100`}
                   >
                     <FcCheckmark size={20} />

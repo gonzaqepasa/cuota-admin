@@ -10,17 +10,17 @@ export interface typesUser {
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   status: "activo" | "inactivo";
-  activity: typesActivity;
+  activity: "string" | typesActivity;
   activityId: number;
 
   // Información de pago
   // Se genera de forma automatica
   calendar: typesCalendar;
 
-  id?: string;
+  _id: string;
 }
 
-export type typesEditName = Pick<typesUser, "id" | "name">;
+export type typesEditName = Pick<typesUser, "_id" | "name">;
 
 export interface typesActivity {
   description: string;
@@ -49,6 +49,8 @@ export interface typesBusiness {
 
   phoneNumber: string;
   owner: string;
+
+  _id: string;
 }
 
 export interface typesCalendar {

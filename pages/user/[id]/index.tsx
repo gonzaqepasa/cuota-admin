@@ -1,14 +1,16 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import User from "../../../src/components/UserComponent/User";
-import { url } from "../../../src/config/env_d";
+import { ID_BUSINESS, url } from "../../../src/config/env_d";
 import Loading from "../../../src/components/Loading/Loading";
-import Payments from "../../../services/payments.service";
+import { getUser } from "../../../src/logic/getUser";
+import { useAppSelector } from "../../../src/redux/hooks";
 
 export default function UserData() {
-  const route = useRouter();
-  // console.log(route.query.id);
-  // console.log(props.data);
+  const router = useRouter();
+  const { id, idb } = router.query;
+
+  const business = useAppSelector((state) => state.value);
 
   const [data, setData] = useState(false);
   const [load, setLoad] = useState(true);
@@ -18,12 +20,13 @@ export default function UserData() {
     (async function () {
       try {
         setLoad(true);
-        const resUser = await fetch(`${url}/user/user?USER=${route.query.id}`);
-        const dataUser = await resUser.json();
-
+        const dataUser = await getUser({
+          _id: String(id),
+          id_business: ID_BUSINESS,
+        });
         // console.log(dataUser);
-        (await dataUser.length) === 0 &&
-          setError({ msg: "No hay gente en la bd" });
+        // console.log(dataUser);
+        dataUser.length === 0 && setError({ msg: "No hay gente en la bd" });
         setData(dataUser);
         setLoad(false);
         // const dataAct = await resAct.json();
@@ -33,7 +36,7 @@ export default function UserData() {
         console.log(err);
       }
     })();
-  }, [route.query.id]);
+  }, [id]);
 
   //////////////////////////////
   if (load)
@@ -48,7 +51,11 @@ export default function UserData() {
   if (typeof data !== "boolean")
     return (
       <div className={`main backg-1`}>
-        <User userData={data} id={String(route.query.id)} />
+        <User
+          userData={data}
+          id={String(id)}
+          id_business={String(business?._id)}
+        />
       </div>
     );
 }

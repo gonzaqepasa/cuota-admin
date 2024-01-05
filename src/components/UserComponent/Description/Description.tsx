@@ -6,14 +6,14 @@ import Loading from "../../Loading/Loading";
 interface Props {
   id: Number;
   description: string | undefined;
-  color: string;
+
   getDataAgain: () => void;
 }
 
 export const Description: React.FC<Props> = ({
   id,
   description,
-  color,
+
   getDataAgain,
 }) => {
   // Component...
@@ -28,7 +28,7 @@ export const Description: React.FC<Props> = ({
     );
   return (
     <div className={` h-24  w-full cursor-text`}>
-      <h5 className={`${editOn && "relative z-20"}`} style={{ color }}>
+      <h5 className={`${editOn && "relative z-20"}`}>
         Descripción:
       </h5>
       <div className={` flex items-center`}>
@@ -111,7 +111,7 @@ export const Description: React.FC<Props> = ({
                 }}
                 className={`absolute right-2`}
               >
-                <FaEdit color={color} />
+                <FaEdit />
               </button>
             </div>
           </>

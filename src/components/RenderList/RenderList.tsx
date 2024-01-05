@@ -61,7 +61,7 @@ export const RenderList: React.FC<Props> = ({
 
   useEffect(() => {
     (async () => {
-      const data = await getActivityFromApi(dataActivity?._id);
+      const data = await getActivityFromApi(String(dataActivity?._id));
       setResult(data.users);
       console.log("esto es la data ", data);
     })();
@@ -97,7 +97,7 @@ export const RenderList: React.FC<Props> = ({
               // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
               // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
               setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
-              getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
+              // getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
             />
           )}
         </div>
@@ -133,7 +133,7 @@ export const RenderList: React.FC<Props> = ({
             // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
             // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
             setModalAdd={setModalAdd} // Para cerrar la ventana cuando el usuario se cree
-            getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
+            // getDataAgain={getDataAgain} // Cuando el usuario se cree vuelve a llamar a la bd
           />
         )}
       </div>
@@ -146,7 +146,7 @@ export const RenderList: React.FC<Props> = ({
         {resultFilter.map((el: typesUser, index) => (
           <LazyLoad
             className="w-full"
-            key={el.id}
+            key={el._id}
             onContentVisible={() => {
               console.log("loaded user!");
             }}
@@ -155,7 +155,7 @@ export const RenderList: React.FC<Props> = ({
             threshold={0.6}
           >
             <div
-              key={el.id}
+              key={el._id}
               className={`flex items-center rounded relative animate-one
                ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}   ${
                 el.status !== "activo" && "opacity-30"
@@ -168,7 +168,7 @@ export const RenderList: React.FC<Props> = ({
             >
               <Link
                 className="flex items-center pl-2 w-full py-2  text-neutral-300"
-                href={`/user/${el.id}`}
+                href={`/user/${el._id}`}
               >
                 <FaUserCheck size={15} className="mx-1" />
                 {firstLetterUpper(el.name)} -{" "}

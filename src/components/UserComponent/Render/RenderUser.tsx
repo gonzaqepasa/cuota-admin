@@ -2,7 +2,7 @@ import { typesMonth, typesUser } from "../../../types/types-user";
 import CardMonth from "./Card/CardMonth";
 
 interface Props {
-  monthData: typesMonth[];
+
   user: any;
   userData: typesUser;
   getUserAgain: () => void;
@@ -10,13 +10,13 @@ interface Props {
 
 export const RenderUser: React.FC<Props> = ({
   user,
-  monthData,
+
   userData,
   getUserAgain,
 }) => {
   return (
     <div className={` min-w-96 w-4/6 backg-card-user rounded p-1 mb-16 `}>
-      {monthData.map((m, index) => (
+      {/* {monthData.map((m, index) => (
         <CardMonth
           el={m}
           index={index}
@@ -26,7 +26,7 @@ export const RenderUser: React.FC<Props> = ({
           getUserAgain={getUserAgain}
         />
         /////////// -> end card
-      ))}
+      ))} */}
     </div>
   );
   ///////////////////////////////////////////////////////////////////////

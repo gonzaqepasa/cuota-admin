@@ -38,7 +38,7 @@ export const ActivityUser: React.FC<Props> = ({ user, getDataAgain }) => {
       ) : (
         <div className={`h-8 flex items-center `}>
           <Link
-            style={{ color: selectColor(user.activity.nameActivity) }}
+           
             href={`/list/${fromNameToUrl(user.activity.nameActivity)}`}
             className={``}
           >
