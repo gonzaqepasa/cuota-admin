@@ -6,12 +6,13 @@ export interface typesUser {
   email?: string;
   dni?: number;
   description?: string;
+  payments: typesPayments[];
 
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   status: "activo" | "inactivo";
   activity: "string" | typesActivity;
-  activityId: number;
+  business: "string" | typesBusiness;
 
   // Información de pago
   // Se genera de forma automatica
@@ -30,6 +31,21 @@ export interface typesActivity {
   users: typesUser[];
   payments: {};
   business: {};
+  createdAt: string;
+  updatedAt: string;
+  _id: string;
+}
+
+export interface typesPayments {
+  description?: string;
+  mehtod: string;
+  trainer: string;
+  amount: number;
+  user: typesUser;
+  activity: typesActivity;
+  business: typesBusiness;
+  status: "Pending" | "Completed";
+  paymentDateTime: string;
   createdAt: string;
   updatedAt: string;
   _id: string;

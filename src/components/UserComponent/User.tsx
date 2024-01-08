@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { typesUser } from "../../types/types-user";
+import { typesActivity, typesUser } from "../../types/types-user";
 import { orderByMonth } from "../../logic/orderByMonthName";
 import { Description } from "./Description/Description";
 import { selectColor } from "../../logic/selectColor";
@@ -9,16 +9,18 @@ import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";
 import { ActivityUser } from "./ActivityUser/ActivityUser";
 import { visibilityUser } from "../../logic/visibilityUser";
-import { mesActual } from "../Deptor/logic/moths.d";
+import { mesActual } from "../../config/moths.d";
 import { getUser } from "../../logic/getUser";
 
 interface Props {
   userData: typesUser;
   id: string;
   id_business: string;
+  activityData: typesActivity;
+  setLoad:any
 }
 
-export const User: React.FC<Props> = ({ userData, id, id_business }) => {
+export const User: React.FC<Props> = ({ userData, id, id_business,activityData,setLoad }) => {
   const [user, setUser] = useState(userData);
   // const [monthData, setMonthData] = useState<any>(
   //   orderByMonth(user.calendar.months)
@@ -78,11 +80,7 @@ export const User: React.FC<Props> = ({ userData, id, id_business }) => {
             </button>
           </div>
         ) : (
-          <RenderUser
-            user={user}
-            userData={userData}
-            getUserAgain={getUserAgain}
-          />
+          <RenderUser setLoad={setLoad} activityData={activityData} user={user} getUserAgain={getUserAgain} />
         )}
       </div>
     );

@@ -2,21 +2,21 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
-import { typesMonth, typesUser } from "../types/types-user";
-import { monthOfPay } from "../components/Deptor/logic/moths.d";
+import { typesActivity, typesMonth, typesUser } from "../types/types-user";
+import { monthOfPay } from "../config/moths";
 import { auth } from "../../firebase/firebaseConfig";
 import { Dispatch, SetStateAction } from "react";
 
 interface typesToPay {
-  month: typesMonth;
-  userData: typesUser;
+  activity: typesActivity;
+  user: typesUser;
   getUserAgain: () => void;
   setIsLoad: Dispatch<SetStateAction<boolean>>;
 }
 
 export function payMonth({
-  month,
-  userData,
+  activity,
+  user,
   getUserAgain,
   setIsLoad,
 }: typesToPay) {
@@ -25,9 +25,7 @@ export function payMonth({
     background: "#202020",
     color: "white",
     title: "Estas seguro?",
-    text: `${firstLetterUpper(userData.name)} pago el mes de ${
-      month.monthName
-    }`,
+    text: `${firstLetterUpper(user.name)} pago el mes de `,
     icon: "warning",
     showCancelButton: true,
     showDenyButton: true,
@@ -43,65 +41,42 @@ export function payMonth({
     } else if (result.isDenied) {
       pay("EF");
     }
-    function pay(method: "MP" | "EF") {
+    async function pay(method: "MP" | "EF") {
       setIsLoad(true);
-      Promise.all([
-        axios.put(`${url}/month/pay-month`, {
-          id: month.id, // ID del mes
-          addAdmin: auth.currentUser?.email, //
-          mothodPay: method,
-          price: userData.activity.price,
-          activityId: userData.activity.id,
-          activityModality: userData.activity.modality,
-          activityName: userData.activity.nameActivity,
-          monthId: month.id,
-          monthName: month.monthName,
-          monthNum: monthOfPay(month.monthName),
-          userId: userData.id,
-          userName: userData.name,
-        }),
-        axios.post(`${url}/payment/pay`, {
-          id: month.id, // ID del mes
-          addAdmin: auth.currentUser?.email, //
-          methodPay: method,
-          pricePay: userData.activity.price,
-          activityId: userData.activity.id,
-          activityModality: userData.activity.modality,
-          activityName: userData.activity.nameActivity,
-          monthId: month.id,
-          monthName: month.monthName,
-          monthNum: monthOfPay(month.monthName),
-          userId: userData.id,
-          userName: userData.name,
-        }),
-      ])
-        .then(([monthPay, payment]) => {
-          Swal.fire({
-            background: "#202020",
-            color: "white",
-            icon: "success",
-            title: `Pago aceptado!`,
-            text: `${firstLetterUpper(userData.name)} pago el mes de ${
-              month.monthName
-            }`,
-          });
-          setIsLoad(false);
-          getUserAgain();
-          return [monthPay.data, payment.data];
-        })
-
-        .catch((e) => {
-          console.log(e);
-          Swal.fire({
-            background: "#202020",
-            color: "white",
-            icon: "error",
-            title: `Error inesperado`,
-            text: `Consulte con el desarrollador (detalles en consola)`,
-          });
-          setIsLoad(false);
-          getUserAgain();
+      try {
+        const { data } = await axios.post(`${url}/api/payment/pay`, {
+          method: "Mercado Pago",
+          trainer: "Entrenador",
+          amount: activity.price,
+          user: user._id,
+          description: "Descripcion del pago",
+          status: "Completed",
+          business: user.business,
+          activity: user.activity,
         });
+
+        Swal.fire({
+          background: "#202020",
+          color: "white",
+          icon: "success",
+          title: `Pago aceptado!`,
+          text: `${firstLetterUpper(user.name)} pago el mes de `,
+        });
+        setIsLoad(false);
+        getUserAgain();
+        return data;
+      } catch (e) {
+        console.log(e);
+        Swal.fire({
+          background: "#202020",
+          color: "white",
+          icon: "error",
+          title: `Error inesperado`,
+          text: `Consulte con el desarrollador (detalles en consola)`,
+        });
+        setIsLoad(false);
+        getUserAgain();
+      }
     }
   });
 }

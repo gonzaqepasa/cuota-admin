@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { typesMonthNames, typesUser } from "../../../types/types-user";
-import { arrayMonth, dateMonth, mesActual } from "../../Deptor/logic/moths.d";
+import { arrayMonth, dateMonth, mesActual } from "../../../config/moths";
 import { SelectMonth } from "../../Deptor/SelectMonth/SelectMonth";
 
 interface Props {

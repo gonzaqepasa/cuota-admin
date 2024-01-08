@@ -1,4 +1,4 @@
-import { arrayMonth } from "../logic/moths.d";
+import { arrayMonth } from "../../../config/moths";
 
 import { Dispatch, SetStateAction } from "react";
 import { typesMonthNames } from "../../../types/types-user";

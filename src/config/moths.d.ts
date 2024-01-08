@@ -1,4 +1,4 @@
-import { type typesMonthNames } from "../../../types/types-user";
+import { type typesMonthNames } from "../types/types-user";
 
 export const arrayMonth: typesMonthNames[] = [
   "Enero",

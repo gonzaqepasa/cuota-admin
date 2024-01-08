@@ -20,7 +20,7 @@ import { orderByActive } from "../../logic/orderByMonthName";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
-import { arrayMonth, dateMonth, mesActual } from "../Deptor/logic/moths.d";
+import { arrayMonth, dateMonth, mesActual } from "../../config/moths";
 import LazyLoad from "react-lazy-load";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 import { Title } from "./Title/Title";

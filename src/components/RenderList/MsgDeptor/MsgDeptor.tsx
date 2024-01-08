@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { typesUser } from "../../../types/types-user";
-import { mesActual } from "../../Deptor/logic/moths.d";
+import { mesActual } from "../../../config/moths";
 import { FaMoneyBillWave } from "react-icons/fa";
 import mp from "../../../../styles/mp.png";
 
