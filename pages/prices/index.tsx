@@ -3,7 +3,7 @@ import { PricesRender } from "../../src/components/PricesRender/PricesRender";
 import { typesActivity } from "../../src/types/types-user";
 import { useState, useEffect } from "react";
 import Loading from "../../src/components/Loading/Loading";
-import ProviderAuth from "../providerAuth";
+import ProviderAuth from "../ProviderAuth";
 
 export default function Prices() {
   // Component...
