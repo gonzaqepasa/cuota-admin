@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import User from "../../../src/components/UserComponent/User";
 import { url } from "../../../src/config/env_d";
 import Loading from "../../../src/components/Loading/Loading";
-
+import ProviderAuth from "../../providerAuth";
 
 export default function UserData() {
   const route = useRouter();
@@ -38,17 +38,25 @@ export default function UserData() {
   //////////////////////////////
   if (load)
     return (
-      <main className="main">
-        <Loading />;
-      </main>
+      <ProviderAuth>
+        <main className="main">
+          <Loading />;
+        </main>
+      </ProviderAuth>
     );
   if (error.msg) {
-    return <div className={`main backg-1`}>{error.msg}</div>;
+    return (
+      <ProviderAuth>
+        <div className={`main backg-1`}>{error.msg}</div>;
+      </ProviderAuth>
+    );
   }
   if (typeof data !== "boolean")
     return (
-      <div className={`main backg-1`}>
-        <User userData={data} id={String(route.query.id)} />
-      </div>
+      <ProviderAuth>
+        <div className={`main backg-1`}>
+          <User userData={data} id={String(route.query.id)} />
+        </div>
+      </ProviderAuth>
     );
 }

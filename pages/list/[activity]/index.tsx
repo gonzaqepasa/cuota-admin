@@ -8,6 +8,7 @@ import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/env_d";
 import { typesActivity } from "../../../src/types/types-user";
 import { Notification } from "../../../src/components/Notification/Notification";
+import ProviderAuth from "../../providerAuth";
 
 export default function List() {
   const router = useRouter();
@@ -71,20 +72,30 @@ export default function List() {
         <Loading />;
       </div>
     );
-  if (error.msg) return <div className="main"> {error.msg}</div>;
+  if (error.msg)
+    return (
+      <ProviderAuth>
+        <div className="main"> {error.msg}</div>;
+      </ProviderAuth>
+    );
   if (dataActivity.length !== 0)
     return (
-      <div className="main backg-1">
-        <RenderList
-          activity={activity}
-          modalAdd={modalAdd}
-          dataActivity={dataActivity}
-          setModalAdd={setModalAdd}
-          setLoad={setLoad}
-          userData={dataUser}
-          getDataAgain={getDataAgain}
-        />
-        <Notification activity={String(activity)} getDataAgain={getDataAgain} />
-      </div>
+      <ProviderAuth>
+        <div className="main backg-1">
+          <RenderList
+            activity={activity}
+            modalAdd={modalAdd}
+            dataActivity={dataActivity}
+            setModalAdd={setModalAdd}
+            setLoad={setLoad}
+            userData={dataUser}
+            getDataAgain={getDataAgain}
+          />
+          <Notification
+            activity={String(activity)}
+            getDataAgain={getDataAgain}
+          />
+        </div>
+      </ProviderAuth>
     );
 }

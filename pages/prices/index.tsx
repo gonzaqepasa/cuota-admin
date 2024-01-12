@@ -1,8 +1,9 @@
 import { url } from "../../src/config/env_d";
-import {PricesRender} from "../../src/components/PricesRender/PricesRender";
+import { PricesRender } from "../../src/components/PricesRender/PricesRender";
 import { typesActivity } from "../../src/types/types-user";
 import { useState, useEffect } from "react";
 import Loading from "../../src/components/Loading/Loading";
+import ProviderAuth from "../providerAuth";
 
 export default function Prices() {
   // Component...
@@ -34,11 +35,17 @@ export default function Prices() {
       </div>
     );
   if (typeof dataAct === "boolean")
-    return <div className={`main`}>Problemas en el servidor {error.msg}</div>;
+    return (
+      <ProviderAuth>
+        <div className={`main`}>Problemas en el servidor {error.msg}</div>;
+      </ProviderAuth>
+    );
   return (
-    <div className={`main `}>
-      <PricesRender data={dataAct} />
-    </div>
+    <ProviderAuth>
+      <div className={`main `}>
+        <PricesRender data={dataAct} />
+      </div>
+    </ProviderAuth>
   );
 }
 
