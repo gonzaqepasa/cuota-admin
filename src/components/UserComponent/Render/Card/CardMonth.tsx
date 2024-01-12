@@ -111,11 +111,6 @@ const CardMonth: React.FC<Props> = ({
                   el={el}
                   getUserAgain={getUserAgain}
                   setIsLoad={setIsLoad}
-                  idToCancelPayments={{
-                    userId: Number(userData.id),
-                    activityId: userData.activity.id,
-                    monthId: el.id,
-                  }}
                 />
               </>
             ) : (
