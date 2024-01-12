@@ -20,7 +20,7 @@ export default function List() {
   const router = useRouter();
 
   const { id } = router.query;
-  var arrayDeStrings = String(id).split("&");
+  var arrayDeStrings = String(id).split("$");
   const Logo =
     "https://firebasestorage.googleapis.com/v0/b/cuota-admin-2e674.appspot.com/o/logos%2Flogo%20fin%20chico.png?alt=media&token=90a5e599-e9f0-4f7c-b443-1ade2314c8b2";
   const LogoText =

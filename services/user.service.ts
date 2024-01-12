@@ -149,6 +149,24 @@ export async function editName({ id, name }: typesEditName) {
     return false;
   }
 }
+export async function editPhone({ id, phone }:any) {
+  try {
+    const user = await prisma.user.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        phone,
+      },
+    });
+
+    await prisma.$disconnect();
+    return user;
+  } catch (err) {
+    await prisma.$disconnect();
+    return false;
+  }
+}
 
 export async function editDescription({ id, description }: any) {
   try {
