@@ -86,7 +86,7 @@ export async function createUser({
       const { data } = await axios.post(`${url}/user/create-user`, objData);
       // setModalAdd(false);
       // getDataAgain();
-
+      console.log(data);
       cb({ id: data.id });
       Swal.fire({
         background: "green",

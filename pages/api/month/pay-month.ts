@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { payMonth } from "../../../services/month.service";
-import Payments from "../../../services/payments.service";
 
 type Data = any;
 

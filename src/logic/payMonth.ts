@@ -60,22 +60,8 @@ export function payMonth({
           userId: userData.id,
           userName: userData.name,
         }),
-        axios.post(`${url}/payment/pay`, {
-          id: month.id, // ID del mes
-          addAdmin: auth.currentUser?.email, //
-          methodPay: method,
-          pricePay: userData.activity.price,
-          activityId: userData.activity.id,
-          activityModality: userData.activity.modality,
-          activityName: userData.activity.nameActivity,
-          monthId: month.id,
-          monthName: month.monthName,
-          monthNum: monthOfPay(month.monthName),
-          userId: userData.id,
-          userName: userData.name,
-        }),
       ])
-        .then(([monthPay, payment]) => {
+        .then(([monthPay]) => {
           Swal.fire({
             background: "#202020",
             color: "white",
@@ -87,7 +73,7 @@ export function payMonth({
           });
           setIsLoad(false);
           getUserAgain();
-          return [monthPay.data, payment.data];
+          return [monthPay.data];
         })
 
         .catch((e) => {
