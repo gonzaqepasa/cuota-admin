@@ -10,6 +10,7 @@ import { ConfigUser } from "./Config/ConfigUser";
 import { ActivityUser } from "./ActivityUser/ActivityUser";
 import { visibilityUser } from "../../logic/visibilityUser";
 import { mesActual } from "../Deptor/logic/moths.d";
+import { PhoneUser } from "./PhoneUser/PhoneUser";
 
 interface Props {
   userData: typesUser;
@@ -50,6 +51,7 @@ export const User: React.FC<Props> = ({ userData, id }) => {
           <div className={` backg-card-user  h-full rounded w-96  p-2 m-2`}>
             <NameUser getDataAgain={getUserAgain} user={user} />
             <ActivityUser getDataAgain={getUserAgain} user={user} />
+            <PhoneUser getDataAgain={getUserAgain}  user={user}/>
             <Description
               id={Number(id)}
               color={selectColor(user.activity.nameActivity)}

@@ -12,37 +12,11 @@ import Navbar from "../src/components/Navbar/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   ///////////  Logica de auth  ///////////
-  const [authUser, setAuthUser] = useState<string | undefined>(undefined);
-  const [load, setLoad] = useState(true);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      // ...
-      setAuthUser(uid);
-      setLoad(false);
-    } else {
-      // User is signed out
-      // ...
-      setAuthUser(undefined);
-      setLoad(false);
-    }
-  });
   // console.log(auth);
   ////////////////////////////////////////
   //////////////// Render ////////////////////////
-  function render() {
-    return authUser ? (
-      <>
-        <Navbar />
-        <Component {...pageProps} />
-      </>
-    ) : (
-      <LoginForm />
-    );
-  }
+
   ////////////////////////////////////////////////
   return (
     <>
@@ -53,13 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Cuotas Indomito</title>
       </Head>
 
-      {load ? (
-        <div className="main">
-          <Loading />
-        </div>
-      ) : (
-        render()
-      )}
+      <Component {...pageProps} />
     </>
   );
 }
