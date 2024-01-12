@@ -1,14 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { ButtonAdd } from "../../../src/components/AddUser/ButtonAdd/ButtomAdd";
-import { AddUserForm } from "../../../src/components/AddUser/Form/AddUserForm";
-import { Title } from "../../../src/components/Title/Title";
 import Loading from "../../../src/components/Loading/Loading";
-import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/env_d";
-import { typesActivity, typesUser } from "../../../src/types/types-user";
-import { Notification } from "../../../src/components/Notification/Notification";
-import ProviderAuth from "../../providerAuth";
+import { typesUser } from "../../../src/types/types-user";
 import axios from "axios";
 import { orderByMonth } from "../../../src/logic/orderByMonthName";
 import Image from "next/image";
