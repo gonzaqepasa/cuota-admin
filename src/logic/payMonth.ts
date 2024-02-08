@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { url } from "../config/env_d";
 import { firstLetterUpper } from "./firstLetterUpper";
 import { typesMonth, typesUser } from "../types/types-user";
-import { monthOfPay } from "../components/Deptor/logic/moths.d";
+import { monthOfPay } from "../config/moths";
 import { auth } from "../../firebase/firebaseConfig";
 import { Dispatch, SetStateAction } from "react";
 

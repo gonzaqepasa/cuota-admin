@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import User from "../../../src/components/UserComponent/User";
 import { url } from "../../../src/config/env_d";
 import Loading from "../../../src/components/Loading/Loading";
-import ProviderAuth from "../../ProviderAuth";
+import ProviderAuth from "../../../app/ProviderAuth";
 
 export default function UserData() {
   const route = useRouter();

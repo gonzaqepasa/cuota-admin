@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { url } from "../../config/env_d";
-import { mesActual } from "../Deptor/logic/moths.d";
+import { mesActual } from "../../config/moths";
 import { typesActivity, typesMonth } from "../../types/types-user";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { selectColor } from "../../logic/selectColor";

@@ -1,8 +1,8 @@
 import { typesMonthNames } from "../../types/types-user";
 import styles from "./Deptor.module.scss";
-import { arrayMonth } from "./logic/moths";
+import { arrayMonth } from "../../config/moths";
 import { Dispatch, SetStateAction } from "react";
-import { SelectMonth } from "./SelectMonth/SelectMonth";
+import { SelectMonth } from "../RenderList/Filter/SelectMonth/SelectMonth";
 import { RenderDeptor } from "./Render/RenderDeptor";
 import { TitleDeptor } from "./Title/TitleDeptor";
 

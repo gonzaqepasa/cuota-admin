@@ -13,7 +13,7 @@ interface Props {
   // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
   setModalAdd: Dispatch<SetStateAction<boolean>>;
   // modalityOptions: string[];
-  getDataAgain: () => void;
+ 
   dataActivity: typesActivity[];
 }
 
@@ -22,7 +22,7 @@ export const AddUserForm: React.FC<Props> = ({
   // activity,
   // setActivity,
   setModalAdd,
-  getDataAgain,
+ 
   dataActivity,
 }) => {
   const [load, setLoad] = useState(false);

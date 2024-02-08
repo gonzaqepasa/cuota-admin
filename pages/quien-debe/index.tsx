@@ -4,7 +4,7 @@ import { Deptor } from "../../src/components/Deptor/Deptor";
 import {
   arrayMonth,
   dateMonth,
-} from "../../src/components/Deptor/logic/moths.d";
+} from "../../src/config/moths";
 
 import Loading from "../../src/components/Loading/Loading";
 import { url } from "../../src/config/env_d";

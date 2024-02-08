@@ -9,7 +9,7 @@ import { RenderUser } from "./Render/RenderUser";
 import { ConfigUser } from "./Config/ConfigUser";
 import { ActivityUser } from "./ActivityUser/ActivityUser";
 import { visibilityUser } from "../../logic/visibilityUser";
-import { mesActual } from "../Deptor/logic/moths.d";
+import { mesActual } from "../../config/moths";
 import { PhoneUser } from "./PhoneUser/PhoneUser";
 
 interface Props {

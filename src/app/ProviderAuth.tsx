@@ -1,9 +1,10 @@
+"use client";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../firebase/firebaseConfig";
-import Loading from "../src/components/Loading/Loading";
-import Navbar from "../src/components/Navbar/Navbar";
-import LoginForm from "../src/components/LoginForm/LoginForm";
+import { auth } from "../../firebase/firebaseConfig";
+import Navbar from "../../src/components/Navbar/Navbar";
+import LoginForm from "../../src/components/LoginForm/LoginForm";
+import Loading from "../components/Loading/Loading";
 
 const ProviderAuth = ({ children }: { children: React.ReactNode }) => {
   const [authUser, setAuthUser] = useState<string | undefined>(undefined);
@@ -27,7 +28,7 @@ const ProviderAuth = ({ children }: { children: React.ReactNode }) => {
   function render() {
     return authUser ? (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
         {children}
       </>
     ) : (

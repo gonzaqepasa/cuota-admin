@@ -8,7 +8,7 @@ import { RenderList } from "../../../src/components/RenderList/RenderList";
 import { url } from "../../../src/config/env_d";
 import { typesActivity } from "../../../src/types/types-user";
 import { Notification } from "../../../src/components/Notification/Notification";
-import ProviderAuth from "../../ProviderAuth";
+import ProviderAuth from "../../../app/ProviderAuth";
 
 export default function List() {
   const router = useRouter();

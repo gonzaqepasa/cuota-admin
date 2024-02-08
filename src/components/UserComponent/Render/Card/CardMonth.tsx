@@ -1,5 +1,5 @@
 import { typesMonth, typesUser } from "../../../../types/types-user";
-import { mesActual } from "../../../Deptor/logic/moths.d";
+import { mesActual } from "../../../../config/moths";
 import { FcCheckmark } from "react-icons/fc";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FcCancel } from "react-icons/fc";
