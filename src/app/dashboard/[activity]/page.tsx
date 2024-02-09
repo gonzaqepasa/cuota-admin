@@ -20,7 +20,7 @@ const ActivityListPage = async ({ params }: Params) => {
   if (msg) return <h2>{msg}</h2>;
   if (!users || !activity) return <h2>No encontro usuario ni actividad</h2>;
   return (
-    <>
+    <main className="main bg-image">
       <ProviderAuth>
         <ProviderNextUi>
           <RenderList
@@ -30,7 +30,7 @@ const ActivityListPage = async ({ params }: Params) => {
           />
         </ProviderNextUi>
       </ProviderAuth>
-    </>
+    </main>
   );
 };
 

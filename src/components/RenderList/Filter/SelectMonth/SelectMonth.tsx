@@ -21,11 +21,11 @@ export const SelectMonth: React.FC<Props> = ({
         value={monthSelected}
         placeholder={monthSelected}
         color="primary"
-        variant="bordered"
+        variant="faded"
         defaultSelectedKeys={[monthSelected]}
       >
         {arrayWithNamesMonths.map((m) => (
-          <SelectItem color="primary" key={m.name} value={m.name}>
+          <SelectItem color="primary" variant="solid" key={m.name} value={m.name}>
             {m.name}
           </SelectItem>
         ))}

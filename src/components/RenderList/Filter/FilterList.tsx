@@ -67,10 +67,19 @@ export const FilterList: React.FC<Props> = ({
       setResultFilter(res);
     }
   }, [state, result, monthSelected]);
+  function colorTabs() {
+    if (state === "pagado") return "success";
+    if (state === "sin pagar") return "danger";
+    return "primary";
+  }
 
   return (
     <div className={`  flex gap-1 p-2 flex-wrap items-center justify-center`}>
-      <Tabs variant="bordered"  color="primary" onSelectionChange={(e) => handleClick(e)}>
+      <Tabs
+        variant="solid"
+        color={colorTabs()}
+        onSelectionChange={(e) => handleClick(e)}
+      >
         <Tab onClick={(e) => handleClick(e)} value={"todos"} title="Todos" />
 
         <Tab onClick={(e) => handleClick(e)} value={"pagado"} title="Pagos" />

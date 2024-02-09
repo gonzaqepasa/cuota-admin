@@ -1,16 +1,17 @@
 import { typesMonth, typesUser } from "../../../../types/types-user";
-import { mesActual } from "../../../../config/moths";
 import { FcCheckmark } from "react-icons/fc";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FcCancel } from "react-icons/fc";
 import { IoIosArrowDown } from "react-icons/io";
 import { numberToMoney } from "../../../../logic/numberToMoney";
 import Image from "next/image";
-import mp from "../../../../../styles/mp.png";
+import mp from "../../../../styles/mp.png";
 import { ButtonCancel } from "../btn/Cancel/Cancel";
 import { ButtonPay } from "../btn/Pay/Pay";
 import { useState } from "react";
 import Loading from "../../../Loading/Loading";
+import { mesActual } from "../../../../config/moths";
+
 
 interface Props {
   el: typesMonth;

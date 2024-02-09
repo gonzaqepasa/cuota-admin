@@ -4,7 +4,8 @@ import { useState } from "react";
 import { auth } from "../../firebase/firebaseConfig";
 import Navbar from "../../src/components/Navbar/Navbar";
 import LoginForm from "../../src/components/LoginForm/LoginForm";
-import Loading from "../components/Loading/Loading";
+import Loading from "./loading";
+
 
 const ProviderAuth = ({ children }: { children: React.ReactNode }) => {
   const [authUser, setAuthUser] = useState<string | undefined>(undefined);

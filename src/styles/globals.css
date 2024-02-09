@@ -16,45 +16,18 @@ button:focus {
 }
 
 .main {
-  padding-top: 5rem;
-  min-height: 90vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-@media (min-width: 600px) {
-  .main {
-    padding-top: 7rem;
-  }
-}
-
-.loadContainer {
-  min-height: 90vh;
-  height: inherit;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-body{
+body {
   background-color: rgb(226, 226, 226);
 }
 
 
-a {
-  color: inherit;
-  text-decoration: none;
+.bg-image{
+background-image: url(../styles/images/hero-bg.jpg);
+background-size: cover;
 }
-.backg {
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-
-
-
-

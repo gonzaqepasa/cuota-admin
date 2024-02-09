@@ -27,6 +27,8 @@ import { arrayMonth, dateMonth } from "../../config/moths.d";
 import LazyLoad from "react-lazy-load";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 import { Title } from "../Title/Title";
+import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
+import ButtonDeleteUser from "../UserComponent/Config/ButtonDeleteUser";
 
 interface Props {
   activity: string | String[];
@@ -56,9 +58,12 @@ export const RenderList: React.FC<Props> = ({
       if (!search) {
         setResult(userData);
       } else {
+        const searchKeywords = search.toLowerCase().split(" ");
         setResult(
           userData.filter((el) =>
-            String(el.name).toLowerCase().includes(search.toLowerCase())
+            searchKeywords.every((keyword) =>
+              String(el.name).toLowerCase().includes(keyword)
+            )
           )
         );
       }
@@ -97,6 +102,9 @@ export const RenderList: React.FC<Props> = ({
         <SearcherList search={search} setSearch={setSearch} />
       </div>
 
+      <div className="flex flex-col items-end backg-card-user max-w-3xl px-1  w-11/12">
+        <ButtonAdd color="green" dataActivity={dataActivity} />
+      </div>
       <Table
         color="secondary"
         shadow="md"
@@ -104,10 +112,10 @@ export const RenderList: React.FC<Props> = ({
       >
         <TableHeader>
           <TableColumn>NOMBRE</TableColumn>
-          <TableColumn>ESTADO</TableColumn>
+          <TableColumn width={3}>ESTADO</TableColumn>
           <TableColumn width={10}>OPCIONES</TableColumn>
         </TableHeader>
-        <TableBody>
+        <TableBody emptyContent={"No hay usuarios para mostrar."}>
           {orderByActive(resultFilter).map((el: typesUser, index) => (
             <TableRow key={el.id}>
               <TableCell className="flex items-center">
@@ -119,7 +127,7 @@ export const RenderList: React.FC<Props> = ({
                   size="sm"
                   name={firstLetterUpper(el.name)[0]}
                 />
-                {firstLetterUpper(el.name)} -{" "}
+                {firstLetterUpper(el.name)}
                 <i
                   className="mx-1  text-sm"
                   style={{ color: selectColor(el.activity.nameActivity) }}
@@ -127,12 +135,11 @@ export const RenderList: React.FC<Props> = ({
                   {el.activity.modality}
                 </i>
               </TableCell>
-              <TableCell className="w-10">
+              <TableCell>
                 <MsgDeptor user={el} month={monthSelected} />
               </TableCell>
               <TableCell className="flex justify-end ">
-                <div>1</div>
-                <div>2</div>
+                <ButtonDeleteUser userData={el} />
               </TableCell>
             </TableRow>
           ))}

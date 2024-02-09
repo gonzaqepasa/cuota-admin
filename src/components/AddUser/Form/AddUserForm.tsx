@@ -1,30 +1,20 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import { FormEvent, useState } from "react";
 import { validateFormInputs } from "../logic/validateAddInputs";
-import { createUser } from "../../../logic/createUser";
+import { createUser } from "../../../api-next/createUser";
 import { typesActivity } from "../../../types/types-user";
 import Loading from "../../Loading/Loading";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { ModalityInput } from "./Modality/ModalityInput";
 import { NameInput } from "./Name/NameInput";
 import { DescriptionInput } from "./Description/DescriptionInput";
 import { ButtonForm } from "./Button/ButtonForm";
 
 interface Props {
-  // setActivity: Dispatch<SetStateAction<typesActivityGym>>;
-  setModalAdd: Dispatch<SetStateAction<boolean>>;
-  // modalityOptions: string[];
- 
   dataActivity: typesActivity[];
+  onClose: () => void;
 }
 
-export const AddUserForm: React.FC<Props> = ({
-  // modalityOptions,
-  // activity,
-  // setActivity,
-  setModalAdd,
- 
-  dataActivity,
-}) => {
+export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   const [load, setLoad] = useState(false);
   const route = useRouter();
   //////////////// Estados de los inputs ////////////////
@@ -55,40 +45,26 @@ export const AddUserForm: React.FC<Props> = ({
       createUser({
         objData: toSendObj,
         nameUser: name,
-        setModalAdd,
-        getDataAgain,
         dataActivity,
         setLoad,
         cb: ({ id }) => route.push(`/user/${id}`),
       });
   }
-  if (load)
-    return (
-      <div className={"max-w-md w-5/6 py-5 "}>
-        <Loading size={30} />;
-      </div>
-    );
 
   return (
-    <div
-      // onClick={() => setModalAdd(false)}
-      // className={`${styles.allAddUserForm}`}
-      className="max-w-md w-5/6 animate-one "
-    >
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <ModalityInput setActivity={setActivity} dataActivity={dataActivity} />
+    <form className="flex flex-col gap-3" onSubmit={(e) => handleSubmit(e)}>
+      <ModalityInput setActivity={setActivity} dataActivity={dataActivity} />
 
-        <NameInput
-          setName={setName}
-          dataActivity={dataActivity}
-          nameVal={nameVal}
-        />
-        <DescriptionInput
-          dataActivity={dataActivity}
-          setDescription={setDescription}
-        />
-        <ButtonForm setModalAdd={setModalAdd} />
-      </form>
-    </div>
+      <NameInput
+        setName={setName}
+        dataActivity={dataActivity}
+        nameVal={nameVal}
+      />
+      <DescriptionInput
+        dataActivity={dataActivity}
+        setDescription={setDescription}
+      />
+      <ButtonForm onClose={onClose} isLoad={load} />
+    </form>
   );
 };

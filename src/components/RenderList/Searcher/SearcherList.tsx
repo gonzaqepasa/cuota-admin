@@ -18,8 +18,8 @@ export const SearcherList: React.FC<Props> = ({ search, setSearch }) => {
       placeholder="Buscar..."
       startContent={<ImSearch className="mr-2" size={15} />}
       value={search}
-      className="max-w-xs"
-      variant="bordered"
+      className="max-w-xs "
+      variant="faded"
       color="primary"
       name="search"
       autoComplete="none"

@@ -12,7 +12,7 @@ const getActivityClient = async ({
 }: any): Promise<typesResActivity> => {
   try {
     const activityRes = await axios.get(
-      `${process.env.LOCAL_URL}/api/activity/get-activity?activity=${activity}`
+      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity?activity=${activity}`
     );
 
     if ((await activityRes.data.length) === 0) {
@@ -22,7 +22,7 @@ const getActivityClient = async ({
     }
 
     const userRes = await axios.get(
-      `${process.env.LOCAL_URL}/api/user/get-users?activity=${activity}`
+      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/user/get-users?activity=${activity}`
     );
 
     return {
