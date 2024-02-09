@@ -6,8 +6,6 @@ import {
   typesMonthNames,
   typesUser,
 } from "../../types/types-user";
-import { FaUserCheck } from "react-icons/fa";
-import { MdOutlineVisibilityOff, MdOutlineVisibility } from "react-icons/md";
 import {
   Table,
   TableHeader,
@@ -24,9 +22,7 @@ import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
 import { arrayMonth, dateMonth } from "../../config/moths.d";
-import LazyLoad from "react-lazy-load";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
-import { Title } from "../Title/Title";
 import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
 import ButtonDeleteUser from "../UserComponent/Config/ButtonDeleteUser";
 
@@ -70,24 +66,6 @@ export const RenderList: React.FC<Props> = ({
     }
   }, [search, userData]);
 
-  if (userData.length === 0)
-    return (
-      <div className={"flex flex-col min-h-screen w-screen items-center"}>
-        <div className="flex flex-col items-center backg-card-user my-3 px-6 max-w-196 w-screen rounded ">
-          <h3 className="text-neutral-300 my-4 text-lg">
-            No hay usuarios agregados
-          </h3>
-          {/* {dataActivity && (
-            <AddUserForm
-              dataActivity={dataActivity}
-              // modalityOptions={modalityOptions} // Opciones para elegir a la hora de hacer el add -> es un array
-              // activity={activityMain} // Es un objecto que va a ir en el modelo User.activity
-              // setActivity={setactivityMain} //  Es para modificar el objecto que va a ir cuando se cree el usuario
-            />
-          )} */}
-        </div>
-      </div>
-    );
   return (
     <div className={` flex flex-col gap-3 min-h-screen w-screen items-center`}>
       <div className="flex flex-col items-center backg-card-user  px-6 max-w-3xl w-screen rounded ">
@@ -108,7 +86,7 @@ export const RenderList: React.FC<Props> = ({
       <Table
         color="secondary"
         shadow="md"
-        className={`scroll max-w-3xl flex flex-col items-start backg-card-user w-11/12 max-w-196 overflow-y-auto h-96  p-1 rounded`}
+        className={`scroll max-w-3xl flex flex-col items-start  w-11/12  overflow-y-auto h-96   rounded`}
       >
         <TableHeader>
           <TableColumn>NOMBRE</TableColumn>
@@ -118,22 +96,27 @@ export const RenderList: React.FC<Props> = ({
         <TableBody emptyContent={"No hay usuarios para mostrar."}>
           {orderByActive(resultFilter).map((el: typesUser, index) => (
             <TableRow key={el.id}>
-              <TableCell className="flex items-center">
-                <Avatar
-                  style={{
-                    backgroundColor: selectColor(el.activity.nameActivity),
-                  }}
-                  className="text-white mr-2"
-                  size="sm"
-                  name={firstLetterUpper(el.name)[0]}
-                />
-                {firstLetterUpper(el.name)}
-                <i
-                  className="mx-1  text-sm"
-                  style={{ color: selectColor(el.activity.nameActivity) }}
+              <TableCell>
+                <Link
+                  className="flex items-center hover:translate-x-1 hover:text-neutral-600 font-medium transition text-neutral-900"
+                  href={`/user/${el.id}`}
                 >
-                  {el.activity.modality}
-                </i>
+                  <Avatar
+                    style={{
+                      backgroundColor: selectColor(el.activity.nameActivity),
+                    }}
+                    className="text-white mr-2"
+                    size="sm"
+                    name={firstLetterUpper(el.name)[0]}
+                  />
+                  {firstLetterUpper(el.name)}
+                  <i
+                    className="mx-1  text-sm"
+                    style={{ color: selectColor(el.activity.nameActivity) }}
+                  >
+                    {el.activity.modality}
+                  </i>
+                </Link>
               </TableCell>
               <TableCell>
                 <MsgDeptor user={el} month={monthSelected} />

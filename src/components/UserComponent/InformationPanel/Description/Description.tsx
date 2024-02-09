@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import { editDescription } from "../../../logic/editDescription";
-import Loading from "../../Loading/Loading";
+import { editDescription } from "../../../../logic/editDescription";
+import Loading from "../../../Loading/Loading";
 
 interface Props {
   id: Number;
