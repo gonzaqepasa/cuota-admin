@@ -65,11 +65,7 @@ const ModalEditUser: React.FC<Props> = ({
       >
         <CiEdit />
       </Button>
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        onClose={() => setVal(defaultVal)}
-      >
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
