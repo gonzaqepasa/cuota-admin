@@ -55,7 +55,7 @@ export const EditActivity: React.FC<Props> = ({
     })();
   }, []);
   ///////////////////////////////////////////////////////////////
-
+console.log("refresh si")
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedActivity = activityRender.find(
       (a) => a.modality === event.target.value

@@ -1,5 +1,5 @@
 // 1. import `NextUIProvider` component
-
+"use client";
 import { NextUIProvider } from "@nextui-org/react";
 
 function ProviderNextUi({ children }: { children: React.ReactNode }) {
