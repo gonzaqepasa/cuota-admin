@@ -4,15 +4,15 @@ import { url } from "../config/env_d";
 
 export async function editPhoneLogic({
   id,
-  newPhone,
+  newVal,
 }: {
   id: string;
-  newPhone: string;
+  newVal: string;
 }) {
   try {
     await axios.put(`${url}/user/edit-phone`, {
       id,
-      phone: newPhone,
+      phone: newVal,
     });
 
     Swal.fire({
@@ -24,7 +24,7 @@ export async function editPhoneLogic({
       position: "bottom-end",
       showConfirmButton: false,
     });
-    return newPhone;
+    newVal;
   } catch (err) {
     console.log(err);
     Swal.fire({
