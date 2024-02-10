@@ -6,14 +6,14 @@ import { Dispatch, SetStateAction } from "react";
 
 interface Params {
   id: string;
-  newDescription: string;
+  newVal: string;
 }
 
-export async function editDescription({ id, newDescription }: Params) {
+export async function editDescription({ id, newVal }: Params) {
   try {
     await axios.put(`${url}/user/edit-description`, {
       id,
-      description: newDescription,
+      description: newVal,
     });
     Swal.fire({
       background: "green",
@@ -24,7 +24,6 @@ export async function editDescription({ id, newDescription }: Params) {
       position: "bottom-end",
       showConfirmButton: false,
     });
-    return newDescription;
   } catch (err) {
     console.log(err);
     Swal.fire({
