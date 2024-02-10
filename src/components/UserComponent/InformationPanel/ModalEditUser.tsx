@@ -12,19 +12,12 @@ import {
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { typesUser } from "../../../types/types-user";
+import { useRouter } from "next/navigation";
 
 interface Props {
   defaultVal: string;
   title: string;
-  handle: ({
-    newVal,
-    onClose,
-    setLoad,
-  }: {
-    newVal: string;
-    onClose: () => void;
-    setLoad: Dispatch<SetStateAction<boolean>>;
-  }) => void;
+  handle: ({ newVal, id }: { newVal: string; id: string }) => void;
   user: typesUser;
   lenghtVal: number;
 }
@@ -38,10 +31,22 @@ const ModalEditUser: React.FC<Props> = ({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [val, setVal] = useState(defaultVal);
   const [load, setLoad] = useState(false);
-
+  const router = useRouter();
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
     setVal(e.target.value);
   }
+
+  const handleSubmit = () => {
+    try {
+      setLoad(true);
+      handle({ newVal: val, id: String(user.id) });
+      router.refresh();
+      setLoad(false);
+    } catch (e) {
+      setLoad(false);
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -87,7 +92,7 @@ const ModalEditUser: React.FC<Props> = ({
                     load
                   }
                   isLoading={load}
-                  onPress={() => handle({ newVal: val, onClose, setLoad })}
+                  onPress={() => handleSubmit()}
                 >
                   Cambiar
                 </Button>

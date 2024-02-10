@@ -2,19 +2,11 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { url } from "../config/env_d";
 
-export async function editName({
-  id,
-  newName,
-  refresh,
-}: {
-  id: string;
-  newName: string;
-  refresh: any;
-}) {
+export async function editName({ id, newVal }: { id: string; newVal: string }) {
   try {
     await axios.put(`${url}/user/edit-name`, {
       id,
-      name: newName,
+      name: newVal,
     });
 
     Swal.fire({
@@ -27,8 +19,6 @@ export async function editName({
       position: "bottom-end",
       showConfirmButton: false,
     });
-    refresh();
-    return newName;
   } catch (err) {
     console.log(err);
     Swal.fire({
