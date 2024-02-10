@@ -8,14 +8,12 @@ interface Props {
   };
 }
 
-const UserPage = async ({ params }: Props) => {
-  const res = await getUser({ id: params.id });
-  console.log(res);
+const UserPage = ({ params }: Props) => {
   return (
     <>
       <ProviderNextUi>
         <ProviderAuth>
-          <User userData={res} id={params.id} />
+          <User id={params.id} />
         </ProviderAuth>
       </ProviderNextUi>
     </>

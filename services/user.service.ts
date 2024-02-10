@@ -149,7 +149,7 @@ export async function editName({ id, name }: typesEditName) {
     return false;
   }
 }
-export async function editPhone({ id, phone }:any) {
+export async function editPhone({ id, phone }: any) {
   try {
     const user = await prisma.user.update({
       where: {
@@ -172,7 +172,7 @@ export async function editDescription({ id, description }: any) {
   try {
     const user = await prisma.user.update({
       where: {
-        id,
+        id: Number(id),
       },
       data: {
         description,

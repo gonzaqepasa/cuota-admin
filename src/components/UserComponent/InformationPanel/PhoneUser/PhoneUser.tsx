@@ -1,3 +1,4 @@
+'use client'
 import { Dispatch, SetStateAction, useState } from "react";
 import { typesUser } from "../../../../types/types-user";
 import { editPhoneLogic } from "../../../../api-next/editPhone";

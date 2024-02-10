@@ -1,29 +1,42 @@
-import { useState, useEffect, ChangeEvent } from "react";
-import { url } from "../../../../config/env_d";
-import { typesActivity } from "../../../../types/types-user";
-import Loading from "../../../Loading/Loading";
-import { changeActivity } from "../../../../logic/changeActivity";
-import { FcCheckmark, FcCancel } from "react-icons/fc";
+"use client";
+import { useState, useEffect, ChangeEvent, useTransition } from "react";
+import {
+  Modal,
+  Select,
+  SelectItem,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import { typesActivity, typesUser } from "../../../../../types/types-user";
+import { url } from "../../../../../config/env_d";
+import { changeActivity } from "../../../../../api-next/changeActivity";
+import { useRouter } from "next/navigation";
 
 interface Props {
-  id_user?: string;
+  user: typesUser;
   activity: typesActivity;
-  setEditOn: any;
-  getDataAgain: () => void;
+  defaultVal: string;
 }
 
 export const EditActivity: React.FC<Props> = ({
-  id_user,
+  user,
   activity,
-  setEditOn,
-  getDataAgain,
+  defaultVal,
 }) => {
   const [load, setLoad] = useState(true);
+  const [selected, setSelected] = useState(activity);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const router = useRouter();
   /////////////////// CAMBIAR MODALIDAD ///////////////////////
   const [activityRender, setActivityRender] = useState<typesActivity[]>([
     activity,
   ]);
-  //   console.log(activity);
+
+  console.log({ defaultVal, selected });
   useEffect(() => {
     (async function () {
       try {
@@ -33,7 +46,6 @@ export const EditActivity: React.FC<Props> = ({
         );
         const data = await res.json();
         setActivityRender(data);
-
         setLoad(false);
       } catch (err) {
         setLoad(false);
@@ -44,55 +56,72 @@ export const EditActivity: React.FC<Props> = ({
   }, []);
   ///////////////////////////////////////////////////////////////
 
-  if (load)
-    return (
-      <div className="h-8  w-56 z-20 flex items-center">
-        <Loading size={20} />
-      </div>
-    );
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedActivity = activityRender.find(
-      (a) => a.id === parseInt(event.target.value)
+      (a) => a.modality === event.target.value
     );
+    selectedActivity && setSelected(selectedActivity);
+    console.log({ selected, selectedActivity, defaultVal });
+  };
+  const handleSubmit = async () => {
     try {
-      changeActivity(
-        { activity: selectedActivity, id_user },
-        setLoad,
-        setEditOn,
-        getDataAgain
-      );
-    } catch (e) {}
-    console.log(selectedActivity);
+      await changeActivity({ activity: selected, id_user: user.id });
+      router.refresh();
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
-    <div
-      className={`h-8 flex relative z-20 items-center backg-input-edit p-2 rounded`}
-    >
-      <select
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        className={` w-44 bg-transparent font-light text-neutral-200 border-b-2 border-green-600`}
-        id=""
+    <>
+      <Button onPress={onOpen}>Open Modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        onClose={() => setSelected(activity)}
       >
-        <option className="bg-black">seleccionar</option>
-        {activityRender.map((a, i) => (
-          <option
-            className="bg-neutral-800"
-            disabled={a.id === activity.id}
-            value={a.id}
-            key={i}
-          >
-            {a.modality}
-          </option>
-        ))}
-      </select>
-      <button
-        className="opacity-80 transition-opacity hover:opacity-100"
-        onClick={() => setEditOn(false)}
-      >
-        <FcCancel size={20} className="mx-1" />
-      </button>
-    </div>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Modal Title
+              </ModalHeader>
+              <ModalBody>
+                <Select
+                  onChange={handleChange}
+                  id=""
+                  defaultSelectedKeys={[defaultVal]}
+                  placeholder={defaultVal}
+                  label={false}
+                  aria-label="asdasd"
+                >
+                  {activityRender.map((a, i) => (
+                    <SelectItem
+                      isDisabled={a.id === activity.id}
+                      value={a.id}
+                      key={a.modality}
+                    >
+                      {a.modality}
+                    </SelectItem>
+                  ))}
+                </Select>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+                <Button
+                  color="primary"
+                  isLoading={load}
+                  isDisabled={load || defaultVal === selected.modality}
+                  onPress={handleSubmit}
+                >
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 };

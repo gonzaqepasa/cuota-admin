@@ -1,7 +1,4 @@
 import { typesMonthNames } from "../../../../types/types-user";
-import { arrayMonth } from "../../../../config/moths.d";
-
-import { Dispatch, SetStateAction } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { arrayWithNamesMonths } from "../../../../config/infoMonths";
 

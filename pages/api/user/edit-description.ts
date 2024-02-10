@@ -12,7 +12,7 @@ export default async function handler(
     const { id, description } = req.body;
     try {
       const user = await editDescription({ id, description });
-
+      console.log({ id, description });
       res.status(200).json(user);
     } catch (err) {
       console.log(err);
