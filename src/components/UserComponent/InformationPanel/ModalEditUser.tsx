@@ -9,15 +9,21 @@ import {
   useDisclosure,
   Input,
 } from "@nextui-org/react";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { typesUser } from "../../../types/types-user";
 import { useRouter } from "next/navigation";
 
+export interface typesHanldeEditUser {
+  id: string;
+  newVal: string;
+  onClose?: () => void;
+}
+
 interface Props {
   defaultVal: string;
   title: string;
-  handle: ({ newVal, id }: { newVal: string; id: string }) => void;
+  handle: ({ newVal, id, onClose }: typesHanldeEditUser) => void;
   user: typesUser;
   lenghtVal: number;
 }
@@ -36,11 +42,12 @@ const ModalEditUser: React.FC<Props> = ({
     setVal(e.target.value);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (onClose: () => void) => {
     try {
       setLoad(true);
-      handle({ newVal: val, id: String(user.id) });
+      handle({ newVal: val, id: String(user.id), onClose });
       router.refresh();
+
       setLoad(false);
     } catch (e) {
       setLoad(false);
@@ -92,7 +99,7 @@ const ModalEditUser: React.FC<Props> = ({
                     load
                   }
                   isLoading={load}
-                  onPress={() => handleSubmit()}
+                  onPress={() => handleSubmit(onClose)}
                 >
                   Cambiar
                 </Button>

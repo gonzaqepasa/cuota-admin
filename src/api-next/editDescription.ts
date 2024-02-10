@@ -3,18 +3,19 @@ import { MouseEvent } from "react";
 import Swal from "sweetalert2";
 import { url } from "../config/env_d";
 import { Dispatch, SetStateAction } from "react";
+import { typesHanldeEditUser } from "../components/UserComponent/InformationPanel/ModalEditUser";
 
-interface Params {
-  id: string;
-  newVal: string;
-}
-
-export async function editDescription({ id, newVal }: Params) {
+export async function editDescription({
+  id,
+  newVal,
+  onClose,
+}: typesHanldeEditUser) {
   try {
     await axios.put(`${url}/user/edit-description`, {
       id,
       description: newVal,
     });
+    onClose && onClose();
     Swal.fire({
       background: "green",
       color: "white",

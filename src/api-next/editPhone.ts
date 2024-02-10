@@ -1,19 +1,15 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { url } from "../config/env_d";
+import { typesHanldeEditUser } from "../components/UserComponent/InformationPanel/ModalEditUser";
 
-export async function editPhoneLogic({
-  id,
-  newVal,
-}: {
-  id: string;
-  newVal: string;
-}) {
+export async function editPhoneLogic({ id, newVal, onClose }: typesHanldeEditUser) {
   try {
     await axios.put(`${url}/user/edit-phone`, {
       id,
       phone: newVal,
     });
+    onClose && onClose();
 
     Swal.fire({
       background: "green",

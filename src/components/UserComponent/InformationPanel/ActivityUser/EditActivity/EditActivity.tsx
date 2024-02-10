@@ -55,7 +55,7 @@ export const EditActivity: React.FC<Props> = ({
     })();
   }, []);
   ///////////////////////////////////////////////////////////////
-console.log("refresh si")
+  console.log("refresh si");
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedActivity = activityRender.find(
       (a) => a.modality === event.target.value
@@ -63,9 +63,9 @@ console.log("refresh si")
     selectedActivity && setSelected(selectedActivity);
     console.log({ selected, selectedActivity, defaultVal });
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (onClose: () => void) => {
     try {
-      await changeActivity({ activity: selected, id_user: user.id });
+      await changeActivity({ activity: selected, id_user: user.id, onClose });
       router.refresh();
     } catch (e) {
       console.log(e);
@@ -113,7 +113,7 @@ console.log("refresh si")
                   color="primary"
                   isLoading={load}
                   isDisabled={load || defaultVal === selected.modality}
-                  onPress={handleSubmit}
+                  onPress={() => handleSubmit(onClose)}
                 >
                   Action
                 </Button>

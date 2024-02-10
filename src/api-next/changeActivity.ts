@@ -5,13 +5,18 @@ import { typesActivity } from "../types/types-user";
 
 export async function changeActivity(
   // Primer Parametro
-  { id_user, activity }: { id_user?: string; activity?: typesActivity }
+  {
+    id_user,
+    activity,
+    onClose,
+  }: { id_user?: string; activity?: typesActivity; onClose: () => void }
 ) {
   try {
     const { data } = await axios.put(`${url}/user/change-activity`, {
       id_user,
       id_activity: activity?.id,
     });
+    onClose && onClose();
 
     Swal.fire({
       position: "bottom-end",
