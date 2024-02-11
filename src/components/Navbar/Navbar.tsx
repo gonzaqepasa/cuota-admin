@@ -2,12 +2,13 @@ import styles from "./Navbar.module.scss";
 import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
 import { selectColor } from "../../logic/selectColor";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { auth } from "../../../firebase/firebaseConfig";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { selectAvatar } from "../../logic/selectAvatar";
 import { signOutUser } from "../../../firebase/auth/signOut";
 import { LinkActivity, LinkNav } from "./Link/LinkNav";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuItem, NavbarMenu, NavbarMenuToggle} from "@nextui-org/react";
 
 export default function NavbarMain() {
   const route = useRouter();
@@ -19,6 +20,7 @@ export default function NavbarMain() {
   const [modal, setModal] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const [toTop, setToTop] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   /////////////////////////
 
   useEffect(() => {
@@ -30,94 +32,60 @@ export default function NavbarMain() {
 
   return (
     <>
-      <div className={`  ${styles.allNavbar} ${isTop && styles.isTopNav}`}>
-        <div
-          className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}
-        >
-          <div className={`${styles.responsiveBox}`}>
-            <div className={`${styles.header}`}>
-              <div className={styles.imgBox}>
-                <img src={avatar} alt="asd" />
-              </div>
-              <div className={styles.textBox}>
-                <p>{user?.email}</p>
-                <div className={styles.signOutBtnContainer}>
-                  <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
-                </div>
-              </div>
-            </div>
-            <nav className={`${styles.navigation}`}>
-              <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
-                <LinkNav href={"/prices"} text="Precios" setModal={setModal} />
-                <LinkNav href={"/resume"} text="Resumen" setModal={setModal} />
-                {/*   <LinkNav
-                  text="¿Quién debe?"
-                  setModal={setModal}
-                  href={"/quien-debe"}
-                /> */}
-              </div>
+       <Navbar onMenuOpenChange={setIsMenuOpen} height={20}>
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+       
+          <p className="font-bold text-inherit">ACME</p>
+        </NavbarBrand>
+      </NavbarContent>
 
-              <div className={`${styles.activityLinks}`}>
-                <LinkActivity
-                  setModal={setModal}
-                  text="Gimnasio"
-                  href="/list/Gimnasio"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Taekwondo"
-                  href="/list/Taekwondo"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Power Box"
-                  href="/list/Power%20Box"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Zumba"
-                  href="/list/Zumba"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Jiu Jitzu"
-                  href="/list/Jiu%20Jitzu"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Kick Boxing"
-                  href="/list/Kick%20Boxing"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="GAP + Funcional"
-                  activityName="GAP Funcional"
-                  href="/list/GAP%20Funcional"
-                />
-              </div>
-            </nav>
-          </div>
-          <button
-            onClick={() => setModal(false)}
-            className={`${styles.btnTouchClose} ${
-              modal && styles.btnColorTrans
-            }`}
-          ></button>
-        </div>
-        <div className={styles.hamburguerBox}>
-          <Hamburger
-            size={25}
-            color="white"
-            toggled={modal}
-            toggle={setModal}
-          />
-        </div>
-      </div>
-      <div className={`${styles.toTop} ${toTop && styles.toTopOn}`}>
-        <button onClick={() => (document.documentElement.scrollTop = 0)}>
-          <FaArrowCircleUp />
-        </button>
-      </div>
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} color="primary" href="#" variant="flat">
+            Sign Up
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+       
+          <NavbarMenuItem >
+            <Link
+              
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+             
+            </Link>
+          </NavbarMenuItem>
+    
+      </NavbarMenu>
+    </Navbar>
     </>
   );
 }

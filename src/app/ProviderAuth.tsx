@@ -29,7 +29,7 @@ const ProviderAuth = ({ children }: { children: React.ReactNode }) => {
   function render() {
     return authUser ? (
       <>
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
       </>
     ) : (
