@@ -1,10 +1,11 @@
 "use client";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import { typesUser } from "../../../types/types-user";
+import { typesMonth, typesUser } from "../../../types/types-user";
 import CardMonth from "./Card/CardMonth";
 import { dateMonth, mesActual, monthOfPay } from "../../../config/moths.d";
 import { useEffect } from "react";
 import { orderByMonth } from "../../../logic/orderByMonthName";
+import { FcCheckmark } from "react-icons/fc";
 
 interface Props {
   user: typesUser;
@@ -37,18 +38,25 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
       </>
     );
   return (
-    <div className="flex w-full lg:justify-center lg:overflow-y-scroll max-h-[calc(100vh)]  ">
+    <div className="flex flex-col lg:flex-row w-full lg:justify-center lg:overflow-y-scroll max-h-[calc(100vh)]  ">
+      <div className="flex lg:hidden justify-center py-3  bg-neutral-500 w-screen">
+        <h2 className="text-neutral-100 text-xl">Pagos</h2>
+      </div>
       <Accordion
         variant="light"
-        className={`   text-neutral-200 w-11/12  `}
+        className={`   text-neutral-200 lg:w-11/12   `}
         defaultExpandedKeys={[String(dateMonth)]}
       >
-        {orderByMonth(user.calendar.months).map((m, index) => (
+        {orderByMonth(user.calendar.months).map((m: typesMonth, index) => (
           <AccordionItem
+            startContent={m.isPay && <FcCheckmark className="" />}
             key={monthOfPay(m.monthName)}
             aria-label="Accordion 1"
             title={m.monthName}
             id={String(monthOfPay(m.monthName))}
+            className={`${m.isPay && "bg-green-500/10"} px-2 ${
+              m.monthName === mesActual() && "border-2 border-cyan-500"
+            }`}
             // startContent={}
           >
             <CardMonth el={m} index={index} user={user} />

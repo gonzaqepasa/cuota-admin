@@ -90,7 +90,7 @@ const ModalEditUser: React.FC<Props> = ({
                 <Button
                   color="primary"
                   isDisabled={
-                    val.toLowerCase() === user.name.toLowerCase() ||
+                    val.toLowerCase() === defaultVal.toLowerCase() ||
                     val.length < lenghtVal ||
                     load
                   }

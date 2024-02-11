@@ -1,38 +1,85 @@
-
-import { payCancel } from "../../../../../logic/payCancel";
+import { useState } from "react";
+import { payCancel } from "../../../../../api-next/payCancel";
 import { type typesMonth } from "../../../../../types/types-user";
-import { FcCancel } from "react-icons/fc";
-import { Dispatch, SetStateAction } from "react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 interface Props {
   el: typesMonth;
-  getUserAgain: () => void;
- 
-  setIsLoad: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ButtonCancel: React.FC<Props> = ({
-  el,
-  getUserAgain,
+export const ButtonCancel: React.FC<Props> = ({ el }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [load, setLoad] = useState(false);
+  const router = useRouter();
 
-  setIsLoad,
-}) => {
-
+  const handleSubmit = async (onClose: () => void) => {
+    try {
+      setLoad(true);
+      await payCancel({
+        id: el.id,
+        monthName: el.monthName,
+      });
+      setLoad(false);
+      onClose();
+      router.refresh();
+    } catch (e) {
+      console.log(e);
+      setLoad(false);
+    }
+  };
   return (
-    <button
-      onClick={() =>
-        payCancel({
-          id: el.id,
-          getUserAgain,
-          monthName: el.monthName,
-      
-          setIsLoad,
-        })
-      }
-      className={`absolute right-1 bottom-1 flex items-center text-neutral-500 transition-colors hover:text-neutral-400 text-xs`}
-    >
-      Cancelar Pago
-      <FcCancel className="mx-1" size={12} />
-    </button>
+    <>
+      <Button
+        className="absolute bottom-1 right-1"
+        variant="light"
+        color="danger"
+        onPress={onOpen}
+      >
+        Cancelar pago
+      </Button>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 text-base">
+                CANCELAR PAGO
+              </ModalHeader>
+              <ModalBody>
+                <p className="text-sm">
+                  ¿Estas seguro que quieres cancelar este pago?
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  color="danger"
+                  isDisabled={load}
+                  variant="light"
+                  onPress={onClose}
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  color="danger"
+                  isLoading={load}
+                  isDisabled={load}
+                  onPress={() => handleSubmit(onClose)}
+                >
+                  Cancelar pago
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 };

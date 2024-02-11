@@ -2,6 +2,7 @@
 import { typesUser } from "../../../../types/types-user";
 import { editPhoneLogic } from "../../../../api-next/editPhone";
 import ModalEditUser from "../ModalEditUser";
+import TextUserPanel from "../TextUserPanel";
 
 interface Props {
   user: typesUser;
@@ -10,7 +11,7 @@ interface Props {
 export const PhoneUser: React.FC<Props> = ({ user }) => {
   return (
     <div className={` flex items-center justify-between   `}>
-      <p>{user.phone}</p>
+      <TextUserPanel label="Numero de teléfono" val={user.phone} />
       <ModalEditUser
         lenghtVal={0}
         defaultVal={user.phone || ""}

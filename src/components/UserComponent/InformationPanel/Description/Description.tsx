@@ -2,6 +2,7 @@
 import { editDescription } from "../../../../api-next/editDescription";
 import { typesUser } from "../../../../types/types-user";
 import ModalEditUser from "../ModalEditUser";
+import TextUserPanel from "../TextUserPanel";
 
 interface Props {
   user: typesUser;
@@ -12,7 +13,7 @@ export const Description: React.FC<Props> = ({ user }) => {
 
   return (
     <div className={` flex justify-between`}>
-      <p className="hover:bg-none">{user.description}</p>
+      <TextUserPanel label="Descripción" val={user.description} />
       <ModalEditUser
         lenghtVal={0}
         defaultVal={user.description || ""}

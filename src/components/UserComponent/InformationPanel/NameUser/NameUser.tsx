@@ -3,6 +3,7 @@ import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 import { editName } from "../../../../api-next/editName";
 import ModalEditUser from "../ModalEditUser";
 import { typesUser } from "../../../../types/types-user";
+import TextUserPanel from "../TextUserPanel";
 
 interface Props {
   user: typesUser;
@@ -11,7 +12,7 @@ interface Props {
 export const NameUser: React.FC<Props> = ({ user }) => {
   return (
     <div className={` flex items-center justify-between   `}>
-      <p>{firstLetterUpper(user.name)}</p>
+      <TextUserPanel label="Nombre" val={firstLetterUpper(user.name)} />
       <ModalEditUser
         lenghtVal={2}
         defaultVal={user.name}
