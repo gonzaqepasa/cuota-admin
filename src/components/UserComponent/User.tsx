@@ -18,7 +18,7 @@ export const User = async ({ id }: { id: Promise<string> }) => {
   if (userData)
     return (
       <div
-        className={`flex flex-col items-center justify-start w-screen h-[calc(100vh-40px)]  lg:p-0  ${`lg:flex-row   lg:items-stretch`} ${
+        className={`flex flex-col items-center justify-start w-screen h-[calc(100vh-64px)]  lg:p-0  ${`lg:flex-row   lg:items-stretch`} ${
           !userData.active && `opacity-40 `
         }`}
       >
