@@ -11,7 +11,7 @@ interface Props {
 const PanelUser: React.FC<Props> = ({ userData }) => {
   return (
     <>
-      <div className="flex  flex-col  justify-start items-center  mb-5 lg:m-0 lg:w-[30rem]   text-neutral-800 lg:bg-neutral-400/50 lg:shadow-lg">
+      <div className="flex  flex-col  justify-start items-center  mb-5 lg:m-0 lg:w-1/3 lg:overflow-y-auto  text-neutral-800 lg:bg-neutral-400/50 lg:shadow-lg">
         <div>
           <h2
             className={`py-4 text-xl font-bold drop-shadow`}

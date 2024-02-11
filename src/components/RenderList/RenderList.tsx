@@ -86,14 +86,14 @@ export const RenderList: React.FC<Props> = ({
       <Table
         color="secondary"
         shadow="md"
-        className={`scroll max-w-3xl flex flex-col items-start  w-11/12  overflow-y-auto h-96   rounded`}
+        className={`scroll max-w-3xl flex flex-col items-start  w-11/12  overflow-y-auto h-96   rounded-xl`}
       >
         <TableHeader>
           <TableColumn>NOMBRE</TableColumn>
           <TableColumn width={3}>ESTADO</TableColumn>
           <TableColumn width={10}>OPCIONES</TableColumn>
         </TableHeader>
-        <TableBody emptyContent={"No hay usuarios para mostrar."}>
+        <TableBody emptyContent={"No hay usuarios para mostrar."} className="">
           {orderByActive(resultFilter).map((el: typesUser, index) => (
             <TableRow key={el.id}>
               <TableCell>
