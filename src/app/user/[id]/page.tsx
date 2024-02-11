@@ -10,13 +10,13 @@ interface Props {
 
 const UserPage = ({ params }: Props) => {
   return (
-    <>
+    <main className="flex flex-col items-center justify-center text-neutral-300 ">
       <ProviderNextUi>
         <ProviderAuth>
           <User id={params.id} />
         </ProviderAuth>
       </ProviderNextUi>
-    </>
+    </main>
   );
 };
 

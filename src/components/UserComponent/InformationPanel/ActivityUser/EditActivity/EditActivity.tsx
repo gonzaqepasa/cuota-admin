@@ -15,7 +15,7 @@ import { typesActivity, typesUser } from "../../../../../types/types-user";
 import { url } from "../../../../../config/env_d";
 import { changeActivity } from "../../../../../api-next/changeActivity";
 import { useRouter } from "next/navigation";
-
+import { CiEdit } from "react-icons/ci";
 interface Props {
   user: typesUser;
   activity: typesActivity;
@@ -73,7 +73,14 @@ export const EditActivity: React.FC<Props> = ({
   };
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
+      <Button
+        onPress={onOpen}
+        variant="light"
+        color="primary"
+        className="min-w-0 w-10 h-10 p-0 text-lg"
+      >
+        <CiEdit />
+      </Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}

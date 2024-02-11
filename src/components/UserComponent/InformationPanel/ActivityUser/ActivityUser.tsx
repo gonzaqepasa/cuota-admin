@@ -7,9 +7,11 @@ interface Props {
 
 export const ActivityUser: React.FC<Props> = ({ user }) => {
   return (
-    <div className={`w-full relative flex`}>
-      <p>{user.activity.nameActivity}</p>
-      <p>{user.activity.modality}</p>
+    <div className={` flex  justify-between`}>
+      <div>
+        <p>{user.activity.nameActivity}</p>
+        <p>{user.activity.modality}</p>
+      </div>
       <EditActivity
         activity={user.activity}
         user={user}

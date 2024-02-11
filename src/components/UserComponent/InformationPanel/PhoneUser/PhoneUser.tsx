@@ -9,7 +9,7 @@ interface Props {
 
 export const PhoneUser: React.FC<Props> = ({ user }) => {
   return (
-    <div className={` flex items-center   `}>
+    <div className={` flex items-center justify-between   `}>
       <p>{user.phone}</p>
       <ModalEditUser
         lenghtVal={0}

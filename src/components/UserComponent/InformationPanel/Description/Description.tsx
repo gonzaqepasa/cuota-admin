@@ -11,7 +11,7 @@ export const Description: React.FC<Props> = ({ user }) => {
   // Component...
 
   return (
-    <div className={` flex first-letter:`}>
+    <div className={` flex justify-between`}>
       <p className="hover:bg-none">{user.description}</p>
       <ModalEditUser
         lenghtVal={0}
