@@ -1,26 +1,18 @@
 import Link from "next/link";
-import styles from "./LinkNav.module.scss";
-import { useRouter } from "next/router";
+
 import { selectColor } from "../../../logic/selectColor";
+import { useParams } from "next/navigation";
+import { FaAngleRight } from "react-icons/fa";
 
 interface Props {
-  setModal: any;
   href: string;
   text: string;
 }
 
-export const LinkNav: React.FC<Props> = ({ setModal, href, text }) => {
-  const route = useRouter();
-
+export const LinkNav: React.FC<Props> = ({ href, text }) => {
   return (
     <>
-      <Link
-        className={`${styles.linkNav} ${
-          route.pathname === `${href}` && styles.isHere
-        }`}
-        onClick={() => setModal(false)}
-        href={`${href}`}
-      >
+      <Link className={` `} href={`${href}`}>
         {text}
       </Link>
     </>
@@ -30,31 +22,17 @@ interface Props2 extends Props {
   activityName?: string;
 }
 export const LinkActivity: React.FC<Props2> = ({
-  setModal,
   href,
   text,
   activityName,
 }) => {
-  const route = useRouter();
-
   return (
     <>
-      <Link
-        className={`${styles.linkNav} ${styles.linkActivity} ${
-          route.asPath === `${href}` && styles.isHere
-        }`}
-        onClick={() => setModal(false)}
-        href={`${href}`}
-      >
-        <p
-          style={{
-            color: ` ${selectColor(activityName ? activityName : text)}`,
-            fontSize: "0.9rem",
-          }}
-        >
-          {text.charAt(0)}
+      <Link className={` flex items-center  my-1 `} href={`${href}`}>
+        <p style={{ color: selectColor(String(activityName)) }}>
+          <FaAngleRight />
         </p>
-        {text.slice(1, text.length)}
+        <p className="pl-2 text-neutral-600">{text}</p>
       </Link>
     </>
   );

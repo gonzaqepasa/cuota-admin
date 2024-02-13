@@ -37,4 +37,22 @@ const getActivityClient = async ({
   }
 };
 
+export const getAllActivities = async () => {
+  try {
+    const activityRes = await axios.get(
+      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity`
+    );
+    const filteredData: typesActivity[] = Object.values(
+      activityRes.data.reduce((acc: any, obj: any) => {
+        // Utiliza la actividad como clave del objeto
+        acc[obj.nameActivity] = obj;
+        return acc;
+      }, {})
+    );
+    return filteredData;
+  } catch (e) {
+    return false;
+  }
+};
+
 export default getActivityClient;

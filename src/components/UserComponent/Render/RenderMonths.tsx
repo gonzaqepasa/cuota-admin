@@ -40,7 +40,7 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
     );
   return (
     <div className="flex flex-col justify-center  items-center lg:max-w-none max-w-xl lg:py-5  ">
-      <div className="flex lg:hidden justify-center py-3  bg-neutral-800 shadow-md w-screen">
+      <div className="flex sticky top-14 z-30 lg:hidden justify-center py-3  bg-neutral-800 shadow-md w-screen">
         <h2 className="text-neutral-100 text-xl">Pagos</h2>
       </div>
       <Accordion

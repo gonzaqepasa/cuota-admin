@@ -6,7 +6,6 @@ import Navbar from "../../src/components/Navbar/Navbar";
 import LoginForm from "../../src/components/LoginForm/LoginForm";
 import Loading from "./loading";
 
-
 const ProviderAuth = ({ children }: { children: React.ReactNode }) => {
   const [authUser, setAuthUser] = useState<string | undefined>(undefined);
   const [load, setLoad] = useState(true);
@@ -29,7 +28,7 @@ const ProviderAuth = ({ children }: { children: React.ReactNode }) => {
   function render() {
     return authUser ? (
       <>
-        <Navbar />
+        <Navbar auth={auth} />
         {children}
       </>
     ) : (
