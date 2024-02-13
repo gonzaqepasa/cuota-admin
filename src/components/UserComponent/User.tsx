@@ -19,13 +19,16 @@ export const User = async ({ id }: { id: Promise<string> }) => {
   if (userData)
     return (
       <div
-        className={`flex flex-col lg:flex-row justify-start w-screen h-[calc(100vh-64px)]  lg:p-0  ${` `} ${
+        className={`grid lg:grid-cols-3 w-screen  lg:p-0  ${` `} ${
           !userData.active && `opacity-40 `
         }`}
       >
-        <PanelUser userData={userData} />
-
-        <RenderMonths user={userData} />
+        <div className="lg:col-span-1">
+          <PanelUser userData={userData} />
+        </div>
+        <div className="lg:col-span-2">
+          <RenderMonths user={userData} />
+        </div>
       </div>
     );
   return <div>No existe este usuario</div>;
