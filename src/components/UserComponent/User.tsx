@@ -13,9 +13,9 @@ interface Props {
   id: string;
 }
 
-export const User = async ({ id }: { id: Promise<string> }) => {
+export const User = async ({ id }: { id: string }) => {
   const userData: typesUser = await getUser({ id: String(id) });
-
+  console.log(userData);
   if (userData)
     return (
       <div
