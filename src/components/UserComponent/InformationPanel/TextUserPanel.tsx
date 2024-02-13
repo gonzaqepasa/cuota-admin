@@ -9,8 +9,8 @@ interface Props {
 const TextUserPanel: React.FC<Props> = ({ label, val, modality }) => {
   return (
     <div className=" justify-start w-10/12">
-      <label className={`font-medium text-sm text-neutral-500`}>{label}</label>
-      <p className={`pl-1 text-sm font-medium  `}>{val}</p>
+      <label className={`font-normal text-sm text-neutral-500`}>{label}</label>
+      <p className={`pl-1 text-sm font-normal  `}>{val}</p>
       <p
         className={`text-sm pl-1 font-medium`}
         style={{ color: selectColor(String(val)) }}

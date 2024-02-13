@@ -13,7 +13,7 @@ datasource db {
 model User {
   // Información personal
   // Se genera a travez de inputs
-  id          Int     @id @default(autoincrement())
+  id          String  @id @default(uuid())
   email       String?
   name        String?
   phone       String?

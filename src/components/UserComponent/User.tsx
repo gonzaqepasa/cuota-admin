@@ -26,7 +26,7 @@ export const User = async ({ id }: { id: Promise<string> }) => {
         <div className="lg:col-span-1">
           <PanelUser userData={userData} />
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 flex flex-col items-center lg:items-stretch ">
           <RenderMonths user={userData} />
         </div>
       </div>
