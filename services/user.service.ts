@@ -135,7 +135,7 @@ export async function editName({ id, name }: typesEditName) {
   try {
     const user = await prisma.user.update({
       where: {
-        id: Number(id),
+        id: String(id),
       },
       data: {
         name: name.toLowerCase().trim(),
@@ -153,7 +153,7 @@ export async function editPhone({ id, phone }: any) {
   try {
     const user = await prisma.user.update({
       where: {
-        id: Number(id),
+        id: String(id),
       },
       data: {
         phone,
@@ -172,7 +172,7 @@ export async function editDescription({ id, description }: any) {
   try {
     const user = await prisma.user.update({
       where: {
-        id: Number(id),
+        id: String(id),
       },
       data: {
         description,
@@ -210,7 +210,7 @@ export async function changeActivityService({ id_user, id_activity }: any) {
   try {
     const user = await prisma.user.update({
       where: {
-        id: Number(id_user),
+        id: String(id_user),
       },
       data: {
         activityId: Number(id_activity),

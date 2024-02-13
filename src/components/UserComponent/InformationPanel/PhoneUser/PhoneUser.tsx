@@ -5,6 +5,7 @@ import ModalEditUser from "../ModalEditUser";
 import TextUserPanel from "../TextUserPanel";
 import { FaWhatsapp } from "react-icons/fa";
 import { Tooltip } from "@nextui-org/react";
+import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 
 interface Props {
   user: typesUser;
@@ -26,7 +27,13 @@ export const PhoneUser: React.FC<Props> = ({ user }) => {
               <a
                 className="rounded-xl p-3 text-green-600 hover:bg-green-500/20"
                 target="_blank"
-                href={`https://wa.me/+54${user.phone}?text=Este es el enlace para que puedas consultar el estado de tus pagos https://indomitotraining.com/pagos/${user.id}?activity=${user.activity.id}`}
+                href={`https://wa.me/+54${
+                  user.phone
+                }?text=¡Hola ${firstLetterUpper(
+                  user.name
+                )}, este es el enlace para que puedas consultar el estado de tus pagos https://indomitotraining.com/pagos/${
+                  user.id
+                }`}
               >
                 <FaWhatsapp />
               </a>

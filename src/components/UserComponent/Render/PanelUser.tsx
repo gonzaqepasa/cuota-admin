@@ -1,4 +1,4 @@
-import { Divider } from "@nextui-org/react";
+import { Divider, user } from "@nextui-org/react";
 import { NameUser } from "../InformationPanel/NameUser/NameUser";
 import { ActivityUser } from "../InformationPanel/ActivityUser/ActivityUser";
 import { PhoneUser } from "../InformationPanel/PhoneUser/PhoneUser";
@@ -6,15 +6,18 @@ import { Description } from "../InformationPanel/Description/Description";
 import { typesUser } from "../../../types/types-user";
 import { selectColor } from "../../../logic/selectColor";
 import BtnBack from "../../Globals/BtnBack";
+import { fromNameToUrl } from "../../../logic/fromNameToUrl";
 interface Props {
   userData: typesUser;
 }
 const PanelUser: React.FC<Props> = ({ userData }) => {
   return (
     <>
-      <div className="flex  flex-col  justify-start items-center    lg:m-0   h-full  text-neutral-800 bg-neutral-400/50 lg:shadow-lg">
+      <div className="flex  flex-col  justify-start items-center    lg:m-0   h-full  text-neutral-800 bg-neutral-300 lg:shadow-lg">
         <div className="flex items-center w-full px-2">
-          <BtnBack />
+          <BtnBack
+            url={`/dashboard/${fromNameToUrl(userData.activity.nameActivity)}`}
+          />
           <h2
             className={`py-4 text-xl font-bold drop-shadow`}
             style={{ color: selectColor(userData.activity.nameActivity) }}

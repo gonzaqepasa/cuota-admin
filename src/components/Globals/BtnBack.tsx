@@ -2,8 +2,11 @@
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { IoMdArrowRoundBack } from "react-icons/io";
+interface Params {
+  url: string;
+}
 
-const BtnBack = () => {
+const BtnBack = ({ url }: Params) => {
   const router = useRouter();
   return (
     <>
@@ -11,7 +14,7 @@ const BtnBack = () => {
         color="primary"
         variant="light"
         className="min-w-0 text-xl"
-        onPress={() => router.back()}
+        onPress={() => router.push(url)}
       >
         <IoMdArrowRoundBack />
       </Button>
