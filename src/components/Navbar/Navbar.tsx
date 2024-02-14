@@ -131,7 +131,7 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarMenuItem>
 
           <NavbarMenuItem>
-            <LinkNav text="Panel de actividades" href={`/dashboard`} />
+            <LinkNav text="Panel de actividades" href={`/prices`} />
             <Divider />
             <h2 className="text-neutral-900 text-lg font-bold">Actividades</h2>
             {activities &&

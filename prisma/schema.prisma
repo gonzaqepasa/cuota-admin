@@ -37,6 +37,7 @@ model Activity {
   nameActivity String
   modality     String
   price        Int
+  color        String
 
   //Todos los usuarios que tienen esta actividad
   User User[]

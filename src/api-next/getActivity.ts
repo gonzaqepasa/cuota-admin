@@ -7,6 +7,27 @@ export interface typesResActivity {
   msg?: string;
 }
 
+export const getAllActivitiesToEdit = async (): Promise<typesResActivity> => {
+  try {
+    const activityRes = await axios.get(
+      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity`
+    );
+
+    if ((await activityRes.data.length) === 0) {
+      return {
+        msg: "Esta actividad no existe",
+      };
+    }
+
+    return { activity: activityRes.data };
+  } catch (err: any) {
+    console.log(err);
+    return {
+      msg: "Hubo un problame en el servidor",
+    };
+  }
+};
+
 const getActivityClient = async ({
   activity,
 }: any): Promise<typesResActivity> => {
