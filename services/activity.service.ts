@@ -1,4 +1,26 @@
+import { typesActivity } from "../src/types/types-user";
 import { prisma } from "./prismaConfig";
+
+export async function createActivityService({
+  color,
+  modality,
+  nameActivity,
+  price,
+}: typesActivity) {
+  try {
+    const activity = await prisma.activity.create({
+      data: {
+        modality: modality.trim().toLowerCase(),
+        nameActivity: nameActivity.trim().toLowerCase(),
+        price,
+        color,
+      },
+    });
+    return activity;
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 export async function getActivity({ activity }: any) {
   try {
@@ -47,6 +69,23 @@ export async function editPrice({ id, price }: any) {
       where: { id: Number(id) },
       data: {
         price: Number(price),
+      },
+    });
+
+    await prisma.$disconnect();
+    return activities;
+  } catch (err) {
+    console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
+export async function editColor({ id, color }: any) {
+  try {
+    const activities = await prisma.activity.update({
+      where: { id: Number(id) },
+      data: {
+        color: String(color),
       },
     });
 

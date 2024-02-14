@@ -6,6 +6,7 @@ import { EditPriceModal } from "./EditPrice/EditPrice";
 import { numberToMoney } from "../../logic/numberToMoney";
 import Link from "next/link";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
+import { EditColorActivity } from "./EditColor/EditColorActivity";
 
 interface Props {
   data: typesActivity[];
@@ -50,6 +51,9 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
             <div className="flex items-center gap-1">
               <p className="text-2xl">{numberToMoney(el.price)}</p>
               <EditPriceModal data={el} />
+            </div>
+            <div>
+              <EditColorActivity data={el} />
             </div>
           </CardBody>
 
