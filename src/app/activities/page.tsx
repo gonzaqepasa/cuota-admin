@@ -9,7 +9,7 @@ import ProviderNextUi from "../ProviderNextUi";
 const ActivitiesPage = async () => {
   const res = await getAllActivitiesToEdit();
   console.log(res);
-  if (!res.activity) return <></>;
+  
   return (
     <main className="flex flex-col min-h-screen items-center">
       <ProviderAuth>

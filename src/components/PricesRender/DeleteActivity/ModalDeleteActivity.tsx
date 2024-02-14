@@ -12,22 +12,23 @@ import {
 } from "@nextui-org/react";
 import { createActivity } from "../../../api-next/createActivity";
 import { useRouter } from "next/navigation";
-
-export default function ModalCreateActivity() {
+import { deleteActivity } from "../../../api-next/deleteActivity";
+import { typesActivity } from "../../../types/types-user";
+interface Props {
+  data: typesActivity;
+}
+const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [nameActivity, setNameActivity] = useState("");
-  const [modality, setModality] = useState("");
-  const [price, setPrice] = useState(0);
-  const [color, setColor] = useState("");
+
   const [load, setLoad] = useState(false);
   const router = useRouter();
   const handleSubmit = async (onClose: () => void) => {
     setLoad(true);
     try {
-      await createActivity({ color, modality, nameActivity, price, id: 0 });
+      await deleteActivity({ id: data.id, data });
       setLoad(false);
+      router.refresh()
       onClose();
-      router.push(`/dashboard/${nameActivity.trim().toLowerCase()}`);
     } catch (e) {
       setLoad(false);
       console.log(e);
@@ -44,32 +45,7 @@ export default function ModalCreateActivity() {
               <ModalHeader className="flex flex-col gap-1">
                 Modal Title
               </ModalHeader>
-              <ModalBody>
-                <div>
-                  <Input
-                    type="text"
-                    onChange={(e) => setNameActivity(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="text"
-                    onChange={(e) => setModality(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="number"
-                    onChange={(e) => setPrice(Number(e.target.value))}
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="color"
-                    onChange={(e) => setColor(e.target.value)}
-                  />
-                </div>
-              </ModalBody>
+              <ModalBody></ModalBody>
               <ModalFooter>
                 <Button
                   color="danger"
@@ -94,4 +70,5 @@ export default function ModalCreateActivity() {
       </Modal>
     </>
   );
-}
+};
+export default ModalDeleteActivity;

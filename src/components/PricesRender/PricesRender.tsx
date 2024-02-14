@@ -1,4 +1,10 @@
-import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+} from "@nextui-org/react";
 import { orderById } from "../../logic/orderByMonthName";
 import { selectColor } from "../../logic/selectColor";
 import { typesActivity } from "../../types/types-user";
@@ -7,13 +13,23 @@ import { numberToMoney } from "../../logic/numberToMoney";
 import Link from "next/link";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import { EditColorActivity } from "./EditColor/EditColorActivity";
+import ModalDeleteActivity from "./DeleteActivity/ModalDeleteActivity";
+import ModalCreateActivity from "./CreateActivity/ModalCreateActivity";
 
 interface Props {
-  data: typesActivity[];
+  data: typesActivity[] | undefined;
 }
 
 export const PricesRender: React.FC<Props> = ({ data }) => {
   // Component...
+  if (data === undefined)
+    return (
+      <>
+        <div>
+          <ModalCreateActivity />
+        </div>
+      </>
+    );
   return (
     <div
       className={` flex justify-center flex-wrap max-w-[1000px] items-center gap-6 p-10`}
@@ -57,9 +73,14 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
             </div>
           </CardBody>
 
-          {/* <EditPriceModal data={el} /> */}
+          <CardFooter>
+            <ModalDeleteActivity data={el} />
+          </CardFooter>
         </Card>
       ))}
+      <div>
+        <ModalCreateActivity />
+      </div>
     </div>
   );
 };

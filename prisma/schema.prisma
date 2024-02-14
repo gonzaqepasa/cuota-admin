@@ -22,7 +22,7 @@ model User {
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   active     Boolean
-  activity   Activity  @relation(fields: [activityId], references: [id])
+  activity   Activity  @relation(fields: [activityId], references: [id], onDelete: Cascade)
   activityId Int
   // Información de pago
   // Se genera de forma automatica

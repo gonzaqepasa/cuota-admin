@@ -119,3 +119,23 @@ export async function getActivityForCloseMonth() {
     process.exit(1);
   }
 }
+export async function deleteActivityService({ id }: any) {
+  try {
+    const user = await prisma.activity.delete({
+      where: {
+        id: Number(id),
+      },
+      include: {
+        User: true,
+        
+      },
+    });
+    console.log(id);
+    await prisma.$disconnect();
+    return "user";
+  } catch (err) {
+    console.log(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  }
+}
