@@ -15,6 +15,7 @@ export async function editColor({
     const { data } = await axios.put(`${url}/activity/edit-color`, {
       id,
       color,
+      nameActivity
     });
 
     Swal.fire({

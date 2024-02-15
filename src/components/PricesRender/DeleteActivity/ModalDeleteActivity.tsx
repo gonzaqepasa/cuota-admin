@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { MdDelete } from "react-icons/md";
 import {
   Modal,
   ModalContent,
@@ -10,7 +11,6 @@ import {
   useDisclosure,
   Input,
 } from "@nextui-org/react";
-import { createActivity } from "../../../api-next/createActivity";
 import { useRouter } from "next/navigation";
 import { deleteActivity } from "../../../api-next/deleteActivity";
 import { typesActivity } from "../../../types/types-user";
@@ -27,7 +27,7 @@ const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
     try {
       await deleteActivity({ id: data.id, data });
       setLoad(false);
-      router.refresh()
+      router.refresh();
       onClose();
     } catch (e) {
       setLoad(false);
@@ -37,7 +37,14 @@ const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
+      <Button
+        color="danger"
+        variant="light"
+        className="min-w-fit text-lg"
+        onPress={onOpen}
+      >
+        <MdDelete />
+      </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

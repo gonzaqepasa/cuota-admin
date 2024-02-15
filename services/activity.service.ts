@@ -80,10 +80,10 @@ export async function editPrice({ id, price }: any) {
     process.exit(1);
   }
 }
-export async function editColor({ id, color }: any) {
+export async function editColor({ id, nameActivity, color }: any) {
   try {
-    const activities = await prisma.activity.update({
-      where: { id: Number(id) },
+    const activities = await prisma.activity.updateMany({
+      where: { nameActivity },
       data: {
         color: String(color),
       },
@@ -127,7 +127,6 @@ export async function deleteActivityService({ id }: any) {
       },
       include: {
         User: true,
-        
       },
     });
     console.log(id);

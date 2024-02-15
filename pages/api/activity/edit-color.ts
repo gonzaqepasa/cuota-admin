@@ -10,9 +10,9 @@ export default async function handler(
 ) {
   if (req.method === "PUT") {
     try {
-      const { id, color } = req.body;
+      const { id, color,nameActivity } = req.body;
 
-      const activities = await editColor({ id, color });
+      const activities = await editColor({ id, color,nameActivity });
 
       res.status(200).json(activities);
     } catch (err) {

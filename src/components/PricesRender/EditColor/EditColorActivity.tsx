@@ -49,7 +49,7 @@ export const EditColorActivity: React.FC<Props> = ({ data }) => {
   return (
     <>
       <Button
-        style={{ color: selectColor(data.nameActivity) }}
+        style={{ color: data.color }}
         variant="light"
         onPress={onOpen}
       >
