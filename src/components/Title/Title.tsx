@@ -1,17 +1,19 @@
+import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { selectColor } from "../../logic/selectColor";
+import { typesActivity } from "../../types/types-user";
 
 interface Props {
-  activityName: string;
+  data: typesActivity;
 }
 
-export const Title: React.FC<Props> = ({ activityName }) => {
+export const Title: React.FC<Props> = ({ data }) => {
   return (
-    <div className={`mt-3`}>
+    <div className={`m-3 flex flex-col items-center `}>
       <h2
-        style={{ borderBottom: `solid 1px ${selectColor(activityName)}` }}
-        className={`text-neutral-300 text-3xl`}
+        style={{ borderBottom: `solid 2px ${data.color}` }}
+        className={`text-neutral-700 font-medium drop-shadow text-3xl px-3 max-w-4xl`}
       >
-        {activityName}
+        {firstLetterUpper(data.nameActivity)}
       </h2>
       {/* <LinkDeptor activityName={activityName} /> */}
     </div>

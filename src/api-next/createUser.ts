@@ -5,21 +5,22 @@ import { Console } from "console";
 import { url } from "../config/env_d";
 import { firstLetterUpper } from "../logic/firstLetterUpper";
 import { typesActivity } from "../types/types-user";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface Params {
   objData: Object;
   nameUser: string;
   dataActivity: typesActivity[];
   setLoad: Dispatch<SetStateAction<boolean>>;
-  cb: ({ id }: { id: number }) => void; // route.push()
+  router: AppRouterInstance;
 }
 
-export async function createUser({
+export function createUser({
   objData,
   nameUser,
   dataActivity,
   setLoad,
-  cb,
+  router,
 }: Params) {
   const local_url = process.env.NEXT_PUBLIC_LOCAL_URL;
 
@@ -34,8 +35,8 @@ export async function createUser({
       if (res.data.length > 0) {
         Swal.fire({
           reverseButtons: true,
-          background: "#202020",
-          color: "white",
+          background: "#f2f2f2",
+          color: "black",
           title: `Ya existe un usuario llamado ${firstLetterUpper(name)}`,
           text: `Deseas crearlo igual o ir al perfil del usuario`,
           icon: "warning",
@@ -43,13 +44,13 @@ export async function createUser({
           showDenyButton: true,
           confirmButtonColor: "#476d7c",
           cancelButtonColor: "#202020",
-          denyButtonColor: "#505050",
+          denyButtonColor: "#005eff",
           denyButtonText: "Crear",
           confirmButtonText: "Ir al perfil",
           cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
-            cb({ id: res.data[0].id });
+            router.push(`/user/${res.data[0].id}`);
           } else if (result.isDenied) {
             create();
           } else {
@@ -59,13 +60,12 @@ export async function createUser({
       } else {
         Swal.fire({
           reverseButtons: true,
-          background: "#202020",
-          color: "white",
+          background: "#f2f2f2",
+          color: "black",
           title: "Agregar usuario",
           text: `Seguro quieres agregar a ${firstLetterUpper(name)}`,
-
           showCancelButton: true,
-          confirmButtonColor: "#476d7c",
+          confirmButtonColor: "#005eff",
           cancelButtonColor: "#202020",
           confirmButtonText: "Si agregar",
           cancelButtonText: "Cancelar",
@@ -99,19 +99,28 @@ export async function createUser({
         `${local_url}/api/user/create-user`,
         objData
       );
+      router.refresh();
       // setModalAdd(false);
       // getDataAgain();
       console.log(data);
-      cb({ id: data.id });
       Swal.fire({
-        background: "green",
-        color: "white",
-        text: `${nameUser} fue agregado con exito!`,
+        background: "#f2f2f2",
+        color: "black",
+        text: `${firstLetterUpper(nameUser)} fue agregado con exito!`,
         title: false,
-        position: "bottom-end",
-        showConfirmButton: false,
-        timer: 3000,
-        backdrop: false,
+        showConfirmButton: true,
+        confirmButtonText: "Ir al perfil",
+        confirmButtonColor: "#005eff",
+        cancelButtonColor: "#00a63a",
+        cancelButtonText: "Aceptar",
+        showCancelButton: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push(`/user/${data.id}`);
+        } else if (result.isDenied) {
+        } else {
+          setLoad(false);
+        }
       });
       setLoad(false);
       return data;
@@ -130,51 +139,4 @@ export async function createUser({
       });
     }
   };
-
-  /////////////////////////////////////////////////////////////////////////////////
-  // Swal.fire({
-  //   reverseButtons: true,
-  //   background: "#202020",
-  //   color: "white",
-  //   title: "Agregar usuario",
-  //   text: `Seguro quieres agregar a ${nameUser}`,
-  //   icon: "warning",
-  //   showCancelButton: true,
-  //   confirmButtonColor: "#476d7c",
-  //   cancelButtonColor: "#202020",
-  //   confirmButtonText: "Si agregar",
-  //   cancelButtonText: "Cancelar",
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
-  //     (async function () {
-  //       setLoad(true);
-  //       try {
-  //         const { data } = await axios.post(`${url}/user/create-user`, objData);
-  //         // setModalAdd(false);
-  //         // getDataAgain();
-
-  //         cb({ id: data.id });
-  //         Swal.fire({
-  //           background: "#202020",
-  //           color: "white",
-  //           icon: "success",
-  //           title: `Agregado!`,
-  //           text: `${nameUser} fue agregado con exito!`,
-  //         });
-  //         setLoad(false);
-  //         return data;
-  //       } catch (err) {
-  //         console.log(err);
-  //         setModalAdd(false);
-  //         Swal.fire({
-  //           background: "#202020",
-  //           color: "white",
-  //           icon: "error",
-  //           title: `Hubo un problema`,
-  //           text: `Consulte con el desarrollador`,
-  //         });
-  //       }
-  //     })();
-  //   }
-  // });
 }

@@ -16,8 +16,8 @@ import {
   User,
   Avatar,
 } from "@nextui-org/react";
-import { orderByActive } from "../../logic/orderByMonthName";
-import { selectColor } from "../../logic/selectColor";
+import { orderByActive, orderByName } from "../../logic/orderByMonthName";
+
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
@@ -94,85 +94,44 @@ export const RenderList: React.FC<Props> = ({
           <TableColumn width={10}>OPCIONES</TableColumn>
         </TableHeader>
         <TableBody emptyContent={"No hay usuarios para mostrar."} className="">
-          {orderByActive(resultFilter).map((el: typesUser, index) => (
-            <TableRow key={el.id}>
-              <TableCell>
-                <Link
-                  className="flex items-center hover:translate-x-1 hover:text-neutral-600 font-medium transition text-neutral-900"
-                  href={`/user/${el.id}`}
-                >
-                  <Avatar
-                    style={{
-                      backgroundColor: selectColor(el.activity.nameActivity),
-                    }}
-                    className="text-white mr-2"
-                    size="sm"
-                    name={firstLetterUpper(el.name)[0]}
-                  />
-                  {firstLetterUpper(el.name)}
-                  <i
-                    className="mx-1  text-sm"
-                    style={{ color: selectColor(el.activity.nameActivity) }}
+          {orderByName(orderByActive(resultFilter)).map(
+            (el: typesUser, index) => (
+              <TableRow key={el.id}>
+                <TableCell>
+                  <Link
+                    className="flex items-center hover:translate-x-1 hover:text-neutral-600 font-medium transition text-neutral-900"
+                    href={`/user/${el.id}`}
                   >
-                    {el.activity.modality}
-                  </i>
-                </Link>
-              </TableCell>
-              <TableCell>
-                <MsgDeptor user={el} month={monthSelected} />
-              </TableCell>
-              <TableCell className="flex justify-end ">
-                <ButtonDeleteUser userData={el} />
-              </TableCell>
-            </TableRow>
-          ))}
+                    <Avatar
+                      style={{
+                        backgroundColor: el.activity.color,
+                      }}
+                      className="text-white mr-2"
+                      size="sm"
+                      name={firstLetterUpper(el.name)[0]}
+                    />
+                    {firstLetterUpper(el.name)}
+                    <i
+                      className="mx-1  text-sm"
+                      style={{ color: el.activity.color }}
+                    >
+                      {el.activity.modality}
+                    </i>
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <MsgDeptor user={el} month={monthSelected} />
+                </TableCell>
+                <TableCell className="flex justify-end ">
+                  <ButtonDeleteUser userData={el} />
+                </TableCell>
+              </TableRow>
+            )
+          )}
         </TableBody>
       </Table>
     </div>
   );
 };
 
-// <div
-//                key={el.id}
-//              className={`flex items-center rounded relative animate-one
-//          ${(index - 1) % 2 && "bg-cyan-900 bg-opacity-20"}   ${
-//            !el.active && "opacity-30"
-//        } hover:bg-cyan-900`}
-//      /* style={{
-//    borderBottom: `1px solid ${selectColor(
-//    userData[0].activity.nameActivity
-//  )}`,
-//           }} */
-//       >
-//       <Link
-//       className="flex items-center pl-2 w-full py-2  text-neutral-300"
-//     href={`/user/${el.id}`}
-// >
-//             <FaUserCheck
-//              size={15}
-//             className="mx-1"
-//            color={selectColor(userData[0].activity.nameActivity)}
-//         />
-//        {firstLetterUpper(el.name)} -{" "}
-//       <i
-//        className="mx-1  text-sm"
-//       style={{ color: selectColor(el.activity.nameActivity) }}
-//    >
-//     {el.activity.modality}
-//  </i>
-// <MsgDeptor user={el} month={monthSelected} />
-//                 </Link>
-//                <div className={`absolute right-2 flex items-center`}>
-//                 <button
-//                // onClick={(e) => {
-//               //   visibilityUser(e, { id: Number(el.id), active: el.active });
-//              // }}
-//             >
-//              {el.active ? (
-//               <MdOutlineVisibility size={20} color="white" />
-//            ) : (
-//             <MdOutlineVisibilityOff size={20} color="grey" />
-//          )}
-//       </button>
-//    </div>
-// </div>
+//
