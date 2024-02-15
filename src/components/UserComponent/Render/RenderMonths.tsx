@@ -6,7 +6,6 @@ import { dateMonth, mesActual, monthOfPay } from "../../../config/moths.d";
 import { useEffect } from "react";
 import { orderByMonth } from "../../../logic/orderByMonthName";
 import { FcCheckmark } from "react-icons/fc";
-import { selectColor } from "../../../logic/selectColor";
 
 interface Props {
   user: typesUser;
@@ -40,7 +39,7 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
     );
   return (
     <div className="flex flex-col justify-center  items-center lg:max-w-none max-w-xl lg:py-5  ">
-      <div className="flex sticky top-14 z-30 lg:hidden justify-center py-3  bg-neutral-800 shadow-md w-screen">
+      <div style={{backgroundColor:user.activity.color}} className="flex sticky top-14 z-30 lg:hidden justify-center py-3   shadow-md w-screen">
         <h2 className="text-neutral-100 text-xl">Pagos</h2>
       </div>
       <Accordion
@@ -58,7 +57,7 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
             className={`${m.isPay && "bg-green-500/10"}  px-2 ${
               isThisMonth(m) && "border-2 rounded-md "
             }`}
-            style={{ borderColor: selectColor(user.activity.nameActivity) }}
+            style={{ borderColor: user.activity.color }}
             // startContent={}
           >
             <CardMonth el={m} index={index} user={user} />

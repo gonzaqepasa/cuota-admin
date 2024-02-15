@@ -30,9 +30,10 @@ export async function payMonth({ month, userData, method }: typesToPay) {
     });
 
     Swal.fire({
-      background: "#202020",
-      color: "white",
+      background: "#f2f2f2",
+      color: "black",
       icon: "success",
+      confirmButtonColor: "#005eff",
       title: `Pago aceptado!`,
       text: `${firstLetterUpper(userData.name)} pago el mes de ${
         month.monthName

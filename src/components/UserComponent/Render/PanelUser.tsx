@@ -4,9 +4,9 @@ import { ActivityUser } from "../InformationPanel/ActivityUser/ActivityUser";
 import { PhoneUser } from "../InformationPanel/PhoneUser/PhoneUser";
 import { Description } from "../InformationPanel/Description/Description";
 import { typesUser } from "../../../types/types-user";
-import { selectColor } from "../../../logic/selectColor";
 import BtnBack from "../../Globals/BtnBack";
 import { fromNameToUrl } from "../../../logic/fromNameToUrl";
+import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 interface Props {
   userData: typesUser;
 }
@@ -20,9 +20,9 @@ const PanelUser: React.FC<Props> = ({ userData }) => {
           />
           <h2
             className={`py-4 text-xl font-bold drop-shadow`}
-            style={{ color: selectColor(userData.activity.nameActivity) }}
+            style={{ color:userData.activity.color }}
           >
-            {userData.activity.nameActivity}
+            {firstLetterUpper(userData.activity.nameActivity)}
           </h2>
         </div>
         <Divider />

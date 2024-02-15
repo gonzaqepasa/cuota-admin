@@ -3,15 +3,12 @@ import { typesMonth, typesUser } from "../../../../types/types-user";
 import { FcCheckmark } from "react-icons/fc";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FcCancel } from "react-icons/fc";
-import { IoIosArrowDown } from "react-icons/io";
 import { numberToMoney } from "../../../../logic/numberToMoney";
 import Image from "next/image";
 import mp from "../../../../styles/mp.png";
 import { ButtonCancel } from "../btn/Cancel/Cancel";
 import { ButtonPay } from "../btn/Pay/Pay";
 import { useState } from "react";
-import { mesActual } from "../../../../config/moths.d";
-import { selectColor } from "../../../../logic/selectColor";
 
 interface Props {
   el: typesMonth;
@@ -32,7 +29,7 @@ const CardMonth: React.FC<Props> = ({ el, index, user }) => {
         <p className={`text-sm font-bold text-neutral-500`}>Mes :</p>
         <p
           className="flex   text-sm items-center mx-1 font-semibold    text-neutral-900"
-          style={{ color: selectColor(user.activity.nameActivity) }}
+          style={{ color: user.activity.color }}
         >
           {el.monthName}
           {el.isPay && <FcCheckmark className="mx-1" />}

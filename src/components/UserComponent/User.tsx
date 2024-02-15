@@ -1,12 +1,6 @@
-import { Description } from "./InformationPanel/Description/Description";
-import { NameUser } from "./InformationPanel/NameUser/NameUser";
-import { PhoneUser } from "./InformationPanel/PhoneUser/PhoneUser";
-import { ActivityUser } from "./InformationPanel/ActivityUser/ActivityUser";
 import getUser from "../../api-next/getUser";
 import { RenderMonths } from "./Render/RenderMonths";
 import { typesUser } from "../../types/types-user";
-import { Divider } from "@nextui-org/react";
-import { selectColor } from "../../logic/selectColor";
 import PanelUser from "./Render/PanelUser";
 
 interface Props {

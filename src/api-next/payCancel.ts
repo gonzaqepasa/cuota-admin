@@ -14,11 +14,12 @@ export async function payCancel({ id, monthName }: payCancelProps) {
     });
 
     Swal.fire({
-      background: "#202020",
-      color: "white",
+      background: "#f2f2f2",
+      color: "black",
       icon: "success",
       title: `Pago Cancelado!`,
       text: `Cancelaste el pago del mes de ${monthName}`,
+      confirmButtonColor: "#476d7c",
     });
   } catch (err) {
     console.log(err);
