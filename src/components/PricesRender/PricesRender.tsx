@@ -49,7 +49,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
                 style={{ backgroundColor: el.color }}
                 className="rounded-full h-3 w-3 "
               ></span>
-              <p className="">{el.nameActivity}</p>
+              <p className="">{firstLetterUpper(el.nameActivity)}</p>
               <Link
                 className=" text-blue-600 text-xs transition-colors hover:text-blue-500"
                 href={`/dashboard/${fromNameToUrl(el.nameActivity)}`}
@@ -72,12 +72,10 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
               <div className="flex items-center gap-1">
                 <p className="text-2xl">{numberToMoney(el.price)}</p>
                 <EditPriceModal data={el} />
-              </div>
-              <div>
                 <EditColorActivity data={el} />
               </div>
             </CardBody>
-
+            <Divider className="bg-neutral-200"/>
             <CardFooter className="justify-end">
               <ModalDeleteActivity data={el} />
             </CardFooter>

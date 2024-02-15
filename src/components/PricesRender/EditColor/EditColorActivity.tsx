@@ -1,9 +1,7 @@
 "use client";
 import { typesActivity } from "../../../types/types-user";
-import { useState, Dispatch, SetStateAction } from "react";
-import { AiOutlineEdit } from "react-icons/ai";
-import { selectColor } from "../../../logic/selectColor";
-import { numberToMoney } from "../../../logic/numberToMoney";
+import { useState } from "react";
+
 import {
   Modal,
   ModalContent,
@@ -14,6 +12,7 @@ import {
   useDisclosure,
   Input,
 } from "@nextui-org/react";
+import { IoIosColorPalette } from "react-icons/io";
 
 import { useRouter } from "next/navigation";
 import { editColor } from "../../../api-next/editColor";
@@ -50,10 +49,11 @@ export const EditColorActivity: React.FC<Props> = ({ data }) => {
     <>
       <Button
         style={{ color: data.color }}
+        className={`min-w-0`}
         variant="light"
         onPress={onOpen}
       >
-        Cambiar color
+        <IoIosColorPalette />
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
