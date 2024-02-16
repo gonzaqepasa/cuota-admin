@@ -8,7 +8,7 @@ interface Params {
 const getUser = async ({ id }: Params) => {
   
   try {
-    const { data } = await axios.get(`${url}/api/user/user?USER=${id}`);
+    const { data } = await axios.get(`${url}/user/user?USER=${id}`);
     return data;
   } catch (e) {
     console.log(e);

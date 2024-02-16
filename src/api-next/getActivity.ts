@@ -11,7 +11,7 @@ export interface typesResActivity {
 export const getAllActivitiesToEdit = async (): Promise<typesResActivity> => {
   try {
     const activityRes = await axios.get(
-      `${url}/api/activity/get-activity`
+      `${url}/activity/get-activity`
     );
 
     return { activity: activityRes.data };
@@ -29,7 +29,7 @@ const getActivityClient = async ({
 }: any): Promise<typesResActivity> => {
   try {
     const activityRes = await axios.get(
-      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity?activity=${activity}`
+      `${url}/activity/get-activity?activity=${activity}`
     );
 
     if ((await activityRes.data.length) === 0) {
@@ -40,7 +40,7 @@ const getActivityClient = async ({
     }
 
     const userRes = await axios.get(
-      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/user/get-users?activity=${activity}`
+      `${url}/user/get-users?activity=${activity}`
     );
 
     return {
@@ -59,7 +59,7 @@ const getActivityClient = async ({
 export const getAllActivities = async () => {
   try {
     const activityRes = await axios.get(
-      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity`
+      `${url}/activity/get-activity`
     );
     const filteredData: typesActivity[] = Object.values(
       activityRes.data.reduce((acc: any, obj: any) => {

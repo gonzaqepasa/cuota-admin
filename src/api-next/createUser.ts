@@ -22,14 +22,14 @@ export function createUser({
   setLoad,
   router,
 }: Params) {
-  const local_url = process.env.NEXT_PUBLIC_LOCAL_URL;
+
 
   (async () => {
     try {
       setLoad(true);
       const name = nameUser.toLowerCase().trim();
       const res = await axios.get(
-        `${local_url}/api/user/user-val?USER=${name}&ACTIVITY=${dataActivity[0].nameActivity}`
+        `${url}/user/user-val?USER=${name}&ACTIVITY=${dataActivity[0].nameActivity}`
       );
       console.log("esto es res", res.data);
       if (res.data.length > 0) {
@@ -96,7 +96,7 @@ export function createUser({
   const create = async () => {
     try {
       const { data } = await axios.post(
-        `${local_url}/api/user/create-user`,
+        `${url}/user/create-user`,
         objData
       );
       router.refresh();
