@@ -67,7 +67,7 @@ export const RenderList: React.FC<Props> = ({
   }, [search, userData]);
 
   return (
-    <div className={` flex flex-col gap-3 min-h-screen w-screen items-center`}>
+    <div  className={`bg-neutral-200/90 flex flex-col gap-3 min-h-screen w-screen items-center`}>
       <div className="flex flex-col items-center backg-card-user  px-6 max-w-3xl w-screen rounded ">
         <FilterList
           monthSelected={monthSelected}

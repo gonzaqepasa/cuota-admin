@@ -69,7 +69,8 @@ export const getAllActivities = async () => {
     );
     return filteredData;
   } catch (e) {
-    return false;
+   console.log(e)
+   return []
   }
 };
 

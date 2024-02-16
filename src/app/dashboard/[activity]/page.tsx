@@ -21,7 +21,7 @@ const ActivityListPage = async ({ params }: Params) => {
   if (msg) return <h2>{msg}</h2>;
   if (!users || !activity) return <h2>No encontro usuario ni actividad</h2>;
   return (
-    <main className="main bg-neutral-300">
+    <main style={{backgroundColor:activity[0].color}} className="main bg-neutral-300">
       <ProviderAuth>
         <ProviderNextUi>
           <Title data={activity[0]} />
