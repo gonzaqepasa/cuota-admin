@@ -4,9 +4,16 @@ import { Dispatch, SetStateAction } from "react";
 interface Props {
   onClose: () => void;
   isLoad: boolean;
+  name: string;
+  activity: number | null;
 }
 
-export const ButtonForm: React.FC<Props> = ({ onClose, isLoad }) => {
+export const ButtonForm: React.FC<Props> = ({
+  onClose,
+  isLoad,
+  name,
+  activity,
+}) => {
   return (
     <div className={` w-full flex flex-row-reverse justify-center py-2 gap-2`}>
       <Button
@@ -15,7 +22,7 @@ export const ButtonForm: React.FC<Props> = ({ onClose, isLoad }) => {
         color="primary"
         type="submit"
         isLoading={isLoad}
-        isDisabled={isLoad}
+        isDisabled={isLoad || name.length < 2 || !Boolean(activity)}
       >
         Agregar
       </Button>

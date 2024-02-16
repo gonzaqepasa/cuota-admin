@@ -70,10 +70,7 @@ const ButtonDeleteUser: React.FC<Props> = ({ userData, text }) => {
                     deleteUserLogic({
                       id: userData.calendar.id,
                       nameUser: userData.name,
-                      cb: () =>
-                        route.push(
-                          `/dashboard/${userData.activity.nameActivity}`
-                        ),
+                      cb: () => route.refresh(),
                       setLoad,
                     })
                   }

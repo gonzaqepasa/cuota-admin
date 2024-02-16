@@ -1,40 +1,39 @@
 import { Select, SelectItem } from "@nextui-org/react";
 import { selectColor } from "../../../../logic/selectColor";
 import { type typesActivity } from "../../../../types/types-user";
-import { handleSelect } from "../../logic/handle-functions";
 import { Dispatch, SetStateAction } from "react";
+import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 
 interface Props {
-  setActivity: Dispatch<SetStateAction<number>>;
+  setActivity: Dispatch<SetStateAction<number | null>>;
   dataActivity: typesActivity[];
+  activity: number | null;
 }
 
 export const ModalityInput: React.FC<Props> = ({
   dataActivity,
   setActivity,
+  activity
 }) => {
+  function handleSelect(e: string) {
+    setActivity(Number(e));
+    console.log(e);
+  }
   console.log(dataActivity);
   return (
     <Select
       className={` `}
-      onChange={(e) => handleSelect(e.target.value, setActivity)}
+      onChange={(e) => handleSelect(e.target.value)}
       name="activity"
       id=""
       color="primary"
       variant="bordered"
       label={"Modalidad"}
-      placeholder={dataActivity[0].modality}
-      defaultSelectedKeys={dataActivity[0].modality}
-      style={{ color: selectColor(dataActivity[0].nameActivity) }}
+      errorMessage={!activity && "Selecciones modalidad"}
     >
       {dataActivity.map((el: typesActivity) => (
-        <SelectItem
-          color="primary"
-          variant="solid"
-          key={el.id}
-          value={el.modality}
-        >
-          {el.modality}
+        <SelectItem color="primary" variant="solid" key={el.id} value={el.id}>
+          {firstLetterUpper(el.modality)}
         </SelectItem>
       ))}
     </Select>

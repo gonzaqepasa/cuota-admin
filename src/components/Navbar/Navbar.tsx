@@ -140,7 +140,7 @@ const NavbarMain: React.FC<Props> = () => {
                   key={a.id}
                   activityName={a.nameActivity}
                   text={a.nameActivity}
-                  href={`dashboard/${a.nameActivity}`}
+                  href={`/dashboard/${a.nameActivity}`}
                 />
               ))}
           </NavbarMenuItem>

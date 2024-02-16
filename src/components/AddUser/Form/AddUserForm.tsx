@@ -18,7 +18,7 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   const route = useRouter();
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
-  const [activity, setActivity] = useState(dataActivity[0].id);
+  const [activity, setActivity] = useState<number | null>(null);
   const [description, setDescription] = useState("");
   ///////////////////////////////////////////////////////
 
@@ -29,7 +29,11 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   });
 
   ////////////////////////////////////////////////////////////
-  const toSendObj: { name: string; description: string; activityId: number } = {
+  const toSendObj: {
+    name: string;
+    description: string;
+    activityId: number | null;
+  } = {
     name,
     description,
     activityId: activity,
@@ -43,14 +47,17 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
       nameUser: name,
       dataActivity,
       setLoad,
-     router:route
+      router: route,
     });
-   
   }
 
   return (
     <form className="flex flex-col gap-3" onSubmit={(e) => handleSubmit(e)}>
-      <ModalityInput setActivity={setActivity} dataActivity={dataActivity} />
+      <ModalityInput
+        setActivity={setActivity}
+        dataActivity={dataActivity}
+        activity={activity}
+      />
 
       <NameInput
         setName={setName}
@@ -61,7 +68,12 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
         dataActivity={dataActivity}
         setDescription={setDescription}
       />
-      <ButtonForm onClose={onClose} isLoad={load} />
+      <ButtonForm
+        onClose={onClose}
+        isLoad={load}
+        name={name}
+        activity={activity}
+      />
     </form>
   );
 };

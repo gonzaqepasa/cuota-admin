@@ -115,7 +115,7 @@ export const RenderList: React.FC<Props> = ({
                       className="mx-1  text-sm"
                       style={{ color: el.activity.color }}
                     >
-                      {el.activity.modality}
+                      {firstLetterUpper(el.activity.modality)}
                     </i>
                   </Link>
                 </TableCell>
