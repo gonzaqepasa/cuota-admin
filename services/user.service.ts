@@ -103,7 +103,12 @@ export async function getUser({ id }: any) {
       },
     });
     return user;
-  } catch (err) {}
+    await prisma.$disconnect();
+
+  } catch (err) {
+    await prisma.$disconnect();
+    process.exit(1);
+  }
 }
 
 export async function getUserValidate({ name, activity }: any) {

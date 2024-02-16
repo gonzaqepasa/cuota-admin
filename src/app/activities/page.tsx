@@ -3,7 +3,7 @@ import { PricesRender } from "../../components/PricesRender/PricesRender";
 import ProviderAuth from "../ProviderAuth";
 import ProviderNextUi from "../ProviderNextUi";
 
-const DashboardPage = async () => {
+const ActivitiesPage = async () => {
   const res = await getAllActivitiesToEdit();
 
 
@@ -18,4 +18,4 @@ const DashboardPage = async () => {
   );
 };
 
-export default DashboardPage;
+export default ActivitiesPage;

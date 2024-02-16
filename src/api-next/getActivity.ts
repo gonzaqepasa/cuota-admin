@@ -1,5 +1,5 @@
 import axios from "axios";
-import { typesActivity, typesUser } from "../types/types-user";
+import { typesActivity } from "../types/types-user";
 import { url } from "../config/env_d";
 
 export const getAllActivitiesToEdit = async () => {
@@ -16,7 +16,7 @@ export const getAllActivitiesToEdit = async () => {
   }
 };
 
-const getActivityClient = async ({ activity }: any) => {
+export const getActivityClient = async ({ activity }: any) => {
   try {
     const activityRes = await axios.get(
       `${url}/activity/get-activity?activity=${activity}`
@@ -62,5 +62,3 @@ export const getAllActivities = async () => {
     return [];
   }
 };
-
-export default getActivityClient;
