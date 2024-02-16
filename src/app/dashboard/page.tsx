@@ -1,15 +1,22 @@
 // "use client";
+import { getAllActivitiesToEdit } from "../../api-next/getActivity";
+import { PricesRender } from "../../components/PricesRender/PricesRender";
+import ProviderAuth from "../ProviderAuth";
+import ProviderNextUi from "../ProviderNextUi";
 
-import ModalCreateActivity from "../../components/PricesRender/CreateActivity/ModalCreateActivity";
+const ActivitiesPage = async () => {
+  const res = await getAllActivitiesToEdit();
+  console.log(res);
 
-const DashboardPage = () => {
   return (
-    <>
-      {" "}
-      <h1>Dashboard</h1>
-      <ModalCreateActivity />
-    </>
+    <main className="flex flex-col min-h-screen items-center">
+      <ProviderAuth>
+        <ProviderNextUi>
+          <>{res && <PricesRender data={res.activity} />}</>
+        </ProviderNextUi>
+      </ProviderAuth>
+    </main>
   );
 };
 
-export default DashboardPage;
+export default ActivitiesPage;

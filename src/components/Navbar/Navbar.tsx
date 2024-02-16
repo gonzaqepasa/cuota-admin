@@ -92,9 +92,9 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#">
-              <Button className="text-neutral-200" variant="light">
-                <LinkNav text="Resumen" href={`/resume`} />
-              </Button>
+            <Button className="text-neutral-200" variant="light">
+              <LinkNav text="Resumen" href={`/resume`} />
+            </Button>
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -122,7 +122,7 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarMenuItem>
 
           <NavbarMenuItem>
-            <LinkNav text="Panel de actividades" href={`/activities`} />
+            <LinkNav text="Panel de actividades" href={`/dashboard`} />
             <Divider />
             <h2 className="text-neutral-500 text-lg font-normal">
               Actividades

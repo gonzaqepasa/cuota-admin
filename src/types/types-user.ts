@@ -28,6 +28,7 @@ export interface typesActivity {
   color: string;
   price: number;
   id: number;
+  User?:typesUser[]
 }
 
 export interface typesCalendar {

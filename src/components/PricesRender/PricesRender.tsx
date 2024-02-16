@@ -5,7 +5,7 @@ import {
   CardHeader,
   Divider,
 } from "@nextui-org/react";
-import { orderById } from "../../logic/orderByMonthName";
+import { orderById, orderByNameActivity } from "../../logic/orderByMonthName";
 import { selectColor } from "../../logic/selectColor";
 import { typesActivity } from "../../types/types-user";
 import { EditPriceModal } from "./EditPrice/EditPrice";
@@ -39,7 +39,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
       <div
         className={` flex justify-center flex-wrap max-w-[1000px] items-center gap-6 p-5`}
       >
-        {orderById(data).map((el: typesActivity) => (
+        {orderByNameActivity(data).map((el: typesActivity) => (
           <Card
             className={`max-w-[400px] w-[95vw] bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-110 `}
             key={el.id}
@@ -74,6 +74,10 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
                 <EditPriceModal data={el} />
                 <EditColorActivity data={el} />
               </div>
+              <div className="flex items-center gap-1">
+                <p>{el.User?.length} </p>
+                <p className="text-neutral-500">registrados</p>
+              </div>
             </CardBody>
             <Divider className="bg-neutral-200" />
             <CardFooter className="justify-end">
@@ -81,6 +85,9 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
             </CardFooter>
           </Card>
         ))}
+      </div>
+      <div className="flex  justify-center my-4 px-2">
+        <p>{`Para eliminar una actividad, antes debes eliminar a todos los usuarios de esa actividad.`}</p><i className="text-red-500">*</i>
       </div>
     </>
   );

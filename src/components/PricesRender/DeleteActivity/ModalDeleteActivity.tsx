@@ -9,11 +9,11 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Input,
-} from "@nextui-org/react";
+  } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { deleteActivity } from "../../../api-next/deleteActivity";
 import { typesActivity } from "../../../types/types-user";
+
 interface Props {
   data: typesActivity;
 }
@@ -40,8 +40,9 @@ const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
       <Button
         color="danger"
         variant="light"
-        className="min-w-fit text-lg"
+        className="min-w-fit text-lg "
         onPress={onOpen}
+        isDisabled={data.User !== undefined && Boolean(data.User?.length > 0)}
       >
         <MdDelete />
       </Button>

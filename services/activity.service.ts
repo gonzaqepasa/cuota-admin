@@ -33,7 +33,10 @@ export async function getActivity({ activity }: any) {
         })
       : (data = undefined);
 
-    const activities = await prisma.activity.findMany(data);
+    const activities = await prisma.activity.findMany({
+      ...data,
+      include: { User: true },
+    });
     await prisma.$disconnect();
     return activities;
   } catch (err) {
