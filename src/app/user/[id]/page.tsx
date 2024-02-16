@@ -1,5 +1,6 @@
 import getUser from "../../../api-next/getUser";
 import User from "../../../components/UserComponent/User";
+import { typesUser } from "../../../types/types-user";
 import ProviderAuth from "../../ProviderAuth";
 import ProviderNextUi from "../../ProviderNextUi";
 interface Props {
@@ -8,12 +9,14 @@ interface Props {
   };
 }
 
-const UserPage = ({ params }: Props) => {
+const UserPage =async ({ params }: Props) => {
+  const userData: typesUser = await getUser({ id: String(params.id) });
+
   return (
     <main className="flex flex-col items-center justify-center text-neutral-300 ">
       <ProviderNextUi>
         <ProviderAuth>
-          <User id={params.id} />
+          <User userData={userData} />
         </ProviderAuth>
       </ProviderNextUi>
     </main>

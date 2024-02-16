@@ -4,12 +4,10 @@ import { typesUser } from "../../types/types-user";
 import PanelUser from "./Render/PanelUser";
 
 interface Props {
-  id: string;
+  userData: typesUser;
 }
 
-export const User = async ({ id }: { id: string }) => {
-  const userData: typesUser = await getUser({ id: String(id) });
-  console.log(userData);
+export const User: React.FC<Props> = ({ userData }) => {
   if (userData)
     return (
       <div
