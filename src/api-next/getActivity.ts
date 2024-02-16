@@ -2,7 +2,7 @@ import axios from "axios";
 import { typesActivity, typesUser } from "../types/types-user";
 
 export interface typesResActivity {
-  activity?: typesActivity[];
+  activity: typesActivity[];
   users?: typesUser[];
   msg?: string;
 }
@@ -13,17 +13,12 @@ export const getAllActivitiesToEdit = async (): Promise<typesResActivity> => {
       `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity`
     );
 
-    if ((await activityRes.data.length) === 0) {
-      return {
-        msg: "Esta actividad no existe",
-      };
-    }
-
     return { activity: activityRes.data };
   } catch (err: any) {
     console.log(err);
     return {
       msg: "Hubo un problame en el servidor",
+      activity: [],
     };
   }
 };
@@ -39,6 +34,7 @@ const getActivityClient = async ({
     if ((await activityRes.data.length) === 0) {
       return {
         msg: "Esta actividad no existe",
+        activity:[]
       };
     }
 
@@ -54,6 +50,7 @@ const getActivityClient = async ({
     console.log(err);
     return {
       msg: String(err),
+      activity:[]
     };
   }
 };

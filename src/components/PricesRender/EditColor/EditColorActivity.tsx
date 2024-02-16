@@ -16,6 +16,7 @@ import { IoIosColorPalette } from "react-icons/io";
 
 import { useRouter } from "next/navigation";
 import { editColor } from "../../../api-next/editColor";
+import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 
 interface Props {
   data: typesActivity;
@@ -60,10 +61,13 @@ export const EditColorActivity: React.FC<Props> = ({ data }) => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                EDITAR PRECIO
+                EDITAR COLOR
               </ModalHeader>
               <ModalBody>
-                <div>
+                <div className="flex text-sm flex-col items-center gap-2">
+                  <p>{`Selecciones un nuevo color para la actividad ${firstLetterUpper(
+                    data.nameActivity
+                  )}`}</p>
                   <Input
                     defaultValue={data.color}
                     onChange={(e) => handleChange(e.target.value)}

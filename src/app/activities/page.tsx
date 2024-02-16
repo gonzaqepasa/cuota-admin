@@ -9,12 +9,12 @@ import ProviderNextUi from "../ProviderNextUi";
 const ActivitiesPage = async () => {
   const res = await getAllActivitiesToEdit();
   console.log(res);
-  
+
   return (
     <main className="flex flex-col min-h-screen items-center">
       <ProviderAuth>
         <ProviderNextUi>
-          <PricesRender data={res.activity} />
+          <>{res && <PricesRender data={res.activity} />}</>
         </ProviderNextUi>
       </ProviderAuth>
     </main>

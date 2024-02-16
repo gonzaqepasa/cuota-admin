@@ -22,7 +22,8 @@ export async function editColor({
       // background: "#202020",
       color: "black",
       icon: "success",
-      title: "Precio cambiado",
+      confirmButtonColor:color,
+      title: "Color cambiado",
       text: `Se a asignado un nuevo color para ${nameActivity}`,
     });
   } catch (err) {

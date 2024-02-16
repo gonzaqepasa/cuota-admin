@@ -17,6 +17,7 @@ import {
 
 import { editPrice } from "../../../api-next/editPrice";
 import { useRouter } from "next/navigation";
+import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 
 interface Props {
   data: typesActivity;
@@ -69,12 +70,12 @@ export const EditPriceModal: React.FC<Props> = ({ data }) => {
                 <div>
                   <div className="flex flex-col items-center">
                     <p className="text-sm">{`Seleccione el precio para la actividad`}</p>
-                    <p className=" font-semibold">{data.nameActivity}</p>
+                    <p className=" font-semibold">{firstLetterUpper(data.nameActivity)}</p>
                     <p
                       className="font-semibold text-sm"
-                      style={{ color: selectColor(data.nameActivity) }}
+                      style={{ color: data.color }}
                     >
-                      {data.modality}
+                      {firstLetterUpper(data.modality)}
                     </p>
                     <p className="text-sm italic">{`El precio debe ser mayor a $0 y menor a $100.000`}</p>
                   </div>

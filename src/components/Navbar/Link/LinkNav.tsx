@@ -1,12 +1,11 @@
 import Link from "next/link";
 
-import { selectColor } from "../../../logic/selectColor";
-import { useParams } from "next/navigation";
 import { FaAngleRight } from "react-icons/fa";
 
 interface Props {
   href: string;
   text: string;
+  color?: string;
 }
 
 export const LinkNav: React.FC<Props> = ({ href, text }) => {
@@ -25,11 +24,12 @@ export const LinkActivity: React.FC<Props2> = ({
   href,
   text,
   activityName,
+  color,
 }) => {
   return (
     <>
       <Link className={` flex items-center  my-1 `} href={`${href}`}>
-        <p style={{ color: selectColor(String(activityName)) }}>
+        <p style={{ color }}>
           <FaAngleRight />
         </p>
         <p className="pl-2 text-neutral-600">{text}</p>

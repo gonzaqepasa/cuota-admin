@@ -18,7 +18,7 @@ import ModalCreateActivity from "./CreateActivity/ModalCreateActivity";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 
 interface Props {
-  data: typesActivity[] | undefined;
+  data: typesActivity[];
 }
 
 export const PricesRender: React.FC<Props> = ({ data }) => {
@@ -27,21 +27,21 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
     return (
       <>
         <div>
-          <ModalCreateActivity />
+          <ModalCreateActivity activitiesRes={data} />
         </div>
       </>
     );
   return (
     <>
       <div className="flex justify-center p-5 ">
-        <ModalCreateActivity />
+        <ModalCreateActivity activitiesRes={data} />
       </div>
       <div
         className={` flex justify-center flex-wrap max-w-[1000px] items-center gap-6 p-5`}
       >
         {orderById(data).map((el: typesActivity) => (
           <Card
-            className={`w-[400px] bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-110 `}
+            className={`max-w-[400px] w-[95vw] bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-110 `}
             key={el.id}
           >
             <CardHeader className="flex items-center mx-3 gap-2">
@@ -75,7 +75,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
                 <EditColorActivity data={el} />
               </div>
             </CardBody>
-            <Divider className="bg-neutral-200"/>
+            <Divider className="bg-neutral-200" />
             <CardFooter className="justify-end">
               <ModalDeleteActivity data={el} />
             </CardFooter>
