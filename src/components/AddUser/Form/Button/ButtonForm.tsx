@@ -1,24 +1,40 @@
+import { Button } from "@nextui-org/react";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  setModalAdd: Dispatch<SetStateAction<boolean>>;
+  onClose: () => void;
+  isLoad: boolean;
+  name: string;
+  activity: number | null;
 }
 
-export const ButtonForm: React.FC<Props> = ({ setModalAdd }) => {
+export const ButtonForm: React.FC<Props> = ({
+  onClose,
+  isLoad,
+  name,
+  activity,
+}) => {
   return (
-    <div className={` w-full flex flex-row-reverse justify-center py-2`}>
-      <button
-        className={`p-1 text-gray-200 font-normal rounded m-1 px-4 transition bg-cyan-800 hover:bg-cyan-700 focus:scale-95`}
+    <div className={` w-full flex flex-row-reverse justify-center py-2 gap-2`}>
+      <Button
+        className={``}
+        variant="solid"
+        color="primary"
         type="submit"
+        isLoading={isLoad}
+        isDisabled={isLoad || name.length < 2 || !Boolean(activity)}
       >
         Agregar
-      </button>
-      <button
-        className={`p-1 text-gray-400  rounded m-1 px-2 font-normal buttonCancel transition focus:scale-95 hover:bg-neutral-800 hover:text-gray-200 `}
-        onClick={() => setModalAdd(false)}
+      </Button>
+      <Button
+        className={``}
+        isDisabled={isLoad}
+        variant="light"
+        color="danger"
+        onPress={onClose}
       >
         Cancelar
-      </button>
+      </Button>
     </div>
   );
 };

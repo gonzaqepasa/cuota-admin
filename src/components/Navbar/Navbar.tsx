@@ -1,123 +1,147 @@
-import styles from "./Navbar.module.scss";
-import { Divide as Hamburger } from "hamburger-react";
 import { useEffect, useState } from "react";
-import { selectColor } from "../../logic/selectColor";
-import { useRouter } from "next/router";
+import logo from "../../styles/images/logo.png";
 import { auth } from "../../../firebase/firebaseConfig";
-import { FaArrowCircleUp } from "react-icons/fa";
 import { selectAvatar } from "../../logic/selectAvatar";
-import { signOutUser } from "../../../firebase/auth/signOut";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Button,
+  NavbarMenuItem,
+  NavbarMenu,
+  NavbarMenuToggle,
+  User,
+  Divider,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/react";
+import Image from "next/image";
+import { Auth } from "firebase/auth";
+import Link from "next/link";
+import { getAllActivities } from "../../api-next/getActivity";
+import { typesActivity } from "../../types/types-user";
 import { LinkActivity, LinkNav } from "./Link/LinkNav";
+import { fromNameToUrl } from "../../logic/fromNameToUrl";
+import Avatar from "./Avatar/Avatar";
 
-export default function NavbarMain() {
-  const route = useRouter();
-  // console.log(route.asPath);
+interface Props {
+  auth: Auth;
+}
+
+const NavbarMain: React.FC<Props> = () => {
   const user = auth.currentUser;
-  // useEffect(() => {}, []);
   const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);
   //////// Estados ////////
-  const [modal, setModal] = useState(false);
-  const [isTop, setIsTop] = useState(true);
-  const [toTop, setToTop] = useState(true);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activities, setActivities] = useState<typesActivity[]>([]);
   /////////////////////////
-
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.scrollY < 30 ? setIsTop(true) : setIsTop(false);
-      window.scrollY < 300 ? setToTop(true) : setToTop(false);
-    });
+    (async () => {
+      const res: typesActivity[] = await getAllActivities();
+      setActivities(res);
+    })();
   }, []);
-
   return (
     <>
-      <div className={`  ${styles.allNavbar} ${isTop && styles.isTopNav}`}>
-        <div
-          className={`${styles.navWithBtn} ${!modal && styles.modalInactive}`}
-        >
-          <div className={`${styles.responsiveBox}`}>
-            <div className={`${styles.header}`}>
-              <div className={styles.imgBox}>
-                <img src={avatar} alt="asd" />
-              </div>
-              <div className={styles.textBox}>
-                <p>{user?.email}</p>
-                <div className={styles.signOutBtnContainer}>
-                  <button onClick={(e) => signOutUser(e)}>Cerrar sesion</button>
-                </div>
-              </div>
-            </div>
-            <nav className={`${styles.navigation}`}>
-              <div className={`${styles.firstLinks} ${isTop && styles.isTop}`}>
-                <LinkNav href={"/prices"} text="Precios" setModal={setModal} />
-                <LinkNav href={"/resume"} text="Resumen" setModal={setModal} />
-                {/*   <LinkNav
-                  text="¿Quién debe?"
-                  setModal={setModal}
-                  href={"/quien-debe"}
-                /> */}
-              </div>
+      <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-neutral-800">
+        {/* //  Hamburguer Botton */}
+        {/* Logo Link */}
+        <NavbarContent>
+          <NavbarBrand>
+            <Link href={`/dashboard`}>
+              <Image src={logo} alt="" height={35} />
+            </Link>
+          </NavbarBrand>
+        </NavbarContent>
 
-              <div className={`${styles.activityLinks}`}>
-                <LinkActivity
-                  setModal={setModal}
-                  text="Gimnasio"
-                  href="/list/Gimnasio"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Taekwondo"
-                  href="/list/Taekwondo"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Power Box"
-                  href="/list/Power%20Box"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Zumba"
-                  href="/list/Zumba"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Jiu Jitzu"
-                  href="/list/Jiu%20Jitzu"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="Kick Boxing"
-                  href="/list/Kick%20Boxing"
-                />
-                <LinkActivity
-                  setModal={setModal}
-                  text="GAP + Funcional"
-                  activityName="GAP Funcional"
-                  href="/list/GAP%20Funcional"
-                />
-              </div>
-            </nav>
-          </div>
-          <button
-            onClick={() => setModal(false)}
-            className={`${styles.btnTouchClose} ${
-              modal && styles.btnColorTrans
-            }`}
-          ></button>
-        </div>
-        <div className={styles.hamburguerBox}>
-          <Hamburger
-            size={25}
-            color="white"
-            toggled={modal}
-            toggle={setModal}
+        <NavbarContent className="hidden lg:flex gap-4" justify="start">
+          <NavbarItem>
+            <Dropdown aria-label="Actividades">
+              <DropdownTrigger aria-label="asd">
+                <Button className="text-neutral-200" variant="light">
+                  Actividades
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="asd">
+                {activities.map((a: typesActivity) => (
+                  <DropdownItem
+                    variant="shadow"
+                    aria-label={a.nameActivity}
+                    key={a.id}
+                  >
+                    <LinkActivity
+                      color={a.color}
+                      key={a.id}
+                      activityName={a.nameActivity}
+                      text={a.nameActivity}
+                      href={`/dashboard/${fromNameToUrl(a.nameActivity)}`}
+                    />
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+          <NavbarItem>
+            <Button className="text-neutral-200" variant="light">
+              <LinkNav text="Panel de actividades" href={`/activities`} />
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#">
+            <Button className="text-neutral-200" variant="light">
+              <LinkNav text="Resumen" href={`/resume`} />
+            </Button>
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            {user ? (
+              <Avatar avatar={avatar} user={user} />
+            ) : (
+              <Link href="#">Login</Link>
+            )}
+          </NavbarItem>
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="lg:hidden text-neutral-200 font-semibold"
           />
-        </div>
-      </div>
-      <div className={`${styles.toTop} ${toTop && styles.toTopOn}`}>
-        <button onClick={() => (document.documentElement.scrollTop = 0)}>
-          <FaArrowCircleUp />
-        </button>
-      </div>
+        </NavbarContent>
+
+        <NavbarMenu className="bg-neutral-300/50">
+          <NavbarMenuItem>
+            {user ? (
+              <Avatar avatar={avatar} user={user} />
+            ) : (
+              <Link href="#">Login</Link>
+            )}
+          </NavbarMenuItem>
+
+          <NavbarMenuItem>
+            <LinkNav text="Panel de actividades" href={`/dashboard`} />
+            <Divider />
+            <h2 className="text-neutral-500 text-lg font-normal">
+              Actividades
+            </h2>
+            {activities &&
+              activities.map((a: typesActivity) => (
+                <LinkActivity
+                  color={a.color}
+                  key={a.id}
+                  activityName={a.nameActivity}
+                  text={a.nameActivity}
+                  href={`/dashboard/${fromNameToUrl(a.nameActivity)}`}
+                />
+              ))}
+          </NavbarMenuItem>
+        </NavbarMenu>
+      </Navbar>
     </>
   );
-}
+};
+
+export default NavbarMain;

@@ -9,8 +9,8 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const id = Number(req.query.USER);
-
+    const id = String(req.query.USER);
+    console.log(id);
     const user = await getUser({ id });
 
     res.status(200).json(user);

@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { typesMonthNames, typesUser } from "../../../types/types-user";
-import { arrayMonth, dateMonth, mesActual } from "../../Deptor/logic/moths.d";
-import { SelectMonth } from "../../Deptor/SelectMonth/SelectMonth";
+import { arrayMonth, dateMonth, mesActual } from "../../../config/moths";
+import { SelectMonth } from "./SelectMonth/SelectMonth";
+import { Tab, Tabs } from "@nextui-org/react";
 
 interface Props {
   monthSelected: typesMonthNames;
@@ -37,11 +38,10 @@ export const FilterList: React.FC<Props> = ({
   type filterType = "todos" | "pagado" | "sin pagar";
   const [state, setState] = useState<filterType>("todos");
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    const target = e.target as HTMLButtonElement;
-    const value = target.value as filterType;
-    setState(value);
-    // console.log(value);
+  const handleClick = (e: any) => {
+    if (e === "$.0") setState("todos");
+    if (e === "$.1") setState("pagado");
+    if (e === "$.2") setState("sin pagar");
   };
 
   useEffect(() => {
@@ -67,52 +67,34 @@ export const FilterList: React.FC<Props> = ({
       setResultFilter(res);
     }
   }, [state, result, monthSelected]);
+  function colorTabs() {
+    if (state === "pagado") return "success";
+    if (state === "sin pagar") return "danger";
+    return "primary";
+  }
 
   return (
-    <div className={`  flex flex-wrap items-center justify-center`}>
-      <div
-        className={` border border-neutral-400 m-3  bg-neutral-900 rounded  flex`}
+    <div className={`  flex gap-1 p-2 flex-wrap items-center justify-center`}>
+      <Tabs
+        variant="solid"
+        color={colorTabs()}
+        onSelectionChange={(e) => handleClick(e)}
       >
-        <button
-          onClick={(e) => handleClick(e)}
-          value={"todos"}
-          className={`border-none transition px-2 w-20 text-sm   rounded-l ${
-            state === "todos"
-              ? "bg-neutral-300 text-neutral-800 hover:text-neutral-900 hover:bg-neutral-200"
-              : "text-neutral-400               hover:bg-neutral-800"
-          }`}
-        >
-          Todos
-        </button>
-        <button
-          onClick={(e) => handleClick(e)}
-          value={"pagado"}
-          className={` border-none  transition px-2 w-20 text-sm  ${
-            state === "pagado"
-              ? "bg-green-700 text-neutral-200 "
-              : "text-neutral-400 hover:bg-neutral-800"
-          }`}
-        >
-          Pagos
-        </button>
-        <button
+        <Tab onClick={(e) => handleClick(e)} value={"todos"} title="Todos" />
+
+        <Tab onClick={(e) => handleClick(e)} value={"pagado"} title="Pagos" />
+
+        <Tab
           onClick={(e) => handleClick(e)}
           value={"sin pagar"}
-          className={`transition rounded-r px-2 w-25 text-sm  ${
-            state === "sin pagar"
-              ? "bg-red-700 hover:bg-red-700 text-neutral-200"
-              : "text-neutral-400 hover:bg-neutral-800"
-          }`}
-        >
-          Sin pagar
-        </button>
-      </div>
-      <div>
-        <SelectMonth
-          monthSelected={monthSelected}
-          setMonthSelected={setMonthSelected}
+          title="Sin pagar"
         />
-      </div>
+      </Tabs>
+
+      <SelectMonth
+        monthSelected={monthSelected}
+        setMonthSelected={setMonthSelected}
+      />
     </div>
   );
 };

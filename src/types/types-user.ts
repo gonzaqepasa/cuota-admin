@@ -25,8 +25,10 @@ export type typesEditName = Pick<typesUser, "id" | "name">;
 export interface typesActivity {
   nameActivity: string;
   modality: string;
+  color: string;
   price: number;
   id: number;
+  User?:typesUser[]
 }
 
 export interface typesCalendar {
