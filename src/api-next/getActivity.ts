@@ -2,17 +2,9 @@ import axios from "axios";
 import { typesActivity, typesUser } from "../types/types-user";
 import { url } from "../config/env_d";
 
-export interface typesResActivity {
-  activity: typesActivity[];
-  users?: typesUser[];
-  msg?: string;
-}
-
-export const getAllActivitiesToEdit = async (): Promise<typesResActivity> => {
+export const getAllActivitiesToEdit = async () => {
   try {
-    const activityRes = await axios.get(
-      `${url}/activity/get-activity`
-    );
+    const activityRes = await axios.get(`${url}/activity/get-activity`);
 
     return { activity: activityRes.data };
   } catch (err: any) {
@@ -24,9 +16,7 @@ export const getAllActivitiesToEdit = async (): Promise<typesResActivity> => {
   }
 };
 
-const getActivityClient = async ({
-  activity,
-}: any): Promise<typesResActivity> => {
+const getActivityClient = async ({ activity }: any) => {
   try {
     const activityRes = await axios.get(
       `${url}/activity/get-activity?activity=${activity}`
@@ -35,7 +25,7 @@ const getActivityClient = async ({
     if ((await activityRes.data.length) === 0) {
       return {
         msg: "Esta actividad no existe",
-        activity:[]
+        activity: [],
       };
     }
 
@@ -51,16 +41,14 @@ const getActivityClient = async ({
     console.log(err);
     return {
       msg: String(err),
-      activity:[]
+      activity: [],
     };
   }
 };
 
 export const getAllActivities = async () => {
   try {
-    const activityRes = await axios.get(
-      `${url}/activity/get-activity`
-    );
+    const activityRes = await axios.get(`${url}/activity/get-activity`);
     const filteredData: typesActivity[] = Object.values(
       activityRes.data.reduce((acc: any, obj: any) => {
         // Utiliza la actividad como clave del objeto
@@ -70,8 +58,8 @@ export const getAllActivities = async () => {
     );
     return filteredData;
   } catch (e) {
-   console.log(e)
-   return []
+    console.log(e);
+    return [];
   }
 };
 

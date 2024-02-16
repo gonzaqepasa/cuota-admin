@@ -87,7 +87,7 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarItem>
           <NavbarItem>
             <Button className="text-neutral-200" variant="light">
-              <LinkNav text="Panel de actividades" href={`/activities`} />
+              <LinkNav text="Panel de actividades" href={`/dashboard`} />
             </Button>
           </NavbarItem>
           <NavbarItem>
