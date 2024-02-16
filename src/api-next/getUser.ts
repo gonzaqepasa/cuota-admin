@@ -1,11 +1,12 @@
 import axios from "axios";
+import { url } from "../config/env_d";
 
 interface Params {
   id: string;
 }
 
 const getUser = async ({ id }: Params) => {
-  const url = process.env.NEXT_PUBLIC_LOCAL_URL || "";
+  
   try {
     const { data } = await axios.get(`${url}/api/user/user?USER=${id}`);
     return data;

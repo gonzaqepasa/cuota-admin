@@ -1,5 +1,6 @@
 import axios from "axios";
 import { typesActivity, typesUser } from "../types/types-user";
+import { url } from "../config/env_d";
 
 export interface typesResActivity {
   activity: typesActivity[];
@@ -10,7 +11,7 @@ export interface typesResActivity {
 export const getAllActivitiesToEdit = async (): Promise<typesResActivity> => {
   try {
     const activityRes = await axios.get(
-      `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/activity/get-activity`
+      `${url}/api/activity/get-activity`
     );
 
     return { activity: activityRes.data };
