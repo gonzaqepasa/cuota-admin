@@ -5,8 +5,8 @@ import {
   CardHeader,
   Divider,
 } from "@nextui-org/react";
-import { orderById, orderByNameActivity } from "../../logic/orderByMonthName";
-import { selectColor } from "../../logic/selectColor";
+import { orderByNameActivity } from "../../logic/orderByMonthName";
+
 import { typesActivity } from "../../types/types-user";
 import { EditPriceModal } from "./EditPrice/EditPrice";
 import { numberToMoney } from "../../logic/numberToMoney";
@@ -87,7 +87,8 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
         ))}
       </div>
       <div className="flex  justify-center my-4 px-2">
-        <p>{`Para eliminar una actividad, antes debes eliminar a todos los usuarios de esa actividad.`}</p><i className="text-red-500">*</i>
+        <p>{`Para eliminar una actividad, antes debes eliminar a todos los usuarios de esa actividad.`}</p>
+        <i className="text-red-500">*</i>
       </div>
     </>
   );

@@ -6,15 +6,14 @@ import ProviderNextUi from "../ProviderNextUi";
 const DashboardPage = async () => {
   const res = await getAllActivitiesToEdit();
 
-
   return (
-    <main className="flex flex-col min-h-screen items-center">
+    <ProviderNextUi>
       <ProviderAuth>
-        <ProviderNextUi>
+        <main className="flex flex-col min-h-screen items-center">
           <>{res && <PricesRender data={res.activity} />}</>
-        </ProviderNextUi>
+        </main>
       </ProviderAuth>
-    </main>
+    </ProviderNextUi>
   );
 };
 

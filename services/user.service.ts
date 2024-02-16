@@ -102,8 +102,8 @@ export async function getUser({ id }: any) {
         },
       },
     });
-    return user;
     await prisma.$disconnect();
+    return user;
 
   } catch (err) {
     await prisma.$disconnect();
