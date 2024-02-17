@@ -1,4 +1,3 @@
-import getUser from "../../api-next/getUser";
 import { RenderMonths } from "./Render/RenderMonths";
 import { typesUser } from "../../types/types-user";
 import PanelUser from "./Render/PanelUser";

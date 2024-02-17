@@ -1,4 +1,4 @@
-import {getActivityClient} from "../../../api-next/getActivity";
+import { getActivityClient } from "../../../api-next/getActivity";
 import { RenderList } from "../../../components/RenderList/RenderList";
 import { Title } from "../../../components/Title/Title";
 import ProviderAuth from "../../ProviderAuth";
@@ -16,8 +16,6 @@ const ActivityListPage = async ({ params }: Params) => {
   });
   // console.log(res);
 
-  if (msg) return <h2>{msg}</h2>;
-  if (!users || !activity) return <h2>No encontro usuario ni actividad</h2>;
   return (
     <main
       style={{ backgroundColor: activity[0].color }}

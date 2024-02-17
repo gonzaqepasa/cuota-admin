@@ -3,7 +3,7 @@ import Image from "next/image";
 import Logo from "../styles/images/fevicon.png";
 
 export const metadata: Metadata = {
-  title: "My Page Title",
+
 };
 
 export default function Page() {

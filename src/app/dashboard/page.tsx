@@ -7,13 +7,13 @@ const DashboardPage = async () => {
   const res = await getAllActivitiesToEdit();
 
   return (
-    <ProviderNextUi>
+    <main className="flex flex-col min-h-screen items-center">
       <ProviderAuth>
-        <main className="flex flex-col min-h-screen items-center">
-          <>{res && <PricesRender data={res.activity} />}</>
-        </main>
+        <ProviderNextUi>
+          <PricesRender data={res.activity} />
+        </ProviderNextUi>
       </ProviderAuth>
-    </ProviderNextUi>
+    </main>
   );
 };
 
