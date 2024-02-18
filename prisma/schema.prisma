@@ -75,7 +75,7 @@ model Month {
   monthNum   Int
   monthName  String
   addData    String
-  addDataIso DateTime
+  addDataIso DateTime?
   addAdmin   String
   comment    String?
 

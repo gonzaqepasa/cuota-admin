@@ -48,7 +48,7 @@ export const RenderList: React.FC<Props> = ({
   const [result, setResult] = useState<[] | typesUser[]>([]);
   const [resultFilter, setResultFilter] = useState(result);
   /////////////////////////
-
+console.log(dataActivity)
   useEffect(() => {
     if (userData) {
       if (!search) {
@@ -85,6 +85,7 @@ export const RenderList: React.FC<Props> = ({
       </div>
       <Table
         color="secondary"
+        aria-labelledby="algo"
         shadow="md"
         className={`scroll max-w-3xl flex flex-col items-start  w-11/12  overflow-y-auto h-96   rounded-xl`}
       >

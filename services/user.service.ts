@@ -40,6 +40,7 @@ export async function createUser({
                   monthName: obj.name,
                   addData: "",
                   addAdmin: "",
+                  addDataIso: "",
                   isPay: false,
                   mothodPay: "",
                   pricePay: 0,

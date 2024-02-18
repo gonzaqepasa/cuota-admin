@@ -18,6 +18,7 @@ export async function payMonth({ id, addAdmin, mothodPay, price }: any) {
         isPay: true,
         addData,
         addAdmin,
+        addDataIso: fecha.toISOString(),
         mothodPay,
         pricePay: price,
       },
@@ -78,6 +79,7 @@ export async function cancelPayMonth({ id, addAdmin }: any) {
         isPay: false,
         addData: " ",
         addAdmin: " ",
+        addDataIso: " ",
       },
     });
 
