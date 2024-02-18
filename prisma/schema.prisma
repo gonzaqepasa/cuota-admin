@@ -28,19 +28,23 @@ model User {
   // Se genera de forma automatica
   calendar   Calendar? @relation(fields: [calendarId], references: [id], onDelete: Cascade)
   calendarId Int?      @unique
+
+  // Fecha de creacion
+  fechaCreacion DateTime @default(now()) // Utilizando `@default` para establecer la fecha actual
 }
 
 model Activity {
   id Int @id @default(autoincrement())
 
   // información de actividad
-  nameActivity String
-  modality     String
-  price        Int
-  color        String
-
+  nameActivity  String
+  modality      String
+  price         Int
+  color         String
+  // Fecha de creacion
+  fechaCreacion DateTime @default(now()) // Utilizando `@default` para establecer la fecha actual
   //Todos los usuarios que tienen esta actividad
-  User User[]
+  User          User[]
 }
 
 model Calendar {
@@ -68,11 +72,12 @@ model Month {
   id Int @id @default(autoincrement())
 
   // Información del mes 
-  monthNum  Int
-  monthName String
-  addData   String
-  addAdmin  String
-  comment   String?
+  monthNum   Int
+  monthName  String
+  addData    String
+  addDataIso DateTime
+  addAdmin   String
+  comment    String?
 
   // Información del pago del mes
   isPay     Boolean
