@@ -45,7 +45,7 @@ const ModalEditUser: React.FC<Props> = ({
   const handleSubmit = (onClose: () => void) => {
     try {
       setLoad(true);
-      handle({ newVal: val, id: String(user.id), onClose });
+      handle({ newVal: val, id: String(user._id), onClose });
       router.refresh();
 
       setLoad(false);

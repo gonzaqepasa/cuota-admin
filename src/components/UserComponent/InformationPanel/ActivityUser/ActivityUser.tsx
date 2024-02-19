@@ -7,13 +7,14 @@ interface Props {
 }
 
 export const ActivityUser: React.FC<Props> = ({ user }) => {
+  console.log("Esto es user", user);
   return (
     <div className={` flex  justify-between`}>
       <TextUserPanel
         label="Actividad"
-        val={user.activity.nameActivity}
-        modality={user.activity.modality}
-        color={user.activity.color}
+        val={user.activity?.nameActivity}
+        modality={user.activity?.modality}
+        color={user.activity?.color}
       />
       <EditActivity
         activity={user.activity}

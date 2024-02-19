@@ -1,4 +1,4 @@
-import getUser from "../../../api-next/getUser";
+import getUser from "../../../api-next/user/getUser";
 import User from "../../../components/UserComponent/User";
 import { typesUser } from "../../../types/types-user";
 import ProviderAuth from "../../ProviderAuth";

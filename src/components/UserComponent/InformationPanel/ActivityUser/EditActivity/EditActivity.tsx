@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 import { typesActivity, typesUser } from "../../../../../types/types-user";
 import { url } from "../../../../../config/env_d";
-import { changeActivity } from "../../../../../api-next/changeActivity";
+import { changeActivity } from "../../../../../api-next/user/changeActivity";
 import { useRouter } from "next/navigation";
 import { CiEdit } from "react-icons/ci";
 interface Props {
@@ -59,13 +59,13 @@ export const EditActivity: React.FC<Props> = ({
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedActivity = activityRender.find(
       (a) => a.modality === event.target.value
-    );
+    );    
     selectedActivity && setSelected(selectedActivity);
     console.log({ selected, selectedActivity, defaultVal });
   };
   const handleSubmit = async (onClose: () => void) => {
     try {
-      await changeActivity({ activity: selected, id_user: user.id, onClose });
+      await changeActivity({ activity: selected, id_user: user._id, onClose });
       router.refresh();
     } catch (e) {
       console.log(e);
@@ -103,8 +103,8 @@ export const EditActivity: React.FC<Props> = ({
                 >
                   {activityRender.map((a, i) => (
                     <SelectItem
-                      isDisabled={a.id === activity.id}
-                      value={a.id}
+                      isDisabled={a._id === activity._id}
+                      value={a._id}
                       key={a.modality}
                     >
                       {a.modality}

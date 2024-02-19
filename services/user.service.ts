@@ -56,9 +56,9 @@ export async function getUsers(nameActivity: any) {
   }
 }
 
-export async function getUser({ _id }: any) {
+export async function getUser({ id }: any) {
   try {
-    const user = await User.find({ _id });
+    const user = await User.findById(id).populate("activity");
 
     return user;
   } catch (err) {
@@ -96,7 +96,12 @@ export async function updateUser({
   phoneNumber,
   description,
   name,
-}: any) {
+}: {
+  userId: string;
+  phoneNumber?: string;
+  description?: string;
+  name?: string;
+}) {
   try {
     // Verificar si se proporcionó un ID válido
     if (!userId) {
@@ -106,13 +111,13 @@ export async function updateUser({
     // Crear un objeto con las propiedades actualizadas
     const updatedFields: { [key: string]: any } = {};
     if (phoneNumber) {
-      updatedFields.phoneNumber = phoneNumber;
+      updatedFields.phoneNumber = phoneNumber.trim();
     }
     if (description) {
-      updatedFields.description = description;
+      updatedFields.description = description.trim();
     }
     if (name) {
-      updatedFields.name = name;
+      updatedFields.name = name.trim().toLowerCase();
     }
 
     // Actualizar el usuario con las propiedades proporcionadas
@@ -122,7 +127,7 @@ export async function updateUser({
 
     // Verificar si el usuario fue encontrado y actualizado
     if (!updatedUser) {
-      return { error: "No se encontró el usuario o no se pudo actualizar" };
+      throw new Error("No se encontro el usuario");
     }
 
     return updatedUser;

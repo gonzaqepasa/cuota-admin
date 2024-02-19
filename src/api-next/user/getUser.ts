@@ -1,5 +1,5 @@
 import axios from "axios";
-import { url } from "../config/env_d";
+import { url } from "../../config/env_d";
 
 interface Params {
   id: string;

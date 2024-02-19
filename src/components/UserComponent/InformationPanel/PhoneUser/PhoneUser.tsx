@@ -1,6 +1,6 @@
 "use client";
 import { typesUser } from "../../../../types/types-user";
-import { editPhoneLogic } from "../../../../api-next/editPhone";
+import { editPhoneLogic } from "../../../../api-next/user/editPhone";
 import ModalEditUser from "../ModalEditUser";
 import TextUserPanel from "../TextUserPanel";
 import { FaWhatsapp } from "react-icons/fa";
@@ -14,10 +14,10 @@ interface Props {
 export const PhoneUser: React.FC<Props> = ({ user }) => {
   return (
     <div className={` flex items-center justify-between   `}>
-      <TextUserPanel label="Numero de teléfono" val={user.phone} />
+      <TextUserPanel label="Numero de teléfono" val={user.phoneNumber} />
 
       <div className="flex items-center ">
-        {user.phone && (
+        {user.phoneNumber && (
           <>
             <Tooltip
               color="success"
@@ -28,11 +28,11 @@ export const PhoneUser: React.FC<Props> = ({ user }) => {
                 className="rounded-xl p-3 text-green-600 hover:bg-green-500/20"
                 target="_blank"
                 href={`https://wa.me/+54${
-                  user.phone
+                  user.phoneNumber
                 }?text=¡Hola ${firstLetterUpper(
                   user.name
                 )}, este es el enlace para que puedas consultar el estado de tus pagos https://indomitotraining.com/pagos/${
-                  user.id
+                  user._id
                 }`}
               >
                 <FaWhatsapp />
@@ -42,7 +42,7 @@ export const PhoneUser: React.FC<Props> = ({ user }) => {
         )}
         <ModalEditUser
           lenghtVal={0}
-          defaultVal={user.phone || ""}
+          defaultVal={user.phoneNumber || ""}
           handle={editPhoneLogic}
           user={user}
           title={`Editar numero de teléfono`}
