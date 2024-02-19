@@ -16,6 +16,7 @@ import { url } from "../../../../../config/env_d";
 import { changeActivity } from "../../../../../api-next/user/changeActivity";
 import { useRouter } from "next/navigation";
 import { CiEdit } from "react-icons/ci";
+import { getActivityClient } from "../../../../../api-next/activity/getActivity";
 interface Props {
   user: typesUser;
   activity: typesActivity;
@@ -32,20 +33,20 @@ export const EditActivity: React.FC<Props> = ({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
   /////////////////// CAMBIAR MODALIDAD ///////////////////////
-  const [activityRender, setActivityRender] = useState<typesActivity[]>([
-    activity,
-  ]);
+  const [activityRender, setActivityRender] = useState<typesActivity[]>([]);
 
-  console.log({ defaultVal, selected });
+  console.log("Esto llega a EditActivity");
+  console.log({ defaultVal, activity, user });
   useEffect(() => {
     (async function () {
       try {
         console.log("Entro a buscar las diferentes actividades");
-        const res = await fetch(
-          `${url}/activity/get-activity?activity=${activity.nameActivity}`
-        );
-        const data = await res.json();
-        setActivityRender(data);
+        const data = await getActivityClient({
+          nameActivity: activity.nameActivity,
+        });
+
+        console.log("Estas son las actividades", data);
+        setActivityRender(data.activity);
         setLoad(false);
       } catch (err) {
         setLoad(false);
@@ -59,9 +60,8 @@ export const EditActivity: React.FC<Props> = ({
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedActivity = activityRender.find(
       (a) => a.modality === event.target.value
-    );    
+    );
     selectedActivity && setSelected(selectedActivity);
-    console.log({ selected, selectedActivity, defaultVal });
   };
   const handleSubmit = async (onClose: () => void) => {
     try {
@@ -96,9 +96,8 @@ export const EditActivity: React.FC<Props> = ({
                 <Select
                   onChange={handleChange}
                   id=""
-                  defaultSelectedKeys={[defaultVal]}
-                  placeholder={defaultVal}
                   label={false}
+                  placeholder="Seleccionar nueva modalidad"
                   aria-label="asdasd"
                 >
                   {activityRender.map((a, i) => (
