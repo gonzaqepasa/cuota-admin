@@ -9,17 +9,15 @@ export interface typesUser {
 
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
-  status:'activo'|'inactivo';
+  status: "activo" | "inactivo";
   activity: typesActivity;
-  
 
   // Información de pago
   // Se genera de forma automatica
- months?:typesMonth[]
+  months: typesMonth[];
 
   _id?: string;
 }
-
 
 export interface typesActivity {
   nameActivity: string;
@@ -34,22 +32,20 @@ export interface typesActivity {
   CreatedAt: string;
 }
 
-export interface typesCalendar {
-  months: typesMonth[];
-  id: number;
-  User: typesUser;
-}
-
 export interface typesMonth {
+  mothod: "MP" | "EF";
   monthName: string;
-  comment?: string;
-  addData?: string;
-  addAdmin?: string;
+  description?: string;
+  trainer?: string;
   isPay: boolean;
-  mothodPay: String;
   pricePay: number;
-  id: number;
-  calendar: typesCalendar;
+  status: "Pending" | "Completed";
+  user: typesUser;
+  activity: typesActivity;
+  paymentDate?: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type typesMonthNames =

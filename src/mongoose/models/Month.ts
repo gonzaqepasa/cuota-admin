@@ -19,7 +19,7 @@ const PaymentScheme = new Schema(
     status: {
       type: String,
       enum: ["Pending", "Completed"],
-      default: "Pending",
+      default: "Completed",
     },
 
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },

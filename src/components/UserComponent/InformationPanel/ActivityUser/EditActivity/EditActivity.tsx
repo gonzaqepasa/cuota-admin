@@ -35,17 +35,17 @@ export const EditActivity: React.FC<Props> = ({
   /////////////////// CAMBIAR MODALIDAD ///////////////////////
   const [activityRender, setActivityRender] = useState<typesActivity[]>([]);
 
-  console.log("Esto llega a EditActivity");
-  console.log({ defaultVal, activity, user });
+  // console.log("Esto llega a EditActivity");
+  // console.log({ defaultVal, activity, user });
   useEffect(() => {
     (async function () {
       try {
-        console.log("Entro a buscar las diferentes actividades");
+        // console.log("Entro a buscar las diferentes actividades");
         const data = await getActivityClient({
           nameActivity: activity.nameActivity,
         });
 
-        console.log("Estas son las actividades", data);
+        // console.log("Estas son las actividades", data);
         setActivityRender(data.activity);
         setLoad(false);
       } catch (err) {
@@ -56,7 +56,7 @@ export const EditActivity: React.FC<Props> = ({
     })();
   }, []);
   ///////////////////////////////////////////////////////////////
-  console.log("refresh si");
+  // console.log("refresh si");
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedActivity = activityRender.find(
       (a) => a.modality === event.target.value

@@ -18,7 +18,7 @@ export const User: React.FC<Props> = ({ userData }) => {
           <PanelUser userData={userData} />
         </div>
         <div className="lg:col-span-2 flex flex-col items-center lg:items-stretch ">
-          {/* <RenderMonths user={userData} /> */}
+          <RenderMonths user={userData} />
         </div>
       </div>
     );
