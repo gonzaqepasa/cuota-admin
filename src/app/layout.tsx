@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "../styles/globals.css";
+import '../mongoose/db_mongo'
 
 export const metadata: Metadata = {
   title: "Next.js",
