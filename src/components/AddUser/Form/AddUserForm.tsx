@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { validateFormInputs } from "../logic/validateAddInputs";
-import { createUser } from "../../../api-next/createUser";
+import { createUser } from "../../../api-next/user/createUser";
 import { typesActivity, typesUser } from "../../../types/types-user";
 import { useRouter } from "next/navigation";
 import { ModalityInput } from "./Modality/ModalityInput";
@@ -18,8 +18,9 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   const route = useRouter();
   //////////////// Estados de los inputs ////////////////
   const [name, setName] = useState("");
-  const [activity, setActivity] = useState<number | null>(null);
+  const [activity, setActivity] = useState<string | null>(null);
   const [description, setDescription] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   ///////////////////////////////////////////////////////
 
   //////////////// Estados para validar inputs ////////////////
@@ -32,11 +33,13 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   const toSendObj: {
     name: string;
     description: string;
-    activityId: number | null;
+    activityId: string | null;
+    phoneNumber?: string;
   } = {
     name,
     description,
     activityId: activity,
+    phoneNumber,
   };
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

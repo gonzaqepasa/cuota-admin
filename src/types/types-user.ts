@@ -2,25 +2,24 @@ export interface typesUser {
   // Información personal
   // Se genera a travez de inputs
   name: string;
-  phone?: string;
+  phoneNumber?: string;
   email?: string;
-  dni?: number;
+
   description?: string;
 
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
-  active: boolean;
-  activity: typesActivity;
-  activityId: number;
+  status:'activo'|'inactivo';
+  activity?: typesActivity;
+  
 
   // Información de pago
   // Se genera de forma automatica
-  calendar: typesCalendar;
+ months?:typesMonth[]
 
-  id?: string;
+  _id?: string;
 }
 
-export type typesEditName = Pick<typesUser, "id" | "name">;
 
 export interface typesActivity {
   nameActivity: string;

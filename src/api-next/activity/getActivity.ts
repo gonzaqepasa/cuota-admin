@@ -16,10 +16,13 @@ export const getAllActivitiesToDashboard = async () => {
   }
 };
 
-export const getActivityClient = async ({ activity }: any) => {
+export const getActivityClient = async ({
+  nameActivity,
+  activitiesId,
+}: any) => {
   try {
     const activityRes = await axios.get(
-      `${url}/activity/get-activity?activity=${activity}`
+      `${url}/activity/get-activity?nameActivity=${nameActivity}`
     );
 
     if ((await activityRes.data.length) === 0) {
@@ -29,13 +32,8 @@ export const getActivityClient = async ({ activity }: any) => {
       };
     }
 
-    const userRes = await axios.get(
-      `${url}/user/get-users?activity=${activity}`
-    );
-
     return {
       activity: activityRes.data,
-      users: userRes.data,
     };
   } catch (err: any) {
     console.log(err);

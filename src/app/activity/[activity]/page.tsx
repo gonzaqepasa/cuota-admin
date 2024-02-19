@@ -11,11 +11,10 @@ interface Params {
 }
 
 const ActivityListPage = async ({ params }: Params) => {
-  const { users, activity, msg } = await getActivityClient({
-    activity: params.activity,
+  const { activity, msg } = await getActivityClient({
+    nameActivity: params.activity,
   });
-  // console.log(res);
-
+console.log(activity)
   return (
     <main
       style={{ backgroundColor: activity[0].color }}
@@ -23,10 +22,11 @@ const ActivityListPage = async ({ params }: Params) => {
     >
       <ProviderAuth>
         <ProviderNextUi>
+          <></>
           <Title data={activity[0]} />
           <RenderList
             activity={String(params.activity)}
-            userData={users}
+            userData={activity[0].users}
             dataActivity={activity}
           />
         </ProviderNextUi>

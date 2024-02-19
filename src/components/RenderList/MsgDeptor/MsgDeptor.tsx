@@ -10,7 +10,7 @@ interface Props {
   month: string;
 }
 export const MsgDeptor: React.FC<Props> = ({ user, month }) => {
-  const aux = user.calendar.months.find((m) => {
+  const aux = user.months?.find((m) => {
     return m.monthName === month;
   });
   // console.log(aux, "asdasdasdasdasdasd");

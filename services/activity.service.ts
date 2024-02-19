@@ -8,7 +8,6 @@ export async function createActivityService({
   price,
 }: typesActivity) {
   try {
-    // Obtener el negocio al que deseas agregar la actividad
     console.table({ nameActivity, price, modality, color });
 
     const activity = new Activity({
@@ -30,7 +29,19 @@ export async function createActivityService({
 
 export async function getActivitiesToDashboard() {
   try {
-    const data = await Activity.find()
+    const data = await Activity.find();
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Hubo un error al buscar las actividades");
+  }
+}
+
+export async function getActivityService({
+  nameActivity,
+}: Pick<typesActivity, "nameActivity">) {
+  try {
+    const data = await Activity.find({ nameActivity }).populate("users");
     return data;
   } catch (err) {
     console.log(err);
@@ -82,6 +93,24 @@ export async function editActivity({
       return { error: "No se encontró la actividad o no se pudo actualizar" };
     }
     return editedActivity;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Mensaje de error específico");
+  }
+}
+
+export async function updateColorForActivitiesByName(
+  nameActivity: string,
+  newColor: string
+) {
+  try {
+    // Actualizar el color de todas las actividades con el mismo nombre
+    const updatedActivities = await Activity.updateMany(
+      { nameActivity },
+      { color: newColor }
+    );
+
+    return { success: `Color actualizado` };
   } catch (err) {
     console.log(err);
     throw new Error("Mensaje de error específico");

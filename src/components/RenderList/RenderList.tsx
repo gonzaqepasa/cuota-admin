@@ -37,6 +37,7 @@ export const RenderList: React.FC<Props> = ({
   dataActivity,
   activity,
 }) => {
+  console.log("Esto es userdata",userData)
   //////// ESTADOS ////////
   // Para el buscador (Searcher)
   const [search, setSearch] = useState("");
@@ -97,15 +98,15 @@ console.log(dataActivity)
         <TableBody emptyContent={"No hay usuarios para mostrar."} className="">
           {orderByName(orderByActive(resultFilter)).map(
             (el: typesUser, index) => (
-              <TableRow key={el.id}>
+              <TableRow key={el._id}>
                 <TableCell>
                   <Link
                     className="flex items-center hover:translate-x-1 hover:text-neutral-600 font-medium transition text-neutral-900"
-                    href={`/user/${el.id}`}
+                    href={`/user/${el._id}`}
                   >
                     <Avatar
                       style={{
-                        backgroundColor: el.activity.color,
+                        backgroundColor: dataActivity[0].color,
                       }}
                       className="text-white mr-2"
                       size="sm"
@@ -114,9 +115,9 @@ console.log(dataActivity)
                     {firstLetterUpper(el.name)}
                     <i
                       className="mx-1  text-sm"
-                      style={{ color: el.activity.color }}
+                      style={{ color: dataActivity[0].color }}
                     >
-                      {firstLetterUpper(el.activity.modality)}
+                      {firstLetterUpper(dataActivity[0].modality)}
                     </i>
                   </Link>
                 </TableCell>

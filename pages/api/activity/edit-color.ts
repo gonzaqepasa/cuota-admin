@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { editColor } from "../../../services/activity.service";
+import { updateColorForActivitiesByName } from "../../../services/activity.service";
 
 type Data = any;
 
@@ -10,10 +10,12 @@ export default async function handler(
 ) {
   if (req.method === "PUT") {
     try {
-      const { id, color,nameActivity } = req.body;
+      const { id, color, nameActivity } = req.body;
 
-      const activities = await editColor({ id, color,nameActivity });
-
+      const activities = await updateColorForActivitiesByName(
+        nameActivity,
+        color
+      );
       res.status(200).json(activities);
     } catch (err) {
       console.log(err);

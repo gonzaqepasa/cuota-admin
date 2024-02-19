@@ -12,8 +12,8 @@ export async function editColor({
   color,
 }: typesActivity) {
   try {
-    const { data } = await axios.put(`${url}/activity/edit-activity`, {
-      _id,
+    const { data } = await axios.put(`${url}/activity/edit-color`, {
+      nameActivity,
       color,
     });
 

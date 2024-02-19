@@ -5,18 +5,18 @@ import { Dispatch, SetStateAction } from "react";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 
 interface Props {
-  setActivity: Dispatch<SetStateAction<number | null>>;
+  setActivity: Dispatch<SetStateAction<string | null>>;
   dataActivity: typesActivity[];
-  activity: number | null;
+  activity: string | null;
 }
 
 export const ModalityInput: React.FC<Props> = ({
   dataActivity,
   setActivity,
-  activity
+  activity,
 }) => {
   function handleSelect(e: string) {
-    setActivity(Number(e));
+    setActivity(e);
     console.log(e);
   }
   console.log(dataActivity);
@@ -32,7 +32,7 @@ export const ModalityInput: React.FC<Props> = ({
       errorMessage={!activity && "Selecciones modalidad"}
     >
       {dataActivity.map((el: typesActivity) => (
-        <SelectItem color="primary" variant="solid" key={el.id} value={el.id}>
+        <SelectItem color="primary" variant="solid" key={el._id} value={el._id}>
           {firstLetterUpper(el.modality)}
         </SelectItem>
       ))}

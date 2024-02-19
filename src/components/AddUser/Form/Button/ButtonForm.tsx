@@ -5,7 +5,7 @@ interface Props {
   onClose: () => void;
   isLoad: boolean;
   name: string;
-  activity: number | null;
+  activity: string | null;
 }
 
 export const ButtonForm: React.FC<Props> = ({
