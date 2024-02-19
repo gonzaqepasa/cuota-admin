@@ -45,6 +45,6 @@ const PaymentScheme = new Schema(
 //   this.paymentDate = formattedDateTime;
 //   next();
 // });
-const Payment = models.Payment || model("Month", PaymentScheme);
+const Payment = models.Month || model("Month", PaymentScheme);
 
 export default Payment;

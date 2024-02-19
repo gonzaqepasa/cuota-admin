@@ -42,7 +42,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
         {orderByNameActivity(data).map((el: typesActivity) => (
           <Card
             className={`max-w-[400px] w-[95vw] bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-110 `}
-            key={el.id}
+            key={el._id}
           >
             <CardHeader className="flex items-center mx-3 gap-2">
               <span
@@ -52,7 +52,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
               <p className="">{firstLetterUpper(el.nameActivity)}</p>
               <Link
                 className=" text-blue-600 text-xs transition-colors hover:text-blue-500"
-                href={`/dashboard/${fromNameToUrl(el.nameActivity)}`}
+                href={`/activity/${fromNameToUrl(el.nameActivity)}`}
               >
                 Ir a la actividad
               </Link>
@@ -75,7 +75,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
                 <EditColorActivity data={el} />
               </div>
               <div className="flex items-center gap-1">
-                <p>{el.User?.length} </p>
+                <p>{el.users?.length} </p>
                 <p className="text-neutral-500">registrados</p>
               </div>
             </CardBody>

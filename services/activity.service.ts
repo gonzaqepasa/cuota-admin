@@ -11,8 +11,8 @@ export async function createActivityService({
     console.table({ nameActivity, price, modality, color });
 
     const activity = new Activity({
-      nameActivity,
-      modality,
+      nameActivity: nameActivity.trim().toLowerCase(),
+      modality: modality.trim().toLowerCase(),
       price,
       color,
     });

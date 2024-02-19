@@ -21,11 +21,15 @@ import {
 import Image from "next/image";
 import { Auth } from "firebase/auth";
 import Link from "next/link";
-import { getAllActivities } from "../../api-next/activity/getActivity";
+import {
+  getAllActivities,
+  getAllActivitiesToDashboard,
+} from "../../api-next/activity/getActivity";
 import { typesActivity } from "../../types/types-user";
 import { LinkActivity, LinkNav } from "./Link/LinkNav";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import Avatar from "./Avatar/Avatar";
+import { orderByNameActivity } from "../../logic/orderByMonthName";
 
 interface Props {
   auth: Auth;
@@ -41,8 +45,8 @@ const NavbarMain: React.FC<Props> = () => {
   /////////////////////////
   useEffect(() => {
     (async () => {
-      const res: typesActivity[] = await getAllActivities();
-      setActivities(res);
+      const { activity } = await getAllActivitiesToDashboard();
+      setActivities(activity);
     })();
   }, []);
   return (
@@ -71,11 +75,11 @@ const NavbarMain: React.FC<Props> = () => {
                   <DropdownItem
                     variant="shadow"
                     aria-label={a.nameActivity}
-                    key={a.id}
+                    key={a._id}
                   >
                     <LinkActivity
                       color={a.color}
-                      key={a.id}
+                      key={a._id}
                       activityName={a.nameActivity}
                       text={a.nameActivity}
                       href={`/dashboard/${fromNameToUrl(a.nameActivity)}`}
@@ -92,9 +96,9 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#">
-            <Button className="text-neutral-200" variant="light">
-              <LinkNav text="Resumen" href={`/resume`} />
-            </Button>
+              <Button className="text-neutral-200" variant="light">
+                <LinkNav text="Resumen" href={`/resume`} />
+              </Button>
             </Link>
           </NavbarItem>
         </NavbarContent>
@@ -128,10 +132,10 @@ const NavbarMain: React.FC<Props> = () => {
               Actividades
             </h2>
             {activities &&
-              activities.map((a: typesActivity) => (
+              orderByNameActivity(activities).map((a: typesActivity) => (
                 <LinkActivity
                   color={a.color}
-                  key={a.id}
+                  key={a._id}
                   activityName={a.nameActivity}
                   text={a.nameActivity}
                   href={`/dashboard/${fromNameToUrl(a.nameActivity)}`}
