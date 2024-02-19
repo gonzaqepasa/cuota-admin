@@ -1,10 +1,10 @@
-import { getAllActivitiesToEdit } from "../../api-next/getActivity";
+import { getAllActivitiesToDashboard } from "../../api-next/activity/getActivity";
 import { PricesRender } from "../../components/PricesRender/PricesRender";
 import ProviderAuth from "../ProviderAuth";
 import ProviderNextUi from "../ProviderNextUi";
 
 const DashboardPage = async () => {
-  const res = await getAllActivitiesToEdit();
+  const res = await getAllActivitiesToDashboard();
 
   return (
     <main className="flex flex-col min-h-screen items-center">

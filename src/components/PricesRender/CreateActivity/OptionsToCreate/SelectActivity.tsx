@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { getAllActivities } from "../../../../api-next/getActivity";
+import { getAllActivities } from "../../../../api-next/activity/getActivity";
 import { typesActivity } from "../../../../types/types-user";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 

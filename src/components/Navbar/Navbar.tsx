@@ -21,7 +21,7 @@ import {
 import Image from "next/image";
 import { Auth } from "firebase/auth";
 import Link from "next/link";
-import { getAllActivities } from "../../api-next/getActivity";
+import { getAllActivities } from "../../api-next/activity/getActivity";
 import { typesActivity } from "../../types/types-user";
 import { LinkActivity, LinkNav } from "./Link/LinkNav";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";

@@ -1,4 +1,4 @@
-import { getActivityClient } from "../../../api-next/getActivity";
+import { getActivityClient } from "../../../api-next/activity/getActivity";
 import { RenderList } from "../../../components/RenderList/RenderList";
 import { Title } from "../../../components/Title/Title";
 import ProviderAuth from "../../ProviderAuth";

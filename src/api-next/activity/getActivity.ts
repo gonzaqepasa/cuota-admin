@@ -1,10 +1,10 @@
 import axios from "axios";
-import { typesActivity } from "../types/types-user";
-import { url } from "../config/env_d";
+import { typesActivity } from "../../types/types-user";
+import { url } from "../../config/env_d";
 
-export const getAllActivitiesToEdit = async () => {
+export const getAllActivitiesToDashboard = async () => {
   try {
-    const activityRes = await axios.get(`${url}/activity/get-activity`);
+    const activityRes = await axios.get(`${url}/activity/get-activities`);
 
     return { activity: activityRes.data };
   } catch (err: any) {
