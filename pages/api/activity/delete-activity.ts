@@ -11,8 +11,8 @@ export default async function handler(
 ) {
   if (req.method === "DELETE") {
     try {
-      const { id } = req.query;
-      const activity = await deleteActivityService({ id: Number(id) });
+      const { _id } = req.query;
+      const activity = await deleteActivityService({ _id });
       res.status(200).json(activity);
     } catch (err) {
       console.log(err);

@@ -1,5 +1,5 @@
+import Activity from "../src/mongoose/models/Activity";
 import { typesActivity } from "../src/types/types-user";
-import { prisma } from "./prismaConfig";
 
 export async function createActivityService({
   color,
@@ -8,136 +8,110 @@ export async function createActivityService({
   price,
 }: typesActivity) {
   try {
-    const activity = await prisma.activity.create({
-      data: {
-        modality: modality.trim().toLowerCase(),
-        nameActivity: nameActivity.trim().toLowerCase(),
-        price,
-        color,
-      },
+    // Obtener el negocio al que deseas agregar la actividad
+    console.table({ nameActivity, price, modality, color });
+
+    const activity = new Activity({
+      nameActivity,
+      modality,
+      price,
+      color,
     });
+    await activity.save();
+
+    // Agregar la actividad al array de actividades del negocio
+
     return activity;
   } catch (e) {
     console.log(e);
+    throw new Error("Mensaje de error específico");
   }
 }
 
-export async function getActivity({ activity }: any) {
+export async function getActivitiesToDashboard() {
   try {
-    let data;
-    activity
-      ? (data = {
-          where: {
-            nameActivity: String(activity),
-          },
-        })
-      : (data = undefined);
+    const data = await Activity.find()
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Hubo un error al buscar las actividades");
+  }
+}
 
-    const activities = await prisma.activity.findMany({
-      ...data,
-      include: { User: true },
+export async function editActivity({
+  _id,
+  price,
+  modality,
+  description,
+  nameActivity,
+  color,
+}: typesActivity) {
+  try {
+    // Verificar si se proporcionó un ID válido
+    if (!_id) {
+      return { error: "Se requiere un ID de actividad válido" };
+    }
+
+    // Crear un objeto con las propiedades actualizadas
+    const updatedFields: { [key: string]: any } = {};
+    if (price) {
+      updatedFields.price = price;
+    }
+    if (nameActivity) {
+      updatedFields.nameActivity = nameActivity;
+    }
+    if (modality) {
+      updatedFields.modality = modality;
+    }
+    if (description) {
+      updatedFields.description = description;
+    }
+    if (color) {
+      updatedFields.color = color;
+    }
+
+    // Actualizar la actividad con las propiedades proporcionadas
+    const editedActivity = await Activity.findByIdAndUpdate(
+      _id,
+      updatedFields,
+      { new: true }
+    );
+
+    // Verificar si la actividad fue encontrada y actualizada
+    if (!editedActivity) {
+      return { error: "No se encontró la actividad o no se pudo actualizar" };
+    }
+    return editedActivity;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Mensaje de error específico");
+  }
+}
+
+export async function deleteActivityService({ _id }: any) {
+  try {
+    // Verificar si la actividad tiene usuarios relacionados
+    const activityWithUsers = await Activity.findOne({
+      _id,
+      users: { $exists: true, $ne: [] }, // Verificar si el campo 'users' existe y no está vacío
     });
-    await prisma.$disconnect();
-    return activities;
-  } catch (err) {
-    console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
-  }
-}
-export async function getActivities({ activity }: any) {
-  try {
-    let data;
-    activity
-      ? (data = {
-          where: {
-            nameActivity: String(activity),
-          },
-        })
-      : (data = undefined);
 
-    const activities = await prisma.activity.findMany(data);
-    await prisma.$disconnect();
-    return activities;
-  } catch (err) {
-    console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
-  }
-}
+    if (activityWithUsers) {
+      return {
+        error: "No se puede eliminar la actividad con usuarios relacionados",
+      };
+    }
 
-export async function editPrice({ id, price }: any) {
-  try {
-    const activities = await prisma.activity.update({
-      where: { id: Number(id) },
-      data: {
-        price: Number(price),
-      },
-    });
+    // Si no hay usuarios relacionados, proceder con la eliminación
+    const deletedActivity = await Activity.findOneAndDelete({ _id });
 
-    await prisma.$disconnect();
-    return activities;
-  } catch (err) {
-    console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
-  }
-}
-export async function editColor({ id, nameActivity, color }: any) {
-  try {
-    const activities = await prisma.activity.updateMany({
-      where: { nameActivity },
-      data: {
-        color: String(color),
-      },
-    });
+    if (!deletedActivity) {
+      return { error: "No se encontró la actividad" };
+    }
 
-    await prisma.$disconnect();
-    return activities;
+    return deletedActivity;
   } catch (err) {
     console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
-  }
-}
-
-export async function getActivityForCloseMonth() {
-  try {
-    const activities = await prisma.activity.findMany({
-      include: {
-        User: {
-          include: {
-            calendar: {
-              include: { months: true },
-            },
-          },
-        },
-      },
-    });
-    await prisma.$disconnect();
-    return activities;
-  } catch (err) {
-    console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
-  }
-}
-export async function deleteActivityService({ id }: any) {
-  try {
-    const user = await prisma.activity.delete({
-      where: {
-        id: Number(id),
-      },
-      include: {
-        User: true,
-      },
-    });
-    console.log(id);
-    await prisma.$disconnect();
-    return "user";
-  } catch (err) {
-    console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
+    throw new Error("Mensaje de error");
   }
 }

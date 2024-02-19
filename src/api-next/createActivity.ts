@@ -12,7 +12,6 @@ export async function createActivity({
 }: typesActivity) {
   try {
     const { data } = await axios.post(`${url}/activity/create-activity`, {
-      id: 0,
       color,
       price,
       nameActivity,

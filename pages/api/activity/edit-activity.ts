@@ -1,9 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  createActivityService,
-
-} from "../../../services/activity.service";
+import { editActivity } from "../../../services/activity.service";
 
 type Data = any;
 
@@ -11,22 +8,31 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     try {
-      const { color, price, nameActivity, modality } = req.body;
-
-      const activity = await createActivityService({
+      const {
+        _id,
         color,
-        price,
-        modality,
         nameActivity,
-        CreatedAt: "", //No necesita
-        updatedAt: "", //No necesita
-        description: "", //No necesita
-        _id: "", //No necesita
+        price,
+        description,
+        modality,
+        CreatedAt,
+        updatedAt,
+      } = req.body;
+
+      const activities = await editActivity({
+        _id,
+        color,
+        nameActivity,
+        price,
+        description,
+        modality,
+        CreatedAt,
+        updatedAt,
       });
 
-      res.status(200).json(activity);
+      res.status(200).json(activities);
     } catch (err) {
       console.log(err);
     }

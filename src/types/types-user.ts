@@ -25,10 +25,14 @@ export type typesEditName = Pick<typesUser, "id" | "name">;
 export interface typesActivity {
   nameActivity: string;
   modality: string;
+  description?: string;
   color: string;
   price: number;
-  id: number;
-  User?:typesUser[]
+  _id: string;
+  users?: typesUser[];
+  months?: typesMonth[];
+  updatedAt: string;
+  CreatedAt: string;
 }
 
 export interface typesCalendar {
