@@ -79,29 +79,36 @@ export async function getMonths({
   }
 }
 
-export async function cancelPayMonth({ id, addAdmin }: any) {
+export async function cancelPayMonth({ id }: any) {
   try {
-    if (!id) {
-      throw new Error("Faltan argumentos");
+    // Buscar el pago por su ID
+    const payment = await Month.findById(id);
+
+    // Verificar si el pago existe
+    if (!payment) {
+      throw new Error("No se encoentro un pago con esa ID");
     }
 
-    const month = await prisma.month.update({
-      where: {
-        id,
-      },
-      data: {
-        isPay: false,
-        addData: " ",
-        addAdmin: " ",
-        addDataIso: " ",
-      },
+    // Obtener el ID del usuario y de la actividad asociados al pago
+    const userId = payment.user;
+    const activityId = payment.activity;
+
+    // Eliminar el pago
+    await Month.findByIdAndDelete(id);
+
+    // Sacar la relación del usuario con el pago cancelado
+    await User.findByIdAndUpdate(userId, {
+      $pull: { months: id },
     });
 
-    await prisma.$disconnect();
-    return month;
+    // Sacar la relación de la actividad con el pago cancelado
+    await Activity.findByIdAndUpdate(activityId, {
+      $pull: { months: id },
+    });
+
+    return { success: true, message: "Pago cancelado exitosamente" };
   } catch (err) {
     console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
+    return { error: "Error al cancelar el pago" };
   }
 }

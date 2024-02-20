@@ -1,9 +1,9 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../config/env_d";
+import { url } from "../../config/env_d";
 
 interface payCancelProps {
-  id: number;
+  id: string;
   monthName: string;
 }
 

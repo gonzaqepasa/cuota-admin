@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { payCancel } from "../../../../../api-next/payCancel";
+
 import { type typesMonth } from "../../../../../types/types-user";
 import {
   Modal,
@@ -11,6 +11,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { payCancel } from "../../../../../api-next/month/payCancel";
 
 interface Props {
   el: typesMonth;
@@ -25,7 +26,7 @@ export const ButtonCancel: React.FC<Props> = ({ el }) => {
     try {
       setLoad(true);
       await payCancel({
-        id: el.id,
+        id: el._id,
         monthName: el.monthName,
       });
       setLoad(false);
