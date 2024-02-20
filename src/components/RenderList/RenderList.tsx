@@ -37,7 +37,7 @@ export const RenderList: React.FC<Props> = ({
   dataActivity,
   activity,
 }) => {
-  console.log("Esto es userdata",userData)
+  console.log("Esto es userdata", userData);
   //////// ESTADOS ////////
   // Para el buscador (Searcher)
   const [search, setSearch] = useState("");
@@ -49,7 +49,7 @@ export const RenderList: React.FC<Props> = ({
   const [result, setResult] = useState<[] | typesUser[]>([]);
   const [resultFilter, setResultFilter] = useState(result);
   /////////////////////////
-console.log(dataActivity)
+
   useEffect(() => {
     if (userData) {
       if (!search) {
@@ -68,7 +68,9 @@ console.log(dataActivity)
   }, [search, userData]);
 
   return (
-    <div  className={`bg-neutral-200/90 flex flex-col gap-3 min-h-screen w-screen items-center`}>
+    <div
+      className={`bg-neutral-200/90 flex flex-col gap-3 min-h-screen w-screen items-center`}
+    >
       <div className="flex flex-col items-center backg-card-user  px-6 max-w-3xl w-screen rounded ">
         <FilterList
           monthSelected={monthSelected}
@@ -110,14 +112,14 @@ console.log(dataActivity)
                       }}
                       className="text-white mr-2"
                       size="sm"
-                      name={firstLetterUpper(el.name)[0]}
+                      name={firstLetterUpper(el.name)}
                     />
                     {firstLetterUpper(el.name)}
                     <i
                       className="mx-1  text-sm"
                       style={{ color: dataActivity[0].color }}
                     >
-                      {firstLetterUpper(dataActivity[0].modality)}
+                      {firstLetterUpper(el.activity.modality)}
                     </i>
                   </Link>
                 </TableCell>

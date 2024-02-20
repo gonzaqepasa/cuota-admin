@@ -16,7 +16,7 @@ export interface typesUser {
   // Se genera de forma automatica
   months: typesMonth[];
 
-  _id?: string;
+  _id: string;
 }
 
 export interface typesActivity {

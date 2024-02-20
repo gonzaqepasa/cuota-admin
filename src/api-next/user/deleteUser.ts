@@ -1,17 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { url } from "../config/env_d";
+import { url } from "../../config/env_d";
 
 interface Params {
-  id: any;
-  nameUser: string;
-  setLoad: Dispatch<SetStateAction<boolean>>;
+  id: string;
   cb: () => void;
 }
-export async function deleteUserLogic({ id, nameUser, cb, setLoad }: Params) {
+export async function deleteUserLogic({ id, cb }: Params) {
   try {
-    setLoad(true);
     const { data } = await axios.put(`${url}/user/delete-user`, { id });
 
     console.log(data);
@@ -26,10 +23,8 @@ export async function deleteUserLogic({ id, nameUser, cb, setLoad }: Params) {
       backdrop: false,
     });
     cb();
-    setLoad(false);
   } catch (err) {
     console.log(err);
-    setLoad(false);
 
     Swal.fire({
       position: "bottom-end",

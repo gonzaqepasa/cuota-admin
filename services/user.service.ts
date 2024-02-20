@@ -1,7 +1,6 @@
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 
-
 export async function createUser({
   description,
   activityId,
@@ -45,10 +44,34 @@ export async function createUser({
   }
 }
 
-export async function getUsers(nameActivity: any) {
+export async function getUsers({ nameActivity }: { nameActivity: string }) {
   try {
     // Buscar todos los usuarios que pertenecen a una actividad con el nombre específico
-    const users = await User.find({ "activity.nameActivity": nameActivity });
+    const users = await User.find({
+      "activity.nameActivity": nameActivity,
+    }).populate("activity");
+    console.log(
+      "Esta es la respuesta en servicios lo que envia a la ruta",
+      nameActivity,
+      users
+    );
+
+    return users;
+  } catch (error) {
+    console.error(error);
+    return { error: "Error al buscar usuarios por actividad" };
+  }
+}
+export async function getUsersByActivityId({
+  activityIds,
+}: {
+  activityIds: string[];
+}) {
+  try {
+    // Buscar todos los usuarios que pertenecen a las actividades con los IDs específicos
+    const users = await User.find({
+      activity: { $in: activityIds }, // Asumo que el campo correcto es "activity._id", ajusta según tu modelo
+    }).populate("activity");
 
     return users;
   } catch (error) {
@@ -59,7 +82,7 @@ export async function getUsers(nameActivity: any) {
 
 export async function getUser({ id }: any) {
   try {
-    const user = await User.findById(id).populate(["activity","months"]);
+    const user = await User.findById(id).populate(["activity", "months"]);
 
     return user;
   } catch (err) {

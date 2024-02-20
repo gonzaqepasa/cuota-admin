@@ -8,8 +8,6 @@ export async function createActivityService({
   price,
 }: typesActivity) {
   try {
-    console.table({ nameActivity, price, modality, color });
-
     const activity = new Activity({
       nameActivity: nameActivity.trim().toLowerCase(),
       modality: modality.trim().toLowerCase(),
@@ -42,6 +40,7 @@ export async function getActivityService({
 }: Pick<typesActivity, "nameActivity">) {
   try {
     const data = await Activity.find({ nameActivity }).populate("users");
+
     return data;
   } catch (err) {
     console.log(err);

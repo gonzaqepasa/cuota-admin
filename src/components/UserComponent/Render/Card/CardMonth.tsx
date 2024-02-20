@@ -9,7 +9,6 @@ import mp from "../../../../styles/mp.png";
 import { ButtonCancel } from "../btn/Cancel/Cancel";
 import { ButtonPay } from "../btn/Pay/Pay";
 import { useState } from "react";
-import { AccordionItem } from "@nextui-org/react";
 
 interface Props {
   month: {

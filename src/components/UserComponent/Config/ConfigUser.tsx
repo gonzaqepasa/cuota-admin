@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { deleteUserLogic } from "../../../api-next/deleteUser";
+import { deleteUserLogic } from "../../../api-next/user/deleteUser";
 import { typesUser } from "../../../types/types-user";
 import { visibilityUser } from "../../../logic/visibilityUser";
 
