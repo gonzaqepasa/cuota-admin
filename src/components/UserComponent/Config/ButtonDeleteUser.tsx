@@ -24,7 +24,7 @@ const ButtonDeleteUser: React.FC<Props> = ({ userData, text }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [load, setLoad] = useState(false);
   const route = useRouter();
-  console.log(userData);
+
   const handleDelete = async (onClose: () => void) => {
     try {
       setLoad(true);

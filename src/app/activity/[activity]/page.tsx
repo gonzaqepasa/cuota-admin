@@ -18,7 +18,7 @@ const ActivityListPage = async ({ params }: Params) => {
 
   return (
     <main
-      // style={{ backgroundColor: activity[0].color }}
+      style={{ backgroundColor: activity[0].color }}
       className="main bg-neutral-300"
     >
       <ProviderAuth>

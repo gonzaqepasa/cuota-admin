@@ -21,7 +21,7 @@ import { orderByActive, orderByName } from "../../logic/orderByMonthName";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
-import { arrayMonth, dateMonth } from "../../config/moths.d";
+import { arrayMonth, dateMonth, mesActual } from "../../config/moths.d";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
 import ButtonDeleteUser from "../UserComponent/Config/ButtonDeleteUser";
@@ -124,7 +124,7 @@ export const RenderList: React.FC<Props> = ({
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <MsgDeptor user={el} month={monthSelected} />
+                  <MsgDeptor user={el} />
                 </TableCell>
                 <TableCell className="flex justify-end ">
                   <ButtonDeleteUser userData={el} />

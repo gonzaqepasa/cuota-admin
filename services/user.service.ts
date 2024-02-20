@@ -71,7 +71,7 @@ export async function getUsersByActivityId({
     // Buscar todos los usuarios que pertenecen a las actividades con los IDs específicos
     const users = await User.find({
       activity: { $in: activityIds }, // Asumo que el campo correcto es "activity._id", ajusta según tu modelo
-    }).populate("activity");
+    }).populate(["activity", "months"]);
 
     return users;
   } catch (error) {
