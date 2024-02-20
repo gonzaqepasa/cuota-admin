@@ -12,7 +12,7 @@ export const ConfigUser: React.FC<Props> = ({ userData, getDataAgain }) => {
   const route = useRouter();
   return (
     <div className={` flex flex-col items-end  w-full h-full  `}>
-      <div className="py-1  flex flex-col items-end border-b-2 w-full border-neutral-700">
+      {/* <div className="py-1  flex flex-col items-end border-b-2 w-full border-neutral-700">
         <h4 className={`text-neutral-200 text-sm`}>
           {userData.active ? "Desactivar usuario" : "Activar usuario"}
         </h4>
@@ -34,7 +34,7 @@ export const ConfigUser: React.FC<Props> = ({ userData, getDataAgain }) => {
         className={
           " py-1  flex flex-col items-end border-b-2 w-full border-neutral-700"
         }
-      ></div>
+      ></div> */}
     </div>
   );
 };
