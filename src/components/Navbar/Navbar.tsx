@@ -21,10 +21,7 @@ import {
 import Image from "next/image";
 import { Auth } from "firebase/auth";
 import Link from "next/link";
-import {
-  getAllActivities,
-  getAllActivitiesToDashboard,
-} from "../../api-next/activity/getActivity";
+import { getAllActivitiesForNav } from "../../api-next/activity/getActivity";
 import { typesActivity } from "../../types/types-user";
 import { LinkActivity, LinkNav } from "./Link/LinkNav";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
@@ -45,13 +42,13 @@ const NavbarMain: React.FC<Props> = () => {
   /////////////////////////
   useEffect(() => {
     (async () => {
-      const { activity } = await getAllActivitiesToDashboard();
-      setActivities(activity);
+      const res = await getAllActivitiesForNav();
+      setActivities(res);
     })();
   }, []);
   return (
     <>
-      <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-neutral-800">
+      <Navbar aria-label="nav" onMenuOpenChange={setIsMenuOpen} className="bg-neutral-800">
         {/* //  Hamburguer Botton */}
         {/* Logo Link */}
         <NavbarContent>

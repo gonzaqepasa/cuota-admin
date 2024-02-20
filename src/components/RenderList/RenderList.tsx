@@ -37,7 +37,6 @@ export const RenderList: React.FC<Props> = ({
   dataActivity,
   activity,
 }) => {
-  console.log("Esto es userdata", userData);
   //////// ESTADOS ////////
   // Para el buscador (Searcher)
   const [search, setSearch] = useState("");
@@ -124,7 +123,7 @@ export const RenderList: React.FC<Props> = ({
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <MsgDeptor user={el} />
+                  <MsgDeptor user={el} monthName={monthSelected} />
                 </TableCell>
                 <TableCell className="flex justify-end ">
                   <ButtonDeleteUser userData={el} />

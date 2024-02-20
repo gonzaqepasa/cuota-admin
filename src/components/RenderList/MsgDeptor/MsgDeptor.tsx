@@ -7,14 +7,13 @@ import { FcCancel } from "react-icons/fc";
 
 interface Props {
   user: typesUser;
+  monthName:string
 }
-export const MsgDeptor: React.FC<Props> = ({ user }) => {
-  console.log(user.months);
-
+export const MsgDeptor: React.FC<Props> = ({ user ,monthName}) => {
   const month = user.months?.find((m) => {
-    return m.monthName === mesActual().toLowerCase();
+    return m.monthName === monthName.toLowerCase();
   });
-  console.log(mesActual(), month);
+
   if (month?.method === "MP")
     return (
       <Image src={mp} height={24} className=" " alt="no se encontr imagen" />

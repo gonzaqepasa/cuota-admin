@@ -20,20 +20,7 @@ export const FilterList: React.FC<Props> = ({
   search,
 }) => {
   /////////////////////////////////////////////////////////
-  // const storageName = "filterOn";
-  // const storageFilter = localStorage.getItem(storageName);
-  // const storageData = {
-  //   filterOn: !filterOn,
-  // };
-  // useEffect(() => {
-  //   storageFilter && setFilterOn(JSON.parse(storageFilter).filterOn);
-  //   console.log(filterOn);
-  // }, []);
 
-  // const handleClick = () => {
-  //   setFilterOn(!filterOn);
-  //   localStorage.setItem(storageName, JSON.stringify(storageData));
-  // };
   /////////////////////////////////////////////////////////
   type filterType = "todos" | "pagado" | "sin pagar";
   const [state, setState] = useState<filterType>("todos");
@@ -52,14 +39,14 @@ export const FilterList: React.FC<Props> = ({
     } else if (state === "pagado") {
       setResultFilter(
         result.filter((user) => {
-          return user.calendar.months.find((m) => {
+          return user.months.find((m) => {
             return m.monthName === monthSelected && m.isPay === true;
           });
         })
       );
     } else if (state === "sin pagar") {
       const res = result.filter((user) => {
-        return user.calendar.months.find((m) => {
+        return user.months.find((m) => {
           return m.monthName === monthSelected && m.isPay === false;
         });
       });
@@ -67,6 +54,7 @@ export const FilterList: React.FC<Props> = ({
       setResultFilter(res);
     }
   }, [state, result, monthSelected]);
+
   function colorTabs() {
     if (state === "pagado") return "success";
     if (state === "sin pagar") return "danger";

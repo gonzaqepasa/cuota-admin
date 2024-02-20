@@ -57,9 +57,9 @@ export const getActivityClient = async ({ nameActivity }: any) => {
   }
 };
 
-export const getAllActivities = async () => {
+export const getAllActivitiesForNav = async () => {
   try {
-    const activityRes = await axios.get(`${url}/activity/get-activity`);
+    const activityRes = await axios.get(`${url}/activity/get-activities`);
     const filteredData: typesActivity[] = Object.values(
       activityRes.data.reduce((acc: any, obj: any) => {
         // Utiliza la actividad como clave del objeto
