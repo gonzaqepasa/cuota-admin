@@ -33,7 +33,7 @@ export interface typesActivity {
 }
 
 export interface typesMonth {
-  mothod: "MP" | "EF";
+  method: "MP" | "EF";
   monthName: string;
   description?: string;
   trainer?: string;

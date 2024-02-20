@@ -51,7 +51,7 @@ const CardMonth: React.FC<Props> = ({ monthPayed, index, user, month }) => {
                 {numberToMoney(monthPayed.pricePay)}
               </i>
             </p>
-            {monthPayed.mothod === "MP" ? (
+            {monthPayed.method === "MP" ? (
               <Image
                 src={mp}
                 height={20}
@@ -68,7 +68,7 @@ const CardMonth: React.FC<Props> = ({ monthPayed, index, user, month }) => {
             <p className={`mx-1  font-medium text-sm`}>No pago</p>
             <FcCancel size={15} />
 
-            {/* <ButtonPay el={el} userData={user} /> */}
+            <ButtonPay month={month} userData={user} />
           </>
         )}
       </div>

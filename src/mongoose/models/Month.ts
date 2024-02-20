@@ -1,9 +1,10 @@
 import { Schema, model, models } from "mongoose";
 
-const PaymentScheme = new Schema(
+const MonthScheme = new Schema(
   {
-    mehtod: {
+    method: {
       type: String,
+      enum: ["MP", "EF"],
     },
     monthName: { type: String },
     description: { type: String, required: false },
@@ -45,6 +46,6 @@ const PaymentScheme = new Schema(
 //   this.paymentDate = formattedDateTime;
 //   next();
 // });
-const Payment = models.Month || model("Month", PaymentScheme);
+const Month = models.Month || model("Month", MonthScheme);
 
-export default Payment;
+export default Month;

@@ -7,6 +7,8 @@ interface Props {
 }
 
 export const User: React.FC<Props> = ({ userData }) => {
+  console.log("Esto es user", userData);
+
   if (userData)
     return (
       <div

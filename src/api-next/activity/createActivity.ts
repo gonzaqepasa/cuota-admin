@@ -1,8 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../config/env_d";
-import { typesActivity } from "../types/types-user";
-import { numberToMoney } from "../logic/numberToMoney";
+import { url } from "../../config/env_d";
+import { typesActivity } from "../../types/types-user";
+import { numberToMoney } from "../../logic/numberToMoney";
 
 export async function createActivity({
   nameActivity,

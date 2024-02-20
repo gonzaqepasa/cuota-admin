@@ -8,13 +8,30 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method === "PUT") {
+  if (req.method === "POST") {
     try {
-      const { id, addAdmin, mothodPay, price } = req.body;
+      const {
+        trainer,
+        method,
+        pricePay,
+        activity,
+        monthName,
+        paymentDate,
+        user,
+        description,
+      } = req.body;
 
-      const month = await payMonth({ id, addAdmin, mothodPay, price });
+      const month = await payMonth({
+        trainer,
+        pricePay,
+        activity,
+        method,
+        monthName,
+        paymentDate,
+        user,
+        description,
+      });
 
-      console.log(req.body);
       res.status(200).json(month);
     } catch (err) {
       console.log(err);

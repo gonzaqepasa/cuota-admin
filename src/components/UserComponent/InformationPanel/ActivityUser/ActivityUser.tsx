@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const ActivityUser: React.FC<Props> = ({ user }) => {
-  console.log("Esto es user", user);
   return (
     <div className={` flex  justify-between`}>
       <TextUserPanel
@@ -19,7 +18,7 @@ export const ActivityUser: React.FC<Props> = ({ user }) => {
       <EditActivity
         activity={user.activity}
         user={user}
-        defaultVal={user.activity.modality}
+        defaultVal={user.activity?.modality}
       />
     </div>
   );

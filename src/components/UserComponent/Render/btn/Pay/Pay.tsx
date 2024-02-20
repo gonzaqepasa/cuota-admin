@@ -1,7 +1,6 @@
-import { payMonth } from "../../../../../api-next/payMonth";
+import { payMonth } from "../../../../../api-next/month/payMonth";
 import { MdAdd } from "react-icons/md";
 import mp from "../../../../../styles/mp.png";
-
 import {
   Modal,
   ModalContent,
@@ -11,7 +10,7 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-import { typesMonth, typesUser } from "../../../../../types/types-user";
+import { typesUser } from "../../../../../types/types-user";
 import { firstLetterUpper } from "../../../../../logic/firstLetterUpper";
 import { FaMoneyBillWave } from "react-icons/fa";
 import Image from "next/image";
@@ -19,14 +18,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  el: typesMonth;
+  month: {
+    name: string;
+    num: number;
+  };
   userData: typesUser;
 }
 
-export const ButtonPay: React.FC<Props> = ({ el, userData }) => {
+export const ButtonPay: React.FC<Props> = ({ month, userData }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [load, setLoad] = useState(false);
   const router = useRouter();
+
   const handleSubmit = async ({
     method,
     onClose,
@@ -36,7 +39,11 @@ export const ButtonPay: React.FC<Props> = ({ el, userData }) => {
   }) => {
     try {
       setLoad(true);
-      await payMonth({ month: el, userData, method });
+      await payMonth({
+        method,
+        userData,
+        monthName: month.name,
+      });
       setLoad(false);
       onClose();
       router.refresh();
@@ -69,7 +76,7 @@ export const ButtonPay: React.FC<Props> = ({ el, userData }) => {
                 <p className="text-neutral-900 text-sm">
                   ¿{firstLetterUpper(userData.name)}{" "}
                   <i className="text-neutral-500">va a pagar el mes de</i>{" "}
-                  {el.monthName} ?
+                  {month.name} ?
                 </p>
                 <p className="text-sm">
                   {`Selecciona el método de pago`}{" "}

@@ -14,7 +14,7 @@ interface Props {
 
 export const RenderMonths: React.FC<Props> = ({ user }) => {
   const currentMonth = (monthName: string) => mesActual() === monthName;
-  console.log(user);
+
   useEffect(() => {
     const scrollToComponent = () => {
       const element = document.getElementById(String(monthOfPay(mesActual())));
@@ -31,7 +31,7 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
     // Llama a la función para realizar el scroll cuando el componente se monta
     scrollToComponent();
   }, []);
-  const isThisMonth = (m: any) => m.monthName === mesActual();
+  const isThisMonth = (m: string) => m === mesActual();
   if (user.status === "inactivo")
     return (
       <>
@@ -41,7 +41,9 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
 
   function findPaidMonth(monthName: string): typesMonth | undefined {
     // Buscar el mes con el nombre dado
-    const targetMonth = user.months.find((m) => m.monthName === monthName);
+    const targetMonth = user.months.find(
+      (m) => m.monthName === monthName.trim().toLowerCase()
+    );
 
     // Retornar el mes si está pagado, de lo contrario, retornar false
     return targetMonth && targetMonth.isPay ? targetMonth : undefined;
@@ -63,14 +65,12 @@ export const RenderMonths: React.FC<Props> = ({ user }) => {
           <AccordionItem
             startContent={findPaidMonth(m.name) && <FcCheckmark className="" />}
             key={m.num}
-            // aria-label="Accordion 1"
+            aria-label="Accordion 1"
             title={m.name}
-            // id={String(monthOfPay(el.monthName))}
-            // className={`${el.isPay && "bg-green-500/10"}  px-2 ${
-            //   isThisMonth(m) && "border-2 rounded-md "
-            // }`}
-            // style={{ borderColor: user.activity.color }}
-            // // startContent={}
+            className={`${findPaidMonth(m.name) && "bg-green-500/10"}  px-2 ${
+              isThisMonth(m.name) && "border-2 rounded-md "
+            }`}
+            style={{ borderColor: user.activity.color }}
           >
             <CardMonth
               month={m}
