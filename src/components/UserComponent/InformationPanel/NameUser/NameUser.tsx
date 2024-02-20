@@ -1,6 +1,6 @@
 "use client";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
-import { editName } from "../../../../api-next/editName";
+import { editName } from "../../../../api-next/user/editName";
 import ModalEditUser from "../ModalEditUser";
 import { typesUser } from "../../../../types/types-user";
 import TextUserPanel from "../TextUserPanel";

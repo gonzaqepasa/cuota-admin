@@ -21,7 +21,7 @@ import { orderByActive, orderByName } from "../../logic/orderByMonthName";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { SearcherList } from "./Searcher/SearcherList";
 import { FilterList } from "./Filter/FilterList";
-import { arrayMonth, dateMonth } from "../../config/moths.d";
+import { arrayMonth, dateMonth, mesActual } from "../../config/moths.d";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
 import ButtonDeleteUser from "../UserComponent/Config/ButtonDeleteUser";
@@ -48,7 +48,7 @@ export const RenderList: React.FC<Props> = ({
   const [result, setResult] = useState<[] | typesUser[]>([]);
   const [resultFilter, setResultFilter] = useState(result);
   /////////////////////////
-console.log(dataActivity)
+
   useEffect(() => {
     if (userData) {
       if (!search) {
@@ -67,7 +67,9 @@ console.log(dataActivity)
   }, [search, userData]);
 
   return (
-    <div  className={`bg-neutral-200/90 flex flex-col gap-3 min-h-screen w-screen items-center`}>
+    <div
+      className={`bg-neutral-200/90 flex flex-col gap-3 min-h-screen w-screen items-center`}
+    >
       <div className="flex flex-col items-center backg-card-user  px-6 max-w-3xl w-screen rounded ">
         <FilterList
           monthSelected={monthSelected}
@@ -97,31 +99,31 @@ console.log(dataActivity)
         <TableBody emptyContent={"No hay usuarios para mostrar."} className="">
           {orderByName(orderByActive(resultFilter)).map(
             (el: typesUser, index) => (
-              <TableRow key={el.id}>
+              <TableRow key={el._id}>
                 <TableCell>
                   <Link
                     className="flex items-center hover:translate-x-1 hover:text-neutral-600 font-medium transition text-neutral-900"
-                    href={`/user/${el.id}`}
+                    href={`/user/${el._id}`}
                   >
                     <Avatar
                       style={{
-                        backgroundColor: el.activity.color,
+                        backgroundColor: dataActivity[0].color,
                       }}
                       className="text-white mr-2"
                       size="sm"
-                      name={firstLetterUpper(el.name)[0]}
+                      name={firstLetterUpper(el.name)}
                     />
                     {firstLetterUpper(el.name)}
                     <i
                       className="mx-1  text-sm"
-                      style={{ color: el.activity.color }}
+                      style={{ color: dataActivity[0].color }}
                     >
                       {firstLetterUpper(el.activity.modality)}
                     </i>
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <MsgDeptor user={el} month={monthSelected} />
+                  <MsgDeptor user={el} monthName={monthSelected} />
                 </TableCell>
                 <TableCell className="flex justify-end ">
                   <ButtonDeleteUser userData={el} />

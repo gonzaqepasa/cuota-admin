@@ -1,5 +1,5 @@
 "use client";
-import { editDescription } from "../../../../api-next/editDescription";
+import { editDescription } from "../../../../api-next/user/editDescription";
 import { typesUser } from "../../../../types/types-user";
 import ModalEditUser from "../ModalEditUser";
 import TextUserPanel from "../TextUserPanel";

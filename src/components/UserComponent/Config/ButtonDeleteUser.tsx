@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import { typesUser } from "../../../types/types-user";
-import { deleteUserLogic } from "../../../api-next/deleteUser";
+import { deleteUserLogic } from "../../../api-next/user/deleteUser";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
@@ -24,6 +24,20 @@ const ButtonDeleteUser: React.FC<Props> = ({ userData, text }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [load, setLoad] = useState(false);
   const route = useRouter();
+
+  const handleDelete = async (onClose: () => void) => {
+    try {
+      setLoad(true);
+      await deleteUserLogic({
+        id: userData._id,
+        cb: () => route.refresh(),
+      });
+      setLoad(false);
+      onClose();
+    } catch (err) {
+      setLoad(false);
+    }
+  };
 
   return (
     <>
@@ -66,14 +80,7 @@ const ButtonDeleteUser: React.FC<Props> = ({ userData, text }) => {
                   color="primary"
                   isDisabled={load}
                   isLoading={load}
-                  onPress={() =>
-                    deleteUserLogic({
-                      id: userData.calendar.id,
-                      nameUser: userData.name,
-                      cb: () => route.refresh(),
-                      setLoad,
-                    })
-                  }
+                  onPress={() => handleDelete(onClose)}
                 >
                   Eliminar
                 </Button>

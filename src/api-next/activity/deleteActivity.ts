@@ -1,35 +1,31 @@
 import { Dispatch, SetStateAction } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { url } from "../config/env_d";
+import { url } from "../../config/env_d";
+import { typesActivity } from "../../types/types-user";
 
 interface Params {
-  id: any;
-  nameUser: string;
-  setLoad: Dispatch<SetStateAction<boolean>>;
-  cb: () => void;
+  _id: any;
+  data: typesActivity;
 }
-export async function deleteUserLogic({ id, nameUser, cb, setLoad }: Params) {
+export async function deleteActivityClient({ _id }: Params) {
   try {
-    setLoad(true);
-    const { data } = await axios.put(`${url}/user/delete-user`, { id });
-
+    const { data } = await axios.delete(
+      `${url}/activity/delete-activity?_id=${_id}`
+    );
     console.log(data);
     Swal.fire({
       position: "bottom-end",
-      background: "grey",
+      background: "green",
       color: "white",
-      text: "Usuario eliminado con exito",
+      text: "Actividad eliminada con exito",
       title: false,
       showConfirmButton: false,
       timer: 2500,
       backdrop: false,
     });
-    cb();
-    setLoad(false);
   } catch (err) {
     console.log(err);
-    setLoad(false);
 
     Swal.fire({
       position: "bottom-end",

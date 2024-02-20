@@ -16,13 +16,15 @@ const PanelUser: React.FC<Props> = ({ userData }) => {
       <div className="flex  flex-col  justify-start items-center    lg:m-0   h-full  text-neutral-800 bg-neutral-300 lg:shadow-lg">
         <div className="flex items-center w-full px-2">
           <BtnBack
-            url={`/dashboard/${fromNameToUrl(userData.activity.nameActivity)}`}
+            url={`/activity/${fromNameToUrl(
+              String(userData.activity?.nameActivity)
+            )}`}
           />
           <h2
             className={`py-4 text-xl font-bold drop-shadow`}
-            style={{ color:userData.activity.color }}
+            style={{ color: userData?.activity?.color }}
           >
-            {firstLetterUpper(userData.activity.nameActivity)}
+            {firstLetterUpper(String(userData.activity?.nameActivity))}
           </h2>
         </div>
         <Divider />

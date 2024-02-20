@@ -1,10 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Console } from "console";
-import { url } from "../config/env_d";
-import { firstLetterUpper } from "../logic/firstLetterUpper";
-import { typesActivity } from "../types/types-user";
+import { url } from "../../config/env_d";
+import { firstLetterUpper } from "../../logic/firstLetterUpper";
+import { typesActivity } from "../../types/types-user";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface Params {
@@ -22,17 +21,15 @@ export function createUser({
   setLoad,
   router,
 }: Params) {
-
-
   (async () => {
     try {
       setLoad(true);
       const name = nameUser.toLowerCase().trim();
       const res = await axios.get(
-        `${url}/user/user-val?USER=${name}&ACTIVITY=${dataActivity[0].nameActivity}`
+        `${url}/user/user-val?user=${name}&activity=${dataActivity[0].nameActivity}`
       );
       console.log("esto es res", res.data);
-      if (res.data.length > 0) {
+      if (res.data.exist) {
         Swal.fire({
           reverseButtons: true,
           background: "#f2f2f2",
@@ -50,7 +47,7 @@ export function createUser({
           cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
-            router.push(`/user/${res.data[0].id}`);
+            router.push(`/user/${res.data.user._id}`);
           } else if (result.isDenied) {
             create();
           } else {
@@ -95,10 +92,7 @@ export function createUser({
 
   const create = async () => {
     try {
-      const { data } = await axios.post(
-        `${url}/user/create-user`,
-        objData
-      );
+      const { data } = await axios.post(`${url}/user/create-user`, objData);
       router.refresh();
       // setModalAdd(false);
       // getDataAgain();
@@ -116,7 +110,7 @@ export function createUser({
         showCancelButton: true,
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push(`/user/${data.id}`);
+          router.push(`/user/${data._id}`);
         } else if (result.isDenied) {
         } else {
           setLoad(false);

@@ -15,7 +15,7 @@ import {
 import { IoIosColorPalette } from "react-icons/io";
 
 import { useRouter } from "next/navigation";
-import { editColor } from "../../../api-next/editColor";
+import { editColor } from "../../../api-next/activity/editColor";
 import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 
 interface Props {

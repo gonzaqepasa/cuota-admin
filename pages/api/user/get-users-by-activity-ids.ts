@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getUsers } from "../../../services/user.service";
+import { getUsersByActivityId } from "../../../services/user.service";
 
 type Data = any;
 
@@ -9,8 +9,13 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    const { activity } = req.query;
-    const users = await getUsers({ nameActivity: String(activity) });
+    const { activityIds } = req.query;
+    const activityIdsArray =
+      typeof activityIds === "string"
+        ? activityIds.split(",").map((id) => id.trim())
+        : [];
+    const users = await getUsersByActivityId({ activityIds: activityIdsArray });
+    console.log("Array de activity ids", activityIds);
 
     res.status(200).json(users);
   } catch (err) {

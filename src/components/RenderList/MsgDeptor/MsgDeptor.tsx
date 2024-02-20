@@ -1,27 +1,25 @@
 import Image from "next/image";
-import { typesUser } from "../../../types/types-user";
-import { mesActual } from "../../../config/moths";
+import { typesMonth, typesUser } from "../../../types/types-user";
+import { mesActual } from "../../../config/moths.d";
 import { FaMoneyBillWave } from "react-icons/fa";
 import mp from "../../../styles/mp.png";
 import { FcCancel } from "react-icons/fc";
 
 interface Props {
   user: typesUser;
-  month: string;
+  monthName:string
 }
-export const MsgDeptor: React.FC<Props> = ({ user, month }) => {
-  const aux = user.calendar.months.find((m) => {
-    return m.monthName === month;
+export const MsgDeptor: React.FC<Props> = ({ user ,monthName}) => {
+  const month = user.months?.find((m) => {
+    return m.monthName === monthName.toLowerCase();
   });
-  // console.log(aux, "asdasdasdasdasdasd");
 
-  if (aux?.isPay === false) {
-    return <FcCancel className={` text-2xl `} />;
-  } else if (aux?.mothodPay === "MP") {
+  if (month?.method === "MP")
     return (
       <Image src={mp} height={24} className=" " alt="no se encontr imagen" />
     );
-  } else {
+
+  if (month?.method === "EF")
     return <FaMoneyBillWave className={` text-2xl `} color="green" />;
-  }
+  return <FcCancel className={` text-2xl `} />;
 };

@@ -14,11 +14,11 @@ import {
   Tabs,
   Tab,
 } from "@nextui-org/react";
-import { createActivity } from "../../../api-next/createActivity";
+import { createActivity } from "../../../api-next/activity/createActivity";
 import { useRouter } from "next/navigation";
 import SelectActivityToCreate from "./OptionsToCreate/SelectActivity";
 import { typesActivity } from "../../../types/types-user";
-import { getAllActivities } from "../../../api-next/getActivity";
+import { getAllActivities } from "../../../api-next/activity/getActivity";
 interface Props {
   activitiesRes: typesActivity[];
 }

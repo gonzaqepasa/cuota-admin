@@ -1,256 +1,256 @@
-import { typesEditName, type typesUser } from "../src/types/types-user";
-import { prisma } from "./prismaConfig";
-import { arrayWithNamesMonths } from "../src/config/infoMonths";
-
-type typesCreateUser = Pick<
-  typesUser,
-  "name" | "email" | "phone" | "description" | "activityId"
->;
+import User from "../src/mongoose/models/User";
+import Activity from "../src/mongoose/models/Activity";
 
 export async function createUser({
-  name,
-  email,
-  phone,
   description,
   activityId,
-}: typesCreateUser) {
+  name,
+  phoneNumber,
+}: {
+  description?: string;
+  activityId: string; // ID de la actividad a la que se asociará el usuario
+  name: string;
+  phoneNumber?: string;
+}) {
   try {
     ////////////////////////////////////
-    const user = await prisma.user.create({
-      data: {
-        // Información personal
-        name: name.toLowerCase().trim(),
-        email,
-        phone,
-        description,
-        //Informacion de actividad
-        active: true,
-        activity: {
-          connect: {
-            id: activityId,
-          },
-        },
-        //Informacion de pago
-        calendar: {
-          create: {
-            months: {
-              create: arrayWithNamesMonths.map((obj) => {
-                return {
-                  monthNum: obj.num,
-                  monthName: obj.name,
-                  addData: "",
-                  addAdmin: "",
-                  addDataIso: "",
-                  isPay: false,
-                  mothodPay: "",
-                  pricePay: 0,
-                };
-              }),
-            },
-          },
-        },
-      },
+    // Verificar si la actividad existe antes de asociar el usuario
+    const activity = await Activity.findById(activityId);
+
+    if (!activity) {
+      return { error: "La actividad especificada no existe" };
+    }
+
+    // Crear el usuario
+    const user = new User({
+      description,
+      activity: activityId, // Asociar el usuario a la actividad
+      name,
+      phoneNumber,
     });
+
+    // Guardar el usuario en la base de datos
+    await user.save();
+
+    // Asociar el usuario a la actividad
+    activity.users.push(user);
+    await activity.save();
+
     return user;
     ////////////////////////////////////
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return { error: "Error al crear el usuario" };
   }
 }
 
-export async function getUsers(activity: any) {
+export async function getUsers({ nameActivity }: { nameActivity: string }) {
   try {
-    console.log(activity);
-    let data;
-    activity
-      ? (data = {
-          where: {
-            activity: {
-              nameActivity: String(activity),
-            },
-          },
-          include: {
-            activity: true,
-            calendar: {
-              include: { months: true },
-            },
-          },
-        })
-      : (data = undefined);
+    // Buscar todos los usuarios que pertenecen a una actividad con el nombre específico
+    const users = await User.find({
+      "activity.nameActivity": nameActivity,
+    }).populate("activity");
+    console.log(
+      "Esta es la respuesta en servicios lo que envia a la ruta",
+      nameActivity,
+      users
+    );
 
-    const users = await prisma.user.findMany(data);
-    await prisma.$disconnect();
     return users;
-  } catch (err) {
-    console.log(err);
-    await prisma.$disconnect();
-    process.exit(1);
+  } catch (error) {
+    console.error(error);
+    return { error: "Error al buscar usuarios por actividad" };
+  }
+}
+export async function getUsersByActivityId({
+  activityIds,
+}: {
+  activityIds: string[];
+}) {
+  try {
+    // Buscar todos los usuarios que pertenecen a las actividades con los IDs específicos
+    const users = await User.find({
+      activity: { $in: activityIds }, // Asumo que el campo correcto es "activity._id", ajusta según tu modelo
+    }).populate(["activity", "months"]);
+
+    return users;
+  } catch (error) {
+    console.error(error);
+    return { error: "Error al buscar usuarios por actividad" };
   }
 }
 
 export async function getUser({ id }: any) {
   try {
-    const user = await prisma.user.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        activity: true,
-        calendar: {
-          include: {
-            months: true,
-          },
-        },
-      },
-    });
-    await prisma.$disconnect();
-    return user;
+    const user = await User.findById(id).populate(["activity", "months"]);
 
+    return user;
   } catch (err) {
-    await prisma.$disconnect();
-    process.exit(1);
+    console.log(err);
+    throw new Error("Hubo un problema al buscar el usuario");
   }
 }
 
 export async function getUserValidate({ name, activity }: any) {
   try {
-    const user = await prisma.user.findMany({
-      where: {
-        name,
-        activity: {
-          nameActivity: activity,
-        },
-      },
-      include: {
-        activity: true,
-        calendar: {
-          include: {
-            months: true,
-          },
-        },
-      },
+    // Buscar usuarios con el mismo nombre en la misma actividad
+    const existingUsers = await User.find({
+      name: name,
+      "activity.nameActivity": activity,
     });
-    return user;
+
+    if (existingUsers.length > 0) {
+      // Ya existe un usuario con el mismo nombre en la misma actividad
+      return {
+        exists: true,
+        user: existingUsers[0], // Puedes devolver el primer usuario encontrado
+      };
+    } else {
+      // No hay usuarios existentes, se puede crear uno nuevo
+      return { exists: false };
+    }
   } catch (err) {
-    await prisma.$disconnect();
-    return false;
+    console.error(err);
+    return { exists: false, error: "Error al validar el usuario" };
   }
 }
 
-export async function editName({ id, name }: typesEditName) {
+export async function updateUser({
+  userId,
+  phoneNumber,
+  description,
+  name,
+}: {
+  userId: string;
+  phoneNumber?: string;
+  description?: string;
+  name?: string;
+}) {
   try {
-    const user = await prisma.user.update({
-      where: {
-        id: String(id),
-      },
-      data: {
-        name: name.toLowerCase().trim(),
-      },
+    // Verificar si se proporcionó un ID válido
+    if (!userId) {
+      return { error: "Se requiere un ID de usuario válido" };
+    }
+
+    // Crear un objeto con las propiedades actualizadas
+    const updatedFields: { [key: string]: any } = {};
+    if (phoneNumber) {
+      updatedFields.phoneNumber = phoneNumber.trim();
+    }
+    if (description) {
+      updatedFields.description = description.trim();
+    }
+    if (name) {
+      updatedFields.name = name.trim().toLowerCase();
+    }
+
+    // Actualizar el usuario con las propiedades proporcionadas
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedFields, {
+      new: true,
     });
 
-    await prisma.$disconnect();
-    return user;
-  } catch (err) {
-    await prisma.$disconnect();
-    return false;
-  }
-}
-export async function editPhone({ id, phone }: any) {
-  try {
-    const user = await prisma.user.update({
-      where: {
-        id: String(id),
-      },
-      data: {
-        phone,
-      },
-    });
+    // Verificar si el usuario fue encontrado y actualizado
+    if (!updatedUser) {
+      throw new Error("No se encontro el usuario");
+    }
 
-    await prisma.$disconnect();
-    return user;
+    return updatedUser;
   } catch (err) {
-    await prisma.$disconnect();
-    return false;
-  }
-}
-
-export async function editDescription({ id, description }: any) {
-  try {
-    const user = await prisma.user.update({
-      where: {
-        id: String(id),
-      },
-      data: {
-        description,
-      },
-    });
-
-    await prisma.$disconnect();
-    return user;
-  } catch (err) {
-    await prisma.$disconnect();
-    process.exit(1);
+    console.error(err);
+    return { error: "Error al actualizar el usuario" };
   }
 }
 
-export async function editActive({ id, active }: any) {
+export async function changeActivityService({
+  userId,
+  newActivityId,
+}: {
+  userId: string;
+  newActivityId: string;
+}) {
   try {
-    const user = await prisma.user.update({
-      where: {
-        id,
-      },
-      data: {
-        active: !active,
-      },
+    // Verificar si se proporcionó un ID válido
+    if (!userId || !newActivityId) {
+      return { error: "Se requieren ID de usuario y actividad válidos" };
+    }
+
+    // Buscar el usuario por ID y obtener la actividad actual
+    const user = await User.findById(userId).populate("activity");
+
+    if (!user) {
+      return { error: "No se encontró el usuario" };
+    }
+
+    const currentActivity = user.activity;
+
+    // Verificar si el usuario ya pertenece a la nueva actividad
+    if (currentActivity && currentActivity._id.equals(newActivityId)) {
+      return { error: "El usuario ya pertenece a la nueva actividad" };
+    }
+
+    // Paso 1: Eliminar al usuario de la actividad actual
+    if (currentActivity) {
+      currentActivity.users.pull(userId);
+      await currentActivity.save();
+    }
+
+    // Paso 2: Agregar al usuario a la nueva actividad
+    const newActivity = await User.findByIdAndUpdate(
+      userId,
+      { activity: newActivityId },
+      { new: true }
+    );
+
+    // Verificar si la nueva actividad fue encontrada y actualizada
+    if (!newActivity) {
+      return {
+        error: "No se encontró la nueva actividad o no se pudo actualizar",
+      };
+    }
+
+    // Actualizar la lista de usuarios de la nueva actividad
+    await User.findByIdAndUpdate(newActivityId, {
+      $addToSet: { users: userId },
     });
 
-    await prisma.$disconnect();
-    return user;
+    return newActivity;
   } catch (err) {
-    await prisma.$disconnect();
-    process.exit(1);
+    console.error(err);
+    return { error: "Error al cambiar la actividad del usuario" };
   }
 }
 
-export async function changeActivityService({ id_user, id_activity }: any) {
+export async function deleteUser({ userId }: { userId: string }) {
   try {
-    const user = await prisma.user.update({
-      where: {
-        id: String(id_user),
-      },
-      data: {
-        activityId: Number(id_activity),
-      },
-      include: {
-        activity: true,
-        // calendar: true,
-      },
-    });
+    // Buscar al usuario por ID
+    const user = await User.findById(userId);
 
-    await prisma.$disconnect();
-    return user;
+    if (!user) {
+      throw new Error("No se encontro un usuario con esa id");
+    }
+
+    // Obtener el ID de la actividad actual del usuario
+    const currentActivityId = user.activity;
+
+    // Si el usuario está asociado a una actividad, quitarlo de la lista de usuarios de esa actividad
+    if (currentActivityId) {
+      await User.updateOne(
+        { _id: userId },
+        { $unset: { activity: 1 } } // Eliminar la referencia a la actividad actual
+      );
+
+      await Activity.updateOne(
+        { _id: currentActivityId },
+        { $pull: { users: userId } } // Quitar al usuario de la lista de usuarios de la actividad
+      );
+    }
+
+    // Eliminar al usuario
+    await User.findByIdAndDelete(userId);
+
+    return { success: "Usuario eliminado exitosamente" };
   } catch (err) {
-    await prisma.$disconnect();
-    console.log(err);
-    process.exit(1);
-  }
-}
-
-export async function deleteUser({ id }: any) {
-  try {
-    const user = await prisma.calendar.delete({
-      where: {
-        id: Number(id),
-      },
-      include: {
-        User: true,
-      },
-    });
-
-    await prisma.$disconnect();
-    return user;
-  } catch (err) {
-    await prisma.$disconnect();
-    process.exit(1);
+    console.error(err);
+    throw new Error("Error al eliminar el usuario");
   }
 }

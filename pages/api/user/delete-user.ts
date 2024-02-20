@@ -12,9 +12,9 @@ export default async function handler(
     try {
       const { id } = req.body;
 
-      const user = await deleteUser({ id: Number(id) });
+      const user = await deleteUser({ userId: id });
       console.log(id);
-      res.status(200).json(id);
+      res.status(200).json(user);
     } catch (err) {
       console.log(err);
     }

@@ -4,4 +4,5 @@ export const url =
 
 // Url para conectar con mongoose
 export const URL_MONGODB =
-  process.env.URL_MONGODB || `mongodb://127.0.0.1:27017/${"cuota-admin"}`;
+  process.env.NEXT_PUBLIC_URL_MONGODB ||
+  `mongodb://127.0.0.1:27017/${"cuota-indomito-test"}`;

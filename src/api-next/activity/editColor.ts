@@ -1,30 +1,29 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../config/env_d";
-import { typesActivity } from "../types/types-user";
-import { numberToMoney } from "../logic/numberToMoney";
+import { url } from "../../config/env_d";
+import { typesActivity } from "../../types/types-user";
+import { numberToMoney } from "../../logic/numberToMoney";
 
-export async function createActivity({
+export async function editColor({
+  _id,
   nameActivity,
   modality,
   price,
   color,
 }: typesActivity) {
   try {
-    const { data } = await axios.post(`${url}/activity/create-activity`, {
-      id: 0,
-      color,
-      price,
+    const { data } = await axios.put(`${url}/activity/edit-color`, {
       nameActivity,
-      modality,
+      color,
     });
-    console.log(data);
+
     Swal.fire({
       // background: "#202020",
       color: "black",
       icon: "success",
-      title: "Actividad creada",
-      text: `Se a creado la actividad ${nameActivity} ${modality}`,
+      confirmButtonColor: color,
+      title: "Color cambiado",
+      text: `Se a asignado un nuevo color para ${nameActivity}`,
     });
   } catch (err) {
     console.log(err);

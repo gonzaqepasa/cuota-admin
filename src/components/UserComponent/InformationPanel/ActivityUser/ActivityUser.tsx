@@ -11,14 +11,14 @@ export const ActivityUser: React.FC<Props> = ({ user }) => {
     <div className={` flex  justify-between`}>
       <TextUserPanel
         label="Actividad"
-        val={user.activity.nameActivity}
-        modality={user.activity.modality}
-        color={user.activity.color}
+        val={user.activity?.nameActivity}
+        modality={user.activity?.modality}
+        color={user.activity?.color}
       />
       <EditActivity
         activity={user.activity}
         user={user}
-        defaultVal={user.activity.modality}
+        defaultVal={user.activity?.modality}
       />
     </div>
   );

@@ -7,11 +7,13 @@ interface Props {
 }
 
 export const User: React.FC<Props> = ({ userData }) => {
+  console.log("Esto es user", userData);
+
   if (userData)
     return (
       <div
         className={`grid lg:grid-cols-3 w-screen  lg:p-0  ${` `} ${
-          !userData.active && `opacity-40 `
+          userData.status === "inactivo" && `opacity-40 `
         }`}
       >
         <div className="lg:col-span-1">

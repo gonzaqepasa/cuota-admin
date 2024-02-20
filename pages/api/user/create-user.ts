@@ -12,12 +12,11 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const { name, email, phone, description, activityId } = req.body;
+      const { name, phoneNumber, description, activityId } = req.body;
 
       const user = await createUser({
         name,
-        email,
-        phone,
+        phoneNumber,
         description,
         activityId,
       });

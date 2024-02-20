@@ -1,19 +1,18 @@
 import axios from "axios";
-import { MouseEvent } from "react";
 import Swal from "sweetalert2";
-import { url } from "../config/env_d";
-import { typesActivity } from "../types/types-user";
-import { numberToMoney } from "../logic/numberToMoney";
+import { url } from "../../config/env_d";
+import { typesActivity } from "../../types/types-user";
+import { numberToMoney } from "../../logic/numberToMoney";
 
 export async function editPrice({
-  id,
+  _id,
   nameActivity,
   modality,
   price,
 }: typesActivity) {
   try {
-    const { data } = await axios.put(`${url}/activity/edit-price`, {
-      id,
+    const { data } = await axios.put(`${url}/activity/edit-activity`, {
+      _id,
       price,
     });
 

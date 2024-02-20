@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { payMonth } from "../../../services/month.service";
+import { editActivity } from "../../../services/activity.service";
 
 type Data = any;
 
@@ -8,34 +8,33 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     try {
       const {
-        trainer,
-        method,
-        pricePay,
-        activity,
-        monthName,
-        paymentDate,
-        user,
+        _id,
+        color,
+        nameActivity,
+        price,
         description,
+        modality,
+        CreatedAt,
+        updatedAt,
       } = req.body;
 
-      const month = await payMonth({
-        trainer,
-        pricePay,
-        activity,
-        method,
-        monthName,
-        paymentDate,
-        user,
+      const activities = await editActivity({
+        _id,
+        color,
+        nameActivity,
+        price,
         description,
+        modality,
+        CreatedAt,
+        updatedAt,
       });
 
-      res.status(200).json(month);
+      res.status(200).json(activities);
     } catch (err) {
       console.log(err);
-      res.status(400).json(err);
     }
   } else {
     res.status(301).json({ msg: "Metodo incorrecto" });

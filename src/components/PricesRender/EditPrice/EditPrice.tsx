@@ -15,7 +15,7 @@ import {
   Input,
 } from "@nextui-org/react";
 
-import { editPrice } from "../../../api-next/editPrice";
+import { editPrice } from "../../../api-next/activity/editPrice";
 import { useRouter } from "next/navigation";
 import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 

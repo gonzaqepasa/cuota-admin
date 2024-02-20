@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
   createActivityService,
-  editColor,
+
 } from "../../../services/activity.service";
 
 type Data = any;
@@ -20,7 +20,10 @@ export default async function handler(
         price,
         modality,
         nameActivity,
-        id: 0,
+        CreatedAt: "", //No necesita
+        updatedAt: "", //No necesita
+        description: "", //No necesita
+        _id: "", //No necesita
       });
 
       res.status(200).json(activity);

@@ -9,9 +9,9 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  } from "@nextui-org/react";
+} from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { deleteActivity } from "../../../api-next/deleteActivity";
+import { deleteActivityClient } from "../../../api-next/activity/deleteActivity";
 import { typesActivity } from "../../../types/types-user";
 
 interface Props {
@@ -25,7 +25,7 @@ const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
   const handleSubmit = async (onClose: () => void) => {
     setLoad(true);
     try {
-      await deleteActivity({ id: data.id, data });
+      await deleteActivityClient({ _id: data._id, data });
       setLoad(false);
       router.refresh();
       onClose();
@@ -42,7 +42,7 @@ const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
         variant="light"
         className="min-w-fit text-lg "
         onPress={onOpen}
-        isDisabled={data.User !== undefined && Boolean(data.User?.length > 0)}
+        isDisabled={data.users !== undefined && Boolean(data.users?.length > 0)}
       >
         <MdDelete />
       </Button>

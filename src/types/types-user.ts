@@ -2,51 +2,50 @@ export interface typesUser {
   // Información personal
   // Se genera a travez de inputs
   name: string;
-  phone?: string;
+  phoneNumber?: string;
   email?: string;
-  dni?: number;
+
   description?: string;
 
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
-  active: boolean;
+  status: "activo" | "inactivo";
   activity: typesActivity;
-  activityId: number;
 
   // Información de pago
   // Se genera de forma automatica
-  calendar: typesCalendar;
+  months: typesMonth[];
 
-  id?: string;
+  _id: string;
 }
-
-export type typesEditName = Pick<typesUser, "id" | "name">;
 
 export interface typesActivity {
   nameActivity: string;
   modality: string;
+  description?: string;
   color: string;
   price: number;
-  id: number;
-  User?:typesUser[]
-}
-
-export interface typesCalendar {
-  months: typesMonth[];
-  id: number;
-  User: typesUser;
+  _id: string;
+  users?: typesUser[];
+  months?: typesMonth[];
+  updatedAt: string;
+  CreatedAt: string;
 }
 
 export interface typesMonth {
+  method: "MP" | "EF";
   monthName: string;
-  comment?: string;
-  addData?: string;
-  addAdmin?: string;
+  description?: string;
+  trainer?: string;
   isPay: boolean;
-  mothodPay: String;
   pricePay: number;
-  id: number;
-  calendar: typesCalendar;
+  status: "Pending" | "Completed";
+  user: typesUser;
+  activity: typesActivity;
+  paymentDate?: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type typesMonthNames =
