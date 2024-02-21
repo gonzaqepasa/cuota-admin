@@ -1,4 +1,4 @@
-import { typesActivity } from "../../types/types-user";
+import { typesActivity, typesUser } from "../../types/types-user";
 import {
   getActivitiesToDashboard,
   getActivityService,
@@ -21,7 +21,7 @@ export const getAllActivitiesToDashboard = async () => {
 
 export const getActivityClient = async ({ nameActivity }: any) => {
   try {
-    const activityRes = await getActivityService({
+    const activityRes= await getActivityService({
       nameActivity: String(nameActivity),
     });
 
@@ -35,8 +35,6 @@ export const getActivityClient = async ({ nameActivity }: any) => {
     if (activityRes.length === 0) {
       return {
         msg: "Esta actividad no existe",
-        activity: [],
-        users: [],
       };
     }
 
@@ -48,8 +46,6 @@ export const getActivityClient = async ({ nameActivity }: any) => {
     console.log(err);
     return {
       msg: String(err),
-      activity: [],
-      users: [],
     };
   }
 };

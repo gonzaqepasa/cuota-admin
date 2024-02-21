@@ -15,7 +15,7 @@ const ActivityListPage = async ({ params }: Params) => {
   const { users, activity, msg } = await getActivityClient({
     nameActivity: params.activity,
   });
-
+  if (!activity && !users) return <></>;
   return (
     <main
       style={{ backgroundColor: activity[0].color }}
