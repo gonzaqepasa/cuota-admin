@@ -10,7 +10,7 @@ export async function editPrice({
   price,
 }: typesActivity) {
   try {
-    const { data } = await editActivity({
+    const data= await editActivity({
       _id,
       price,
     });
