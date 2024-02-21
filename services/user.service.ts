@@ -19,7 +19,7 @@ export async function createUserService({
     const activity = await Activity.findById(activityId);
 
     if (!activity) {
-      return { error: "La actividad especificada no existe" };
+      throw new Error("No se encontro actividad");
     }
 
     // Crear el usuario
@@ -41,7 +41,7 @@ export async function createUserService({
     ////////////////////////////////////
   } catch (err) {
     console.error(err);
-    return { error: "Error al crear el usuario" };
+    throw new Error("hubo un problema con la base de datos")
   }
 }
 
