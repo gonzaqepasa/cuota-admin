@@ -13,7 +13,7 @@ interface CreatePaymentParams {
   paymentDate: string;
 }
 
-export async function payMonth({
+export async function payMonthService({
   method,
   monthName,
   description,

@@ -1,7 +1,7 @@
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 
-export async function createUser({
+export async function createUserService({
   description,
   activityId,
   name,
@@ -80,7 +80,7 @@ export async function getUsersByActivityId({
   }
 }
 
-export async function getUser({ id }: any) {
+export async function getUserService({ id }: any) {
   try {
     const user = await User.findById(id).populate(["activity", "months"]);
 

@@ -1,8 +1,7 @@
-import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
 import { typesActivity } from "../../types/types-user";
 import { numberToMoney } from "../../logic/numberToMoney";
+import { editActivity } from "../../../services/activity.service";
 
 export async function editPrice({
   _id,
@@ -11,11 +10,10 @@ export async function editPrice({
   price,
 }: typesActivity) {
   try {
-    const { data } = await axios.put(`${url}/activity/edit-activity`, {
+    const { data } = await editActivity({
       _id,
       price,
     });
-
     Swal.fire({
       // background: "#202020",
       color: "black",

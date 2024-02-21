@@ -6,7 +6,7 @@ export async function createActivityService({
   modality,
   nameActivity,
   price,
-}: typesActivity) {
+}: Pick<typesActivity, "color" | "modality" | "nameActivity" | "price">) {
   try {
     const activity = new Activity({
       nameActivity: nameActivity.trim().toLowerCase(),
@@ -51,11 +51,14 @@ export async function getActivityService({
 export async function editActivity({
   _id,
   price,
-  modality,
   description,
   nameActivity,
-  color,
-}: typesActivity) {
+}: {
+  price?: number;
+  description?: string;
+  nameActivity?: string;
+  _id: string;
+}) {
   try {
     // Verificar si se proporcionó un ID válido
     if (!_id) {
@@ -70,14 +73,9 @@ export async function editActivity({
     if (nameActivity) {
       updatedFields.nameActivity = nameActivity;
     }
-    if (modality) {
-      updatedFields.modality = modality;
-    }
+
     if (description) {
       updatedFields.description = description;
-    }
-    if (color) {
-      updatedFields.color = color;
     }
 
     // Actualizar la actividad con las propiedades proporcionadas

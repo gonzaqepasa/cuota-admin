@@ -1,14 +1,10 @@
-import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
 import { typesHanldeEditUser } from "../../components/UserComponent/InformationPanel/ModalEditUser";
+import { updateUser } from "../../../services/user.service";
 
 export async function editName({ id, newVal, onClose }: typesHanldeEditUser) {
   try {
-    await axios.put(`${url}/user/update`, {
-      userId: id,
-      name: newVal,
-    });
+    await updateUser({ userId: id, phoneNumber: newVal });
     onClose && onClose();
     Swal.fire({
       background: "green",
