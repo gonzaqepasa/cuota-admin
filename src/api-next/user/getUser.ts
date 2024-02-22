@@ -10,7 +10,7 @@ const getUser = async ({ id }: Params) => {
     return data;
   } catch (e) {
     console.log(e);
-    return { msg: "Hubo un problema buscando al usuario" };
+    throw new Error("Hubo un problema al intentar obtener un usuario");
   }
 };
 

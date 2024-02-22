@@ -12,16 +12,13 @@ export const getAllActivitiesToDashboard = async () => {
     return activityRes;
   } catch (err: any) {
     console.log(err);
-    return {
-      msg: "Hubo un problame en el servidor",
-      activity: [],
-    };
+    throw new Error("Hubo un problema en el servidor");
   }
 };
 
 export const getActivityClient = async ({ nameActivity }: any) => {
   try {
-    const activityRes= await getActivityService({
+    const activityRes = await getActivityService({
       nameActivity: String(nameActivity),
     });
 

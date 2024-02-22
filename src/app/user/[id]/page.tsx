@@ -10,7 +10,7 @@ interface Props {
 }
 
 const UserPage =async ({ params }: Props) => {
-  const userData: typesUser = await getUser({ id: String(params.id) });
+  const userData = await getUser({ id: String(params.id) });
 
   return (
     <main className="flex flex-col items-center justify-center text-neutral-300 ">
