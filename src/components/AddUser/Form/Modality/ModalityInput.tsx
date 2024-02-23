@@ -1,39 +1,41 @@
+import { Select, SelectItem } from "@nextui-org/react";
 import { selectColor } from "../../../../logic/selectColor";
 import { type typesActivity } from "../../../../types/types-user";
-import { handleSelect } from "../../logic/handle-functions";
 import { Dispatch, SetStateAction } from "react";
+import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 
 interface Props {
-  setActivity: Dispatch<SetStateAction<number>>;
+  setActivity: Dispatch<SetStateAction<string | null>>;
   dataActivity: typesActivity[];
+  activity: string | null;
 }
 
 export const ModalityInput: React.FC<Props> = ({
   dataActivity,
   setActivity,
+  activity,
 }) => {
+  function handleSelect(e: string) {
+    setActivity(e);
+    console.log(e);
+  }
+  console.log(dataActivity);
   return (
-    <div className={`flex flex-col my-1 `}>
-      <label
-        className="text-gray-400 text-sm "
-        // style={{ color: selectColor(dataActivity[0].nameActivity) }}
-        htmlFor=""
-      >
-        Modalidad
-      </label>
-      <select
-        className={` bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 focus:outline rounded-md p-1 font-normal text-sm`}
-        onChange={(e) => handleSelect(e.target.value, setActivity)}
-        name="activity"
-        id=""
-        style={{ color: selectColor(dataActivity[0].nameActivity) }}
-      >
-        {dataActivity.map((el: typesActivity) => (
-          <option key={el.id} value={el.id}>
-            {el.modality}
-          </option>
-        ))}
-      </select>
-    </div>
+    <Select
+      className={` `}
+      onChange={(e) => handleSelect(e.target.value)}
+      name="activity"
+      id=""
+      color="primary"
+      variant="bordered"
+      label={"Modalidad"}
+      errorMessage={!activity && "Selecciones modalidad"}
+    >
+      {dataActivity.map((el: typesActivity) => (
+        <SelectItem color="primary" variant="solid" key={el._id} value={el._id}>
+          {firstLetterUpper(el.modality)}
+        </SelectItem>
+      ))}
+    </Select>
   );
 };

@@ -10,9 +10,7 @@ export default async function handler(
 ) {
   try {
     const { activity } = req.query;
-    console.log(activity);
-
-    const users = await getUsers(activity);
+    const users = await getUsers({ nameActivity: String(activity) });
 
     res.status(200).json(users);
   } catch (err) {

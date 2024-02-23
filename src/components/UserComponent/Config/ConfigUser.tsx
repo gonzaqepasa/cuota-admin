@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { deleteUserLogic } from "../../../logic/deleteUser";
+import { deleteUserLogic } from "../../../api-next/user/deleteUser";
 import { typesUser } from "../../../types/types-user";
 import { visibilityUser } from "../../../logic/visibilityUser";
 
@@ -12,7 +12,7 @@ export const ConfigUser: React.FC<Props> = ({ userData, getDataAgain }) => {
   const route = useRouter();
   return (
     <div className={` flex flex-col items-end  w-full h-full  `}>
-      <div className="py-1  flex flex-col items-end border-b-2 w-full border-neutral-700">
+      {/* <div className="py-1  flex flex-col items-end border-b-2 w-full border-neutral-700">
         <h4 className={`text-neutral-200 text-sm`}>
           {userData.active ? "Desactivar usuario" : "Activar usuario"}
         </h4>
@@ -34,22 +34,7 @@ export const ConfigUser: React.FC<Props> = ({ userData, getDataAgain }) => {
         className={
           " py-1  flex flex-col items-end border-b-2 w-full border-neutral-700"
         }
-      >
-        <h4 className={`text-neutral-200 text-sm`}>Eliminar usuario</h4>
-        <p className={`text-xs text-neutral-500 text-right`}>
-          Se perdera la información relacionada *
-        </p>
-        <button
-          className={`text-sm text-red-700 transition-colors hover:text-red-600`}
-          onClick={() =>
-            deleteUserLogic(userData.calendar.id, userData.name, () =>
-              route.push(`/list/${userData.activity.nameActivity}`)
-            )
-          }
-        >
-          Eliminar
-        </button>
-      </div>
+      ></div> */}
     </div>
   );
 };

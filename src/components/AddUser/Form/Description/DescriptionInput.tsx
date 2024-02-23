@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { selectColor } from "../../../../logic/selectColor";
 import { type typesActivity } from "../../../../types/types-user";
+import { Textarea } from "@nextui-org/react";
 
 interface Props {
   setDescription: Dispatch<SetStateAction<string>>;
@@ -12,24 +13,16 @@ export const DescriptionInput: React.FC<Props> = ({
   dataActivity,
 }) => {
   return (
-    <div className={`flex flex-col my-1`}>
-      <label
-        className="text-gray-400 text-sm"
-        // style={{ color: selectColor(dataActivity[0].nameActivity) }}
-      >
-        Descripcion
-      </label>
-      <textarea
-        className={`bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 focus:outline  rounded-md p-1 font-normal text-sm `}
-        style={{
-          color: selectColor(dataActivity[0].nameActivity),
-          minHeight: "50px",
-        }}
-        placeholder="Ingrese alguna descripción..."
-        autoComplete="none"
-        onChange={(e) => setDescription(e.target.value)}
-        name="number"
-      />
-    </div>
+    <Textarea
+      className={` `}
+      placeholder="Ingrese alguna descripción..."
+      autoComplete="none"
+      label="Descripción"
+      variant="bordered"
+   
+      color="primary"
+      onChange={(e) => setDescription(e.target.value)}
+      name="description"
+    />
   );
 };

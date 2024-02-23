@@ -1,40 +1,54 @@
-import { Dispatch, SetStateAction } from "react";
-import { MdAdd } from "react-icons/md";
-import { selectColor } from "../../../logic/selectColor";
+"use client";
 
+import { IoPersonAdd } from "react-icons/io5";
+
+import { selectColor } from "../../../logic/selectColor";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  Tooltip,
+} from "@nextui-org/react";
+import { NameInput } from "../Form/Name/NameInput";
+import { AddUserForm } from "../Form/AddUserForm";
+import { typesActivity } from "../../../types/types-user";
 interface Props {
-  setModalAdd: Dispatch<SetStateAction<any>>;
   color: string;
-  modalAdd: boolean;
+  dataActivity: typesActivity[];
 }
 
-export const ButtonAdd: React.FC<Props> = ({
-  setModalAdd,
-  color,
-  modalAdd,
-}) => {
+export const ButtonAdd: React.FC<Props> = ({ color, dataActivity }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
-    <div className={` w-full flex items-center justify-end py-2  `}>
-      {
-        <button
-          className={`flex items-center justify-center px-2 transition rounded text-white  ${
-            !modalAdd && "bg-neutral-800 hover:bg-neutral-400 hover:text-black"
-          } `}
-          onClick={(e) => setModalAdd((state: boolean) => !state)}
-        >
-          <p className={` text-sm ${!modalAdd ? "flex" : "hidden"}`}>
-            Agregar usuario
-          </p>
-          <span
-            style={{ color: selectColor(color) }}
-            className={`transition rotate-180 text-neutral-100 ${
-              modalAdd && "rotate-45"
-            } opacity-80 hover:opacity-100`}
-          >
-            <MdAdd size={27} />
-          </span>
-        </button>
-      }
-    </div>
+    <>
+      <Tooltip
+        content={`¡Click aca para agregar un cliente a esta actividad!`}
+        color="primary"
+        delay={1000}
+      >
+        <Button color="primary" variant="shadow" onPress={onOpen}>
+          <IoPersonAdd />
+          {`agregar cliente`}
+        </Button>
+      </Tooltip>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col items-center ">
+                {`AGREGAR CLIENTE A ${dataActivity[0].nameActivity.toUpperCase()}`}
+              </ModalHeader>
+              <ModalBody>
+                <AddUserForm dataActivity={dataActivity} onClose={onClose} />
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 };

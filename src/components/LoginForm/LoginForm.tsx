@@ -1,6 +1,5 @@
 import { FormEvent, MouseEvent, useState } from "react";
 import { loginUser } from "../../../firebase/auth/loginUser";
-import Loading from "../Loading/Loading";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -13,12 +12,6 @@ export default function LoginForm() {
     loginUser(email, pass, setLoad);
   }
 
-  if (load)
-    return (
-      <div className="loadContainer">
-        <Loading />;
-      </div>
-    );
   return (
     <div
       className={`flex items-center justify-center min-h-screen  backg-img w-full`}
