@@ -23,7 +23,7 @@ const ActivityListPage = async ({ params }: Params) => {
     >
       <ProviderAuth>
         <ProviderNextUi>
-          <></>
+          
           <Title data={activity[0]} />
           <RenderList
             activity={String(params.activity)}
