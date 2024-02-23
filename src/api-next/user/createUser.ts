@@ -1,12 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
 import Swal from "sweetalert2";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
-import { typesActivity } from "../../types/types-user";
+import { typesActivity, typesUser } from "../../types/types-user";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import {
   createUserService,
   getUserValidate,
 } from "../../../services/user.service";
+import User from "../../mongoose/models/User";
+import Activity from "../../mongoose/models/Activity";
 
 interface Params {
   objData: {
@@ -97,7 +99,30 @@ export function createUser({
 
   const create = async () => {
     try {
-      const user = await createUserService(objData);
+      ////////////////////////////////////
+      const { activityId, name, description, phoneNumber } = objData;
+      // Verificar si la actividad existe antes de asociar el usuario
+      const activity = await Activity.findById(activityId);
+
+      if (!activity) {
+        throw new Error("No se encontro actividad");
+      }
+
+      // Crear el usuario
+      const user = new User({
+        description,
+        activity: activityId, // Asociar el usuario a la actividad
+        name,
+        phoneNumber,
+      });
+
+      // Guardar el usuario en la base de datos
+      await user.save();
+
+      // Asociar el usuario a la actividad
+      activity.users.push(user);
+      await activity.save();
+
       router.refresh();
       // setModalAdd(false);
       // getDataAgain();
@@ -122,7 +147,7 @@ export function createUser({
         }
       });
       setLoad(false);
-      return user;
+      return user as typesUser;
     } catch (err) {
       console.log(err);
       setLoad(false);

@@ -4,6 +4,8 @@ import {
   getActivityService,
 } from "../../../services/activity.service";
 import { getUsersByActivityId } from "../../../services/user.service";
+import Activity from "../../mongoose/models/Activity";
+import User from "../../mongoose/models/User";
 
 export const getAllActivitiesToDashboard = async () => {
   try {
@@ -18,16 +20,15 @@ export const getAllActivitiesToDashboard = async () => {
 
 export const getActivityClient = async ({ nameActivity }: any) => {
   try {
-    const activityRes = await getActivityService({
-      nameActivity: String(nameActivity),
-    });
+    const activityRes = await Activity.find({ nameActivity }).populate("users");
 
     // Obtén un array de IDs de actividades
     const activityIds = activityRes.map((activity) => activity._id);
 
-    const usersRes = await getUsersByActivityId({
-      activityIds: activityIds,
-    });
+    // Buscar todos los usuarios que pertenecen a las actividades con los IDs específicos
+    const usersRes = await User.find({
+      activity: { $in: activityIds }, // Asumo que el campo correcto es "activity._id", ajusta según tu modelo
+    }).populate(["activity", "months"]);
 
     if (activityRes.length === 0) {
       return {
@@ -49,7 +50,7 @@ export const getActivityClient = async ({ nameActivity }: any) => {
 
 export const getAllActivitiesForNav = async () => {
   try {
-    const activityRes = await getActivitiesToDashboard();
+    const activityRes = await Activity.find();
     const filteredData: typesActivity[] = Object.values(
       activityRes.reduce((acc: any, obj: any) => {
         // Utiliza la actividad como clave del objeto
@@ -69,9 +70,9 @@ export const getAllActivitiesByName = async ({
   nameActivity: string;
 }) => {
   try {
-    const activitiesRes = await getActivityService({
-      nameActivity: String(nameActivity),
-    });
+    const activitiesRes = await Activity.find({ nameActivity }).populate(
+      "users"
+    );
     return activitiesRes;
   } catch (e) {
     console.log(e);

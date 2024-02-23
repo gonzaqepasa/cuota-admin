@@ -15,9 +15,9 @@ import {
   Input,
 } from "@nextui-org/react";
 
-import { editPrice } from "../../../api-next/activity/editPrice";
 import { useRouter } from "next/navigation";
 import { firstLetterUpper } from "../../../logic/firstLetterUpper";
+import { updatePrice } from "../../../api-next/activity/updatePrice";
 
 interface Props {
   data: typesActivity;
@@ -40,7 +40,7 @@ export const EditPriceModal: React.FC<Props> = ({ data }) => {
       if (newPrice > 100000)
         return alert("El precio no puede ser mayor a 100.000");
       setLoad(true);
-      await editPrice({ ...data, price: newPrice });
+      await updatePrice({ ...data, price: newPrice });
       setLoad(false);
       onClose();
       router.refresh();

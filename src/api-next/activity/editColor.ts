@@ -1,11 +1,17 @@
 import Swal from "sweetalert2";
 import { typesActivity } from "../../types/types-user";
 import { updateColorForActivitiesByName } from "../../../services/activity.service";
+import Activity from "../../mongoose/models/Activity";
 
 export async function editColor({ nameActivity, color }: typesActivity) {
   try {
-    const data = await updateColorForActivitiesByName(nameActivity, color);
+    // Actualizar el color de todas las actividades con el mismo nombre
+    const updatedActivities = await Activity.updateMany(
+      { nameActivity },
+      { color }
+    );
 
+    return { success: `Color actualizado` };
     Swal.fire({
       // background: "#202020",
       color: "black",

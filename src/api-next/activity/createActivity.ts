@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { createActivityService } from "../../../services/activity.service";
+import Activity from "../../mongoose/models/Activity";
 
 export async function createActivity({
   nameActivity,
@@ -8,13 +8,13 @@ export async function createActivity({
   color,
 }: any) {
   try {
-    const activity = await createActivityService({
-      color,
+    const activity = new Activity({
+      nameActivity: nameActivity.trim().toLowerCase(),
+      modality: modality.trim().toLowerCase(),
       price,
-      modality,
-      nameActivity,
+      color,
     });
-    console.log(activity);
+    await activity.save();
     Swal.fire({
       // background: "#202020",
       color: "black",

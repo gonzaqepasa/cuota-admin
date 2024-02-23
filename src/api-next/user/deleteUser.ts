@@ -1,15 +1,40 @@
 import Swal from "sweetalert2";
 import { deleteUser } from "../../../services/user.service";
+import User from "../../mongoose/models/User";
+import Activity from "../../mongoose/models/Activity";
 
 interface Params {
-  id: string;
+  userId: string;
   cb: () => void;
 }
-export async function deleteUserLogic({ id, cb }: Params) {
+export async function deleteUserLogic({ userId, cb }: Params) {
   try {
-    const data = await deleteUser({ userId: id });
+    // Buscar al usuario por ID
+    const user = await User.findById(userId);
 
-    console.log(data);
+    if (!user) {
+      throw new Error("No se encontro un usuario con esa id");
+    }
+
+    // Obtener el ID de la actividad actual del usuario
+    const currentActivityId = user.activity;
+
+    // Si el usuario está asociado a una actividad, quitarlo de la lista de usuarios de esa actividad
+    if (currentActivityId) {
+      await User.updateOne(
+        { _id: userId },
+        { $unset: { activity: 1 } } // Eliminar la referencia a la actividad actual
+      );
+
+      await Activity.updateOne(
+        { _id: currentActivityId },
+        { $pull: { users: userId } } // Quitar al usuario de la lista de usuarios de la actividad
+      );
+    }
+
+    // Eliminar al usuario
+    await User.findByIdAndDelete(userId);
+
     Swal.fire({
       position: "bottom-end",
       background: "grey",
@@ -21,6 +46,7 @@ export async function deleteUserLogic({ id, cb }: Params) {
       backdrop: false,
     });
     cb();
+    return { success: "Usuario eliminado exitosamente" };
   } catch (err) {
     console.log(err);
 
