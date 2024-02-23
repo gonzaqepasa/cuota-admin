@@ -2,6 +2,7 @@ import { getAllActivitiesToDashboard } from "../../api-next/activity/getActivity
 import { PricesRender } from "../../components/PricesRender/PricesRender";
 import ProviderAuth from "../ProviderAuth";
 import ProviderNextUi from "../ProviderNextUi";
+export const dynamic = 'force-dynamic'
 
 const DashboardPage = async () => {
   const res = await getAllActivitiesToDashboard();
