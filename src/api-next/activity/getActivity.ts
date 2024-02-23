@@ -8,7 +8,6 @@ export const getAllActivitiesToDashboard = async () => {
   try {
     const res = await fetch(`${url}/activity/get-activities`);
     const data = await res.json();
-    revalidatePath(`/activity/[activity]`, "layout");
 
     return data;
   } catch (err: any) {
@@ -68,7 +67,6 @@ export const getAllActivitiesForNav = async () => {
         return acc;
       }, {})
     );
-    revalidatePath(`/activity/[activity]`, "layout");
 
     return filteredData;
   } catch (e) {
