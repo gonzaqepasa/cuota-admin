@@ -3,6 +3,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getActivityService } from "../../../../../services/activity.service";
 import { revalidatePath } from "next/cache";
+import { fromNameToUrl } from "../../../../logic/fromNameToUrl";
 export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
   try {
@@ -11,7 +12,7 @@ export async function GET(req: NextRequest) {
     const activities = await getActivityService({
       nameActivity: String(nameActivity),
     });
-
+    revalidatePath(`/activity/${fromNameToUrl(String(nameActivity))}`);
     return NextResponse.json(activities);
   } catch (err) {
     console.log(err);

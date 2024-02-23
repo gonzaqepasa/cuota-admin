@@ -1,6 +1,7 @@
 import { typesActivity } from "../../types/types-user";
 import { url } from "../../config/env_d";
 import { revalidatePath } from "next/cache";
+import { fromNameToUrl } from "../../logic/fromNameToUrl";
 // import { revalidatePath } from "next/cache";
 
 export const getAllActivitiesToDashboard = async () => {
@@ -42,7 +43,8 @@ export const getActivityClient = async ({ nameActivity }: any) => {
         users: [],
       };
     }
-    revalidatePath(`/activity/${nameActivity}`);
+    revalidatePath(`/activity/${fromNameToUrl(String(nameActivity))}`);
+
     return {
       activity: dataActivity,
       users: dataUsers,
