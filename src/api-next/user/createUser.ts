@@ -1,13 +1,20 @@
 import { Dispatch, SetStateAction } from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { typesActivity } from "../../types/types-user";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import {
+  createUserService,
+  getUserValidate,
+} from "../../../services/user.service";
 
 interface Params {
-  objData: Object;
+  objData: {
+    name: string;
+    description?: string;
+    activityId: string;
+    phoneNumber?: string;
+  };
   nameUser: string;
   dataActivity: typesActivity[];
   setLoad: Dispatch<SetStateAction<boolean>>;
@@ -21,15 +28,13 @@ export function createUser({
   setLoad,
   router,
 }: Params) {
+  const name = nameUser.toLowerCase().trim();
   (async () => {
     try {
       setLoad(true);
-      const name = nameUser.toLowerCase().trim();
-      const res = await axios.get(
-        `${url}/user/user-val?user=${name}&activity=${dataActivity[0].nameActivity}`
-      );
-      console.log("esto es res", res.data);
-      if (res.data.exist) {
+      const res = await getUserValidate({ name, activity: dataActivity });
+
+      if (res.exists) {
         Swal.fire({
           reverseButtons: true,
           background: "#f2f2f2",
@@ -47,7 +52,7 @@ export function createUser({
           cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
-            router.push(`/user/${res.data.user._id}`);
+            router.push(`/user/${res.user._id}`);
           } else if (result.isDenied) {
             create();
           } else {
@@ -92,11 +97,11 @@ export function createUser({
 
   const create = async () => {
     try {
-      const { data } = await axios.post(`${url}/user/create-user`, objData);
+      const user = await createUserService(objData);
       router.refresh();
       // setModalAdd(false);
       // getDataAgain();
-      console.log(data);
+
       Swal.fire({
         background: "#f2f2f2",
         color: "black",
@@ -110,14 +115,14 @@ export function createUser({
         showCancelButton: true,
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push(`/user/${data._id}`);
+          router.push(`/user/${user._id}`);
         } else if (result.isDenied) {
         } else {
           setLoad(false);
         }
       });
       setLoad(false);
-      return data;
+      return user;
     } catch (err) {
       console.log(err);
       setLoad(false);

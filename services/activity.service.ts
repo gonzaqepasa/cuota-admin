@@ -6,7 +6,7 @@ export async function createActivityService({
   modality,
   nameActivity,
   price,
-}: typesActivity) {
+}: Pick<typesActivity, "color" | "modality" | "nameActivity" | "price">) {
   try {
     const activity = new Activity({
       nameActivity: nameActivity.trim().toLowerCase(),
@@ -18,7 +18,7 @@ export async function createActivityService({
 
     // Agregar la actividad al array de actividades del negocio
 
-    return activity;
+    return activity as typesActivity;
   } catch (e) {
     console.log(e);
     throw new Error("Mensaje de error específico");
@@ -28,7 +28,7 @@ export async function createActivityService({
 export async function getActivitiesToDashboard() {
   try {
     const data = await Activity.find();
-    return data;
+    return data as typesActivity[];
   } catch (err) {
     console.log(err);
     throw new Error("Hubo un error al buscar las actividades");
@@ -41,7 +41,7 @@ export async function getActivityService({
   try {
     const data = await Activity.find({ nameActivity }).populate("users");
 
-    return data;
+    return data as typesActivity[];
   } catch (err) {
     console.log(err);
     throw new Error("Hubo un error al buscar las actividades");
@@ -51,11 +51,14 @@ export async function getActivityService({
 export async function editActivity({
   _id,
   price,
-  modality,
   description,
   nameActivity,
-  color,
-}: typesActivity) {
+}: {
+  price?: number;
+  description?: string;
+  nameActivity?: string;
+  _id: string;
+}) {
   try {
     // Verificar si se proporcionó un ID válido
     if (!_id) {
@@ -70,14 +73,9 @@ export async function editActivity({
     if (nameActivity) {
       updatedFields.nameActivity = nameActivity;
     }
-    if (modality) {
-      updatedFields.modality = modality;
-    }
+
     if (description) {
       updatedFields.description = description;
-    }
-    if (color) {
-      updatedFields.color = color;
     }
 
     // Actualizar la actividad con las propiedades proporcionadas
@@ -91,7 +89,7 @@ export async function editActivity({
     if (!editedActivity) {
       return { error: "No se encontró la actividad o no se pudo actualizar" };
     }
-    return editedActivity;
+    return editedActivity as typesActivity;
   } catch (err) {
     console.log(err);
     throw new Error("Mensaje de error específico");
@@ -137,7 +135,7 @@ export async function deleteActivityService({ _id }: any) {
       return { error: "No se encontró la actividad" };
     }
 
-    return deletedActivity;
+    return deletedActivity as typesActivity;
   } catch (err) {
     console.log(err);
     throw new Error("Mensaje de error");

@@ -1,73 +1,78 @@
-import axios from "axios";
-import { typesActivity } from "../../types/types-user";
-import { url } from "../../config/env_d";
+import { typesActivity, typesUser } from "../../types/types-user";
+import {
+  getActivitiesToDashboard,
+  getActivityService,
+} from "../../../services/activity.service";
+import { getUsersByActivityId } from "../../../services/user.service";
 
 export const getAllActivitiesToDashboard = async () => {
   try {
-    const activityRes = await axios.get(`${url}/activity/get-activities`);
+    const activityRes = await getActivitiesToDashboard();
 
-    return { activity: activityRes.data };
+    return activityRes;
   } catch (err: any) {
     console.log(err);
-    return {
-      msg: "Hubo un problame en el servidor",
-      activity: [],
-    };
+    throw new Error("Hubo un problema en el servidor");
   }
 };
 
 export const getActivityClient = async ({ nameActivity }: any) => {
   try {
-    const activityRes = await axios.get(
-      `${url}/activity/get-activity?nameActivity=${nameActivity}`
-    );
+    const activityRes = await getActivityService({
+      nameActivity: String(nameActivity),
+    });
 
     // Obtén un array de IDs de actividades
-    const activityIds = activityRes.data.map(
-      (activity: typesActivity) => activity._id
-    );
+    const activityIds = activityRes.map((activity) => activity._id);
 
-    // Convierte los IDs en una cadena de consulta
-    const activityIdsQuery = activityIds.join(",");
+    const usersRes = await getUsersByActivityId({
+      activityIds: activityIds,
+    });
 
-    // Realiza la solicitud para obtener usuarios por IDs de actividad
-    const usersRes = await axios.get(
-      `${url}/user/get-users-by-activity-ids?activityIds=${activityIdsQuery}`
-    );
-
-    if (activityRes.data.length === 0) {
+    if (activityRes.length === 0) {
       return {
         msg: "Esta actividad no existe",
-        activity: [],
-        users: [],
       };
     }
 
     return {
-      activity: activityRes.data,
-      users: usersRes.data,
+      activity: activityRes,
+      users: usersRes,
     };
   } catch (err: any) {
     console.log(err);
     return {
       msg: String(err),
-      activity: [],
-      users: [],
     };
   }
 };
 
 export const getAllActivitiesForNav = async () => {
   try {
-    const activityRes = await axios.get(`${url}/activity/get-activities`);
+    const activityRes = await getActivitiesToDashboard();
     const filteredData: typesActivity[] = Object.values(
-      activityRes.data.reduce((acc: any, obj: any) => {
+      activityRes.reduce((acc: any, obj: any) => {
         // Utiliza la actividad como clave del objeto
         acc[obj.nameActivity] = obj;
         return acc;
       }, {})
     );
     return filteredData;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+};
+export const getAllActivitiesByName = async ({
+  nameActivity,
+}: {
+  nameActivity: string;
+}) => {
+  try {
+    const activitiesRes = await getActivityService({
+      nameActivity: String(nameActivity),
+    });
+    return activitiesRes;
   } catch (e) {
     console.log(e);
     return [];

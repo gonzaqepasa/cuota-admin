@@ -1,21 +1,10 @@
-import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
 import { typesActivity } from "../../types/types-user";
-import { numberToMoney } from "../../logic/numberToMoney";
+import { updateColorForActivitiesByName } from "../../../services/activity.service";
 
-export async function editColor({
-  _id,
-  nameActivity,
-  modality,
-  price,
-  color,
-}: typesActivity) {
+export async function editColor({ nameActivity, color }: typesActivity) {
   try {
-    const { data } = await axios.put(`${url}/activity/edit-color`, {
-      nameActivity,
-      color,
-    });
+    const data = await updateColorForActivitiesByName(nameActivity, color);
 
     Swal.fire({
       // background: "#202020",

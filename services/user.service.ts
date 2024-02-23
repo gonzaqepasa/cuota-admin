@@ -1,7 +1,8 @@
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
+import { typesUser } from "../src/types/types-user";
 
-export async function createUser({
+export async function createUserService({
   description,
   activityId,
   name,
@@ -18,7 +19,7 @@ export async function createUser({
     const activity = await Activity.findById(activityId);
 
     if (!activity) {
-      return { error: "La actividad especificada no existe" };
+      throw new Error("No se encontro actividad");
     }
 
     // Crear el usuario
@@ -36,11 +37,11 @@ export async function createUser({
     activity.users.push(user);
     await activity.save();
 
-    return user;
+    return user as typesUser;
     ////////////////////////////////////
   } catch (err) {
     console.error(err);
-    return { error: "Error al crear el usuario" };
+    throw new Error("hubo un problema con la base de datos")
   }
 }
 
@@ -56,7 +57,7 @@ export async function getUsers({ nameActivity }: { nameActivity: string }) {
       users
     );
 
-    return users;
+    return users as typesUser[];
   } catch (error) {
     console.error(error);
     return { error: "Error al buscar usuarios por actividad" };
@@ -73,18 +74,18 @@ export async function getUsersByActivityId({
       activity: { $in: activityIds }, // Asumo que el campo correcto es "activity._id", ajusta según tu modelo
     }).populate(["activity", "months"]);
 
-    return users;
+    return users as typesUser[];
   } catch (error) {
     console.error(error);
-    return { error: "Error al buscar usuarios por actividad" };
+    throw new Error("No se pudo conectar a la bd");
   }
 }
 
-export async function getUser({ id }: any) {
+export async function getUserService({ id }: any) {
   try {
     const user = await User.findById(id).populate(["activity", "months"]);
 
-    return user;
+    return user as typesUser;
   } catch (err) {
     console.log(err);
     throw new Error("Hubo un problema al buscar el usuario");

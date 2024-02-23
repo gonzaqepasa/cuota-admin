@@ -1,8 +1,5 @@
-import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
-import { typesActivity } from "../../types/types-user";
-import { numberToMoney } from "../../logic/numberToMoney";
+import { createActivityService } from "../../../services/activity.service";
 
 export async function createActivity({
   nameActivity,
@@ -11,13 +8,13 @@ export async function createActivity({
   color,
 }: any) {
   try {
-    const { data } = await axios.post(`${url}/activity/create-activity`, {
+    const activity = await createActivityService({
       color,
       price,
-      nameActivity,
       modality,
+      nameActivity,
     });
-    console.log(data);
+    console.log(activity);
     Swal.fire({
       // background: "#202020",
       color: "black",

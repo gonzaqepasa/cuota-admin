@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { url } from "../../config/env_d";
 import { typesActivity } from "../../types/types-user";
+import { deleteActivityService } from "../../../services/activity.service";
 
 interface Params {
   _id: any;
@@ -10,9 +8,7 @@ interface Params {
 }
 export async function deleteActivityClient({ _id }: Params) {
   try {
-    const { data } = await axios.delete(
-      `${url}/activity/delete-activity?_id=${_id}`
-    );
+    const data = await deleteActivityService({ _id });
     console.log(data);
     Swal.fire({
       position: "bottom-end",

@@ -1,10 +1,8 @@
-import axios from "axios";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
-import { typesMonth, typesUser } from "../../types/types-user";
-import { monthOfPay } from "../../config/moths";
+import { typesUser } from "../../types/types-user";
 import { auth } from "../../../firebase/firebaseConfig";
+import { payMonthService } from "../../../services/month.service";
 
 interface typesToPay {
   monthName: string;
@@ -15,11 +13,11 @@ interface typesToPay {
 export async function payMonth({ monthName, userData, method }: typesToPay) {
   const fecha = new Date();
   try {
-    await axios.post(`${url}/month/pay-month`, {
+    await payMonthService({
       method,
       monthName: monthName.trim().toLowerCase(),
       description: "",
-      trainer: auth.currentUser?.email,
+      trainer: String(auth.currentUser?.email),
       pricePay: userData.activity.price,
       user: userData._id,
       activity: userData.activity._id,

@@ -1,9 +1,6 @@
-import axios from "axios";
-import { MouseEvent } from "react";
 import Swal from "sweetalert2";
-import { url } from "../../config/env_d";
-import { Dispatch, SetStateAction } from "react";
 import { typesHanldeEditUser } from "../../components/UserComponent/InformationPanel/ModalEditUser";
+import { updateUser } from "../../../services/user.service";
 
 export async function editDescription({
   id,
@@ -11,10 +8,7 @@ export async function editDescription({
   onClose,
 }: typesHanldeEditUser) {
   try {
-    await axios.put(`${url}/user/update`, {
-      userId: id,
-      description: newVal,
-    });
+    await updateUser({ description: newVal, userId: id });
     onClose && onClose();
     Swal.fire({
       background: "green",
