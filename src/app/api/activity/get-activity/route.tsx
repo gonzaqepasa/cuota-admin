@@ -13,6 +13,7 @@ export async function GET(req: NextRequest) {
       nameActivity: String(nameActivity),
     });
    
+    revalidatePath(`/`, "layout");
 
     return NextResponse.json(activities);
   } catch (err) {
