@@ -30,5 +30,16 @@ body {
 .bg-image {
   background-image: url(../styles/images/hero-bg.jpg);
   background-attachment: fixed;
-  background-size: cover;
+  background-size:contain;
+  background-position:rig right ;
+}
+.bg-image-center {
+  background-image: url(../styles/images/gymcenter.jpg);
+  background-attachment: fixed;
+  background-size:contain;
+  background-position:rig right ;
+}
+
+.card-effect-1 {
+  @apply bg-neutral-500/20 rounded p-1 hover:bg-neutral-500/30 transition-colors;
 }

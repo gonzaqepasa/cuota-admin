@@ -14,9 +14,11 @@ const TextUserPanel: React.FC<Props> = ({
   color,
 }) => {
   return (
-    <div className=" justify-start w-10/12">
-      <label className={`font-normal text-sm text-neutral-500`}>{label}</label>
-      <p className={`pl-1 text-sm font-normal  `}>{firstLetterUpper(val)}</p>
+    <div className="    justify-start w-10/12">
+      <label className={`font-normal text-sm text-neutral-400`}>{label}</label>
+      <p className={`pl-1 text-sm font-normal text-white `}>
+        {firstLetterUpper(val)}
+      </p>
       <p className={`text-sm pl-1 font-medium`} style={{ color: color }}>
         {firstLetterUpper(modality)}
       </p>

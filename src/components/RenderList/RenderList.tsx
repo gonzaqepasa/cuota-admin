@@ -68,7 +68,7 @@ export const RenderList: React.FC<Props> = ({
 
   return (
     <div
-      className={`bg-neutral-200/90 flex flex-col gap-3 min-h-screen w-screen items-center`}
+      className={`bg-neutral-900/90 flex flex-col gap-3 min-h-screen w-screen items-center`}
     >
       <div className="flex flex-col items-center backg-card-user  px-6 max-w-3xl w-screen rounded ">
         <FilterList
@@ -93,7 +93,7 @@ export const RenderList: React.FC<Props> = ({
       >
         <TableHeader>
           <TableColumn>NOMBRE</TableColumn>
-          <TableColumn width={3}>ESTADO</TableColumn>
+          <TableColumn >ESTADO</TableColumn>
           <TableColumn width={10}>OPCIONES</TableColumn>
         </TableHeader>
         <TableBody emptyContent={"No hay usuarios para mostrar."} className="">
@@ -109,7 +109,7 @@ export const RenderList: React.FC<Props> = ({
                       style={{
                         backgroundColor: dataActivity[0].color,
                       }}
-                      className="text-white mr-2"
+                      className="text-white mr-1"
                       size="sm"
                       name={firstLetterUpper(el.name)}
                     />

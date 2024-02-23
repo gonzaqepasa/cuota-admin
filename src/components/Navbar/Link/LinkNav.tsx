@@ -33,7 +33,7 @@ export const LinkActivity: React.FC<Props2> = ({
   return (
     <>
       <Link
-        className={` flex items-center rounded   my-1  hover:translate-x-1 transition  `}
+        className={` flex items-center rounded   py-1  hover:translate-x-1 transition  `}
         href={`${href}`}
       >
         <p style={{ color }}>

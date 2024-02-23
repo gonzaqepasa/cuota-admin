@@ -12,7 +12,7 @@ export const Description: React.FC<Props> = ({ user }) => {
   // Component...
 
   return (
-    <div className={` flex justify-between`}>
+    <div className={` card-effect-1 flex justify-between`}>
       <TextUserPanel label="Descripción" val={user.description} />
       <ModalEditUser
         lenghtVal={0}

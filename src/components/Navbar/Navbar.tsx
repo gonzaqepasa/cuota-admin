@@ -76,7 +76,7 @@ const NavbarMain: React.FC<Props> = () => {
                   <DropdownItem
                     variant="shadow"
                     aria-label={a.nameActivity}
-                    key={a._id}
+                    key={a._id} className="p-0 "
                   >
                     <LinkActivity
                       color={a.color}

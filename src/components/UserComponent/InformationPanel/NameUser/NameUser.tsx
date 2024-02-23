@@ -11,7 +11,7 @@ interface Props {
 
 export const NameUser: React.FC<Props> = ({ user }) => {
   return (
-    <div className={` flex items-center justify-between   `}>
+    <div className={`card-effect-1 flex items-center justify-between   `}>
       <TextUserPanel label="Nombre" val={firstLetterUpper(user.name)} />
       <ModalEditUser
         lenghtVal={2}
