@@ -1,7 +1,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { url } from "../../../config/env_d";
-import { typesUser } from "../../../types/types-user";
+import { typesMonth, typesUser } from "../../../types/types-user";
 
 import axios from "axios";
 import { orderByMonth } from "../../../logic/orderByMonthName";
@@ -11,23 +11,30 @@ import { ImCancelCircle } from "react-icons/im";
 import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 import { selectColor } from "../../../logic/selectColor";
 import { arrayWithNamesMonths } from "../../../config/infoMonths";
+import getUser from "../../../api-next/user/getUser";
+import CardMonthCliente from "./CardMonthCliente";
+import LogoText from "../../../styles/images/logo.png";
+import Logo from "../../../styles/images/fevicon.png";
 
 interface Params {
   params: { id: string };
 }
 export default async function List({ params }: Params) {
-  const Logo =
-    "https://firebasestorage.googleapis.com/v0/b/cuota-admin-2e674.appspot.com/o/logos%2Flogo%20fin%20chico.png?alt=media&token=90a5e599-e9f0-4f7c-b443-1ade2314c8b2";
-  const LogoText =
-    "https://firebasestorage.googleapis.com/v0/b/cuota-admin-2e674.appspot.com/o/logos%2FIndomito%202.png?alt=media&token=fbfc2026-57e1-49bc-a674-b7623f7d364d";
-
-  const { data } = await axios.get(`${url}/user/user?USER=${params.id}`);
+  const data = await getUser({ id: params.id });
 
   console.log("aca esta la data del client", data);
+  function findPaidMonth(monthName: string): typesMonth | undefined {
+    // Buscar el mes con el nombre dado
+    const targetMonth = data.months.find(
+      (m: typesMonth) => m.monthName === monthName.trim().toLowerCase()
+    );
 
+    // Retornar el mes si está pagado, de lo contrario, retornar false
+    return targetMonth && targetMonth.isPay ? targetMonth : undefined;
+  }
   return (
     <>
-      <div className=" flex bg-neutral-200 flex-col items-center min-h-screen p-6">
+      <div className="bg-image-center flex  flex-col items-center min-h-screen p-6">
         <div className="m-5 flex flex-col items-center">
           <Image src={Logo} alt="" width={100} height={100} />
           <Image
@@ -40,22 +47,27 @@ export default async function List({ params }: Params) {
         </div>
         <div className="flex flex-col items-center">
           <div>
-            <p className="text-xl">{firstLetterUpper(data.name)}</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <p
-              className=""
-              style={{ color: selectColor(data.activity.nameActivity) }}
-            >
-              {data.activity.nameActivity}
+            <p className="text-2xl text-neutral-100">
+              {firstLetterUpper(data.name)}
             </p>
-            -<p className="text-neutral-500 ">{data.activity.modality}</p>
+          </div>
+          <div className="flex items-center gap-1 text-neutral-400">
+            <p className="">
+              {firstLetterUpper(data.activity.nameActivity)}
+            </p>
+            -
+            <p
+              style={{ color: selectColor(data.activity.nameActivity) }}
+              className="text-neutral-500 font-semibold"
+            >
+              {firstLetterUpper(data.activity.modality)}
+            </p>
           </div>
         </div>
-        <div className=" max-w-196 w-[calc(100%-1px)] grid grid-cols-2 gap-1 my-2 bg-neutral-500 p-1 rounded">
+        <div className=" max-w-196 w-[calc(100%-1px)] grid grid-cols-2 gap-1 my-2 p-1 rounded">
           {orderByMonth(arrayWithNamesMonths).map((m, index) => (
             <div key={m.num}>
-              <h2>{m.name}</h2>
+              <CardMonthCliente m={m} month={findPaidMonth(m.name)} />
             </div>
           ))}
 
