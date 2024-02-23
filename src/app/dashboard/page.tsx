@@ -10,7 +10,7 @@ const DashboardPage = async () => {
     <main className="flex flex-col min-h-screen items-center">
       <ProviderAuth>
         <ProviderNextUi>
-          <PricesRender data={res} />
+          <PricesRender data={res.activity} />
         </ProviderNextUi>
       </ProviderAuth>
     </main>

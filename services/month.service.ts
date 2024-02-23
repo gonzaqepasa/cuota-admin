@@ -1,7 +1,6 @@
 import Activity from "../src/mongoose/models/Activity";
 import Month from "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
-import { typesMonth } from "../src/types/types-user";
 
 interface CreatePaymentParams {
   method: string;
@@ -14,7 +13,7 @@ interface CreatePaymentParams {
   paymentDate: string;
 }
 
-export async function payMonthService({
+export async function payMonth({
   method,
   monthName,
   description,
@@ -57,7 +56,7 @@ export async function payMonthService({
     await Activity.findByIdAndUpdate(activity, {
       $push: { months: newPayment._id }, // Asumiendo que months es el array de meses en Activity
     });
-    return newPayment as typesMonth;
+    return newPayment;
   } catch (error) {
     console.error(error);
     throw new Error("Error creating payment.");
