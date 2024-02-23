@@ -1,9 +1,6 @@
-import "../src/mongoose/db_mongo";
-import "../src/mongoose/models/Activity";
-import "../src/mongoose/models/Month";
-import "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 import { typesActivity } from "../src/types/types-user";
+
 export async function createActivityService({
   color,
   modality,

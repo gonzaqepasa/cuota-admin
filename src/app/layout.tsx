@@ -1,4 +1,7 @@
-
+import "../mongoose/db_mongo";
+import "../mongoose/models/Activity";
+import "../mongoose/models/Month";
+import "../mongoose/models/User";
 import "../styles/globals.css";
 import { Metadata } from "next";
 import { Roboto } from "next/font/google";
