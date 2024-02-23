@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { createActivityService } from "../../../../../services/activity.service";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
@@ -18,7 +19,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       _id: "", //No necesita
     });
     console.log(activity);
-
+    const path = req.nextUrl.searchParams.get("path") || "/";
+    console.log(path);
+    revalidatePath(path);
     return NextResponse.json(activity);
   } catch (err) {
     console.log(err);

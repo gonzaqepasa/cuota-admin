@@ -1,12 +1,11 @@
-import axios from "axios";
 import { typesActivity } from "../../types/types-user";
 import { url } from "../../config/env_d";
 // import { revalidatePath } from "next/cache";
 
 export const getAllActivitiesToDashboard = async () => {
   try {
-    const { data } = await axios.get(`${url}/activity/get-activities`);
-
+    const res = await fetch(`${url}/activity/get-activities`);
+    const data = await res.json();
 
     return data;
   } catch (err: any) {
@@ -17,12 +16,12 @@ export const getAllActivitiesToDashboard = async () => {
 
 export const getActivityClient = async ({ nameActivity }: any) => {
   try {
-    const activityRes = await axios.get(
+    const activityRes = await fetch(
       `${url}/activity/get-activity?nameActivity=${nameActivity}`
     );
-
+    const dataActivity = await activityRes.json();
     // Obtén un array de IDs de actividades
-    const activityIds = activityRes.data.map(
+    const activityIds = dataActivity.map(
       (activity: typesActivity) => activity._id
     );
 
@@ -30,11 +29,12 @@ export const getActivityClient = async ({ nameActivity }: any) => {
     const activityIdsQuery = activityIds.join(",");
 
     // Realiza la solicitud para obtener usuarios por IDs de actividad
-    const usersRes = await axios.get(
+    const usersRes = await fetch(
       `${url}/user/get-users-by-activity-ids?activityIds=${activityIdsQuery}`
     );
+    const dataUsers = await usersRes.json();
 
-    if (activityRes.data.length === 0) {
+    if (dataActivity.length === 0) {
       return {
         msg: "Esta actividad no existe",
         activity: [],
@@ -43,24 +43,21 @@ export const getActivityClient = async ({ nameActivity }: any) => {
     }
 
     return {
-      activity: activityRes.data,
-      users: usersRes.data,
+      activity: dataActivity,
+      users: dataUsers,
     };
   } catch (err: any) {
     console.log(err);
-    return {
-      msg: String(err),
-      activity: [],
-      users: [],
-    };
+    throw new Error("Error al intentar pedir las actividades y usuarios");
   }
 };
 
 export const getAllActivitiesForNav = async () => {
   try {
-    const activityRes = await axios.get(`${url}/activity/get-activities`);
+    const activityRes = await fetch(`${url}/activity/get-activities`);
+    const dataActivity = await activityRes.json();
     const filteredData: typesActivity[] = Object.values(
-      activityRes.data.reduce((acc: any, obj: any) => {
+      dataActivity.reduce((acc: any, obj: any) => {
         // Utiliza la actividad como clave del objeto
         acc[obj.nameActivity] = obj;
         return acc;

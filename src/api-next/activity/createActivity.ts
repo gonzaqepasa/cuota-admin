@@ -11,15 +11,22 @@ export async function createActivity({
   color,
 }: any) {
   try {
-    const { data } = await axios.post(`${url}/activity/create-activity`, {
+    const data = {
       color,
       price,
       nameActivity,
       modality,
+    };
+    const activity = await fetch(`${url}/activity/create-activity`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-   
+    const dataActivity = await activity.json();
 
-    console.log(data);
+    console.log("ESSTO LLEGAAGAA",dataActivity);
     Swal.fire({
       // background: "#202020",
       color: "black",

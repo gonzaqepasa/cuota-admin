@@ -2,10 +2,13 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getActivitiesToDashboard } from "../../../../../services/activity.service";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req: NextRequest) {
   try {
     const activities = await getActivitiesToDashboard();
+
+    revalidatePath("/dashboard");
     return NextResponse.json(activities);
   } catch (err) {
     console.log(err);
