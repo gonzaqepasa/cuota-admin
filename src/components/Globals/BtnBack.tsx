@@ -13,7 +13,7 @@ const BtnBack = ({ url }: Params) => {
       <Button
         color="primary"
         variant="light"
-        className="min-w-0 text-xl"
+        className="min-w-0 mx-1 text-xl"
         onPress={() => router.push(url)}
       >
         <IoMdArrowRoundBack />

@@ -8,7 +8,7 @@ interface Props {
 
 export const ActivityUser: React.FC<Props> = ({ user }) => {
   return (
-    <div className={` flex  justify-between`}>
+    <div className={` card-effect-1 flex  justify-between`}>
       <TextUserPanel
         label="Actividad"
         val={user.activity?.nameActivity}

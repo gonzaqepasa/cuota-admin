@@ -9,7 +9,7 @@ const DashboardPage = async () => {
   // console.log("Esto es el fking res", res);
 
   return (
-    <main className="flex flex-col min-h-screen items-center">
+    <main className="bg-image-center flex flex-col min-h-screen items-center">
       <ProviderAuth>
         <ProviderNextUi>
           <PricesRender data={res} />

@@ -13,7 +13,7 @@ interface Props {
 
 export const PhoneUser: React.FC<Props> = ({ user }) => {
   return (
-    <div className={` flex items-center justify-between   `}>
+    <div className={`card-effect-1 flex items-center justify-between   `}>
       <TextUserPanel label="Numero de teléfono" val={user.phoneNumber} />
 
       <div className="flex items-center ">

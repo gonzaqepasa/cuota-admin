@@ -37,11 +37,11 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
         <ModalCreateActivity activitiesRes={data} />
       </div>
       <div
-        className={` flex justify-center flex-wrap max-w-[1000px] items-center gap-6 p-5`}
+        className={`  flex justify-center flex-wrap max-w-[1000px] items-center gap-6 p-5`}
       >
         {orderByNameActivity(data).map((el: typesActivity) => (
           <Card
-            className={`max-w-[400px] w-[95vw] bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-110 `}
+            className={`max-w-[400px] w-[95vw] bg-neutral-800/60 hover:bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-105 border border-neutral-500 `}
             key={el._id}
           >
             <CardHeader className="flex items-center mx-3 gap-2">
@@ -86,7 +86,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
           </Card>
         ))}
       </div>
-      <div className="flex  justify-center my-4 px-2">
+      <div className="flex text-neutral-200 justify-center my-4 px-2">
         <p>{`Para eliminar una actividad, antes debes eliminar a todos los usuarios de esa actividad.`}</p>
         <i className="text-red-500">*</i>
       </div>
