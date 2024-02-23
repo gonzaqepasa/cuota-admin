@@ -10,6 +10,7 @@ export async function GET(req: NextRequest) {
     const activities = await getActivitiesToDashboard();
 
     revalidatePath("/dashboard");
+    
     return NextResponse.json(activities);
   } catch (err) {
     console.log(err);

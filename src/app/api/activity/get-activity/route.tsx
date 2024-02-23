@@ -2,7 +2,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getActivityService } from "../../../../../services/activity.service";
-export const dynamic = 'force-dynamic'
+import { revalidatePath } from "next/cache";
+export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;

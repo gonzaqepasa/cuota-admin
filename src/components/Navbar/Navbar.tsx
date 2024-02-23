@@ -48,7 +48,11 @@ const NavbarMain: React.FC<Props> = () => {
   }, []);
   return (
     <>
-      <Navbar aria-label="nav" onMenuOpenChange={setIsMenuOpen} className="bg-neutral-800">
+      <Navbar
+        aria-label="nav"
+        onMenuOpenChange={setIsMenuOpen}
+        className="bg-neutral-800"
+      >
         {/* //  Hamburguer Botton */}
         {/* Logo Link */}
         <NavbarContent>
@@ -79,7 +83,7 @@ const NavbarMain: React.FC<Props> = () => {
                       key={a._id}
                       activityName={a.nameActivity}
                       text={a.nameActivity}
-                      href={`/dashboard/${fromNameToUrl(a.nameActivity)}`}
+                      href={`/activity/${fromNameToUrl(a.nameActivity)}`}
                     />
                   </DropdownItem>
                 ))}
@@ -135,7 +139,7 @@ const NavbarMain: React.FC<Props> = () => {
                   key={a._id}
                   activityName={a.nameActivity}
                   text={a.nameActivity}
-                  href={`/dashboard/${fromNameToUrl(a.nameActivity)}`}
+                  href={`/activity/${fromNameToUrl(a.nameActivity)}`}
                 />
               ))}
           </NavbarMenuItem>
