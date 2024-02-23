@@ -34,7 +34,6 @@ export async function payMonth({ monthName, userData, method }: typesToPay) {
       title: `Pago aceptado!`,
       text: `${firstLetterUpper(userData.name)} pago el mes de ${monthName}`,
     });
-    revalidatePath(`/activity/[activity]`, "layout");
   } catch (e) {
     console.log(e);
     Swal.fire({
