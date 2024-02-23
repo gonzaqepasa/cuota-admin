@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getMonths } from "../../../../../services/month.service";
+export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
   try {
