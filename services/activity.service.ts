@@ -19,7 +19,7 @@ export async function createActivityService({
       color,
     });
     await activity.save();
-    revalidatePath("/dashboard/page");
+    revalidatePath("/dashboard");
 
     // Agregar la actividad al array de actividades del negocio
 
@@ -31,9 +31,10 @@ export async function createActivityService({
 }
 
 export async function getActivitiesToDashboard() {
-  
   try {
     const data = await Activity.find();
+    revalidatePath("/dashboard");
+
     return data;
   } catch (err) {
     console.log(err);
@@ -97,6 +98,8 @@ export async function editActivity({
     if (!editedActivity) {
       return { error: "No se encontró la actividad o no se pudo actualizar" };
     }
+    revalidatePath("/dashboard");
+
     return editedActivity;
   } catch (err) {
     console.log(err);
@@ -114,6 +117,7 @@ export async function updateColorForActivitiesByName(
       { nameActivity },
       { color: newColor }
     );
+    revalidatePath("/dashboard");
 
     return { success: `Color actualizado` };
   } catch (err) {
@@ -142,6 +146,7 @@ export async function deleteActivityService({ _id }: any) {
     if (!deletedActivity) {
       return { error: "No se encontró la actividad" };
     }
+    revalidatePath("/dashboard");
 
     return deletedActivity;
   } catch (err) {
