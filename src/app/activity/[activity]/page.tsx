@@ -16,7 +16,7 @@ const ActivityListPage = async ({ params }: Params) => {
   const { users, activity, msg } = await getActivityClient({
     nameActivity: params.activity,
   });
-  revalidatePath(`/activity/${params.activity}`);
+ 
   return (
     <main
       style={{ backgroundColor: activity[0].color }}
