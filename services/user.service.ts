@@ -1,3 +1,4 @@
+import "../src/mongoose/db_mongo";
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 
