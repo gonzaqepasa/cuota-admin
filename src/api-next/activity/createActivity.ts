@@ -17,6 +17,8 @@ export async function createActivity({
       nameActivity,
       modality,
     });
+   
+
     console.log(data);
     Swal.fire({
       // background: "#202020",

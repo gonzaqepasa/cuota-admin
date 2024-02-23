@@ -1,18 +1,17 @@
 import axios from "axios";
 import { typesActivity } from "../../types/types-user";
 import { url } from "../../config/env_d";
+// import { revalidatePath } from "next/cache";
 
 export const getAllActivitiesToDashboard = async () => {
   try {
-    const activityRes = await axios.get(`${url}/activity/get-activities`);
+    const { data } = await axios.get(`${url}/activity/get-activities`);
 
-    return { activity: activityRes.data };
+
+    return data;
   } catch (err: any) {
     console.log(err);
-    return {
-      msg: "Hubo un problame en el servidor",
-      activity: [],
-    };
+    throw new Error("Error al intentar pedir las actividades");
   }
 };
 

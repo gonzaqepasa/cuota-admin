@@ -1,4 +1,6 @@
 import Activity from "../src/mongoose/models/Activity";
+import '../src/mongoose/db_mongo'
+import'../src/mongoose/models/User'
 import { typesActivity } from "../src/types/types-user";
 
 export async function createActivityService({
@@ -15,6 +17,7 @@ export async function createActivityService({
       color,
     });
     await activity.save();
+   
 
     // Agregar la actividad al array de actividades del negocio
 
@@ -28,6 +31,8 @@ export async function createActivityService({
 export async function getActivitiesToDashboard() {
   try {
     const data = await Activity.find();
+
+
     return data;
   } catch (err) {
     console.log(err);
@@ -91,6 +96,8 @@ export async function editActivity({
     if (!editedActivity) {
       return { error: "No se encontró la actividad o no se pudo actualizar" };
     }
+   
+
     return editedActivity;
   } catch (err) {
     console.log(err);
@@ -108,6 +115,7 @@ export async function updateColorForActivitiesByName(
       { nameActivity },
       { color: newColor }
     );
+   
 
     return { success: `Color actualizado` };
   } catch (err) {
@@ -136,6 +144,7 @@ export async function deleteActivityService({ _id }: any) {
     if (!deletedActivity) {
       return { error: "No se encontró la actividad" };
     }
+   
 
     return deletedActivity;
   } catch (err) {

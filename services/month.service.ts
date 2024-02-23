@@ -1,4 +1,5 @@
 import Activity from "../src/mongoose/models/Activity";
+import '../src/mongoose/db_mongo'
 import Month from "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
 
