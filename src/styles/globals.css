@@ -36,7 +36,7 @@ body {
 .bg-image-center {
   background-image: url(../styles/images/gymcenter.jpg);
   background-attachment: fixed;
-  background-size:contain;
+  background-size:cover;
   background-position:rig right ;
 }
 
