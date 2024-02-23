@@ -1,5 +1,6 @@
 import Activity from "../src/mongoose/models/Activity";
 import '../src/mongoose/db_mongo'
+import'../src/mongoose/models/User'
 import { typesActivity } from "../src/types/types-user";
 
 export async function createActivityService({
