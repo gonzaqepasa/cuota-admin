@@ -9,7 +9,7 @@ export const getAllActivitiesToDashboard = async () => {
       `${url}/activity/get-activities`
     );
 
-    revalidatePath("/dashboard");
+    
     return activityRes;
   } catch (err: any) {
     console.log(err);

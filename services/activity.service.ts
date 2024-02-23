@@ -4,6 +4,7 @@ import "../src/mongoose/models/Month";
 import "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 import { typesActivity } from "../src/types/types-user";
+import { revalidatePath } from "next/cache";
 export async function createActivityService({
   color,
   modality,
@@ -31,6 +32,7 @@ export async function createActivityService({
 export async function getActivitiesToDashboard() {
   try {
     const data = await Activity.find();
+    revalidatePath('/dashboard')
     return data;
   } catch (err) {
     console.log(err);
