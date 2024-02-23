@@ -7,7 +7,7 @@ import ProviderNextUi from "../ProviderNextUi";
 const DashboardPage = async () => {
   const res = await getAllActivitiesToDashboard();
   console.log("Esto es el fking res", res);
-  revalidatePath('/dashboard')
+  revalidatePath('/dashboard/page')
   return (
     <main className="flex flex-col min-h-screen items-center">
       <ProviderAuth>
