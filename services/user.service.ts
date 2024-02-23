@@ -1,5 +1,6 @@
 import "../src/mongoose/db_mongo";
 import "../src/mongoose/models/Activity";
+import "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 
