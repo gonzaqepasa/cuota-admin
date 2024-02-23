@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { changeActivityService } from "../../../services/user.service";
-import { typesUser } from "../../../src/types/types-user";
 
 type Data = any | { msg: string };
 

@@ -6,7 +6,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { getAllActivities } from "../../../../api-next/activity/getActivity";
 import { typesActivity } from "../../../../types/types-user";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 
@@ -24,7 +23,7 @@ const SelectActivityToCreate: React.FC<Props> = ({
 }) => {
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     console.log(e);
-    const act = activities.find((a) => String(a.id) === e.target.value);
+    const act = activities.find((a) => String(a._id) === e.target.value);
     if (act) {
       setName(act.nameActivity);
       setColor(act.color);
@@ -41,7 +40,7 @@ const SelectActivityToCreate: React.FC<Props> = ({
         color="primary"
       >
         {activities.map((e: typesActivity) => (
-          <SelectItem color="primary" key={e.id} value={e.id}>
+          <SelectItem color="primary" key={e._id} value={e._id}>
             {firstLetterUpper(e.nameActivity)}
           </SelectItem>
         ))}

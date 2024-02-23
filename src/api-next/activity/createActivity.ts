@@ -9,7 +9,7 @@ export async function createActivity({
   modality,
   price,
   color,
-}: typesActivity) {
+}: any) {
   try {
     const { data } = await axios.post(`${url}/activity/create-activity`, {
       color,

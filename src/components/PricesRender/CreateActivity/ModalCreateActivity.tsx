@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 
 import {
@@ -18,7 +18,6 @@ import { createActivity } from "../../../api-next/activity/createActivity";
 import { useRouter } from "next/navigation";
 import SelectActivityToCreate from "./OptionsToCreate/SelectActivity";
 import { typesActivity } from "../../../types/types-user";
-import { getAllActivities } from "../../../api-next/activity/getActivity";
 interface Props {
   activitiesRes: typesActivity[];
 }
@@ -46,7 +45,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
   const handleSubmit = async (onClose: () => void) => {
     setLoad(true);
     try {
-      await createActivity({ color, modality, nameActivity, price, id: 0 });
+      await createActivity({ color, modality, nameActivity, price });
       setLoad(false);
       onClose();
       router.refresh();

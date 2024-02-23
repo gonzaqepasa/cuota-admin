@@ -1,7 +1,6 @@
 import Activity from "../src/mongoose/models/Activity";
 import Month from "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
-import { prisma } from "./prismaConfig";
 
 interface CreatePaymentParams {
   method: string;

@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { editActive } from "../../../services/user.service";
 
 type Data = any;
 
@@ -12,9 +11,9 @@ export default async function handler(
     try {
       const { id, active } = req.body;
 
-      const user = await editActive({ id, active });
+      // const user = await editActive({ id, active });
 
-      res.status(200).json(user);
+      res.status(200).json("user");
     } catch (err) {
       console.log(err);
     }
