@@ -2,7 +2,9 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getActivityService } from "../../../../../services/activity.service";
-export const dynamic = 'force-dynamic'
+import { revalidatePath } from "next/cache";
+import { fromNameToUrl } from "../../../../logic/fromNameToUrl";
+export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
@@ -10,6 +12,7 @@ export async function GET(req: NextRequest) {
     const activities = await getActivityService({
       nameActivity: String(nameActivity),
     });
+   
 
     return NextResponse.json(activities);
   } catch (err) {

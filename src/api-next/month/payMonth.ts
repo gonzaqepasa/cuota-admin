@@ -5,6 +5,7 @@ import { firstLetterUpper } from "../../logic/firstLetterUpper";
 import { typesMonth, typesUser } from "../../types/types-user";
 import { monthOfPay } from "../../config/moths";
 import { auth } from "../../../firebase/firebaseConfig";
+import { revalidatePath } from "next/cache";
 
 interface typesToPay {
   monthName: string;
@@ -25,7 +26,6 @@ export async function payMonth({ monthName, userData, method }: typesToPay) {
       activity: userData.activity._id,
       paymentDate: fecha.toISOString(),
     });
-
     Swal.fire({
       background: "#f2f2f2",
       color: "black",

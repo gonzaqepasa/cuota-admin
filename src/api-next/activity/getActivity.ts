@@ -1,5 +1,7 @@
 import { typesActivity } from "../../types/types-user";
 import { url } from "../../config/env_d";
+import { revalidatePath } from "next/cache";
+import { fromNameToUrl } from "../../logic/fromNameToUrl";
 // import { revalidatePath } from "next/cache";
 
 export const getAllActivitiesToDashboard = async () => {
@@ -42,6 +44,8 @@ export const getActivityClient = async ({ nameActivity }: any) => {
       };
     }
 
+    revalidatePath(`/activity/[activity]`, "layout");
+
     return {
       activity: dataActivity,
       users: dataUsers,
@@ -63,6 +67,7 @@ export const getAllActivitiesForNav = async () => {
         return acc;
       }, {})
     );
+
     return filteredData;
   } catch (e) {
     console.log(e);
