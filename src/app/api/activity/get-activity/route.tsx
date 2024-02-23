@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const activities = await getActivityService({
       nameActivity: String(nameActivity),
     });
-    revalidatePath(`/activity/${nameActivity}`);
+   
 
     return NextResponse.json(activities);
   } catch (err) {

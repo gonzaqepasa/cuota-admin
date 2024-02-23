@@ -44,7 +44,7 @@ export const getActivityClient = async ({ nameActivity }: any) => {
       };
     }
 
-    revalidatePath(`/activity/[activity]`, "page");
+    revalidatePath(`/`, "layout");
 
     return {
       activity: dataActivity,

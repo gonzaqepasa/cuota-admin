@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
         : [];
     const users = await getUsersByActivityId({ activityIds: activityIdsArray });
     console.log("Array de activity ids", activityIds);
-    revalidatePath(`/activity/${nameActivity}`);
+    
 
     return NextResponse.json(users);
   } catch (err) {
