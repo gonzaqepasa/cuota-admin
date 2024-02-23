@@ -1,5 +1,6 @@
+import axios from "axios";
 import Swal from "sweetalert2";
-import { cancelPayMonth } from "../../../services/month.service";
+import { url } from "../../config/env_d";
 
 interface payCancelProps {
   id: string;
@@ -8,7 +9,9 @@ interface payCancelProps {
 
 export async function payCancel({ id, monthName }: payCancelProps) {
   try {
-    await cancelPayMonth({ id });
+    await axios.put(`${url}/month/pay-cancel`, {
+      id,
+    });
 
     Swal.fire({
       background: "#f2f2f2",
