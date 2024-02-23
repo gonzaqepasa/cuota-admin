@@ -63,3 +63,18 @@ export const getAllActivitiesForNav = async () => {
     return [];
   }
 };
+export const getAllActivitiesByName = async ({
+  nameActivity,
+}: {
+  nameActivity: string;
+}) => {
+  try {
+    const activitiesRes = await getActivityService({
+      nameActivity: String(nameActivity),
+    });
+    return activitiesRes;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+};

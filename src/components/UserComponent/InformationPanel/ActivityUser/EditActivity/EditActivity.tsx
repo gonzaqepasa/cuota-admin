@@ -16,7 +16,10 @@ import { url } from "../../../../../config/env_d";
 import { changeActivity } from "../../../../../api-next/user/changeActivity";
 import { useRouter } from "next/navigation";
 import { CiEdit } from "react-icons/ci";
-import { getActivityClient } from "../../../../../api-next/activity/getActivity";
+import {
+  getActivityClient,
+  getAllActivitiesByName,
+} from "../../../../../api-next/activity/getActivity";
 interface Props {
   user: typesUser;
   activity: typesActivity;
@@ -41,12 +44,12 @@ export const EditActivity: React.FC<Props> = ({
     (async function () {
       try {
         // console.log("Entro a buscar las diferentes actividades");
-        const data = await getActivityClient({
+        const data = await getAllActivitiesByName({
           nameActivity: activity.nameActivity,
         });
 
         // console.log("Estas son las actividades", data);
-        setActivityRender(data.activity);
+        setActivityRender(data);
         setLoad(false);
       } catch (err) {
         setLoad(false);
