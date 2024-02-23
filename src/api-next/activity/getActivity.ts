@@ -5,12 +5,11 @@ import { revalidatePath } from "next/cache";
 
 export const getAllActivitiesToDashboard = async () => {
   try {
-    const activityRes: typesActivity[] = await axios.get(
-      `${url}/activity/get-activities`
-    );
+    const { data } = await axios.get(`${url}/activity/get-activities`);
 
-    
-    return activityRes;
+    revalidatePath("/dashboard");
+
+    return data;
   } catch (err: any) {
     console.log(err);
     throw new Error("Error al intentar pedir las actividades");

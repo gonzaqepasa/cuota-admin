@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { url } from "../../config/env_d";
 import { typesActivity } from "../../types/types-user";
 import { numberToMoney } from "../../logic/numberToMoney";
+import { revalidatePath } from "next/cache";
 
 export async function createActivity({
   nameActivity,
@@ -17,6 +18,8 @@ export async function createActivity({
       nameActivity,
       modality,
     });
+    revalidatePath("/dashboard");
+
     console.log(data);
     Swal.fire({
       // background: "#202020",
