@@ -1,8 +1,11 @@
+import "../src/mongoose/db_mongo";
+import "../src/mongoose/models/Activity";
+import "../src/mongoose/models/Month";
+import "../src/mongoose/models/User";
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
-import { typesUser } from "../src/types/types-user";
 
-export async function createUserService({
+export async function createUser({
   description,
   activityId,
   name,
@@ -19,7 +22,7 @@ export async function createUserService({
     const activity = await Activity.findById(activityId);
 
     if (!activity) {
-      throw new Error("No se encontro actividad");
+      return { error: "La actividad especificada no existe" };
     }
 
     // Crear el usuario
@@ -37,11 +40,11 @@ export async function createUserService({
     activity.users.push(user);
     await activity.save();
 
-    return user as typesUser;
+    return user;
     ////////////////////////////////////
   } catch (err) {
     console.error(err);
-    throw new Error("hubo un problema con la base de datos")
+    return { error: "Error al crear el usuario" };
   }
 }
 
@@ -57,7 +60,7 @@ export async function getUsers({ nameActivity }: { nameActivity: string }) {
       users
     );
 
-    return users as typesUser[];
+    return users;
   } catch (error) {
     console.error(error);
     return { error: "Error al buscar usuarios por actividad" };
@@ -74,18 +77,18 @@ export async function getUsersByActivityId({
       activity: { $in: activityIds }, // Asumo que el campo correcto es "activity._id", ajusta según tu modelo
     }).populate(["activity", "months"]);
 
-    return users as typesUser[];
+    return users;
   } catch (error) {
     console.error(error);
-    throw new Error("No se pudo conectar a la bd");
+    return { error: "Error al buscar usuarios por actividad" };
   }
 }
 
-export async function getUserService({ id }: any) {
+export async function getUser({ id }: any) {
   try {
     const user = await User.findById(id).populate(["activity", "months"]);
 
-    return user as typesUser;
+    return user;
   } catch (err) {
     console.log(err);
     throw new Error("Hubo un problema al buscar el usuario");

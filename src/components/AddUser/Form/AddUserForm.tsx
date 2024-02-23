@@ -32,7 +32,7 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   ////////////////////////////////////////////////////////////
   const toSendObj: {
     name: string;
-    description?: string;
+    description: string;
     activityId: string | null;
     phoneNumber?: string;
   } = {
@@ -44,17 +44,9 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
-    if (activity === null) {
-      return alert("No se selecciono actividad");
-    }
-    const { activityId, name, description, phoneNumber } = toSendObj;
+
     createUser({
-      objData: {
-        name,
-        activityId: String(activityId),
-        description,
-        phoneNumber,
-      },
+      objData: toSendObj,
       nameUser: name,
       dataActivity,
       setLoad,
