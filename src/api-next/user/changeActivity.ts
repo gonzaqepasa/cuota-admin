@@ -1,6 +1,7 @@
+import axios from "axios";
 import Swal from "sweetalert2";
+import { url } from "../../config/env_d";
 import { typesActivity } from "../../types/types-user";
-import { changeActivityService } from "../../../services/user.service";
 
 export async function changeActivity(
   // Primer Parametro
@@ -8,12 +9,12 @@ export async function changeActivity(
     id_user,
     activity,
     onClose,
-  }: { id_user: string; activity: typesActivity; onClose: () => void }
+  }: { id_user?: string; activity: typesActivity; onClose: () => void }
 ) {
   try {
-    const { data } = await changeActivityService({
-      userId: id_user,
-      newActivityId: activity._id,
+    const { data } = await axios.put(`${url}/user/change-activity`, {
+      id_user,
+      id_activity: activity._id,
     });
     onClose && onClose();
 

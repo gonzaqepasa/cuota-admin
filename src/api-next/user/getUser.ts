@@ -1,16 +1,18 @@
-import { getUserService } from "../../../services/user.service";
+import axios from "axios";
+import { url } from "../../config/env_d";
 
 interface Params {
   id: string;
 }
 
 const getUser = async ({ id }: Params) => {
+  
   try {
-    const data = await getUserService({ id });
+    const { data } = await axios.get(`${url}/user/user?USER=${id}`);
     return data;
   } catch (e) {
     console.log(e);
-    throw new Error("Hubo un problema al intentar obtener un usuario");
+    return { msg: "Hubo un problema buscando al usuario" };
   }
 };
 
