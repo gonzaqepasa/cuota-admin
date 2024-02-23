@@ -4,7 +4,7 @@ import "../src/mongoose/models/Month";
 import "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 import { typesActivity } from "../src/types/types-user";
-// import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 export async function createActivityService({
   color,
   modality,
@@ -19,6 +19,7 @@ export async function createActivityService({
       color,
     });
     await activity.save();
+    revalidatePath("/dashboard/page");
 
     // Agregar la actividad al array de actividades del negocio
 

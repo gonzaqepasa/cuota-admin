@@ -1,13 +1,12 @@
 import axios from "axios";
 import { typesActivity } from "../../types/types-user";
 import { url } from "../../config/env_d";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export const getAllActivitiesToDashboard = async () => {
   try {
     const { data } = await axios.get(`${url}/activity/get-activities`);
 
-    revalidatePath("/dashboard");
 
     return data;
   } catch (err: any) {
