@@ -8,6 +8,7 @@ export async function DELETE(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const _id = searchParams.get("_id");
     const activity = await deleteActivityService({ _id });
+
     return NextResponse.json(activity);
   } catch (err) {
     console.log(err);
