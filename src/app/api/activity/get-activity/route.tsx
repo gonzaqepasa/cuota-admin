@@ -5,8 +5,8 @@ import { getActivityService } from "../../../../../services/activity.service";
 
 export async function GET(req: NextRequest) {
   try {
-    const { nameActivity } = await req.json();
-
+    const searchParams = req.nextUrl.searchParams;
+    const nameActivity = searchParams.get("nameActivity");
     const activities = await getActivityService({
       nameActivity: String(nameActivity),
     });
