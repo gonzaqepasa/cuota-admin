@@ -43,7 +43,8 @@ export const getActivityClient = async ({ nameActivity }: any) => {
         users: [],
       };
     }
-    revalidatePath(`/activity/${fromNameToUrl(String(nameActivity))}`);
+
+    revalidatePath(`/activity/${nameActivity}`);
 
     return {
       activity: dataActivity,
