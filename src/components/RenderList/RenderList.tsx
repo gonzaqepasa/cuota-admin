@@ -15,6 +15,7 @@ import {
   TableCell,
   User,
   Avatar,
+  Tooltip,
 } from "@nextui-org/react";
 import { orderByActive, orderByName } from "../../logic/orderByMonthName";
 
@@ -25,6 +26,8 @@ import { arrayMonth, dateMonth, mesActual } from "../../config/moths.d";
 import { MsgDeptor } from "./MsgDeptor/MsgDeptor";
 import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
 import ButtonDeleteUser from "../UserComponent/Config/ButtonDeleteUser";
+import { FaWhatsapp } from "react-icons/fa";
+import ButtonSendWpp from "../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
 
 interface Props {
   activity: string | String[];
@@ -93,7 +96,7 @@ export const RenderList: React.FC<Props> = ({
       >
         <TableHeader>
           <TableColumn>NOMBRE</TableColumn>
-          <TableColumn >ESTADO</TableColumn>
+          <TableColumn>ESTADO</TableColumn>
           <TableColumn width={10}>OPCIONES</TableColumn>
         </TableHeader>
         <TableBody emptyContent={"No hay usuarios para mostrar."} className="">
@@ -125,7 +128,8 @@ export const RenderList: React.FC<Props> = ({
                 <TableCell>
                   <MsgDeptor user={el} monthName={monthSelected} />
                 </TableCell>
-                <TableCell className="flex justify-end ">
+                <TableCell className="flex justify-end items-center ">
+                  <ButtonSendWpp user={el} />
                   <ButtonDeleteUser userData={el} />
                 </TableCell>
               </TableRow>
