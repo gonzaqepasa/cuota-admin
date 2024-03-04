@@ -97,16 +97,16 @@ export async function getUser({ id }: any) {
 export async function getUserValidate({ name, activity }: any) {
   try {
     // Buscar usuarios con el mismo nombre en la misma actividad
+
     const existingUsers = await User.find({
       name: name,
-      "activity.nameActivity": activity,
-    });
+    }).populate("activity");
 
     if (existingUsers.length > 0) {
       // Ya existe un usuario con el mismo nombre en la misma actividad
       return {
         exists: true,
-        user: existingUsers[0], // Puedes devolver el primer usuario encontrado
+        user: existingUsers, // Puedes devolver el primer usuario encontrado
       };
     } else {
       // No hay usuarios existentes, se puede crear uno nuevo
