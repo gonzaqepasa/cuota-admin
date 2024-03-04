@@ -6,6 +6,7 @@ import TextUserPanel from "../TextUserPanel";
 import { FaWhatsapp } from "react-icons/fa";
 import { Tooltip } from "@nextui-org/react";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
+import ButtonSendWpp from "./ButtonSendWpp";
 
 interface Props {
   user: typesUser;
@@ -17,29 +18,7 @@ export const PhoneUser: React.FC<Props> = ({ user }) => {
       <TextUserPanel label="Numero de teléfono" val={user.phoneNumber} />
 
       <div className="flex items-center ">
-        {user.phoneNumber && (
-          <>
-            <Tooltip
-              color="success"
-              delay={600}
-              content="Enviar enlace para ver el pago de sus cuotas"
-            >
-              <a
-                className="rounded-xl p-3 text-green-600 hover:bg-green-500/20"
-                target="_blank"
-                href={`https://wa.me/+54${
-                  user.phoneNumber
-                }?text=¡Hola ${firstLetterUpper(
-                  user.name
-                )}, este es el enlace para que puedas consultar el estado de tus pagos https://indomitotraining.com/pagos/${
-                  user._id
-                }`}
-              >
-                <FaWhatsapp />
-              </a>
-            </Tooltip>
-          </>
-        )}
+        <ButtonSendWpp user={user} />
         <ModalEditUser
           lenghtVal={0}
           defaultVal={user.phoneNumber || ""}
