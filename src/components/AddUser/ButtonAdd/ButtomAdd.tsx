@@ -15,13 +15,14 @@ import {
 } from "@nextui-org/react";
 import { NameInput } from "../Form/Name/NameInput";
 import { AddUserForm } from "../Form/AddUserForm";
-import { typesActivity } from "../../../types/types-user";
+import { typesActivity, typesUser } from "../../../types/types-user";
 interface Props {
   color: string;
   dataActivity: typesActivity[];
+  userData?: typesUser[];
 }
 
-export const ButtonAdd: React.FC<Props> = ({ color, dataActivity }) => {
+export const ButtonAdd: React.FC<Props> = ({ color, dataActivity,userData }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
@@ -43,7 +44,7 @@ export const ButtonAdd: React.FC<Props> = ({ color, dataActivity }) => {
                 {`AGREGAR CLIENTE A ${dataActivity[0].nameActivity.toUpperCase()}`}
               </ModalHeader>
               <ModalBody>
-                <AddUserForm dataActivity={dataActivity} onClose={onClose} />
+                <AddUserForm userData={userData} dataActivity={dataActivity} onClose={onClose} />
               </ModalBody>
             </>
           )}

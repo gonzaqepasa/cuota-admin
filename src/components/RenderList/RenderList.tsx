@@ -86,7 +86,7 @@ export const RenderList: React.FC<Props> = ({
       </div>
 
       <div className="flex flex-col items-end backg-card-user max-w-3xl px-1  w-11/12">
-        <ButtonAdd color="green" dataActivity={dataActivity} />
+        <ButtonAdd userData={userData} color="green" dataActivity={dataActivity} />
       </div>
       <Table
         color="secondary"

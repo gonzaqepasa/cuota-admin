@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { url } from "../../config/env_d";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
-import { typesActivity } from "../../types/types-user";
+import { typesActivity, typesUser } from "../../types/types-user";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface Params {
@@ -28,14 +28,19 @@ export function createUser({
       const res = await axios.get(
         `${url}/user/user-val?user=${name}&activity=${dataActivity[0].nameActivity}`
       );
-      console.log("esto es res", res.data);
-      if (res.data.exist) {
+      const activityNames: string[] = res.data.user.map(
+        (a: typesUser) => a.activity.nameActivity
+      );
+      console.log("esto es res", res.data.user);
+      if (res.data.exists) {
         Swal.fire({
           reverseButtons: true,
           background: "#f2f2f2",
           color: "black",
           title: `Ya existe un usuario llamado ${firstLetterUpper(name)}`,
-          text: `Deseas crearlo igual o ir al perfil del usuario`,
+          text: `Existe en las actividades ${firstLetterUpper(
+            activityNames.join(", ")
+          )}`,
           icon: "warning",
           showCancelButton: true,
           showDenyButton: true,
@@ -47,7 +52,7 @@ export function createUser({
           cancelButtonText: "Cancelar",
         }).then((result) => {
           if (result.isConfirmed) {
-            router.push(`/user/${res.data.user._id}`);
+            router.push(`/user/${res.data.user[0]._id}`);
           } else if (result.isDenied) {
             create();
           } else {
