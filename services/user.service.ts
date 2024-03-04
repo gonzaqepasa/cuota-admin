@@ -28,7 +28,7 @@ export async function createUser({
     const user = new User({
       description,
       activity: activityId, // Asociar el usuario a la actividad
-      name,
+      name: name.trim().toLowerCase(),
       phoneNumber,
     });
 

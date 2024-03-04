@@ -7,13 +7,19 @@ import { ModalityInput } from "./Modality/ModalityInput";
 import { NameInput } from "./Name/NameInput";
 import { DescriptionInput } from "./Description/DescriptionInput";
 import { ButtonForm } from "./Button/ButtonForm";
+import Link from "next/link";
 
 interface Props {
   dataActivity: typesActivity[];
+  userData?: typesUser[];
   onClose: () => void;
 }
 
-export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
+export const AddUserForm: React.FC<Props> = ({
+  dataActivity,
+  onClose,
+  userData,
+}) => {
   const [load, setLoad] = useState(false);
   const route = useRouter();
   //////////////// Estados de los inputs ////////////////
@@ -23,11 +29,7 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   ///////////////////////////////////////////////////////
 
-  //////////////// Estados para validar inputs ////////////////
-  const [nameVal, setNameVal] = useState({
-    val: false,
-    msg: "",
-  });
+ 
 
   ////////////////////////////////////////////////////////////
   const toSendObj: {
@@ -65,8 +67,11 @@ export const AddUserForm: React.FC<Props> = ({ dataActivity, onClose }) => {
       <NameInput
         setName={setName}
         dataActivity={dataActivity}
-        nameVal={nameVal}
+        nameVal={name}
+        userData={userData}
       />
+
+     
       <DescriptionInput
         dataActivity={dataActivity}
         setDescription={setDescription}
