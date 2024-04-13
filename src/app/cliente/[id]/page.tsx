@@ -52,10 +52,7 @@ export default async function List({ params }: Params) {
             </p>
           </div>
           <div className="flex items-center gap-1 text-neutral-400">
-            <p className="">
-              {firstLetterUpper(data.activity.nameActivity)}
-            </p>
-            -
+            <p className="">{firstLetterUpper(data.activity.nameActivity)}</p>-
             <p
               style={{ color: selectColor(data.activity.nameActivity) }}
               className="text-neutral-500 font-semibold"
@@ -64,7 +61,7 @@ export default async function List({ params }: Params) {
             </p>
           </div>
         </div>
-        <div className=" max-w-196 w-[calc(100%-1px)] grid grid-cols-2 gap-1 my-2 p-1 rounded">
+        <div className=" max-w-2xl  w-[calc(100%-1px)] grid grid-cols-2 gap-1 my-2 p-1 rounded">
           {orderByMonth(arrayWithNamesMonths).map((m, index) => (
             <div key={m.num}>
               <CardMonthCliente m={m} month={findPaidMonth(m.name)} />
