@@ -12,7 +12,7 @@ const CardMonthCliente: React.FC<Props> = ({ month, m }) => {
   return (
     <>
       <div
-        className={`  p-2 rounded-md min-h-full ${
+        className={`   p-2 rounded-md min-h-full ${
           month?.isPay ? "bg-green-200" : "bg-neutral-700/60"
         }`}
       >
@@ -40,13 +40,6 @@ const CardMonthCliente: React.FC<Props> = ({ month, m }) => {
             </p>
           )}
         </div>
-        {month?.isPay && (
-          <div className="flex justify-center">
-            <p className=" italic text-neutral-700">
-              {new Date(String(month.paymentDate)).toLocaleDateString()}
-            </p>
-          </div>
-        )}
       </div>
     </>
   );

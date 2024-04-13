@@ -28,9 +28,7 @@ export function createUser({
       const res = await axios.get(
         `${url}/user/user-val?user=${name}&activity=${dataActivity[0].nameActivity}`
       );
-      const activityNames: string[] = res.data.user.map(
-        (a: typesUser) => a.activity.nameActivity
-      );
+      
       console.log("esto es res", res.data.user);
       if (res.data.exists) {
         Swal.fire({
@@ -38,9 +36,7 @@ export function createUser({
           background: "#f2f2f2",
           color: "black",
           title: `Ya existe un usuario llamado ${firstLetterUpper(name)}`,
-          text: `Existe en las actividades ${firstLetterUpper(
-            activityNames.join(", ")
-          )}`,
+          text: `El usuario con ese nombre ya existe`,
           icon: "warning",
           showCancelButton: true,
           showDenyButton: true,
