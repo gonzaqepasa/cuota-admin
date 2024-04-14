@@ -10,7 +10,7 @@ const DashboardPage = async () => {
   // console.log("Esto es el fking res", res);
 
   return (
-    <main className="bg-image-center flex flex-col min-h-screen items-center">
+    <main className="dark flex flex-col bg-primary-200 items-center">
       <ProviderAuth>
         <ProviderNextUi>
           <DashboardComponent />
