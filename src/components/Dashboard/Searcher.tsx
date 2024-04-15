@@ -24,7 +24,7 @@ const Searcher = () => {
         autoComplete="false"
         label="Buscar usuario"
         onChange={handleChange}
-        defaultValue={String(search)}
+        defaultValue={search||""}
         radius="lg"
         color="primary"
         variant="underlined"

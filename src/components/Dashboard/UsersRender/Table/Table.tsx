@@ -18,6 +18,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import PaymentCol from "./PaymentCol";
 import ButtonSendWpp from "../../../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
 import ButtonDeleteUser from "../../../UserComponent/Config/ButtonDeleteUser";
+import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
 interface Props {
   users: typesUser[];
   activities: typesActivity[];
@@ -52,8 +53,8 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
       label: "ULTIMO PAGO",
     },
     {
-      key: "status",
-      label: "STATUS",
+      key: "options",
+      label: "OPCIONES",
     },
   ];
   return (
