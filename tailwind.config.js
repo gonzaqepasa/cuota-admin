@@ -71,6 +71,9 @@ module.exports = {
             //... 50 to 900
             foreground: "#FFFFFF",
             DEFAULT: "#006FEE",
+            "300": "#f2f2f2",
+            "200": "#dbdbdb",
+            "100": "#bababa",
           },
           // ... rest of the colors
         }

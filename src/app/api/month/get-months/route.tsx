@@ -2,16 +2,16 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getMonths } from "../../../../../services/month.service";
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const monthName = searchParams.get("month");
-    const isPay = searchParams.get("ispay") === "true" ? true : false;
+    const id = searchParams.get("id");
+    // const isPay = searchParams.get("ispay") === "true" ? true : false;
 
-    const months = await getMonths({ monthName: String(monthName), isPay });
+    const months = await getMonths({ id: String(id) }); //, isPay });
 
     return NextResponse.json(months);
   } catch (err) {
