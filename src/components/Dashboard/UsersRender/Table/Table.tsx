@@ -9,16 +9,18 @@ import {
   getKeyValue,
   Avatar,
 } from "@nextui-org/react";
-import { typesUser } from "../../../types/types-user";
+import { typesActivity, typesUser } from "../../../../types/types-user";
 import { useEffect, useState } from "react";
-import { getUsers } from "../../../../services/user.service";
-import { firstLetterUpper } from "../../../logic/firstLetterUpper";
+import { getUsers } from "../../../../../services/user.service";
+import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import PaymentCol from "./PaymentCol";
 interface Props {
   users: typesUser[];
+  activities: typesActivity[];
 }
-const TableRenderUser: React.FC<Props> = ({ users }) => {
+const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
   const [filterUsers, setFilterUsers] = useState<typesUser[]>(users);
   ////////// LOGICA DE PARAMS //////////
   const params = useSearchParams();
@@ -44,8 +46,8 @@ const TableRenderUser: React.FC<Props> = ({ users }) => {
       label: "NAME",
     },
     {
-      key: "role",
-      label: "ROLE",
+      key: "payments",
+      label: "PAGOS",
     },
     {
       key: "status",
@@ -57,7 +59,7 @@ const TableRenderUser: React.FC<Props> = ({ users }) => {
       <Table
         isStriped
         aria-label="Example table with dynamic content"
-        className="scroll max-w-3xl flex    overflow-y-auto max-h-[500px] "
+        className="scroll max-w-3xl flex w-screen    overflow-y-auto max-h-[500px] "
       >
         <TableHeader columns={columns} className="text-content1-100 ">
           {(column) => (
@@ -72,7 +74,7 @@ const TableRenderUser: React.FC<Props> = ({ users }) => {
               <TableCell>
                 <Link
                   className="flex w-max items-center hover:translate-x-1   transition "
-                  href={"/"}
+                  href={"/user/" + u._id}
                 >
                   <Avatar
                     className="text-white mr-1 bg-primary  "
@@ -82,7 +84,10 @@ const TableRenderUser: React.FC<Props> = ({ users }) => {
                   {firstLetterUpper(u.name)}
                 </Link>
               </TableCell>
-              <TableCell>Senior Developer</TableCell>
+              {/* ////// Payments //////  */}
+              <TableCell>
+                <PaymentCol user={u} activities={activities} />
+              </TableCell>
               <TableCell>Active</TableCell>
             </TableRow>
           ))}

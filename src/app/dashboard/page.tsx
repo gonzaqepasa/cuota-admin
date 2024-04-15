@@ -1,3 +1,4 @@
+import { getActivitiesToDashboard } from "../../../services/activity.service";
 import { getAllActivitiesToDashboard } from "../../api-next/activity/getActivity";
 import { getUsers } from "../../api-next/user/getUser";
 import DashboardComponent from "../../components/Dashboard/Dashboard";
@@ -9,12 +10,13 @@ export const dynamic = "force-dynamic";
 const DashboardPage = async () => {
   // const res = await getAllActivitiesToDashboard();
   const users = await getUsers();
+  const activities = await getActivitiesToDashboard();
 
   return (
     <main className="dark flex flex-col bg-primary-200 items-center">
       <ProviderAuth>
         <ProviderNextUi>
-          <DashboardComponent users={users} />
+          <DashboardComponent users={users} activities={activities} />
         </ProviderNextUi>
       </ProviderAuth>
     </main>

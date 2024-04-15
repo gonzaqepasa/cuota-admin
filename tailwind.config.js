@@ -97,6 +97,7 @@ module.exports = {
             "100": "#ffffff",
             "200": "#ebebeb",
             "300": "#c5c5c7",
+            "400": "#707070",
           },
           primary: {
             DEFAULT: mainColor,
