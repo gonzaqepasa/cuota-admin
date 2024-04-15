@@ -16,6 +16,8 @@ import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import PaymentCol from "./PaymentCol";
+import ButtonSendWpp from "../../../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
+import ButtonDeleteUser from "../../../UserComponent/Config/ButtonDeleteUser";
 interface Props {
   users: typesUser[];
   activities: typesActivity[];
@@ -47,7 +49,7 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
     },
     {
       key: "payments",
-      label: "PAGOS",
+      label: "ULTIMO PAGO",
     },
     {
       key: "status",
@@ -59,7 +61,7 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
       <Table
         isStriped
         aria-label="Example table with dynamic content"
-        className="scroll max-w-3xl flex w-screen    overflow-y-auto max-h-[500px] "
+        className="scroll  flex w-screen    overflow-y-auto max-h-[500px] "
       >
         <TableHeader columns={columns} className="text-content1-100 ">
           {(column) => (
@@ -85,10 +87,13 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
                 </Link>
               </TableCell>
               {/* ////// Payments //////  */}
-              <TableCell>
+              <TableCell className="p-0">
                 <PaymentCol user={u} activities={activities} />
               </TableCell>
-              <TableCell>Active</TableCell>
+              <TableCell className="flex justify-end items-center pl-5 ">
+                <ButtonSendWpp user={u} />
+                <ButtonDeleteUser userData={u} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

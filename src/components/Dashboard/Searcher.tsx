@@ -20,20 +20,21 @@ const Searcher = () => {
         className="text-content1-100"
         // isClearable
         // onClear={() => route.push(`${path}?search=`)}
+        // startContent={<CgSearch className=" " />}
         autoComplete="false"
         label="Buscar usuario"
         onChange={handleChange}
         defaultValue={String(search)}
         radius="lg"
         color="primary"
-        variant="bordered"
+        variant="underlined"
       />
-      <label
+      {/* <label
         htmlFor="inputsearch"
         className="text-content1-200 transition-colors hover:text-primary"
       >
-        <CgSearch className=" mx-2 " size={40} />
-      </label>
+      
+      </label> */}
     </div>
   );
 };

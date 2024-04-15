@@ -9,7 +9,7 @@ interface Props {
 }
 const DashboardComponent: React.FC<Props> = ({ users, activities }) => {
   return (
-    <div className=" w-full flex flex-col md:gap-10 items-center relative min-h-screen">
+    <div className=" w-full flex flex-col items-center relative min-h-screen">
       <Searcher />
       <UsersRender users={users} activities={activities} />
     </div>
