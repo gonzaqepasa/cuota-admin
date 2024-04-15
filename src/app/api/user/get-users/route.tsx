@@ -2,14 +2,13 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getUsers } from "../../../../../services/user.service";
-export const dynamic = 'force-dynamic'
+import { revalidatePath } from "next/cache";
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   try {
-    const { searchParams } = new URL(req.url);
-    const activity = searchParams.get("activity");
-    const users = await getUsers({ nameActivity: String(activity) });
-
+    const users = await getUsers();
+    revalidatePath("/dashboard");
     return NextResponse.json(users);
   } catch (err) {
     console.log(err);

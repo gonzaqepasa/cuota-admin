@@ -17,5 +17,16 @@ const getUser = async ({ id }: Params) => {
     return { msg: "Hubo un problema buscando al usuario" };
   }
 };
+export const getUsers = async () => {
+  try {
+    const { data } = await axios.get(`${url}/user/get-users`);
+    revalidatePath(`/dashboard`, "page");
+
+    return data;
+  } catch (e) {
+    console.log(e);
+    return { msg: "Hubo un problema buscando al usuario" };
+  }
+};
 
 export default getUser;

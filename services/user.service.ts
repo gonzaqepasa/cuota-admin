@@ -3,6 +3,7 @@ import "../src/mongoose/models/Activity";
 import "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
+import Month from "../src/mongoose/models/Month";
 
 export async function createUser({
   description,
@@ -47,22 +48,20 @@ export async function createUser({
   }
 }
 
-export async function getUsers({ nameActivity }: { nameActivity: string }) {
+export async function getUsers() {
   try {
     // Buscar todos los usuarios que pertenecen a una actividad con el nombre específico
-    const users = await User.find({
-      "activity.nameActivity": nameActivity,
-    }).populate("activity");
+    const users = await User.find().populate("months");
     console.log(
       "Esta es la respuesta en servicios lo que envia a la ruta",
-      nameActivity,
+
       users
     );
 
     return users;
   } catch (error) {
     console.error(error);
-    return { error: "Error al buscar usuarios por actividad" };
+    return { error: "Error al buscar todos los usuarios" };
   }
 }
 export async function getUsersByActivityId({
