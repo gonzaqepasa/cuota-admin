@@ -1,0 +1,42 @@
+"use client";
+import { Input } from "@nextui-org/react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ChangeEvent, useEffect, useState } from "react";
+import { CgSearch } from "react-icons/cg";
+const Searcher = () => {
+  const params = useSearchParams();
+  const path = usePathname();
+  const route = useRouter();
+  const search = params.get("search");
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    route.replace(`${path}?search=${e.target.value}`);
+  };
+  return (
+    <div className="w-screen flex items-center  bg-primary-100 gap-1 left-0 py-2 px-6 sm:px-8">
+      <Input
+        id="inputsearch"
+        className="text-content1-100"
+        // isClearable
+        // onClear={() => route.push(`${path}?search=`)}
+        // startContent={<CgSearch className=" " />}
+        autoComplete="false"
+        label="Buscar usuario"
+        onChange={handleChange}
+        defaultValue={String(search)}
+        radius="lg"
+        color="primary"
+        variant="underlined"
+      />
+      {/* <label
+        htmlFor="inputsearch"
+        className="text-content1-200 transition-colors hover:text-primary"
+      >
+      
+      </label> */}
+    </div>
+  );
+};
+
+export default Searcher;
