@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../../styles/images/logo.png";
+import logo from "../../styles/images/fevicon.png";
 import { auth } from "../../../firebase/firebaseConfig";
 import { selectAvatar } from "../../logic/selectAvatar";
 import {
@@ -28,6 +28,7 @@ import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import Avatar from "./Avatar/Avatar";
 import { orderByNameActivity } from "../../logic/orderByMonthName";
 import BtnChangeTheme from "../Globals/BtnChangeTheme/BtnChangeTheme";
+import Cookies from "js-cookie";
 
 interface Props {
   auth: Auth;
@@ -37,7 +38,7 @@ const NavbarMain: React.FC<Props> = () => {
   const user = auth.currentUser;
   const avatar = selectAvatar(user?.email ? user.email[0].toUpperCase() : null);
   //////// Estados ////////
-
+  const theme = Cookies.get("theme");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activities, setActivities] = useState<typesActivity[]>([]);
   /////////////////////////
@@ -52,14 +53,15 @@ const NavbarMain: React.FC<Props> = () => {
       <Navbar
         aria-label="nav"
         onMenuOpenChange={setIsMenuOpen}
-        className="bg-neutral-800"
+        isBordered
+        className={`${theme} bg-primary-300 text-content1-200`}
       >
         {/* //  Hamburguer Botton */}
         {/* Logo Link */}
         <NavbarContent>
           <NavbarBrand>
             <Link className=" flex items-center gap-2" href={`/dashboard`}>
-              <Image src={logo} alt="" height={35} />
+              <Image src={logo} alt="" height={50} className="drop-shadow" />
               <BtnChangeTheme />
             </Link>
           </NavbarBrand>
@@ -69,7 +71,7 @@ const NavbarMain: React.FC<Props> = () => {
           <NavbarItem>
             <Dropdown aria-label="Actividades">
               <DropdownTrigger aria-label="asd">
-                <Button className="text-neutral-200" variant="light">
+                <Button className="" variant="light">
                   Actividades
                 </Button>
               </DropdownTrigger>
@@ -94,13 +96,13 @@ const NavbarMain: React.FC<Props> = () => {
             </Dropdown>
           </NavbarItem>
           <NavbarItem>
-            <Button className="text-neutral-200" variant="light">
-              <LinkNav text="Panel de actividades" href={`/dashboard`} />
+            <Button className="" variant="light">
+              <LinkNav text="Panel de actividades" href={`/activities`} />
             </Button>
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#">
-              <Button className="text-neutral-200" variant="light">
+              <Button className="" variant="light">
                 <LinkNav text="Resumen" href={`/resume`} />
               </Button>
             </Link>
@@ -116,11 +118,11 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarItem>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="lg:hidden text-neutral-200 font-semibold"
+            className="lg:hidden text-content1-200 font-semibold"
           />
         </NavbarContent>
 
-        <NavbarMenu className="bg-neutral-300/50">
+        <NavbarMenu className={`${theme} bg-primary-200/50 text-content1-200`}>
           <NavbarMenuItem>
             {user ? (
               <Avatar avatar={avatar} user={user} />
@@ -130,21 +132,9 @@ const NavbarMain: React.FC<Props> = () => {
           </NavbarMenuItem>
 
           <NavbarMenuItem>
-            <LinkNav text="Panel de actividades" href={`/dashboard`} />
+            <LinkNav text="Inicio" href={`/dashboard?search=`} />
             <Divider />
-            <h2 className="text-neutral-500 text-lg font-normal">
-              Actividades
-            </h2>
-            {activities &&
-              orderByNameActivity(activities).map((a: typesActivity) => (
-                <LinkActivity
-                  color={a.color}
-                  key={a._id}
-                  activityName={a.nameActivity}
-                  text={a.nameActivity}
-                  href={`/activity/${fromNameToUrl(a.nameActivity)}`}
-                />
-              ))}
+            <LinkNav text="Panel de actividades" href={`/activities`} />
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>

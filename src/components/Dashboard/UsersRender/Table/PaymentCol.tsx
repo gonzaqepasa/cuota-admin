@@ -7,21 +7,17 @@ import {
   getTimeRemaining,
   isUserWithinPaymentMonth,
 } from "./logicPayment";
-import { calculateExpirationDate } from "../../../Payments/BtnAddPay/logicPayments";
+import {
+  calculateExpirationDate,
+  getByLastPay,
+} from "../../../Payments/BtnAddPay/logicPayments";
 
 interface Props {
   user: typesUser;
   activities: typesActivity[];
 }
 const PaymentCol: React.FC<Props> = ({ user, activities }) => {
-  // Ordenar los meses por fecha de creación en orden descendente
-  const sortedMonths = user.months.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
-
-  // Tomar el primer elemento, que será el último pago
-  const lastPayment = sortedMonths[0];
-
+  const lastPayment = getByLastPay(user);
   if (!lastPayment)
     return (
       <div>

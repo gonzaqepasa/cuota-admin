@@ -17,6 +17,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { mesActual } from "../../../../../config/moths.d";
+import Cookies from "js-cookie";
 
 interface Props {
   activity: typesActivity;
@@ -27,6 +28,7 @@ export const ButtonPay: React.FC<Props> = ({ activity, userData }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [load, setLoad] = useState(false);
   const router = useRouter();
+  const theme = Cookies.get("theme");
 
   const handleSubmit = async ({
     activity,
@@ -65,7 +67,7 @@ export const ButtonPay: React.FC<Props> = ({ activity, userData }) => {
         <FaMoneyBillWave />
         Pagar
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className={`${theme}`}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -81,7 +83,9 @@ export const ButtonPay: React.FC<Props> = ({ activity, userData }) => {
                   <i className="">va a pagar el mes de</i> {mesActual()}
                   <i className="" style={{ color: activity.color }}>
                     {" "}
-                    {`${firstLetterUpper(activity.nameActivity)} ${firstLetterUpper(activity.modality)}`}
+                    {`${firstLetterUpper(
+                      activity.nameActivity
+                    )} ${firstLetterUpper(activity.modality)}`}
                   </i>{" "}
                   ?
                 </p>

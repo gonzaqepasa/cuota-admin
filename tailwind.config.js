@@ -74,6 +74,7 @@ module.exports = {
             "300": "#f2f2f2",
             "200": "#dbdbdb",
             "100": "#bababa",
+            "400": "#bababa",
           },
           // ... rest of the colors
         }

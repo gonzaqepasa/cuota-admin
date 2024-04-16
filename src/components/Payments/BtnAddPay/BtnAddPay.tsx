@@ -22,6 +22,7 @@ import Loading from "../../../app/loading";
 import { numberToMoney } from "../../../logic/numberToMoney";
 import { payMonth } from "../../../api-next/month/payMonth";
 import { ButtonPay } from "../../UserComponent/Render/btn/Pay/Pay";
+import Cookies from "js-cookie";
 
 interface Props {
   userData: typesUser;
@@ -32,7 +33,7 @@ export const BtnAddPay: React.FC<Props> = ({ userData }) => {
   const [load, setLoad] = useState(false);
   const [activities, setActivities] = useState<typesActivity[]>([]);
   const router = useRouter();
-
+  const theme = Cookies.get("theme");
   useEffect(() => {
     getAllActivitiesToDashboard().then((res: any) => {
       setActivities(res);
@@ -68,9 +69,10 @@ export const BtnAddPay: React.FC<Props> = ({ userData }) => {
     <>
       <Button variant="shadow" color="primary" size="lg" onPress={onOpen}>
         {" "}
-        <MdAdd className="text-xl text-white" />
+        <MdAdd className="text-xl " />
+        <p>REGISTRAR PAGO</p>
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className={`${theme}`}>
         <ModalContent>
           {(onClose) => (
             <>

@@ -31,8 +31,8 @@ const RenderPay: React.FC<Props> = ({ user, payments }) => {
         {orderByDate(payments).map((p, index) => (
           <Card
             key={p._id}
-            className={` ${
-              index === 0 ? "text-lg md:scale-110 bg-primary-400" : " text-sm"
+            className={`shadow-lg ${
+              index === 0 ? "text-lg md:scale-110 bg-primary-300" : " text-sm"
             } ${
               isUserWithinPaymentMonth(p.createdAt) &&
               "border-success-400 border-2"

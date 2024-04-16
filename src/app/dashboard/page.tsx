@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { getActivitiesToDashboard } from "../../../services/activity.service";
 import { getAllActivitiesToDashboard } from "../../api-next/activity/getActivity";
 import { getUsers } from "../../api-next/user/getUser";
@@ -11,9 +12,12 @@ const DashboardPage = async () => {
   // const res = await getAllActivitiesToDashboard();
   const users = await getUsers();
   const activities = await getActivitiesToDashboard();
-
+  const allCookies = cookies();
+  const theme = allCookies.get("theme");
   return (
-    <main className="dark flex flex-col bg-primary-200 items-center">
+    <main
+      className={` ${theme?.value} flex flex-col bg-primary-200 items-center`}
+    >
       <ProviderAuth>
         <ProviderNextUi>
           <DashboardComponent users={users} activities={activities} />

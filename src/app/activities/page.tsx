@@ -7,10 +7,9 @@ export const dynamic = "force-dynamic";
 
 const ActivitiesPage = async () => {
   const res = await getAllActivitiesToDashboard();
- 
   const allCookies = cookies();
-  const theme =  allCookies.get("theme");
-  console.log("theme en page", theme);
+  const theme = allCookies.get("theme");
+
   return (
     <main
       className={`${theme?.value} bg-primary-300 flex flex-col min-h-screen items-center`}

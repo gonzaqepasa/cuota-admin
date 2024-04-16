@@ -36,7 +36,7 @@ const SelectActivityToCreate: React.FC<Props> = ({
         onChange={(e) => onChange(e)}
         aria-label="Seleceted"
         label={"Selecciones una actividad"}
-        variant="flat"
+        variant="underlined"
         color="primary"
       >
         {activities.map((e: typesActivity) => (
