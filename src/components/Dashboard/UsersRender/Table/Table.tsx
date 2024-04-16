@@ -100,7 +100,7 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
               <TableCell className="p-0">
                 <PaymentCol user={u} activities={activities} />
               </TableCell>
-              <TableCell className="flex justify-end items-center pl-5 ">
+              <TableCell className="flex justify-end items-center pl-5 gap-2 ">
                 <BtnAddPay userData={u} size="sm" variant="bordered" content="Pagar" color="success" />
                 <ButtonSendWpp user={u} />
                 <ButtonDeleteUser userData={u} />
