@@ -3,6 +3,8 @@ import { Input } from "@nextui-org/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { CgSearch } from "react-icons/cg";
+import { ButtonAdd } from "../AddUser/ButtonAdd/ButtomAdd";
+import { AddUserForm } from "../AddUser/Form/AddUserForm";
 const Searcher = () => {
   const params = useSearchParams();
   const path = usePathname();
@@ -24,17 +26,14 @@ const Searcher = () => {
         autoComplete="false"
         label="Buscar usuario"
         onChange={handleChange}
-        defaultValue={search||""}
+        defaultValue={search || ""}
         radius="lg"
         color="primary"
         variant="underlined"
       />
-      {/* <label
-        htmlFor="inputsearch"
-        className="text-content1-200 transition-colors hover:text-primary"
-      >
-      
-      </label> */}
+      <div>
+        <ButtonAdd />
+      </div>
     </div>
   );
 };

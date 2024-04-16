@@ -13,16 +13,10 @@ import {
   useDisclosure,
   Tooltip,
 } from "@nextui-org/react";
-import { NameInput } from "../Form/Name/NameInput";
 import { AddUserForm } from "../Form/AddUserForm";
-import { typesActivity, typesUser } from "../../../types/types-user";
-interface Props {
-  color: string;
-  dataActivity: typesActivity[];
-  userData?: typesUser[];
-}
+interface Props {}
 
-export const ButtonAdd: React.FC<Props> = ({ color, dataActivity,userData }) => {
+export const ButtonAdd: React.FC<Props> = ({}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <>
@@ -41,10 +35,10 @@ export const ButtonAdd: React.FC<Props> = ({ color, dataActivity,userData }) => 
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col items-center ">
-                {`AGREGAR CLIENTE A ${dataActivity[0].nameActivity.toUpperCase()}`}
+                {`AGREGAR CLIENTE`}
               </ModalHeader>
               <ModalBody>
-                <AddUserForm userData={userData} dataActivity={dataActivity} onClose={onClose} />
+                <AddUserForm onClose={onClose} />
               </ModalBody>
             </>
           )}

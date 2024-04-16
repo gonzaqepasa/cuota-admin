@@ -22,8 +22,7 @@ const PanelUser: React.FC<Props> = ({ userData }) => {
           className={` flex flex-col max-w-xl w-11/12 py-2 gap-2 lg:sticky lg:top-16`}
         >
           <NameUser user={userData} />
-          <Divider />
-          <ActivityUser user={userData} />
+
           <Divider />
           <PhoneUser user={userData} />
           <Divider />

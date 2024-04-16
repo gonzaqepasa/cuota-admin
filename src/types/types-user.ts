@@ -43,6 +43,7 @@ export interface typesMonth {
   user: typesUser;
   activity: typesActivity;
   paymentDate?: string;
+  expirationDate?: string;
   _id: string;
   createdAt: string;
   updatedAt: string;

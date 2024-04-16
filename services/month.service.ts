@@ -25,16 +25,14 @@ export async function payMonth({
   paymentDate,
 }: CreatePaymentParams) {
   try {
-    console.log({
-      method,
-      monthName,
-      description,
-      trainer,
-      pricePay,
-      user,
-      activity,
-      paymentDate,
-    });
+    // Obtiene la fecha de pago como objeto Date
+    const paymentDateTime = new Date(paymentDate);
+
+    // Suma un mes a la fecha de pago
+    const expirationDate = paymentDateTime.setMonth(
+      paymentDateTime.getMonth() + 1
+    );
+
     const newPayment = new Month({
       method,
       monthName,
@@ -44,6 +42,7 @@ export async function payMonth({
       user,
       activity,
       paymentDate,
+      expirationDate,
       isPay: true,
     });
 

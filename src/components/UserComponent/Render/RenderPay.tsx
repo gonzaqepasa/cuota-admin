@@ -17,6 +17,7 @@ import { numberToMoney } from "../../../logic/numberToMoney";
 import { FaMoneyBillWave } from "react-icons/fa";
 import mp from "../../../styles/mp.png";
 import { formatDateTime } from "../../../logic/dateFormated";
+import { calculateExpirationDate } from "../../Payments/BtnAddPay/logicPayments";
 
 interface Props {
   user: typesUser;
@@ -30,7 +31,9 @@ const RenderPay: React.FC<Props> = ({ user, payments }) => {
         {orderByDate(payments).map((p, index) => (
           <Card
             key={p._id}
-            className={` ${index === 0 ? "text-lg md:scale-110 bg-primary-400" : " text-sm"} ${
+            className={` ${
+              index === 0 ? "text-lg md:scale-110 bg-primary-400" : " text-sm"
+            } ${
               isUserWithinPaymentMonth(p.createdAt) &&
               "border-success-400 border-2"
             }`}
@@ -70,7 +73,14 @@ const RenderPay: React.FC<Props> = ({ user, payments }) => {
               <div className="flex flex-wrap  items-center sm:gap-14 gap-8 px-5 ">
                 <div className="">
                   <p className="text-content1-400 ">Tiempo disponible</p>
-                  <CountdownTimer paymentDate={new Date(p.createdAt)} />
+                  <CountdownTimer
+                    paymentDate={new Date(p.createdAt)}
+                    expirationDate={
+                      p.expirationDate
+                        ? new Date(p.expirationDate)
+                        : calculateExpirationDate(new Date(p.createdAt), 1)
+                    }
+                  />
                 </div>
                 <div>
                   <p className="text-content1-400 ">Precio</p>
@@ -98,6 +108,11 @@ const RenderPay: React.FC<Props> = ({ user, payments }) => {
                     {formatDateTime(new Date(p.createdAt))}
                   </p>
                 </div>
+                {p.expirationDate && (
+                  <div>
+                    <p>{formatDateTime(new Date(p.expirationDate))}</p>
+                  </div>
+                )}
               </div>
             </CardBody>
           </Card>

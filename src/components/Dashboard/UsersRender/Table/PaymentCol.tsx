@@ -7,6 +7,7 @@ import {
   getTimeRemaining,
   isUserWithinPaymentMonth,
 } from "./logicPayment";
+import { calculateExpirationDate } from "../../../Payments/BtnAddPay/logicPayments";
 
 interface Props {
   user: typesUser;
@@ -49,7 +50,14 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
           {firstLetterUpper(activity?.modality || "")}
         </p>
 
-        <CountdownTimer paymentDate={new Date(lastPayment.createdAt)} />
+        <CountdownTimer
+          paymentDate={new Date(lastPayment.createdAt)}
+          expirationDate={
+            lastPayment.expirationDate
+              ? new Date(lastPayment.expirationDate)
+              : calculateExpirationDate(new Date(lastPayment.createdAt), 1)
+          }
+        />
       </div>
     );
   }

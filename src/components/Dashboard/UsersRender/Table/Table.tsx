@@ -32,16 +32,15 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
   const search = params.get("search");
 
   useEffect(() => {
-    const searchKeywords = search?.toLowerCase().split(" ");
-    if (search) {
-      setFilterUsers(
-        users.filter((el) =>
-          searchKeywords?.every((keyword) =>
-            String(el.name).toLowerCase().includes(keyword)
-          )
+    const searchKeywords = search?.toLowerCase().split(" ") || [""];
+
+    setFilterUsers(
+      users.filter((el) =>
+        searchKeywords?.every((keyword) =>
+          String(el.name).toLowerCase().includes(keyword)
         )
-      );
-    }
+      )
+    );
   }, [search, users]);
 
   /////// ////////// ////////// ///////

@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
+
 interface Props {
   paymentDate: Date;
+  expirationDate: Date;
 }
-const CountdownTimer: React.FC<Props> = ({ paymentDate }) => {
-  const calculateDeadline = () => {
-    const paymentEndDate = new Date(paymentDate);
-    // Agregar un mes a la fecha de pago
-    paymentEndDate.setMonth(paymentEndDate.getMonth() + 1);
 
-    return paymentEndDate;
-  };
-
-  const calculateTimeRemaining = (deadline: any) => {
-    const totalMilliseconds = deadline.getTime() - new Date().getTime();
+const CountdownTimer: React.FC<Props> = ({ paymentDate, expirationDate }) => {
+  const calculateTimeRemaining = () => {
+    const totalMilliseconds = expirationDate.getTime() - new Date().getTime();
     if (totalMilliseconds <= 0) {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
@@ -26,18 +21,15 @@ const CountdownTimer: React.FC<Props> = ({ paymentDate }) => {
     return { days, hours, minutes, seconds };
   };
 
-  const [deadline, setDeadline] = useState(calculateDeadline());
-  const [timeRemaining, setTimeRemaining] = useState(
-    calculateTimeRemaining(deadline)
-  );
+  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining(deadline));
+      setTimeRemaining(calculateTimeRemaining());
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, [deadline]);
+  }, []);
 
   const formatTime = (value: any) => {
     return value < 10 ? `0${value}` : value;
