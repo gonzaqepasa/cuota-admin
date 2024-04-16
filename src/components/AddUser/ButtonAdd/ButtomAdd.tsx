@@ -13,38 +13,34 @@ import {
   useDisclosure,
   Tooltip,
 } from "@nextui-org/react";
-import { NameInput } from "../Form/Name/NameInput";
 import { AddUserForm } from "../Form/AddUserForm";
-import { typesActivity, typesUser } from "../../../types/types-user";
-interface Props {
-  color: string;
-  dataActivity: typesActivity[];
-  userData?: typesUser[];
-}
+import Cookies from "js-cookie";
+interface Props {}
 
-export const ButtonAdd: React.FC<Props> = ({ color, dataActivity,userData }) => {
+export const ButtonAdd: React.FC<Props> = ({}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const theme = Cookies.get("theme");
   return (
     <>
       <Tooltip
         content={`¡Click aca para agregar un cliente a esta actividad!`}
         color="primary"
-        delay={1000}
+        delay={600}
       >
         <Button color="primary" variant="shadow" onPress={onOpen}>
           <IoPersonAdd />
           {`agregar cliente`}
         </Button>
       </Tooltip>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className={`${theme}`}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col items-center ">
-                {`AGREGAR CLIENTE A ${dataActivity[0].nameActivity.toUpperCase()}`}
+                <p className="text-content1-200">{`AGREGAR CLIENTE`}</p>
               </ModalHeader>
               <ModalBody>
-                <AddUserForm userData={userData} dataActivity={dataActivity} onClose={onClose} />
+                <AddUserForm onClose={onClose} />
               </ModalBody>
             </>
           )}

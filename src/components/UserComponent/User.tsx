@@ -1,13 +1,16 @@
 import { RenderMonths } from "./Render/RenderMonths";
-import { typesUser } from "../../types/types-user";
+import { typesMonth, typesUser } from "../../types/types-user";
 import PanelUser from "./Render/PanelUser";
+import RenderPay from "./Render/RenderPay";
+import { BtnAddPay } from "../Payments/BtnAddPay/BtnAddPay";
 
 interface Props {
   userData: typesUser;
+  payments: typesMonth[];
 }
 
-export const User: React.FC<Props> = ({ userData }) => {
-  console.log("Esto es user", userData);
+export const User: React.FC<Props> = ({ userData, payments }) => {
+  // console.log("Esto es user", userData);
 
   if (userData)
     return (
@@ -20,7 +23,10 @@ export const User: React.FC<Props> = ({ userData }) => {
           <PanelUser userData={userData} />
         </div>
         <div className="lg:col-span-2 flex flex-col items-center lg:items-stretch ">
-          <RenderMonths user={userData} />
+          <RenderPay payments={payments} user={userData} />
+        </div>
+        <div className="fixed z-30 bottom-5 right-5">
+          <BtnAddPay userData={userData} />
         </div>
       </div>
     );

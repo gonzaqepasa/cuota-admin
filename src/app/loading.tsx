@@ -1,8 +1,13 @@
 import { Spinner } from "@nextui-org/react";
+import Cookies from "js-cookie";
 
 const Loading = () => {
   return (
-    <main className="flex flex-col justify-center items-center min-h-screen w-screen bg-neutral-200">
+    <main
+      className={`${Cookies.get(
+        "theme"
+      )} flex flex-col justify-center items-center min-h-screen w-screen `}
+    >
       <Spinner color="primary" size="lg" />
     </main>
   );

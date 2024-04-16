@@ -12,6 +12,7 @@ import {
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { payCancel } from "../../../../../api-next/month/payCancel";
+import Cookies from "js-cookie";
 
 interface Props {
   el: typesMonth;
@@ -39,15 +40,14 @@ export const ButtonCancel: React.FC<Props> = ({ el }) => {
   };
   return (
     <>
-      <Button
-        className="absolute bottom-1 right-1"
-        variant="light"
-        color="danger"
-        onPress={onOpen}
-      >
+      <Button className="" variant="light" color="danger" onPress={onOpen}>
         Cancelar pago
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        className={`${Cookies.get("theme")} text-content1-200`}
+      >
         <ModalContent>
           {(onClose) => (
             <>

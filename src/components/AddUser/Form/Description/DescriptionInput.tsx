@@ -5,21 +5,16 @@ import { Textarea } from "@nextui-org/react";
 
 interface Props {
   setDescription: Dispatch<SetStateAction<string>>;
-  dataActivity: typesActivity[];
 }
 
-export const DescriptionInput: React.FC<Props> = ({
-  setDescription,
-  dataActivity,
-}) => {
+export const DescriptionInput: React.FC<Props> = ({ setDescription }) => {
   return (
     <Textarea
-      className={` `}
+      className={` text-content1-300`}
       placeholder="Ingrese alguna descripción..."
       autoComplete="none"
       label="Descripción"
       variant="bordered"
-   
       color="primary"
       onChange={(e) => setDescription(e.target.value)}
       name="description"

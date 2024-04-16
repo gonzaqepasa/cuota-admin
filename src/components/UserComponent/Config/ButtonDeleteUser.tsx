@@ -64,7 +64,6 @@ const ButtonDeleteUser: React.FC<Props> = ({ userData, text }) => {
                 {` Eliminar a ${userData.name.toUpperCase()} `}
               </ModalHeader>
               <ModalBody>
-                <p>{`Su actividad es ${userData.activity.nameActivity} ${userData.activity.modality}`}</p>
                 <p>{`Se perdera la información relacionada *`}</p>
               </ModalBody>
               <ModalFooter>

@@ -22,7 +22,7 @@ export const ButtonForm: React.FC<Props> = ({
         color="primary"
         type="submit"
         isLoading={isLoad}
-        isDisabled={isLoad || name.length < 2 || !Boolean(activity)}
+        isDisabled={isLoad || name.length < 2}
       >
         Agregar
       </Button>
