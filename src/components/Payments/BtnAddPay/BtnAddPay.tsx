@@ -23,12 +23,38 @@ import { numberToMoney } from "../../../logic/numberToMoney";
 import { payMonth } from "../../../api-next/month/payMonth";
 import { ButtonPay } from "../../UserComponent/Render/btn/Pay/Pay";
 import Cookies from "js-cookie";
+import { Content } from "next/font/google";
 
 interface Props {
   userData: typesUser;
+  size: "sm" | "md" | "lg" | undefined;
+  color:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger"
+    | undefined;
+  variant?:
+    | "light"
+    | "shadow"
+    | "flat"
+    | "solid"
+    | "bordered"
+    | "faded"
+    | "ghost"
+    | undefined;
+  content?: string;
 }
 
-export const BtnAddPay: React.FC<Props> = ({ userData }) => {
+export const BtnAddPay: React.FC<Props> = ({
+  userData,
+  size,
+  content,
+  variant,
+  color
+}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [load, setLoad] = useState(false);
   const [activities, setActivities] = useState<typesActivity[]>([]);
@@ -40,37 +66,11 @@ export const BtnAddPay: React.FC<Props> = ({ userData }) => {
     });
   }, []);
 
-  // const handleSubmit = async ({
-  //   activity,
-  //   method,
-  //   onClose,
-  // }: {
-  //   activity: typesActivity;
-  //   method: "MP" | "EF";
-  //   onClose: () => void;
-  // }) => {
-  //   try {
-  //     setLoad(true);
-  //     await payMonth({
-  //       method,
-  //       userData,
-  //       activity,
-  //     });
-  //     setLoad(false);
-  //     onClose();
-  //     router.refresh();
-  //   } catch (e) {
-  //     setLoad(false);
-  //     console.log(e);
-  //   }
-  // };
-
   return (
     <>
-      <Button variant="shadow" color="primary" size="lg" onPress={onOpen}>
-        {" "}
-        <MdAdd className="text-xl " />
-        <p>REGISTRAR PAGO</p>
+      <Button variant={variant} color={color} size={size} onPress={onOpen}>
+        <MdAdd className="text-xl" />
+        {content && <p>{content}</p>}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} className={`${theme}`}>
         <ModalContent>

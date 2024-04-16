@@ -22,6 +22,7 @@ import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
 import { isUserWithinPaymentMonth } from "./logicPayment";
 import { getByLastPay } from "../../../Payments/BtnAddPay/logicPayments";
 import { orderByUpdate } from "../../../../logic/orderByMonthName";
+import { ButtonPay } from "../../../UserComponent/Render/btn/Pay/Pay";
 interface Props {
   users: typesUser[];
   activities: typesActivity[];
@@ -100,6 +101,7 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
                 <PaymentCol user={u} activities={activities} />
               </TableCell>
               <TableCell className="flex justify-end items-center pl-5 ">
+                <BtnAddPay userData={u} size="sm" variant="bordered" content="Pagar" color="success" />
                 <ButtonSendWpp user={u} />
                 <ButtonDeleteUser userData={u} />
               </TableCell>

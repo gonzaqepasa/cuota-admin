@@ -2,6 +2,7 @@
 import {
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   Divider,
   Tooltip,
@@ -18,6 +19,7 @@ import { FaMoneyBillWave } from "react-icons/fa";
 import mp from "../../../styles/mp.png";
 import { formatDateTime } from "../../../logic/dateFormated";
 import { calculateExpirationDate } from "../../Payments/BtnAddPay/logicPayments";
+import { ButtonCancel } from "./btn/Cancel/Cancel";
 
 interface Props {
   user: typesUser;
@@ -110,11 +112,17 @@ const RenderPay: React.FC<Props> = ({ user, payments }) => {
                 </div>
                 {p.expirationDate && (
                   <div>
+                    <p className="text-sm text-content1-400"> Vencimiento:</p>
                     <p>{formatDateTime(new Date(p.expirationDate))}</p>
                   </div>
                 )}
               </div>
             </CardBody>
+            <CardFooter>
+              <div>
+                <ButtonCancel el={p} />
+              </div>
+            </CardFooter>
           </Card>
         ))}
       </div>

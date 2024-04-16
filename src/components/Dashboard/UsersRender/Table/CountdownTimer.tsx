@@ -47,7 +47,7 @@ const CountdownTimer: React.FC<Props> = ({ paymentDate, expirationDate }) => {
     <div>
       <p style={remainingTimeStyle}>{`${formatTime(
         timeRemaining.days
-      )} days, ${formatTime(timeRemaining.hours)}:${formatTime(
+      )} Días, ${formatTime(timeRemaining.hours)}:${formatTime(
         timeRemaining.minutes
       )}:${formatTime(timeRemaining.seconds)}`}</p>
     </div>
