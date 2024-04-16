@@ -26,7 +26,7 @@ export interface typesActivity {
   color: string;
   price: number;
   _id: string;
-  users?: typesUser[];
+
   months?: typesMonth[];
   updatedAt: string;
   CreatedAt: string;

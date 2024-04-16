@@ -7,17 +7,18 @@
   background: $hunt2;
 }
 
+.bg-logo-indomito {
+  background-image: url("../styles/images/fevicon.png");
+  background-size: cover;
+}
 .backg-input-edit {
   background-color: hsla(194, 12%, 73%, 0.3);
   // box-shadow: 1px 1px 5px 2px rgba(153, 153, 153, 0.2);
-  
-
 }
 
 .backg-card-user {
   // background-color: rgb(0, 3, 5);
   background-image: linear-gradient(45deg, #030b0e 20%, #0e0202 100%);
- 
 }
 
 .backg-img {
@@ -30,7 +31,7 @@
 .backg-1 {
   background-image: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
   background: rgb(29, 30, 31);
- /*  background-image: linear-gradient(
+  /*  background-image: linear-gradient(
     45deg,
     rgba(0, 0, 0, 0.9) 0%,
     hwb(0 16% 84% / 0.9) 34%,

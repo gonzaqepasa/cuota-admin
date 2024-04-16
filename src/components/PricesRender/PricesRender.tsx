@@ -41,7 +41,7 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
       >
         {orderByNameActivity(data).map((el: typesActivity) => (
           <Card
-            className={`max-w-[400px] w-[95vw] bg-neutral-800/60 hover:bg-neutral-800 shadow-md text-neutral-300 lg:hover:scale-105 border border-neutral-500 `}
+            className={`max-w-[400px] w-[95vw]   shadow-md tlg:hover:scale-105 border border-neutral-500 `}
             key={el._id}
           >
             <CardHeader className="flex items-center mx-3 gap-2">
@@ -50,12 +50,6 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
                 className="rounded-full h-3 w-3 "
               ></span>
               <p className="">{firstLetterUpper(el.nameActivity)}</p>
-              <Link
-                className=" text-blue-600 text-xs transition-colors hover:text-blue-500"
-                href={`/activity/${fromNameToUrl(el.nameActivity)}`}
-              >
-                Ir a la actividad
-              </Link>
             </CardHeader>
             <Divider className="bg-neutral-200" />
             <CardBody>
@@ -74,10 +68,6 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
                 <EditPriceModal data={el} />
                 <EditColorActivity data={el} />
               </div>
-              <div className="flex items-center gap-1">
-                <p>{el.users?.length} </p>
-                <p className="text-neutral-500">registrados</p>
-              </div>
             </CardBody>
             <Divider className="bg-neutral-200" />
             <CardFooter className="justify-end">
@@ -85,10 +75,6 @@ export const PricesRender: React.FC<Props> = ({ data }) => {
             </CardFooter>
           </Card>
         ))}
-      </div>
-      <div className="flex text-neutral-200 justify-center my-4 px-2">
-        <p>{`Para eliminar una actividad, antes debes eliminar a todos los usuarios de esa actividad.`}</p>
-        <i className="text-red-500">*</i>
       </div>
     </>
   );

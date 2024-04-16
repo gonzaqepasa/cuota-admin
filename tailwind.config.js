@@ -70,7 +70,7 @@ module.exports = {
           primary: {
             //... 50 to 900
             foreground: "#FFFFFF",
-            DEFAULT: "#006FEE",
+            DEFAULT: mainColor,
             "300": "#f2f2f2",
             "200": "#dbdbdb",
             "100": "#bababa",
