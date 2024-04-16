@@ -18,6 +18,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import PaymentCol from "./PaymentCol";
 import ButtonSendWpp from "../../../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
 import ButtonDeleteUser from "../../../UserComponent/Config/ButtonDeleteUser";
+import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
+import { isUserWithinPaymentMonth } from "./logicPayment";
+import { getByLastPay } from "../../../Payments/BtnAddPay/logicPayments";
+import { orderByUpdate } from "../../../../logic/orderByMonthName";
+import { ButtonPay } from "../../../UserComponent/Render/btn/Pay/Pay";
 interface Props {
   users: typesUser[];
   activities: typesActivity[];
@@ -31,7 +36,8 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
   const search = params.get("search");
 
   useEffect(() => {
-    const searchKeywords = search?.toLowerCase().split(" ");
+    const searchKeywords = search?.toLowerCase().split(" ") || [""];
+
     setFilterUsers(
       users.filter((el) =>
         searchKeywords?.every((keyword) =>
@@ -52,8 +58,8 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
       label: "ULTIMO PAGO",
     },
     {
-      key: "status",
-      label: "STATUS",
+      key: "options",
+      label: "OPCIONES",
     },
   ];
   return (
@@ -71,7 +77,7 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
           )}
         </TableHeader>
         <TableBody emptyContent={"No rows to display."}>
-          {filterUsers.map((u) => (
+          {orderByUpdate(filterUsers).map((u) => (
             <TableRow key={u._id} className="text-content1-300  w-max ">
               <TableCell>
                 <Link
@@ -79,7 +85,11 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
                   href={"/user/" + u._id}
                 >
                   <Avatar
-                    className="text-white mr-1 bg-primary  "
+                    className={` mr-1 ${
+                      isUserWithinPaymentMonth(getByLastPay(u)?.createdAt)
+                        ? "bg-green-600 shadow-green-900 shadow-inner "
+                        : "bg-primary-100"
+                    } `}
                     size="sm"
                     name={firstLetterUpper(u.name)}
                   />
@@ -90,7 +100,8 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
               <TableCell className="p-0">
                 <PaymentCol user={u} activities={activities} />
               </TableCell>
-              <TableCell className="flex justify-end items-center pl-5 ">
+              <TableCell className="flex justify-end items-center pl-5 gap-2 ">
+                <BtnAddPay userData={u} size="sm" variant="bordered" content="Pagar" color="success" />
                 <ButtonSendWpp user={u} />
                 <ButtonDeleteUser userData={u} />
               </TableCell>

@@ -18,11 +18,6 @@ const UserSchema = new Schema(
     },
 
     months: [{ type: Schema.Types.ObjectId, ref: "Month" }],
-    activity: {
-      type: Schema.Types.ObjectId,
-      ref: "Activity", // Hace referencia al modelo de actividad
-      required: [true, "No se a que actividad pertenece"],
-    },
 
     name: {
       type: String,

@@ -21,9 +21,8 @@ const ActivityScheme = new Schema(
       required: [true, "El precio es obligatorio"],
     },
     color: { type: String },
-    users: [{ type: Schema.Types.ObjectId, ref: "User" }],
+
     months: [{ type: Schema.Types.ObjectId, ref: "Month" }],
- 
   },
   {
     timestamps: { updatedAt: true, createdAt: true },

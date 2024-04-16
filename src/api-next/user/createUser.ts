@@ -9,7 +9,7 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 interface Params {
   objData: Object;
   nameUser: string;
-  dataActivity: typesActivity[];
+
   setLoad: Dispatch<SetStateAction<boolean>>;
   router: AppRouterInstance;
 }
@@ -17,7 +17,7 @@ interface Params {
 export function createUser({
   objData,
   nameUser,
-  dataActivity,
+
   setLoad,
   router,
 }: Params) {
@@ -25,10 +25,8 @@ export function createUser({
     try {
       setLoad(true);
       const name = nameUser.toLowerCase().trim();
-      const res = await axios.get(
-        `${url}/user/user-val?user=${name}&activity=${dataActivity[0].nameActivity}`
-      );
-      
+      const res = await axios.get(`${url}/user/user-val?user=${name}`);
+
       console.log("esto es res", res.data.user);
       if (res.data.exists) {
         Swal.fire({

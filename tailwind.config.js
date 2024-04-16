@@ -70,7 +70,11 @@ module.exports = {
           primary: {
             //... 50 to 900
             foreground: "#FFFFFF",
-            DEFAULT: "#006FEE",
+            DEFAULT: mainColor,
+            "300": "#f2f2f2",
+            "200": "#dbdbdb",
+            "100": "#bababa",
+            "400": "#bababa",
           },
           // ... rest of the colors
         }
@@ -98,6 +102,8 @@ module.exports = {
             "200": "#ebebeb",
             "300": "#c5c5c7",
             "400": "#707070",
+            "900": "#FFFFFF",
+
           },
           primary: {
             DEFAULT: mainColor,
@@ -105,6 +111,7 @@ module.exports = {
             "300": "#000000",
             "200": "#121212",
             "100": "#1f1f1f",
+            "400": "#303030",
           },
           focus: "#BEF264",
         },

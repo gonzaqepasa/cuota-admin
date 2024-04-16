@@ -42,7 +42,6 @@ const ModalDeleteActivity: React.FC<Props> = ({ data }) => {
         variant="light"
         className="min-w-fit text-lg "
         onPress={onOpen}
-        isDisabled={data.users !== undefined && Boolean(data.users?.length > 0)}
       >
         <MdDelete />
       </Button>

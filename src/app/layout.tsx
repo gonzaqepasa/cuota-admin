@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/backgrounds.css";
 import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 

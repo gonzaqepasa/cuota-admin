@@ -10,12 +10,12 @@ export interface typesUser {
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   status: "activo" | "inactivo";
-  activity: typesActivity;
+  // activity: typesActivity;
 
   // Información de pago
   // Se genera de forma automatica
   months: typesMonth[];
-
+  updatedAt: Date;
   _id: string;
 }
 
@@ -26,7 +26,7 @@ export interface typesActivity {
   color: string;
   price: number;
   _id: string;
-  users?: typesUser[];
+
   months?: typesMonth[];
   updatedAt: string;
   CreatedAt: string;
@@ -43,6 +43,7 @@ export interface typesMonth {
   user: typesUser;
   activity: typesActivity;
   paymentDate?: string;
+  expirationDate?: string;
   _id: string;
   createdAt: string;
   updatedAt: string;

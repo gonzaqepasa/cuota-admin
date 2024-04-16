@@ -7,20 +7,17 @@ import {
   getTimeRemaining,
   isUserWithinPaymentMonth,
 } from "./logicPayment";
+import {
+  calculateExpirationDate,
+  getByLastPay,
+} from "../../../Payments/BtnAddPay/logicPayments";
 
 interface Props {
   user: typesUser;
   activities: typesActivity[];
 }
 const PaymentCol: React.FC<Props> = ({ user, activities }) => {
-  // Ordenar los meses por fecha de creación en orden descendente
-  const sortedMonths = user.months.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
-
-  // Tomar el primer elemento, que será el último pago
-  const lastPayment = sortedMonths[0];
-
+  const lastPayment = getByLastPay(user);
   if (!lastPayment)
     return (
       <div>
@@ -37,30 +34,37 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
       <div className={`w-max flex items-center   gap-1    `}>
         <p
           style={{ background: activity?.color }}
-          className=" p-1 rounded-full"
+          className=" p-1 rounded-full "
         >
           <AiFillLike className="text-content1-100 shadow " />
         </p>
 
-        <p className="text-content1-100 text-base shadow font-medium px-1 rounded">
+        <p className="text-content1-100 text-base  font-medium px-1 rounded">
           {firstLetterUpper(activity?.nameActivity || "")}
         </p>
         <p style={{ color: activity?.color }}>
           {firstLetterUpper(activity?.modality || "")}
         </p>
 
-        <CountdownTimer paymentDate={new Date(lastPayment.createdAt)} />
+        <CountdownTimer
+          paymentDate={new Date(lastPayment.createdAt)}
+          expirationDate={
+            lastPayment.expirationDate
+              ? new Date(lastPayment.expirationDate)
+              : calculateExpirationDate(new Date(lastPayment.createdAt), 1)
+          }
+        />
       </div>
     );
   }
   return (
     <>
-      <div>
+      <div className="flex items-center gap-2">
         <p className=" p-1 rounded-full bg-gray-500">
-          <AiFillLike className="text-content1-100 shadow " />
+          <AiFillLike className="text-content1-100 shadow rotate-180 " />
         </p>
-        <p>{lastPayment.monthName}</p>
-        <p>{lastPayment.createdAt}</p>
+        <p>{firstLetterUpper(lastPayment.monthName)}</p>
+        <p>{lastPayment.expirationDate}</p>
       </div>
     </>
   );

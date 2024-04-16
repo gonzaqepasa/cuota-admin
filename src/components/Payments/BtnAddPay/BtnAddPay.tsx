@@ -16,80 +16,115 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAllActivitiesToDashboard } from "../../../api-next/activity/getActivity";
+import { typesActivity, typesUser } from "../../../types/types-user";
+import { firstLetterUpper } from "../../../logic/firstLetterUpper";
+import Loading from "../../../app/loading";
+import { numberToMoney } from "../../../logic/numberToMoney";
+import { payMonth } from "../../../api-next/month/payMonth";
+import { ButtonPay } from "../../UserComponent/Render/btn/Pay/Pay";
+import Cookies from "js-cookie";
+import { Content } from "next/font/google";
 
 interface Props {
-  //   month: {
-  //     name: string;
-  //     num: number;
-  //   };
-  //   userData: typesUser;
+  userData: typesUser;
+  size: "sm" | "md" | "lg" | undefined;
+  color:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger"
+    | undefined;
+  variant?:
+    | "light"
+    | "shadow"
+    | "flat"
+    | "solid"
+    | "bordered"
+    | "faded"
+    | "ghost"
+    | undefined;
+  content?: string;
 }
 
-export const BtnAddPay: React.FC<Props> = () => {
+export const BtnAddPay: React.FC<Props> = ({
+  userData,
+  size,
+  content,
+  variant,
+  color,
+}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
+  const [activities, setActivities] = useState<typesActivity[]>([]);
   const router = useRouter();
-
+  const theme = Cookies.get("theme");
   useEffect(() => {
+   
     getAllActivitiesToDashboard().then((res: any) => {
-      console.log(res);
+      setActivities(res);
+      setLoad(false);
     });
   }, []);
 
-  const handleSubmit = async ({
-    method,
-    onClose,
-  }: {
-    method: "MP" | "EF";
-    onClose: () => void;
-  }) => {
-    try {
-      setLoad(true);
-      //   await payMonth({
-      //     method,
-      //     userData,
-      //     monthName: month.name,
-      //   });
-      setLoad(false);
-      onClose();
-      router.refresh();
-    } catch (e) {
-      setLoad(false);
-      console.log(e);
-    }
-  };
-
   return (
     <>
-      <Button
-        variant="shadow"
-        color="primary"
-        size="lg"
-        className="fixed bottom-5 right-5"
-        onPress={onOpen}
-      >
-        {" "}
-        <MdAdd className="text-xl text-white" />
+      <Button variant={variant} color={color} size={size} onPress={onOpen}>
+        <MdAdd className="text-xl" />
+        {content && <p>{content}</p>}
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className={`${theme}`}>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col text-base gap-1">
-                PAGO DE MES
+                <h2 className="text-content1-300 text-sm flex gap-1 items-center">
+                  {`PAGO DE MES `}
+                  <p className="text-content1-100 text-base">
+                    {userData.name?.toUpperCase()}
+                  </p>
+                </h2>
               </ModalHeader>
               <ModalBody>
-                <p className="text-neutral-900 text-sm">
-                  {/* ¿{firstLetterUpper(userData.name)}{" "} */}
-                  <i className="text-neutral-500">va a pagar el mes de</i>{" "}
-                  {/* {month.name} ? */}
-                </p>
-                <p className="text-sm">
-                  {`Selecciona el método de pago`}{" "}
-                  <i className="text-green-600">{`Efectivo`}</i>
-                  {" o "}
-                  <i className="text-blue-600">{`MercadoPago`}</i>
-                </p>
+                {activities.map((a) => (
+                  <div
+                    className="p-2 hover:bg-primary-200 transition-colors"
+                    key={a._id}
+                  >
+                    {load ? (
+                      <Loading />
+                    ) : (
+                      <div
+                        className="flex flex-wrap  items-center border-b-2 p-2 justify-between"
+                        style={{ borderBottomColor: a.color }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <p
+                            className={`h-3 w-3 rounded-full `}
+                            style={{ background: a.color }}
+                          ></p>
+                          <div>
+                            <p className="text-content1-200">
+                              {firstLetterUpper(a.nameActivity)}
+                            </p>
+                            <p className="text-sm" style={{ color: a.color }}>
+                              {firstLetterUpper(a.modality)}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <p className="text-content1-300">
+                            {numberToMoney(a.price)}
+                          </p>
+
+                          <ButtonPay userData={userData} activity={a} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </ModalBody>
               <ModalFooter className="flex flex-col lg:flex-row">
                 {/* <Button

@@ -2,28 +2,27 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { url } from "../../config/env_d";
 import { firstLetterUpper } from "../../logic/firstLetterUpper";
-import { typesMonth, typesUser } from "../../types/types-user";
-import { monthOfPay } from "../../config/moths";
+import { typesActivity, typesUser } from "../../types/types-user";
+import { mesActual } from "../../config/moths.d";
 import { auth } from "../../../firebase/firebaseConfig";
-import { revalidatePath } from "next/cache";
 
 interface typesToPay {
-  monthName: string;
   userData: typesUser;
   method: "MP" | "EF";
+  activity: typesActivity;
 }
 
-export async function payMonth({ monthName, userData, method }: typesToPay) {
+export async function payMonth({ userData, method, activity }: typesToPay) {
   const fecha = new Date();
   try {
     await axios.post(`${url}/month/pay-month`, {
       method,
-      monthName: monthName.trim().toLowerCase(),
+      monthName: mesActual(),
       description: "",
       trainer: auth.currentUser?.email,
-      pricePay: userData.activity.price,
+      pricePay: activity.price,
       user: userData._id,
-      activity: userData.activity._id,
+      activity: activity._id,
       paymentDate: fecha.toISOString(),
     });
     Swal.fire({
@@ -32,7 +31,9 @@ export async function payMonth({ monthName, userData, method }: typesToPay) {
       icon: "success",
       confirmButtonColor: "#005eff",
       title: `Pago aceptado!`,
-      text: `${firstLetterUpper(userData.name)} pago el mes de ${monthName}`,
+      text: `${firstLetterUpper(
+        userData.name
+      )} pago en el mes de ${mesActual()}`,
     });
   } catch (e) {
     console.log(e);

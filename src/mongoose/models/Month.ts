@@ -23,6 +23,10 @@ const MonthScheme = new Schema(
       default: "Completed",
     },
 
+    expirationDate: {
+      type: Date,
+      required: true,
+    },
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     activity: {
       type: Schema.Types.ObjectId,

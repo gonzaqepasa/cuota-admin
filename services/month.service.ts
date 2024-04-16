@@ -1,5 +1,5 @@
 import Activity from "../src/mongoose/models/Activity";
-import '../src/mongoose/db_mongo'
+import "../src/mongoose/db_mongo";
 import Month from "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
 
@@ -25,16 +25,14 @@ export async function payMonth({
   paymentDate,
 }: CreatePaymentParams) {
   try {
-    console.log({
-      method,
-      monthName,
-      description,
-      trainer,
-      pricePay,
-      user,
-      activity,
-      paymentDate,
-    });
+    // Obtiene la fecha de pago como objeto Date
+    const paymentDateTime = new Date(paymentDate);
+
+    // Suma un mes a la fecha de pago
+    const expirationDate = paymentDateTime.setMonth(
+      paymentDateTime.getMonth() + 1
+    );
+
     const newPayment = new Month({
       method,
       monthName,
@@ -44,6 +42,7 @@ export async function payMonth({
       user,
       activity,
       paymentDate,
+      expirationDate,
       isPay: true,
     });
 
@@ -64,15 +63,11 @@ export async function payMonth({
   }
 }
 
-export async function getMonths({
-  monthName,
-  isPay,
-}: {
-  monthName: string;
-  isPay: boolean;
-}) {
+export async function getMonths({ id }: { id: string }) {
   try {
-    return "months";
+    const payments = await Month.find({ user: id }).populate("activity");
+
+    return payments;
   } catch (err) {
     console.log(err);
     throw new Error("Hubo un error al intentar pagar el mes");

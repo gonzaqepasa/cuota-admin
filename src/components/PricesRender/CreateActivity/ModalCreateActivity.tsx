@@ -18,6 +18,7 @@ import { createActivity } from "../../../api-next/activity/createActivity";
 import { useRouter } from "next/navigation";
 import SelectActivityToCreate from "./OptionsToCreate/SelectActivity";
 import { typesActivity } from "../../../types/types-user";
+import Cookies from "js-cookie";
 interface Props {
   activitiesRes: typesActivity[];
 }
@@ -30,7 +31,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
   const [color, setColor] = useState("#020202");
   const [load, setLoad] = useState(false);
   const router = useRouter();
-
+  const theme = Cookies.get("theme");
   const exist = activitiesRes.find(
     (a) =>
       a.nameActivity.trim().toLowerCase() === nameActivity.trim().toLowerCase()
@@ -64,7 +65,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className="outline-2"
+        className={`outline-2 ${theme} text-content1-400`}
         style={{ outlineColor: color }}
         onClose={() => {
           setColor("");
@@ -76,7 +77,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader className="flex flex-col gap-1 text-content1-100">
                 CREAT ACTIVIDAD {nameActivity.toUpperCase()}
               </ModalHeader>
               <ModalBody className="flex flex-col items-stretch ">
@@ -97,7 +98,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
                     <div>
                       <p className="text-sm">{`Ingrese un nombre para la nueva actividad, ej: Gimnasio. `}</p>
                       <Input
-                        variant="flat"
+                        variant="underlined"
                         size="sm"
                         color="primary"
                         errorMessage={
@@ -113,7 +114,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
                       <p className="text-sm">{`Seleccione un color para reconocer la actividad.`}</p>
                       <Input
                         size="sm"
-                        variant="flat"
+                        variant="underlined"
                         color="primary"
                         // isInvalid={!color}
                         errorMessage={!color && "Seleccione el color"}
@@ -145,7 +146,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
                   <p className="text-sm">{`Ingrese una modalidad para la nueva actividad, ej: Libre, 3 Días, Unica, etc.`}</p>
                   <Input
                     size="sm"
-                    variant="flat"
+                    variant="underlined"
                     color="primary"
                     label={`Modalidad de la actividad`}
                     type="text"
@@ -156,7 +157,7 @@ const ModalCreateActivity: React.FC<Props> = ({ activitiesRes }) => {
                   <p className="text-sm">{`Ingrese el precio que va a costar mensualmente la actividad.`}</p>
                   <Input
                     size="sm"
-                    variant="flat"
+                    variant="underlined"
                     min={0}
                     max={100000}
                     color="primary"

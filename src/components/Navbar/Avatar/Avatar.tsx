@@ -10,7 +10,7 @@ const Avatar: React.FC<Props> = ({ user, avatar }) => {
   return (
     <>
       <User
-        name={<p className="lg:text-neutral-200">{user?.email}</p>}
+        name={<p className="">{user?.email}</p>}
         description={
           <>
             <button
