@@ -1,6 +1,6 @@
 import Activity from "../src/mongoose/models/Activity";
-import '../src/mongoose/db_mongo'
-import'../src/mongoose/models/User'
+import "../src/mongoose/db_mongo";
+import "../src/mongoose/models/User";
 import { typesActivity } from "../src/types/types-user";
 
 export async function createActivityService({
@@ -17,7 +17,6 @@ export async function createActivityService({
       color,
     });
     await activity.save();
-   
 
     // Agregar la actividad al array de actividades del negocio
 
@@ -31,7 +30,6 @@ export async function createActivityService({
 export async function getActivitiesToDashboard() {
   try {
     const data = await Activity.find();
-
 
     return data;
   } catch (err) {
@@ -96,7 +94,6 @@ export async function editActivity({
     if (!editedActivity) {
       return { error: "No se encontró la actividad o no se pudo actualizar" };
     }
-   
 
     return editedActivity;
   } catch (err) {
@@ -115,7 +112,6 @@ export async function updateColorForActivitiesByName(
       { nameActivity },
       { color: newColor }
     );
-   
 
     return { success: `Color actualizado` };
   } catch (err) {
@@ -126,25 +122,12 @@ export async function updateColorForActivitiesByName(
 
 export async function deleteActivityService({ _id }: any) {
   try {
-    // Verificar si la actividad tiene usuarios relacionados
-    const activityWithUsers = await Activity.findOne({
-      _id,
-      users: { $exists: true, $ne: [] }, // Verificar si el campo 'users' existe y no está vacío
-    });
-
-    if (activityWithUsers) {
-      return {
-        error: "No se puede eliminar la actividad con usuarios relacionados",
-      };
-    }
-
     // Si no hay usuarios relacionados, proceder con la eliminación
     const deletedActivity = await Activity.findOneAndDelete({ _id });
 
     if (!deletedActivity) {
       return { error: "No se encontró la actividad" };
     }
-   
 
     return deletedActivity;
   } catch (err) {

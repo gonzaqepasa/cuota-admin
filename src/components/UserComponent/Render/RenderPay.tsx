@@ -43,13 +43,13 @@ const RenderPay: React.FC<Props> = ({ user, payments }) => {
             <CardHeader className="gap-2">
               <div
                 className=" p-1 rounded-full"
-                style={{ background: p.activity.color }}
+                style={{ background: p?.activity?.color }}
               >
                 <Image src={Logo} height={30} alt="" />
               </div>
-              <h2 className="">{firstLetterUpper(p.activity.nameActivity)}</h2>
-              <h3 style={{ color: p.activity.color }}>
-                {firstLetterUpper(p.activity.modality)}
+              <h2 className="">{firstLetterUpper(p?.activity?.nameActivity)}</h2>
+              <h3 style={{ color: p?.activity?.color }}>
+                {firstLetterUpper(p?.activity?.modality)}
               </h3>
               <Tooltip
                 color={
