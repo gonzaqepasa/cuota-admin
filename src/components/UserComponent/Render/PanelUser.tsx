@@ -1,12 +1,9 @@
 import { Divider, user } from "@nextui-org/react";
 import { NameUser } from "../InformationPanel/NameUser/NameUser";
-import { ActivityUser } from "../InformationPanel/ActivityUser/ActivityUser";
 import { PhoneUser } from "../InformationPanel/PhoneUser/PhoneUser";
 import { Description } from "../InformationPanel/Description/Description";
 import { typesUser } from "../../../types/types-user";
 import BtnBack from "../../Globals/BtnBack";
-import { fromNameToUrl } from "../../../logic/fromNameToUrl";
-import { firstLetterUpper } from "../../../logic/firstLetterUpper";
 interface Props {
   userData: typesUser;
 }
