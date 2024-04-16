@@ -59,12 +59,12 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
   }
   return (
     <>
-      <div>
+      <div className="flex items-center gap-2">
         <p className=" p-1 rounded-full bg-gray-500">
-          <AiFillLike className="text-content1-100 shadow " />
+          <AiFillLike className="text-content1-100 shadow rotate-180 " />
         </p>
-        <p>{lastPayment.monthName}</p>
-        <p>{lastPayment.createdAt}</p>
+        <p>{firstLetterUpper(lastPayment.monthName)}</p>
+        <p>{lastPayment.expirationDate}</p>
       </div>
     </>
   );

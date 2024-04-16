@@ -15,7 +15,7 @@ export interface typesUser {
   // Información de pago
   // Se genera de forma automatica
   months: typesMonth[];
-
+  updatedAt: Date;
   _id: string;
 }
 

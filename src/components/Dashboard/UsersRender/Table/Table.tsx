@@ -21,6 +21,7 @@ import ButtonDeleteUser from "../../../UserComponent/Config/ButtonDeleteUser";
 import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
 import { isUserWithinPaymentMonth } from "./logicPayment";
 import { getByLastPay } from "../../../Payments/BtnAddPay/logicPayments";
+import { orderByUpdate } from "../../../../logic/orderByMonthName";
 interface Props {
   users: typesUser[];
   activities: typesActivity[];
@@ -75,7 +76,7 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
           )}
         </TableHeader>
         <TableBody emptyContent={"No rows to display."}>
-          {filterUsers.map((u) => (
+          {orderByUpdate(filterUsers).map((u) => (
             <TableRow key={u._id} className="text-content1-300  w-max ">
               <TableCell>
                 <Link
