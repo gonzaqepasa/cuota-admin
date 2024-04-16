@@ -9,7 +9,7 @@ interface Props {
 export const PhoneInput: React.FC<Props> = ({ setPhone }) => {
   return (
     <Input
-      className={` `}
+      className={`text-content1-300 `}
       type="number"
       placeholder="Ingrese número de telefono"
       autoComplete="none"

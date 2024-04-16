@@ -10,7 +10,7 @@ interface Props {
 export const DescriptionInput: React.FC<Props> = ({ setDescription }) => {
   return (
     <Textarea
-      className={` `}
+      className={` text-content1-300`}
       placeholder="Ingrese alguna descripción..."
       autoComplete="none"
       label="Descripción"

@@ -23,7 +23,7 @@ export const NameInput: React.FC<Props> = ({
   );
   console.log("esto es existe aconchesumadre", exists);
   return (
-    <div className="">
+    <div className=" text-content1-300">
       <Input
         autoComplete="none"
         placeholder="Ingrese nombre..."
@@ -40,7 +40,7 @@ export const NameInput: React.FC<Props> = ({
       {exists && nameVal.length > 8 && (
         <Link
           // style={{ backgroundColor: dataActivity[0].color}}
-          className="font-semibold text-xs flex items-center gap-1 text-neutral-800 hover:opacity-80  transition-colors rounded-lg p-1 "
+          className="font-semibold text-xs flex items-center gap-1  hover:opacity-80  transition-colors rounded-lg p-1 "
           href={`/user/${exists._id}`}
         >
           Ya existe un usuario con el nombre,
