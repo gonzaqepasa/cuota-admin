@@ -14,18 +14,8 @@ const PanelUser: React.FC<Props> = ({ userData }) => {
   return (
     <>
       <div className="bg-image flex  flex-col  justify-start items-center    lg:m-0   h-full  text-neutral-800 bg-neutral-300 lg:shadow-lg">
-        <div className="flex items-center w-full px-2">
-          <BtnBack
-            url={`/activity/${fromNameToUrl(
-              String(userData.activity?.nameActivity)
-            )}`}
-          />
-          <h2
-            className={`py-4 text-xl font-bold drop-shadow`}
-            style={{ color: userData?.activity?.color }}
-          >
-            {firstLetterUpper(String(userData.activity?.nameActivity))}
-          </h2>
+        <div className="flex items-center w-full p-2">
+          <BtnBack url={`/dashboard`} />
         </div>
         <Divider />
         <div

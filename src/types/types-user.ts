@@ -10,7 +10,7 @@ export interface typesUser {
   // Información de actividad que realiza y modalidad
   // Se genera con el select agarrando información de los estados
   status: "activo" | "inactivo";
-  activity: typesActivity;
+  // activity: typesActivity;
 
   // Información de pago
   // Se genera de forma automatica
