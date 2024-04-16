@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { getAllActivitiesToDashboard } from "../../api-next/activity/getActivity";
 import { PricesRender } from "../../components/PricesRender/PricesRender";
 import ProviderAuth from "../ProviderAuth";
@@ -6,10 +7,14 @@ export const dynamic = "force-dynamic";
 
 const ActivitiesPage = async () => {
   const res = await getAllActivitiesToDashboard();
-  // console.log("Esto es el fking res", res);
-
+ 
+  const allCookies = cookies();
+  const theme =  allCookies.get("theme");
+  console.log("theme en page", theme);
   return (
-    <main className="dark bg-primary-300 flex flex-col min-h-screen items-center">
+    <main
+      className={`${theme?.value} bg-primary-300 flex flex-col min-h-screen items-center`}
+    >
       <ProviderAuth>
         <ProviderNextUi>
           <PricesRender data={res} />

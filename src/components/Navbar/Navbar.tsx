@@ -27,6 +27,7 @@ import { LinkActivity, LinkNav } from "./Link/LinkNav";
 import { fromNameToUrl } from "../../logic/fromNameToUrl";
 import Avatar from "./Avatar/Avatar";
 import { orderByNameActivity } from "../../logic/orderByMonthName";
+import BtnChangeTheme from "../Globals/BtnChangeTheme/BtnChangeTheme";
 
 interface Props {
   auth: Auth;
@@ -57,8 +58,9 @@ const NavbarMain: React.FC<Props> = () => {
         {/* Logo Link */}
         <NavbarContent>
           <NavbarBrand>
-            <Link href={`/dashboard`}>
+            <Link className=" flex items-center gap-2" href={`/dashboard`}>
               <Image src={logo} alt="" height={35} />
+              <BtnChangeTheme />
             </Link>
           </NavbarBrand>
         </NavbarContent>
@@ -76,7 +78,8 @@ const NavbarMain: React.FC<Props> = () => {
                   <DropdownItem
                     variant="shadow"
                     aria-label={a.nameActivity}
-                    key={a._id} className="p-0 "
+                    key={a._id}
+                    className="p-0 "
                   >
                     <LinkActivity
                       color={a.color}
