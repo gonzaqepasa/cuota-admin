@@ -34,12 +34,12 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
       <div className={`w-max flex items-center   gap-1    `}>
         <p
           style={{ background: activity?.color }}
-          className=" p-1 rounded-full"
+          className=" p-1 rounded-full "
         >
           <AiFillLike className="text-content1-100 shadow " />
         </p>
 
-        <p className="text-content1-100 text-base shadow font-medium px-1 rounded">
+        <p className="text-content1-100 text-base  font-medium px-1 rounded">
           {firstLetterUpper(activity?.nameActivity || "")}
         </p>
         <p style={{ color: activity?.color }}>

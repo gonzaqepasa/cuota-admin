@@ -19,6 +19,8 @@ import PaymentCol from "./PaymentCol";
 import ButtonSendWpp from "../../../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
 import ButtonDeleteUser from "../../../UserComponent/Config/ButtonDeleteUser";
 import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
+import { isUserWithinPaymentMonth } from "./logicPayment";
+import { getByLastPay } from "../../../Payments/BtnAddPay/logicPayments";
 interface Props {
   users: typesUser[];
   activities: typesActivity[];
@@ -81,7 +83,11 @@ const TableRenderUser: React.FC<Props> = ({ users, activities }) => {
                   href={"/user/" + u._id}
                 >
                   <Avatar
-                    className="text-white mr-1 bg-primary  "
+                    className={` mr-1 ${
+                      isUserWithinPaymentMonth(getByLastPay(u)?.createdAt)
+                        ? "bg-green-600 shadow-green-900 shadow-inner "
+                        : "bg-primary-100"
+                    } `}
                     size="sm"
                     name={firstLetterUpper(u.name)}
                   />

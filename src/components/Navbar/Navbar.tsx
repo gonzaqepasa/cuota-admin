@@ -69,31 +69,9 @@ const NavbarMain: React.FC<Props> = () => {
 
         <NavbarContent className="hidden lg:flex gap-4" justify="start">
           <NavbarItem>
-            <Dropdown aria-label="Actividades">
-              <DropdownTrigger aria-label="asd">
-                <Button className="" variant="light">
-                  Actividades
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="asd">
-                {activities.map((a: typesActivity) => (
-                  <DropdownItem
-                    variant="shadow"
-                    aria-label={a.nameActivity}
-                    key={a._id}
-                    className="p-0 "
-                  >
-                    <LinkActivity
-                      color={a.color}
-                      key={a._id}
-                      activityName={a.nameActivity}
-                      text={a.nameActivity}
-                      href={`/activity/${fromNameToUrl(a.nameActivity)}`}
-                    />
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
+            <Button variant="light">
+              <LinkNav text="Inicio" href={`/dashboard?search=`} />
+            </Button>
           </NavbarItem>
           <NavbarItem>
             <Button className="" variant="light">

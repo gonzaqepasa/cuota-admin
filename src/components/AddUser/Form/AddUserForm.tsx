@@ -8,6 +8,7 @@ import { NameInput } from "./Name/NameInput";
 import { DescriptionInput } from "./Description/DescriptionInput";
 import { ButtonForm } from "./Button/ButtonForm";
 import Link from "next/link";
+import { PhoneInput } from "./Phone/Phone";
 
 interface Props {
   onClose: () => void;
@@ -52,7 +53,7 @@ export const AddUserForm: React.FC<Props> = ({ onClose }) => {
   return (
     <form className="flex flex-col gap-3" onSubmit={(e) => handleSubmit(e)}>
       <NameInput setName={setName} nameVal={name} />
-
+      <PhoneInput setPhone={setPhoneNumber} />
       <DescriptionInput setDescription={setDescription} />
       <ButtonForm
         onClose={onClose}
