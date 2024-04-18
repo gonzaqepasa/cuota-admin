@@ -46,14 +46,14 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
           {firstLetterUpper(activity?.modality || "")}
         </p>
 
-        <CountdownTimer
+        {/* <CountdownTimer
           paymentDate={new Date(lastPayment.createdAt)}
           expirationDate={
             lastPayment.expirationDate
               ? new Date(lastPayment.expirationDate)
               : calculateExpirationDate(new Date(lastPayment.createdAt), 1)
           }
-        />
+        /> */}
       </div>
     );
   }
