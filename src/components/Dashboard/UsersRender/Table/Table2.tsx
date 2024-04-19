@@ -1,4 +1,5 @@
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import { typesActivity, typesUser } from "../../../../types/types-user";
 import { Avatar, Pagination } from "@nextui-org/react";
 import PaymentCol from "./PaymentCol";
@@ -9,6 +10,8 @@ import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 import { isUserWithinPaymentMonth } from "./logicPayment";
 import { getByLastPay } from "../../../Payments/BtnAddPay/logicPayments";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { orderByUpdate } from "../../../../logic/orderByMonthName";
 
 interface Props {
   users: typesUser[];
@@ -27,8 +30,12 @@ const paginateUsers = (
 };
 
 const Table2: React.FC<Props> = ({ activities, users }) => {
+  const [filterUsers, setFilterUsers] = useState<typesUser[]>(users);
+  const params = useSearchParams();
+  const search = params.get("search");
+
   // Tamaño de la página
-  const pageSize = 2; // Puedes ajustar este valor según tus necesidades
+  const pageSize = 10; // Puedes ajustar este valor según tus necesidades
 
   // Estado para almacenar la página actual
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,12 +46,22 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
   };
 
   // Obtener los usuarios de la página actual
-  const paginatedUsers = paginateUsers(users, currentPage, pageSize);
+  const paginatedUsers = paginateUsers(filterUsers, currentPage, pageSize);
+  useEffect(() => {
+    const searchKeywords = search?.toLowerCase().split(" ") || [""];
 
+    setFilterUsers(
+      users.filter((el) =>
+        searchKeywords?.every((keyword) =>
+          String(el.name).toLowerCase().includes(keyword)
+        )
+      )
+    );
+  }, [search, users]);
   return (
     <div className=" flex flex-col items-center gap-4 ">
       <ul className="min-h-[50vh] overflow-x-auto">
-        {paginatedUsers.map((user: typesUser, index: number) => (
+        {orderByUpdate(paginatedUsers).map((user: typesUser, index: number) => (
           <li
             key={index}
             className={` w-screen px-4 flex gap-10 items-center justify-between ${
