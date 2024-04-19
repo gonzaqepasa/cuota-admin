@@ -53,16 +53,18 @@ export const BtnAddPay: React.FC<Props> = ({
   size,
   content,
   variant,
-  color
+  color,
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
   const [activities, setActivities] = useState<typesActivity[]>([]);
   const router = useRouter();
   const theme = Cookies.get("theme");
   useEffect(() => {
+   
     getAllActivitiesToDashboard().then((res: any) => {
       setActivities(res);
+      setLoad(false);
     });
   }, []);
 
@@ -77,7 +79,12 @@ export const BtnAddPay: React.FC<Props> = ({
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col text-base gap-1">
-                <h2 className="text-content1-100">PAGO DE MES</h2>
+                <h2 className="text-content1-300 text-sm flex gap-1 items-center">
+                  {`PAGO DE MES `}
+                  <p className="text-content1-100 text-base">
+                    {userData.name?.toUpperCase()}
+                  </p>
+                </h2>
               </ModalHeader>
               <ModalBody>
                 {activities.map((a) => (

@@ -1,13 +1,9 @@
 import { FormEvent, useState } from "react";
-import { validateFormInputs } from "../logic/validateAddInputs";
 import { createUser } from "../../../api-next/user/createUser";
-import { typesActivity, typesUser } from "../../../types/types-user";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { ModalityInput } from "./Modality/ModalityInput";
+import {  useRouter, useSearchParams } from "next/navigation";
 import { NameInput } from "./Name/NameInput";
 import { DescriptionInput } from "./Description/DescriptionInput";
 import { ButtonForm } from "./Button/ButtonForm";
-import Link from "next/link";
 import { PhoneInput } from "./Phone/Phone";
 
 interface Props {
