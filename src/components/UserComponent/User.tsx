@@ -25,13 +25,13 @@ export const User: React.FC<Props> = ({ userData, payments }) => {
           <RenderPay payments={payments} user={userData} />
         </div>
         <div className="fixed z-30 bottom-5 right-5">
-          <BtnAddPay
+          {/* <BtnAddPay
             userData={userData}
             color="primary"
             content="Agregar pago"
             size="lg"
             variant="shadow"
-          />
+          /> */}
         </div>
       </div>
     );
