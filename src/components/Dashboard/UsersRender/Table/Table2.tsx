@@ -67,7 +67,7 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
         {paginatedUsers.map((user: typesUser, index: number) => (
           <li
             key={index}
-            className={` w-max lg:w-full   px-4 grid grid-cols-[min(20rem)_minmax(30rem,1fr)_min(10rem)] items-center py-1 ${
+            className={` w-max lg:w-full   px-4 grid grid-cols-[min(20rem)_minmax(27rem,1fr)_min(10rem)] items-center py-1 ${
               index % 2 === 0 && "bg-gray-500/20"
             }`}
           >
@@ -91,7 +91,7 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
             <div className="min-w-unit-10 ">
               <PaymentCol activities={activities} user={user} />
             </div>
-            <div className="flex items-center justify-end gap-1 pr-6">
+            <div className="flex items-center justify-end gap-1 pr-4">
               <ButtonSendWpp user={user} />
               <BtnAddPay
                 userData={user}
