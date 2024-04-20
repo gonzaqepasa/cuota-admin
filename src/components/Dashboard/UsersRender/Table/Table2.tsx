@@ -95,9 +95,10 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
               <ButtonSendWpp user={user} />
               <BtnAddPay
                 userData={user}
+                activities={activities}
                 size="sm"
-                variant="bordered"
-                content="Pagar"
+                variant="faded"
+                content="Iniciar pago"
                 color="success"
               />
               {/* <ButtonDeleteUser userData={user} /> */}
