@@ -16,25 +16,27 @@ const Searcher = () => {
     route.replace(`${path}?search=${e.target.value}`);
   };
   return (
-    <div className="w-screen flex items-center shadow  bg-primary-100 gap-1 left-0 py-2 px-6 sm:px-8">
-      <Input
-        id="inputsearch"
-        className="text-content1-100"
-        // isClearable
-        // onClear={() => route.push(`${path}?search=`)}
-        // startContent={<CgSearch className=" " />}
-        autoComplete="false"
-        label="Buscar usuario"
-        onChange={handleChange}
-        defaultValue={search || ""}
-        radius="lg"
-        color="primary"
-        variant="underlined"
-      />
-      <div>
-        <ButtonAdd />
+    <span className="backg-img">
+      <div className="w-screen flex items-center shadow  bg-primary-100/80 gap-1 left-0 py-2 px-6 sm:px-8">
+        <Input
+          id="inputsearch"
+          className="text-content1-100"
+          // isClearable
+          // onClear={() => route.push(`${path}?search=`)}
+          // startContent={<CgSearch className=" " />}
+          autoComplete="false"
+          label="Buscar usuario"
+          onChange={handleChange}
+          defaultValue={search || ""}
+          radius="lg"
+          color="primary"
+          variant="underlined"
+        />
+        <div>
+          <ButtonAdd />
+        </div>
       </div>
-    </div>
+    </span>
   );
 };
 

@@ -1,6 +1,4 @@
 "use client";
-import { MdAdd } from "react-icons/md";
-
 import {
   Modal,
   ModalContent,
@@ -10,23 +8,17 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-
 import { FaMoneyBillWave } from "react-icons/fa";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { getAllActivitiesToDashboard } from "../../../api-next/activity/getActivity";
 import { typesActivity, typesUser } from "../../../types/types-user";
 import { firstLetterUpper } from "../../../logic/firstLetterUpper";
-import Loading from "../../../app/loading";
 import { numberToMoney } from "../../../logic/numberToMoney";
-import { payMonth } from "../../../api-next/month/payMonth";
 import { ButtonPay } from "../../UserComponent/Render/btn/Pay/Pay";
 import Cookies from "js-cookie";
-import { Content } from "next/font/google";
+import { orderByNameActivity } from "../../../logic/orderByMonthName";
 
 interface Props {
   userData: typesUser;
+  activities: typesActivity[];
   size: "sm" | "md" | "lg" | undefined;
   color:
     | "default"
@@ -50,31 +42,29 @@ interface Props {
 
 export const BtnAddPay: React.FC<Props> = ({
   userData,
+  activities,
   size,
   content,
   variant,
   color,
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [load, setLoad] = useState(true);
-  const [activities, setActivities] = useState<typesActivity[]>([]);
-  const router = useRouter();
+
   const theme = Cookies.get("theme");
-  useEffect(() => {
-   
-    getAllActivitiesToDashboard().then((res: any) => {
-      setActivities(res);
-      setLoad(false);
-    });
-  }, []);
 
   return (
     <>
       <Button variant={variant} color={color} size={size} onPress={onOpen}>
-        <MdAdd className="text-xl" />
+        <FaMoneyBillWave />
+
         {content && <p>{content}</p>}
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className={`${theme}`}>
+      <Modal
+        scrollBehavior="inside"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        className={`${theme}`}
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -87,42 +77,38 @@ export const BtnAddPay: React.FC<Props> = ({
                 </h2>
               </ModalHeader>
               <ModalBody>
-                {activities.map((a) => (
+                {orderByNameActivity(activities).map((a) => (
                   <div
                     className="p-2 hover:bg-primary-200 transition-colors"
                     key={a._id}
                   >
-                    {load ? (
-                      <Loading />
-                    ) : (
-                      <div
-                        className="flex flex-wrap  items-center border-b-2 p-2 justify-between"
-                        style={{ borderBottomColor: a.color }}
-                      >
-                        <div className="flex items-center gap-2">
-                          <p
-                            className={`h-3 w-3 rounded-full `}
-                            style={{ background: a.color }}
-                          ></p>
-                          <div>
-                            <p className="text-content1-200">
-                              {firstLetterUpper(a.nameActivity)}
-                            </p>
-                            <p className="text-sm" style={{ color: a.color }}>
-                              {firstLetterUpper(a.modality)}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <p className="text-content1-300">
-                            {numberToMoney(a.price)}
+                    <div
+                      className="flex flex-wrap  items-center border-b-2 p-2 justify-between"
+                      style={{ borderBottomColor: a.color }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <p
+                          className={`h-3 w-3 rounded-full `}
+                          style={{ background: a.color }}
+                        ></p>
+                        <div>
+                          <p className="text-content1-200">
+                            {firstLetterUpper(a.nameActivity)}
                           </p>
-
-                          <ButtonPay userData={userData} activity={a} />
+                          <p className="text-sm" style={{ color: a.color }}>
+                            {firstLetterUpper(a.modality)}
+                          </p>
                         </div>
                       </div>
-                    )}
+
+                      <div className="flex items-center gap-2">
+                        <p className="text-content1-300">
+                          {numberToMoney(a.price)}
+                        </p>
+
+                        <ButtonPay userData={userData} activity={a} />
+                      </div>
+                    </div>
                   </div>
                 ))}
               </ModalBody>

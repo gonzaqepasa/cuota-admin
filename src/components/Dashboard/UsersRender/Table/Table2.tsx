@@ -5,7 +5,6 @@ import { Avatar, Pagination } from "@nextui-org/react";
 import PaymentCol from "./PaymentCol";
 import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
 import ButtonSendWpp from "../../../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
-import ButtonDeleteUser from "../../../UserComponent/Config/ButtonDeleteUser";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 import { isUserWithinPaymentMonth } from "./logicPayment";
 import { getByLastPay } from "../../../Payments/BtnAddPay/logicPayments";
@@ -46,7 +45,11 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
   };
 
   // Obtener los usuarios de la página actual
-  const paginatedUsers = paginateUsers(filterUsers, currentPage, pageSize);
+  const paginatedUsers = paginateUsers(
+    orderByUpdate(filterUsers),
+    currentPage,
+    pageSize
+  );
   useEffect(() => {
     const searchKeywords = search?.toLowerCase().split(" ") || [""];
 
@@ -59,12 +62,12 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
     );
   }, [search, users]);
   return (
-    <div className=" flex flex-col items-center gap-4 ">
-      <ul className="min-h-[50vh] overflow-x-auto">
-        {orderByUpdate(paginatedUsers).map((user: typesUser, index: number) => (
+    <div className=" flex flex-col w-screen  items-center gap-4 ">
+      <ol className="min-h-[50vh] w-screen  overflow-x-auto">
+        {paginatedUsers.map((user: typesUser, index: number) => (
           <li
             key={index}
-            className={` w-screen px-4 flex gap-10 items-center justify-between ${
+            className={` w-max lg:w-full   px-4 grid grid-cols-[min(20rem)_minmax(27rem,1fr)_min(10rem)] items-center py-1 ${
               index % 2 === 0 && "bg-gray-500/20"
             }`}
           >
@@ -85,27 +88,29 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
                 {firstLetterUpper(user.name)}
               </p>
             </Link>
-            <div>
+            <div className="min-w-unit-10 ">
               <PaymentCol activities={activities} user={user} />
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center justify-end gap-1 pr-4">
+              <ButtonSendWpp user={user} />
               <BtnAddPay
                 userData={user}
+                activities={activities}
                 size="sm"
-                variant="bordered"
-                content="Pagar"
+                variant="faded"
+                content="Iniciar pago"
                 color="success"
               />
-              <ButtonSendWpp user={user} />
-              <ButtonDeleteUser userData={user} />
+              {/* <ButtonDeleteUser userData={user} /> */}
             </div>
           </li> // Ajusta user.name según la estructura de tus datos de usuario
         ))}
-      </ul>
+      </ol>
       <Pagination
         showControls
         variant="faded"
-        total={Math.ceil(users.length / pageSize)}
+        showShadow
+        total={Math.ceil(filterUsers.length / pageSize)}
         onChange={onPageChange}
       />
     </div>
