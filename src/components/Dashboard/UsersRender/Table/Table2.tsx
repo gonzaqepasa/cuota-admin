@@ -46,7 +46,7 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
   };
 
   // Obtener los usuarios de la página actual
-  const paginatedUsers = paginateUsers(filterUsers, currentPage, pageSize);
+  const paginatedUsers = paginateUsers(orderByUpdate(filterUsers), currentPage, pageSize);
   useEffect(() => {
     const searchKeywords = search?.toLowerCase().split(" ") || [""];
 
@@ -60,8 +60,8 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
   }, [search, users]);
   return (
     <div className=" flex flex-col items-center gap-4 ">
-      <ul className="min-h-[50vh] overflow-x-auto">
-        {orderByUpdate(paginatedUsers).map((user: typesUser, index: number) => (
+      <ol className="min-h-[50vh] overflow-x-auto">
+        {paginatedUsers.map((user: typesUser, index: number) => (
           <li
             key={index}
             className={` w-screen px-4 flex gap-10 items-center justify-between ${
@@ -101,11 +101,13 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
             </div>
           </li> // Ajusta user.name según la estructura de tus datos de usuario
         ))}
-      </ul>
+      </ol>
       <Pagination
+     
         showControls
         variant="faded"
-        total={Math.ceil(users.length / pageSize)}
+   showShadow
+        total={Math.ceil(filterUsers.length / pageSize)}
         onChange={onPageChange}
       />
     </div>
