@@ -66,7 +66,7 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
     );
   }, [search, users]);
   return (
-    <div className=" flex flex-col w-screen bg-primary-300 rounded-large items-center gap-4 ">
+    <div className=" flex flex-col w-screen rounded-large items-center gap-4 ">
       <ol className="min-h-[50vh] w-screen  overflow-x-auto">
         {paginatedUsers.map((user: typesUser, index: number) => (
           <li
