@@ -30,6 +30,7 @@ const paginateUsers = (
 
 const Table2: React.FC<Props> = ({ activities, users }) => {
   const [filterUsers, setFilterUsers] = useState<typesUser[]>(users);
+  const [paginatedUsers, setPaginatedUser] = useState<typesUser[]>([]);
   const params = useSearchParams();
   const search = params.get("search");
 
@@ -44,12 +45,15 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
     setCurrentPage(page);
   };
 
-  // Obtener los usuarios de la página actual
-  const paginatedUsers = paginateUsers(
-    orderByUpdate(filterUsers),
-    currentPage,
-    pageSize
-  );
+  //////// Obtener los usuarios de la página actual ////////
+  useEffect(() => {
+    setPaginatedUser(
+      paginateUsers(orderByUpdate(filterUsers), currentPage, pageSize)
+    );
+  }, [currentPage, filterUsers]);
+
+  ////////////////////////////////////////////////////////
+
   useEffect(() => {
     const searchKeywords = search?.toLowerCase().split(" ") || [""];
 
@@ -62,12 +66,12 @@ const Table2: React.FC<Props> = ({ activities, users }) => {
     );
   }, [search, users]);
   return (
-    <div className=" flex flex-col w-screen  items-center gap-4 ">
+    <div className=" flex flex-col w-screen bg-primary-300 rounded-large items-center gap-4 ">
       <ol className="min-h-[50vh] w-screen  overflow-x-auto">
         {paginatedUsers.map((user: typesUser, index: number) => (
           <li
             key={index}
-            className={` w-max lg:w-full   px-4 grid grid-cols-[min(20rem)_minmax(27rem,1fr)_min(10rem)] items-center py-1 ${
+            className={` w-max lg:w-full   px-4 grid grid-cols-[min(20rem)_minmax(27rem,1fr)_min(12rem)] items-center py-1 ${
               index % 2 === 0 && "bg-gray-500/20"
             }`}
           >
