@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import { getActivitiesToDashboard } from "../../../services/activity.service";
 import { getUsers } from "../../api-next/user/getUser";
 import DashboardComponent from "../../components/Dashboard/Dashboard";
 import ProviderAuth from "../ProviderAuth";
