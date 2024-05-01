@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -30,7 +30,7 @@ const CountdownTimer: React.FC<Props> = ({ paymentDate, expirationDate }) => {
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, []);
+  }, [expirationDate]);
 
   const formatTime = (value: any) => {
     return value < 10 ? `0${value}` : value;

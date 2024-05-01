@@ -21,7 +21,7 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
   if (!lastPayment)
     return (
       <div>
-        <p className="text-content1-400">{"Sin pagos"}</p>
+        <p className="text-content1-300">{"Sin pagos"}</p>
       </div>
     );
 
@@ -63,7 +63,7 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
         <p className=" p-1 rounded-full bg-gray-500">
           <AiFillLike className="text-content1-100 shadow rotate-180 " />
         </p>
-        <p>{firstLetterUpper(lastPayment.monthName)}</p>
+        <p  className="text-content1-100">{firstLetterUpper(lastPayment.monthName)}</p>
         <p>{lastPayment.expirationDate}</p>
       </div>
     </>

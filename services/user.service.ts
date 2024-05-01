@@ -41,11 +41,6 @@ export async function getUsers() {
   try {
     // Buscar todos los usuarios que pertenecen a una actividad con el nombre específico
     const users = await User.find().populate("months");
-    console.log(
-      "Esta es la respuesta en servicios lo que envia a la ruta",
-
-      users
-    );
 
     return users;
   } catch (error) {

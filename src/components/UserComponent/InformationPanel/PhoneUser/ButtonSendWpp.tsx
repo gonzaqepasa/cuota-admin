@@ -2,6 +2,7 @@ import { Tooltip } from "@nextui-org/react";
 import { typesUser } from "../../../../types/types-user";
 import { firstLetterUpper } from "../../../../logic/firstLetterUpper";
 import { FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
 
 interface Props {
   user: typesUser;
@@ -16,7 +17,7 @@ const ButtonSendWpp: React.FC<Props> = ({ user }) => {
             delay={600}
             content="Enviar enlace para ver el pago de sus cuotas"
           >
-            <a
+            <Link            
               className="rounded-xl p-3 text-green-600 hover:bg-green-500/20 text-base"
               target="_blank"
               href={`https://wa.me/+54${
@@ -28,7 +29,7 @@ const ButtonSendWpp: React.FC<Props> = ({ user }) => {
               }`}
             >
               <FaWhatsapp />
-            </a>
+            </Link>
           </Tooltip>
         </>
       )}
