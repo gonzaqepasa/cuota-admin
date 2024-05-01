@@ -4,9 +4,14 @@ import { useEffect, useState } from "react";
 interface Props {
   paymentDate: Date;
   expirationDate: Date;
+  bg?: Boolean;
 }
 
-const CountdownTimer: React.FC<Props> = ({ paymentDate, expirationDate }) => {
+const CountdownTimer: React.FC<Props> = ({
+  paymentDate,
+  expirationDate,
+  bg,
+}) => {
   const calculateTimeRemaining = () => {
     const totalMilliseconds = expirationDate.getTime() - new Date().getTime();
     if (totalMilliseconds <= 0) {
@@ -45,7 +50,7 @@ const CountdownTimer: React.FC<Props> = ({ paymentDate, expirationDate }) => {
       : { color: "green" };
 
   return (
-    <div>
+    <div className={`${bg && "bg-primary-300 rounded px-1"}`}>
       <p style={remainingTimeStyle}>{`${formatTime(
         timeRemaining.days
       )} Días, ${formatTime(timeRemaining.hours)}:${formatTime(
