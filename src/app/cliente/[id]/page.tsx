@@ -23,6 +23,8 @@ import { Card, Divider } from "@nextui-org/react";
 import LastPaymentComponent from "../../../components/Cliente/LastPayment";
 import NameUserComponent from "../../../components/Cliente/NameUserCliente";
 import RenderPaymentsComponent from "../../../components/Cliente/RenderPayments";
+import Carousel1 from "../../../components/Globals/Carousel/Carousel1";
+import SocialIcons from "../../../components/Cliente/SocialIcons";
 
 interface Params {
   params: { id: string };
@@ -36,12 +38,15 @@ export default async function List({ params }: Params) {
   const lastPayment = getLastPayFromArrayMonths(payments);
   return (
     <>
-      <main className=" flex dark  flex-col items-center min-h-screen bg-image-center">
+      <main className=" flex dark   flex-col items-center min-h-screen bg-primary-200 ">
         <NameUserComponent user={user} />
-        <LastPaymentComponent lastPayment={lastPayment} />
+        <div className={`w-screen sticky top-0 z-30`}>
+          <LastPaymentComponent lastPayment={lastPayment} />
+        </div>
+        <SocialIcons />
 
-        {/* ////// TERCER COMPONENTE ////// */}
         <RenderPaymentsComponent payments={payments} />
+        <Carousel1 />
       </main>
     </>
   );
