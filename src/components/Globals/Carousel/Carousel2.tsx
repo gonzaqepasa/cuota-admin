@@ -15,7 +15,7 @@ const Carousel2 = () => {
   return (
     <>
       <div
-        className={` flex flex-col items-center bg-image-center    w-screen `}
+        className={` flex flex-col items-center bg-image-center py-5    w-screen `}
       >
         <Carousel
           infiniteLoop
@@ -26,7 +26,7 @@ const Carousel2 = () => {
           // onClickItem={onClickItem}
           // onClickThumb={onClickThumb}
           showThumbs={false}
-          className="w-screen max-w-5xl"
+          className="w-screen max-w-5xl border-neutral-200 border-2"
         >
           {img.map((img, i) => (
             <div key={i}>

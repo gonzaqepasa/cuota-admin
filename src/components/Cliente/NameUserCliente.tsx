@@ -3,11 +3,11 @@ import { typesUser } from "../../types/types-user";
 interface Props {
   user: typesUser;
 }
-const NameUserComponent: React.FC<Props> = ({user}) => {
+const NameUserComponent: React.FC<Props> = ({ user }) => {
   return (
     <>
       <div className="flex flex-col  bg-black w-full p-2">
-        <p className="text-2xl text-neutral-300 animate__animated animate__zoomInRight ">
+        <p className="text-xl text-neutral-300 italic animate__animated animate__zoomInRight ">
           {firstLetterUpper(user.name)}
         </p>
       </div>
