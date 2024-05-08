@@ -4,6 +4,7 @@ import { typesMonth } from "../../types/types-user";
 import CountdownTimer from "../Dashboard/UsersRender/Table/CountdownTimer";
 import { calculateExpirationDate } from "../Payments/BtnAddPay/logicPayments";
 import { isUserWithinPaymentMonth } from "../Dashboard/UsersRender/Table/logicPayment";
+import { formatDateTime } from "../../logic/dateFormated";
 
 interface Params {
   payments: typesMonth[];
@@ -11,7 +12,10 @@ interface Params {
 const RenderPaymentsComponent: React.FC<Params> = ({ payments }) => {
   return (
     <>
-      <div className=" flex flex-col items-center  py-10 w-screen">
+      <div className=" flex flex-col items-center  py-6 w-screen">
+        <div>
+          <h3 className="text-content1-300 p-2">{"Ultimos pagos"}</h3>
+        </div>
         <ol className="flex flex-col items-center  w-screen gap-1">
           {payments.map((p) => (
             <>
@@ -32,12 +36,26 @@ const RenderPaymentsComponent: React.FC<Params> = ({ payments }) => {
                       // style={{}}
                     ></p>
                     <p>{firstLetterUpper(p.activity?.nameActivity)}</p>
-                    <p style={{ color: p.activity.color }}>
-                      {firstLetterUpper(p.activity?.modality)}
-                    </p>
                   </div>
                   <Divider />
-                  <div></div>
+                  <div className="flex gap-2 items-center">
+                    <div className="flex items-center gap-1">
+                      <p className="text-sm text-content1-400 font-light">
+                        {"Inicio"}
+                      </p>
+                      <p className="text-content1-300 text-sm">{formatDateTime(new Date(p.createdAt))}</p>
+                    </div>
+                    {p.expirationDate && (
+                      <div className="flex items-center gap-1">
+                        <p className="text-sm text-content1-400 font-light">
+                          {"Vence"}
+                        </p>
+                        <p className="text-content1-300 text-sm">
+                          {formatDateTime(new Date(p.expirationDate))}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </Card>
               )}
             </>

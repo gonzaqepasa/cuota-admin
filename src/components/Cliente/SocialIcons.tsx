@@ -7,8 +7,8 @@ import wppIcon from "../../styles/icons/wpp.svg";
 const SocialIcons = () => {
   return (
     <>
-      <div className={`bg-image-center w-screen `}>
-        <div className="flex flex-col items-start py-6 gap-5 bg-neutral-900/80">
+      <div className={`bg-image-center mt-10 w-screen `}>
+        <div className="flex justify-center items-center py-10 gap-2 bg-neutral-900/80">
           <Button variant="light" color="secondary">
             <Link href={``}>
               <Image src={igIcon} alt="" height={36} />
