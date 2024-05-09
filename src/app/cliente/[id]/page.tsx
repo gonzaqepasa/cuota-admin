@@ -23,15 +23,15 @@ export default async function List({ params }: Params) {
   const lastPayment = getLastPayFromArrayMonths(payments);
   return (
     <>
-      <main className=" flex dark   flex-col items-center min-h-screen bg-primary-200 ">
+      <main className=" flex dark relative  flex-col items-center min-h-screen bg-primary-200 ">
         <NameUserComponent user={user} />
-        <div className={`w-screen sticky top-0 z-30`}>
-          <LastPaymentComponent lastPayment={lastPayment} />
-        </div>
+
         <Carousel2 />
+        <LastPaymentComponent lastPayment={lastPayment} />
+
         <RenderPaymentsComponent payments={payments} />
         <SocialIcons />
-        {/* <Carousel1 /> */}
+        <Carousel1 />
       </main>
     </>
   );

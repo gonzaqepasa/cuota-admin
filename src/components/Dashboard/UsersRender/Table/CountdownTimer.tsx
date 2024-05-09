@@ -5,12 +5,14 @@ interface Props {
   paymentDate: Date;
   expirationDate: Date;
   bg?: Boolean;
+  size?: number;
 }
 
 const CountdownTimer: React.FC<Props> = ({
   paymentDate,
   expirationDate,
   bg,
+  size,
 }) => {
   const calculateTimeRemaining = () => {
     const totalMilliseconds = expirationDate.getTime() - new Date().getTime();
@@ -51,11 +53,17 @@ const CountdownTimer: React.FC<Props> = ({
 
   return (
     <div className={`${bg && "bg-primary-300 rounded px-1"}`}>
-      <p style={remainingTimeStyle}>{`${formatTime(
-        timeRemaining.days
-      )} Días, ${formatTime(timeRemaining.hours)}:${formatTime(
-        timeRemaining.minutes
-      )}:${formatTime(timeRemaining.seconds)}`}</p>
+      <p
+        className={`p-1`}
+        style={{
+          ...remainingTimeStyle,
+          fontSize: `${size ? size + "rem" : "1rem"}`,
+        }}
+      >{`${formatTime(timeRemaining.days)} Días, ${formatTime(
+        timeRemaining.hours
+      )}:${formatTime(timeRemaining.minutes)}:${formatTime(
+        timeRemaining.seconds
+      )}`}</p>
     </div>
   );
 };
