@@ -2,7 +2,7 @@
 import { Image } from "@nextui-org/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-const Carousel1 = () => {
+const PhotosComponent = () => {
   AOS.init({
     duration: 500,
     easing: "ease-in-cubic",
@@ -45,4 +45,4 @@ const Carousel1 = () => {
   );
 };
 
-export default Carousel1;
+export default PhotosComponent;

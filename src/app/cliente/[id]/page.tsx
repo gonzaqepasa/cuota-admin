@@ -7,7 +7,7 @@ import { getLastPayFromArrayMonths } from "../../../components/Payments/BtnAddPa
 import LastPaymentComponent from "../../../components/Cliente/LastPayment";
 import NameUserComponent from "../../../components/Cliente/NameUserCliente";
 import RenderPaymentsComponent from "../../../components/Cliente/RenderPayments";
-import Carousel1 from "../../../components/Globals/Carousel/Carousel1";
+import PhotosComponent from "../../../components/Globals/Carousel/PhotosComponent";
 import SocialIcons from "../../../components/Cliente/SocialIcons";
 import Carousel2 from "../../../components/Globals/Carousel/Carousel2";
 
@@ -31,7 +31,7 @@ export default async function List({ params }: Params) {
 
         <RenderPaymentsComponent payments={payments} />
         <SocialIcons />
-        <Carousel1 />
+        {/* <PhotosComponent /> */}
       </main>
     </>
   );
