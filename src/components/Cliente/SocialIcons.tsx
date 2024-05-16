@@ -17,7 +17,7 @@ const SocialIcons = () => {
           <div>
             <Button variant="light" color="success">
               <Link href={``} className="flex items-center gap-1">
-                <h3 className="text-lg">Escribinos al WhatssApp</h3>
+                <h3 className="text-lg">Escribínos al WhatsApp</h3>
                 <Image src={wppIcon} alt="" height={30} />
               </Link>
             </Button>
@@ -25,7 +25,7 @@ const SocialIcons = () => {
           <div className="text-neutral-200">
             <Button variant="light" color="secondary">
               <Link href={``} className="flex items-center gap-1">
-                <h3 className="text-xl">Seguinos en Instagram!</h3>
+                <h3 className="text-xl">Seguínos en Instagram!</h3>
                 <Image src={igIcon} alt="" height={36} />
               </Link>
             </Button>
