@@ -14,9 +14,7 @@ const Carousel2 = () => {
 
   return (
     <>
-      <div
-        className={` flex flex-col items-center bg-image-centerr py-5    w-screen `}
-      >
+      <div className={` flex flex-col items-center backg-imgg    w-screen `}>
         <Carousel
           infiniteLoop
           autoPlay
