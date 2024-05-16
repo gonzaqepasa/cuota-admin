@@ -18,7 +18,7 @@ export const User: React.FC<Props> = ({ userData, payments }) => {
           userData.status === "inactivo" && `opacity-40 `
         }`}
       >
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 bg-image">
           <PanelUser userData={userData} />
         </div>
         <div className="lg:col-span-2 flex flex-col items-center lg:items-stretch ">

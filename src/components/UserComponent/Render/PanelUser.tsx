@@ -10,7 +10,7 @@ interface Props {
 const PanelUser: React.FC<Props> = ({ userData }) => {
   return (
     <>
-      <div className="bg-image flex  flex-col  justify-start items-center    lg:m-0   h-full  text-neutral-800 bg-neutral-300 lg:shadow-lg">
+      <div className=" flex  flex-col  justify-start items-center bg-primary-200/90   lg:m-0   h-full  text-neutral-800 lg:shadow-lg">
         <div className="flex items-center w-full p-2">
           <BtnBack url={`/dashboard`} />
         </div>

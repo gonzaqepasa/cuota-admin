@@ -16,8 +16,8 @@ const Searcher = () => {
     route.replace(`${path}?search=${e.target.value}`);
   };
   return (
-    <span className="backg-img">
-      <div className="w-screen flex items-center shadow  bg-primary-100/80 gap-1 left-0 py-2 px-6 sm:px-8">
+    <span className="">
+      <div className="w-screen flex items-center shadow  bg-primary-100/80 gap-1 left-0 py-4 px-6 sm:px-8">
         <Input
           id="inputsearch"
           className="text-content1-100"
