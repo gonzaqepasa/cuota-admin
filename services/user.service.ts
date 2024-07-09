@@ -83,7 +83,7 @@ export async function getUsersForPage({ config }: TypesGetUserForPage) {
     // Buscar usuarios ordenados por fecha de creación con paginación
     const users = await User.find(query)
       .populate("months")
-      .sort({ updatedAt: 1 }) // Ordenar por fecha de creación (ascendente)
+      .sort({ updatedAt: -1 }) // Ordenar por fecha de creación (ascendente)
       .skip((page - 1) * pageSize)
       .limit(pageSize);
 
