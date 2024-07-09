@@ -6,7 +6,7 @@ const Loading = () => {
     <main
       className={`${Cookies.get(
         "theme"
-      )} flex flex-col justify-center items-center min-h-screen w-screen `}
+      )} flex flex-col bg-primary-200 justify-center items-center min-h-screen w-screen `}
     >
       <Spinner color="primary" size="lg" />
     </main>
