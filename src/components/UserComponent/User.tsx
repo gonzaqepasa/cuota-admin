@@ -1,14 +1,15 @@
-import { typesMonth, typesUser } from "../../types/types-user";
+import { typesActivity, typesMonth, typesUser } from "../../types/types-user";
 import PanelUser from "./Render/PanelUser";
 import RenderPay from "./Render/RenderPay";
 import { BtnAddPay } from "../Payments/BtnAddPay/BtnAddPay";
 
 interface Props {
   userData: typesUser;
+  activities: typesActivity[];
   payments: typesMonth[];
 }
 
-export const User: React.FC<Props> = ({ userData, payments }) => {
+export const User: React.FC<Props> = ({ userData, payments, activities }) => {
   // console.log("Esto es user", userData);
 
   if (userData)
@@ -25,13 +26,14 @@ export const User: React.FC<Props> = ({ userData, payments }) => {
           <RenderPay payments={payments} user={userData} />
         </div>
         <div className="fixed z-30 bottom-5 right-5">
-          {/* <BtnAddPay
+          <BtnAddPay
             userData={userData}
             color="primary"
+            activities={activities}
             content="Agregar pago"
             size="lg"
             variant="shadow"
-          /> */}
+          />
         </div>
       </div>
     );
