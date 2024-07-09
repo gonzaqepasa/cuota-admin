@@ -4,6 +4,7 @@ import { PhoneUser } from "../InformationPanel/PhoneUser/PhoneUser";
 import { Description } from "../InformationPanel/Description/Description";
 import { typesUser } from "../../../types/types-user";
 import BtnBack from "../../Globals/BtnBack";
+import { ConfigUser } from "../Config/ConfigUser";
 interface Props {
   userData: typesUser;
 }
@@ -26,7 +27,7 @@ const PanelUser: React.FC<Props> = ({ userData }) => {
           <Description user={userData} />
           <Divider />
         </div>
-        <div className={` `}>{/* <ConfigUser userData={user}  /> */}</div>
+        <ConfigUser userData={userData} />
       </div>
     </>
   );
