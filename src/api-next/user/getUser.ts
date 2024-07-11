@@ -36,7 +36,7 @@ export const getUsersForPageClient = async ({ page = 1, search = "" }) => {
 
     // revalidatePath(`/dashboard`, "page");
     return data;
-  } catch (e) {
+  } catch (e: any) {
     console.log(e);
     return e.message;
   }

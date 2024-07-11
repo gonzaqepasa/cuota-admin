@@ -96,9 +96,9 @@ export async function getUsersForPage({ config }: TypesGetUserForPage) {
       totalPages,
       totalUsers,
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    return { error: String(error.message) };
+    return { error: error.message };
   }
 }
 
