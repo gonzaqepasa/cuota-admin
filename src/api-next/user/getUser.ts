@@ -28,5 +28,18 @@ export const getUsers = async () => {
     return { msg: "Hubo un problema buscando al usuario" };
   }
 };
+export const getUsersForPageClient = async ({ page = 1, search = "" }) => {
+  try {
+    const { data } = await axios.get(
+      `${url}/user/get-users-page?page=${page}&search=${search}`
+    );
+
+    // revalidatePath(`/dashboard`, "page");
+    return data;
+  } catch (e) {
+    console.log(e);
+    return e.message;
+  }
+};
 
 export default getUser;

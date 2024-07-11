@@ -11,6 +11,7 @@ import {
   calculateExpirationDate,
   getByLastPay,
 } from "../../../Payments/BtnAddPay/logicPayments";
+import { formatDateTime } from "../../../../logic/dateFormated";
 
 interface Props {
   user: typesUser;
@@ -46,7 +47,7 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
           {firstLetterUpper(activity?.modality || "")}
         </p>
 
-         <CountdownTimer
+        <CountdownTimer
           paymentDate={new Date(lastPayment.createdAt)}
           expirationDate={
             lastPayment.expirationDate
@@ -63,8 +64,12 @@ const PaymentCol: React.FC<Props> = ({ user, activities }) => {
         <p className=" p-1 rounded-full bg-gray-500">
           <AiFillLike className="text-content1-100 shadow rotate-180 " />
         </p>
-        <p  className="text-content1-100">{firstLetterUpper(lastPayment.monthName)}</p>
-        <p>{lastPayment.expirationDate}</p>
+        <p className="text-content1-100">vencio</p>
+        {lastPayment.expirationDate && (
+          <p className="text-content1-400">
+            {formatDateTime(new Date(lastPayment.expirationDate))}
+          </p>
+        )}
       </div>
     </>
   );

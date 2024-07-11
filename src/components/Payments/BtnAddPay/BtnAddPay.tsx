@@ -15,6 +15,7 @@ import { numberToMoney } from "../../../logic/numberToMoney";
 import { ButtonPay } from "../../UserComponent/Render/btn/Pay/Pay";
 import Cookies from "js-cookie";
 import { orderByNameActivity } from "../../../logic/orderByMonthName";
+import { CgArrowLongRight } from "react-icons/cg";
 
 interface Props {
   userData: typesUser;
@@ -54,10 +55,15 @@ export const BtnAddPay: React.FC<Props> = ({
 
   return (
     <>
-      <Button variant={variant} color={color} size={size} onPress={onOpen}>
+      <Button
+        className="  "
+        variant={variant}
+        color={color}
+        size={size}
+        onPress={onOpen}
+      >
         <FaMoneyBillWave />
-
-        {content && <p>{content}</p>}
+        {content && <p className="">{content}</p>}
       </Button>
       <Modal
         scrollBehavior="inside"
@@ -112,44 +118,7 @@ export const BtnAddPay: React.FC<Props> = ({
                   </div>
                 ))}
               </ModalBody>
-              <ModalFooter className="flex flex-col lg:flex-row">
-                {/* <Button
-                  color="danger"
-                  variant="light"
-                  isDisabled={load}
-                  onPress={onClose}
-                >
-                  Cancelar
-                </Button>
-                <Button
-                  color="success"
-                  variant="bordered"
-                  onPress={() => handleSubmit({ method: "EF", onClose })}
-                  isLoading={load}
-                  isDisabled={load}
-                >
-                  <FaMoneyBillWave
-                    className="mx-1 col-green-succes "
-                    size={20}
-                  />
-                  Efectivo
-                </Button>
-                <Button
-                  color="primary"
-                  variant="bordered"
-                  onPress={() => handleSubmit({ method: "MP", onClose })}
-                  isLoading={load}
-                  isDisabled={load}
-                >
-                  <Image
-                    src={mp}
-                    height={22}
-                    className="mx-1 "
-                    alt="no se encontr imagen"
-                  />
-                  MercadoPago
-                </Button> */}
-              </ModalFooter>
+              <ModalFooter className="flex flex-col lg:flex-row"></ModalFooter>
             </>
           )}
         </ModalContent>

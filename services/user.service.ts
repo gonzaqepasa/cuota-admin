@@ -4,6 +4,7 @@ import "../src/mongoose/models/Month";
 import User from "../src/mongoose/models/User";
 import Activity from "../src/mongoose/models/Activity";
 import Month from "../src/mongoose/models/Month";
+import { NumericLiteral } from "typescript";
 
 export async function createUser({
   description,
@@ -48,6 +49,59 @@ export async function getUsers() {
     return { error: "Error al buscar todos los usuarios" };
   }
 }
+
+interface TypesGetUserForPage {
+  config: {
+    page: number;
+    pageSize?: number;
+    search?: string; // Añadido el campo de búsqueda
+  };
+}
+
+export async function getUsersForPage({ config }: TypesGetUserForPage) {
+  const { page, pageSize = 10, search = "" } = config; // Parámetros de consulta para la paginación
+
+  try {
+    // Crear una expresión regular para la búsqueda insensible a mayúsculas y minúsculas
+    const searchRegex = new RegExp(search, "i");
+
+    // Filtrar usuarios por nombre o número de teléfono si se proporciona un término de búsqueda
+    const query = search
+      ? { $or: [{ name: searchRegex }, { phoneNumber: searchRegex }] }
+      : {};
+
+    // Obtener el total de usuarios filtrados para calcular el número de páginas
+    const totalUsers = await User.countDocuments(query);
+
+    // Calcular el número total de páginas
+    const totalPages = Math.ceil(totalUsers / pageSize);
+
+    if (page > totalPages || page < 1)
+      throw new Error(
+        `La pagina ${page} no está disponible, hay ${totalPages} ${
+          totalPages > 1 ? "páginas" : "página"
+        } disponibles`
+      );
+
+    // Buscar usuarios ordenados por fecha de actualización con paginación
+    const users = await User.find(query)
+      .populate("months")
+      .sort({ updatedAt: -1 }) // Ordenar por fecha de actualización (descendente)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+
+    return {
+      users,
+      page,
+      totalPages,
+      totalUsers,
+    };
+  } catch (error) {
+    console.error(error);
+    return { error: String(error.message) };
+  }
+}
+
 export async function getUsersByActivityId({
   activityIds,
 }: {
