@@ -45,7 +45,8 @@ const Table2: React.FC<Props> = ({ activities }) => {
   const search = params.get("search");
 
   useEffect(() => {
-    setLoad(true);
+    !load && setLoad(true);
+    console.log(!load);
     setSearchTerm(search || "");
     currentPage !== 1 && setCurrentPage(1);
   }, [search]);
