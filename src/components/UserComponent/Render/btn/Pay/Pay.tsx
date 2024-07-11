@@ -48,7 +48,7 @@ export const ButtonPay: React.FC<Props> = ({ activity, userData }) => {
       });
       setLoad(false);
       onClose();
-      router.refresh();
+      router.push("/dashboard?search=");
     } catch (e) {
       setLoad(false);
       console.log(e);

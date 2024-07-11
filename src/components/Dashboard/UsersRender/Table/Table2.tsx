@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { typesActivity, typesUser } from "../../../../types/types-user";
-import { Avatar, Pagination } from "@nextui-org/react";
+import { Avatar, Button, Pagination } from "@nextui-org/react";
 import PaymentCol from "./PaymentCol";
 import { BtnAddPay } from "../../../Payments/BtnAddPay/BtnAddPay";
 import ButtonSendWpp from "../../../UserComponent/InformationPanel/PhoneUser/ButtonSendWpp";
@@ -14,6 +14,7 @@ import { orderByUpdate } from "../../../../logic/orderByMonthName";
 import { typesPageWithUsers } from "../../../../types/types-pages";
 import { getUsersForPageClient } from "../../../../api-next/user/getUser";
 import Loading from "../../../../app/loading";
+import { CgArrowBottomRight, CgArrowLongRight } from "react-icons/cg";
 
 interface Props {
   // users: typesPageWithUsers;
@@ -95,7 +96,7 @@ const Table2: React.FC<Props> = ({ activities }) => {
           {filterUsers?.map((user: typesUser, index: number) => (
             <li
               key={index}
-              className={` w-max lg:w-full   px-4 grid grid-cols-[min(20rem)_minmax(27rem,1fr)_min(12rem)] items-center py-1 ${
+              className={` w-max lg:w-full h-11  px-4 grid grid-cols-[min(20rem)_minmax(27rem,1fr)_min(12rem)] items-center py-1 ${
                 index % 2 === 0 && "bg-gray-500/20"
               }`}
             >
@@ -121,14 +122,18 @@ const Table2: React.FC<Props> = ({ activities }) => {
               </div>
               <div className="flex items-center justify-end gap-1 pr-4">
                 <ButtonSendWpp user={user} />
-                <BtnAddPay
-                  userData={user}
-                  activities={activities}
-                  size="sm"
-                  variant="faded"
-                  content="Iniciar pago"
-                  color="success"
-                />
+                <Button size="sm" variant="faded" color="success">
+                  <Link
+                    href={`user/${user._id}`}
+                    className="flex items-center gap-1  group "
+                  >
+                    <CgArrowLongRight
+                      size={18}
+                      className="-translate-x-1 group-hover:translate-x-0 transition-transform"
+                    />
+                    <p>Ir a pagar</p>
+                  </Link>
+                </Button>
                 {/* <ButtonDeleteUser userData={user} /> */}
               </div>
             </li> // Ajusta user.name según la estructura de tus datos de usuario

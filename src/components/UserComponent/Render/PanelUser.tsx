@@ -26,8 +26,8 @@ const PanelUser: React.FC<Props> = ({ userData }) => {
           <Divider />
           <Description user={userData} />
           <Divider />
+          {/* <ConfigUser userData={userData} /> */}
         </div>
-        <ConfigUser userData={userData} />
       </div>
     </>
   );
