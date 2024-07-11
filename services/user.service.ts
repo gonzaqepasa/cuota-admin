@@ -65,8 +65,10 @@ export async function getUsersForPage({ config }: TypesGetUserForPage) {
     // Crear una expresión regular para la búsqueda insensible a mayúsculas y minúsculas
     const searchRegex = new RegExp(search, "i");
 
-    // Filtrar usuarios por nombre si se proporciona un término de búsqueda
-    const query = search ? { name: searchRegex } : {};
+    // Filtrar usuarios por nombre o número de teléfono si se proporciona un término de búsqueda
+    const query = search
+      ? { $or: [{ name: searchRegex }, { phoneNumber: searchRegex }] }
+      : {};
 
     // Obtener el total de usuarios filtrados para calcular el número de páginas
     const totalUsers = await User.countDocuments(query);
@@ -76,14 +78,15 @@ export async function getUsersForPage({ config }: TypesGetUserForPage) {
 
     if (page > totalPages || page < 1)
       throw new Error(
-        `La pagina ${page} no esta disponible, hay ${totalPages} ${
-          totalPages > 1 ? "paginas" : "pagina"
+        `La pagina ${page} no está disponible, hay ${totalPages} ${
+          totalPages > 1 ? "páginas" : "página"
         } disponibles`
       );
-    // Buscar usuarios ordenados por fecha de creación con paginación
+
+    // Buscar usuarios ordenados por fecha de actualización con paginación
     const users = await User.find(query)
       .populate("months")
-      .sort({ updatedAt: -1 }) // Ordenar por fecha de creación (ascendente)
+      .sort({ updatedAt: -1 }) // Ordenar por fecha de actualización (descendente)
       .skip((page - 1) * pageSize)
       .limit(pageSize);
 
